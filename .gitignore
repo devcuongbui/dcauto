@@ -124,3 +124,9 @@ nb-configuration.xml
 
 /results/
 /phpunit*.xml
+
+# No import file from serve
+.htaccess
+
+# Html for dcauto
+dcautoco
