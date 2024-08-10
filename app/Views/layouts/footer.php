@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row setRow">
                 <div class="colLogo">
-                    <a class="linkLogo" href="index.html" title="home">
+                    <a class="linkLogo" href="<?php echo route_to('home'); ?>" title="home">
                         <img alt="dcauto"
                              src="storage/10/60/10604h5tszrfwh7c81fvsf7gl086_logo_OTO_DC_ta%cc%81ch_ne%cc%82%cc%80n.png">
                     </a>
@@ -110,13 +110,13 @@
                                 <p class="titleText colorWhite wk-editable-text" id="home-section-footer-text3">VỀ CHÚNG
                                     TÔI</p>
                             </div>
-                            <a class="linkPage" href="chinh-sach-van-chuyen/index.html" title="Chính Sách Vận Chuyển">Chính
+                            <a class="linkPage" href="chinh-sach-van-chuyen/<?php echo route_to('home'); ?>" title="Chính Sách Vận Chuyển">Chính
                                 Sách Vận Chuyển</a>
-                            <a class="linkPage" href="chinh-sach-mua-hang/index.html" title="Chính Sách Mua Hàng">Chính
+                            <a class="linkPage" href="chinh-sach-mua-hang/<?php echo route_to('home'); ?>" title="Chính Sách Mua Hàng">Chính
                                 Sách Mua Hàng</a>
-                            <a class="linkPage" href="chinh-sach-bao-hanh/index.html" title="Chính Sách Bảo Hành">Chính
+                            <a class="linkPage" href="chinh-sach-bao-hanh/<?php echo route_to('home'); ?>" title="Chính Sách Bảo Hành">Chính
                                 Sách Bảo Hành</a>
-                            <a class="linkPage" href="chinh-sach-bao-mat/index.html" title="Chính Sách Bảo Mật">Chính
+                            <a class="linkPage" href="chinh-sach-bao-mat/<?php echo route_to('home'); ?>" title="Chính Sách Bảo Mật">Chính
                                 Sách Bảo Mật</a>
                         </div>
                         <div class="childPart">
@@ -124,11 +124,11 @@
                                 <p class="titleText colorWhite wk-editable-text" id="home-section-footer-text4">Danh mục
                                     sản phẩm</p>
                             </div>
-                            <a class="linkPage" href="noi-that-o-to/index.html">NỘI THẤT Ô TÔ</a>
-                            <a class="linkPage" href="ngoai-that-o-to/index.html">NGOẠI THẤT Ô TÔ</a>
-                            <a class="linkPage" href="phu-kien-o-to-do-choi-o-to/index.html">PHỤ KIỆN Ô TÔ</a>
-                            <a class="linkPage" href="phu-kien-do-choi-theo-xe/index.html">PHỤ KIỆN THEO XE</a>
-                            <a class="linkPage" href="bao-duong-xe-o-to/index.html">BẢO DƯỠNG XE Ô TÔ</a>
+                            <a class="linkPage" href="noi-that-o-to/<?php echo route_to('home'); ?>">NỘI THẤT Ô TÔ</a>
+                            <a class="linkPage" href="ngoai-that-o-to/<?php echo route_to('home'); ?>">NGOẠI THẤT Ô TÔ</a>
+                            <a class="linkPage" href="phu-kien-o-to-do-choi-o-to/<?php echo route_to('home'); ?>">PHỤ KIỆN Ô TÔ</a>
+                            <a class="linkPage" href="phu-kien-do-choi-theo-xe/<?php echo route_to('home'); ?>">PHỤ KIỆN THEO XE</a>
+                            <a class="linkPage" href="bao-duong-xe-o-to/<?php echo route_to('home'); ?>">BẢO DƯỠNG XE Ô TÔ</a>
                         </div>
                     </div>
                 </div>
