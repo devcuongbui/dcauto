@@ -56,8 +56,12 @@
                                     <p class="text-center small">Enter your username & password to login</p>
                                 </div>
 
-                                <form class="row g-3 needs-validation" novalidate>
-
+                                <form class="row g-3 needs-validation" novalidate method="post" action="<?php echo route_to('auth.handle.login'); ?>">
+                                    <?php if (isset($error)): ?>
+                                        <div class="alert alert-danger">
+                                            <?= esc($error) ?>
+                                        </div>
+                                    <?php endif; ?>
                                     <div class="col-12">
                                         <label for="yourUsername" class="form-label">Username</label>
                                         <div class="input-group has-validation">
@@ -82,9 +86,9 @@
                                     <div class="col-12">
                                         <button class="btn btn-primary w-100" type="submit">Login</button>
                                     </div>
-                                    <div class="col-12">
-                                        <p class="small mb-0">Don't have account? <a href="<?php echo route_to('auth.register'); ?>">Create an account</a></p>
-                                    </div>
+<!--                                    <div class="col-12">-->
+<!--                                        <p class="small mb-0">Don't have account? <a href="--><?php //echo route_to('auth.register'); ?><!--">Create an account</a></p>-->
+<!--                                    </div>-->
                                 </form>
 
                             </div>

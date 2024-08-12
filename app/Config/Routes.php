@@ -12,9 +12,10 @@ $routes->set404Override(function () {
 });
 
 
-$routes->group("auth", static function ($routes) {
+$routes->group("admin", static function ($routes) {
     $routes->get('login', 'AuthController::login', ['as' => 'auth.login']);
-    $routes->get('register', 'AuthController::register', ['as' => 'auth.register']);
+    $routes->post('login', 'AuthController::handleLogin', ['as' => 'auth.handle.login']);
+    $routes->get('logout', 'AuthController::logout', ['as' => 'auth.logout']);
 });
 
 //$routes->group("admin", static function ($routes) {
@@ -30,6 +31,7 @@ $routes->group("errors", static function ($routes) {
 $routes->group('', ['filter' => 'auth'], function ($routes) {
     require_once __DIR__ . '/routes/auth.php';
 });
+
 $routes->group('admin', ['filter' => 'admin'], function ($routes) {
     require_once __DIR__ . '/routes/admin.php';
 });

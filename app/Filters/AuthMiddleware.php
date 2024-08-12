@@ -26,7 +26,7 @@ class AuthMiddleware implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         if (!session()->get('user')) {
-            return redirect()->to('/auth/login');
+            return redirect()->to(route_to('auth.login'));
         }
     }
 

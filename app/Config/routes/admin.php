@@ -7,3 +7,4 @@ use CodeIgniter\Router\RouteCollection;
  */
 
 $routes->get('dashboard', 'Admin\AdminHomeController::index', ['as' => 'home.admin']);
+
