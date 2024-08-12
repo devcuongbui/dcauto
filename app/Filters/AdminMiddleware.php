@@ -26,12 +26,12 @@ class AdminMiddleware implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         if (!session()->get('user')) {
-            return redirect()->to('/auth/login');
+            return redirect()->to(route_to('auth.login'));
         } else {
             $user_logged = session()->get('user');
 
-            if (!$user_logged->is_admin) {
-                return redirect()->to('/errors/forbidden');
+            if (!$user_logged['is_admin']) {
+                return redirect()->to(route_to('page.forbidden'));
             }
         }
     }
