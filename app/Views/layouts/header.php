@@ -319,7 +319,7 @@
                 </div>
             </div>
             <div class="cartArea">
-                <a class="cartBlock_1 aTag" href="cart/<?php echo route_to('home'); ?>" title="giỏ hàng">
+                <a class="cartBlock_1 aTag" href="<?php echo route_to('cart.list'); ?>" title="giỏ hàng">
                     <div class="cartItem">
                         <i aria-hidden="true" class="fa fa-cart-plus"></i>
                         <i class="amountProduct cart-count d-none" data-count="0">0</i>
@@ -349,7 +349,7 @@
         <a class="imgPart contactCallPopUp" contacttext="Chat Facebook" data-target="#popupWhenClickContact"
            data-toggle="modal" datahref="https://www.facebook.com/messages/t/105420132331532"
            idgoogleget="btn_messenger_id" rel="nofollow" title="Liên hệ">
-            <img alt="" class="messFacePartImg" src="tassets/images/messenger_item_2.png">
+            <img alt="" class="messFacePartImg" src="/tassets/images/messenger_item_2.png">
         </a>
         <p class="textPart">Chat Face</p>
     </div>
@@ -357,7 +357,7 @@
         <a class="imgPart contactCallPopUp" contacttext="Chat Zalo" data-target="#popupWhenClickContact"
            data-toggle="modal" datahref="https://zalo.me/0818918981" idgoogleget="btn_zalo_id" rel="nofollow"
            title="Liên hệ">
-            <img alt="" class="zaloPartImg" src="tassets/images/zalo_item_2.png">
+            <img alt="" class="zaloPartImg" src="/tassets/images/zalo_item_2.png">
         </a>
         <p class="textPart">Chat Zalo</p>
     </div>
@@ -365,7 +365,7 @@
         <a class="imgPart contactCallPopUp contactCallPopUpPhone" contacttext="Gọi điện"
            data-target="#popupWhenClickContact" data-toggle="modal" data="phone.html" datahref="tel: 0818.918.981"
            idgoogleget="btn_phone_id" title="Liên hệ">
-            <img alt="" class="phonePartImg" src="tassets/images/phone_item_2.svg">
+            <img alt="" class="phonePartImg" src="/tassets/images/phone_item_2.svg">
         </a>
         <p class="textPart">Phone</p>
         <div class="textPart_2">
@@ -407,7 +407,7 @@
                 <a class="aTag contactCallPopUp" contacttext="Chat Facebook" data-target="#popupWhenClickContact"
                    data-toggle="modal" datahref="https://www.facebook.com/messages/t/105420132331532"
                    idgoogleget="btn_messenger_id" rel="nofollow" title="Liên hệ">
-                    <img alt="messengerItem" class="messFacePartImg" src="tassets/images/messenger_item.svg">
+                    <img alt="messengerItem" class="messFacePartImg" src="/tassets/images/messenger_item.svg">
                 </a>
                 <p class="textUnderItem">Chat Face</p>
             </div>
@@ -415,20 +415,20 @@
                 <a class="contactCallPopUp contactCallPopUpPhone" contacttext="Gọi điện"
                    data-target="#popupWhenClickContact" data-toggle="modal" data="phone.html"
                    datahref="tel: 0818.918.981" idgoogleget="btn_phone_id" title="Liên hệ">
-                    <img alt="phoneItem" class="phonePartImg" src="tassets/images/phone_item.svg">
+                    <img alt="phoneItem" class="phonePartImg" src="/tassets/images/phone_item.svg">
                 </a>
             </div>
             <div class="zaloPart smallPart">
                 <a class="aTag contactCallPopUp" contacttext="Chat Zalo" data-target="#popupWhenClickContact"
                    data-toggle="modal" datahref="https://zalo.me/0818918981" idgoogleget="btn_zalo_id" rel="nofollow"
                    title="Liên hệ">
-                    <img alt="Zalo" class="zaloPartImg" src="tassets/images/zalo_item.png">
+                    <img alt="Zalo" class="zaloPartImg" src="/tassets/images/zalo_item.png">
                 </a>
                 <p class="textUnderItem">Zalo</p>
             </div>
             <div class="barsPart smallPart">
                 <a class="aTag">
-                    <img alt="bars" class="barsPartImg" src="tassets/images/bars-icon.svg">
+                    <img alt="bars" class="barsPartImg" src="/tassets/images/bars-icon.svg">
                 </a>
                 <p class="textUnderItem">Menu</p>
             </div>
@@ -440,7 +440,7 @@
         <div class="logoBarArea">
             <div class="logoPart">
                 <a class="linkLogo" href="<?php echo route_to('home'); ?>" title="home">
-                    <img alt="" src="tassets/images/logo.png">
+                    <img alt="" src="/tassets/images/logo.png">
                 </a>
             </div>
             <div class="hiddenBlockIcon">

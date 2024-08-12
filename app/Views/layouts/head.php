@@ -1,3 +1,4 @@
+<link rel="icon" type="image/x-icon" href="/storage/j4/oi/j4oivhsmmmd01crcz3r42lfhhscu_logo_OTO_DC_ta%cc%81ch_ne%cc%82%cc%80n.png">
 <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
 <meta content='width=device-width, initial-scale=1.0' name='viewport'>
 <meta content='index, follow' name='robots'>
@@ -59,8 +60,8 @@
 <!-- / new calendar -->
 <!--<script src='tassets/event-calendar-bootstrap/dist/jquery.bs.calendar.html'></script>-->
 <link href='/assets/cloudflare/ajax/libs/animate.css/4.1.1/animate.min.css' rel='stylesheet'>
-<link rel="stylesheet" href="assets/theme.default.css"/>
-<script src="assets/theme.default.js"></script>
+<link rel="stylesheet" href="/assets/theme.default.css"/>
+<script src="/assets/theme.default.js"></script>
 <meta name="google-site-verification" content=""/>
 <!-- Google Tag Manager -->
 <script>(function (w, d, s, l, i) {

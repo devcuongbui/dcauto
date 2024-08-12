@@ -18,6 +18,10 @@ $routes->group("admin", static function ($routes) {
     $routes->get('logout', 'AuthController::logout', ['as' => 'auth.logout']);
 });
 
+$routes->group("cart", static function ($routes) {
+    $routes->get('list', 'CartController::list', ['as' => 'cart.list']);
+});
+
 //$routes->group("admin", static function ($routes) {
 //    $routes->get('dashboard', 'Admin\AdminHomeController::index', ['as' => 'home.admin']);
 //});
