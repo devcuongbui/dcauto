@@ -7,11 +7,13 @@ class CartController extends BaseController
     private $session;
     private $productModel;
     private $productOptionModel;
+    private $orderModel;
     public function __construct()
     {
         $this->session = session();
         $this->productModel = model('ProductModel');
         $this->productOptionModel = model('ProductOptionModel');
+        $this->orderModel = model('OrdersModel');
     }
     public function list()
     {
@@ -36,11 +38,13 @@ class CartController extends BaseController
         $this->session->set('cart', $model1);
         $cart = $this->session->get('cart') ?? [];
         $totalPrice = 0;
+        $totalCount = 0;
         $isSelectAll = true;
         foreach ($cart['items'] as $item) {
             $product = $this->productModel->find($item['product_id']);
             if ($item['selected']) {
                 $totalPrice += $item['quantity'] * $product['sell_price'];
+                $totalCount += $item['quantity'];
             } else {
                 $isSelectAll = false;
             }
@@ -48,6 +52,7 @@ class CartController extends BaseController
         return view('cart/list', [
             'cart' => $cart,
             'totalPrice' => $totalPrice,
+            'totalCount' => $totalCount,
             'isSelectAll' => $isSelectAll,
             'productModel' => $this->productModel,
             'productOptionModel' => $this->productOptionModel,
@@ -68,11 +73,13 @@ class CartController extends BaseController
 
         $cart['items'][] = $item;
         $totalPrice = 0;
+        $totalCount = 0;
         $isSelectAll = true;
         foreach ($cart['items'] as $item) {
             $product = $this->productModel->find($item['product_id']);
             if ($item['selected']) {
                 $totalPrice += $item['quantity'] * $product['sell_price'];
+                $totalCount += $item['quantity'];
             } else {
                 $isSelectAll = false;
             }
@@ -81,6 +88,7 @@ class CartController extends BaseController
         return view("cart/list_items", [
             'cart' => $cart,
             'totalPrice' => $totalPrice,
+            'totalCount' => $totalCount,
             'isSelectAll' => $isSelectAll,
             'productModel' => $this->productModel,
             'productOptionModel' => $this->productOptionModel,
@@ -97,11 +105,13 @@ class CartController extends BaseController
             }
         }
         $totalPrice = 0;
+        $totalCount = 0;
         $isSelectAll = true;
         foreach ($cart['items'] as $item) {
             $product = $this->productModel->find($item['product_id']);
             if ($item['selected']) {
                 $totalPrice += $item['quantity'] * $product['sell_price'];
+                $totalCount += $item['quantity'];
             } else {
                 $isSelectAll = false;
             }
@@ -110,6 +120,7 @@ class CartController extends BaseController
         return view("cart/list_items", [
             'cart' => $cart,
             'totalPrice' => $totalPrice,
+            'totalCount' => $totalCount,
             'isSelectAll' => $isSelectAll,
             'productModel' => $this->productModel,
             'productOptionModel' => $this->productOptionModel,
@@ -127,11 +138,13 @@ class CartController extends BaseController
             }
         }
         $totalPrice = 0;
+        $totalCount = 0;
         $isSelectAll = true;
         foreach ($cart['items'] as $item) {
             $product = $this->productModel->find($item['product_id']);
             if ($item['selected']) {
                 $totalPrice += $item['quantity'] * $product['sell_price'];
+                $totalCount += $item['quantity'];
             } else {
                 $isSelectAll = false;
             }
@@ -140,6 +153,7 @@ class CartController extends BaseController
         return view("cart/list_items", [
             'cart' => $cart,
             'totalPrice' => $totalPrice,
+            'totalCount' => $totalCount,
             'isSelectAll' => $isSelectAll,
             'productModel' => $this->productModel,
             'productOptionModel' => $this->productOptionModel,
@@ -148,20 +162,22 @@ class CartController extends BaseController
     public function selectAll()
     {
         $cart = $this->session->get('cart') ?? [];
-        $select = $this->request->getPost('select');
+        $checked = $this->request->getPost('checked');
         foreach ($cart['items'] as $key => $item) {
-            if ($select == 'Y') {
+            if ($checked == 'Y') {
                 $cart['items'][$key]['selected'] = true;
             } else {
                 $cart['items'][$key]['selected'] = false;
             }
         }
         $totalPrice = 0;
+        $totalCount = 0;
         $isSelectAll = true;
         foreach ($cart['items'] as $item) {
             $product = $this->productModel->find($item['product_id']);
             if ($item['selected']) {
                 $totalPrice += $item['quantity'] * $product['sell_price'];
+                $totalCount += $item['quantity'];
             } else {
                 $isSelectAll = false;
             }
@@ -170,18 +186,20 @@ class CartController extends BaseController
         return view("cart/list_items", [
             'cart' => $cart,
             'totalPrice' => $totalPrice,
+            'totalCount' => $totalCount,
             'isSelectAll' => $isSelectAll,
             'productModel' => $this->productModel,
             'productOptionModel' => $this->productOptionModel,
         ]);
     }
-    public function select($id)
+    public function select()
     {
         $cart = $this->session->get('cart') ?? [];
-        $select = $this->request->getPost('select');
+        $checked = $this->request->getPost('checked');
+        $id = $this->request->getPost('id');
         foreach ($cart['items'] as $key => $item) {
             if ($item['id'] == $id) {
-                if ($select == "Y") {
+                if ($checked == "Y") {
                     $cart['items'][$key]['selected'] = true;
                 } else {
                     $cart['items'][$key]['selected'] = false;
@@ -190,11 +208,13 @@ class CartController extends BaseController
             }
         }
         $totalPrice = 0;
+        $totalCount = 0;
         $isSelectAll = true;
         foreach ($cart['items'] as $item) {
             $product = $this->productModel->find($item['product_id']);
             if ($item['selected']) {
                 $totalPrice += $item['quantity'] * $product['sell_price'];
+                $totalCount += $item['quantity'];
             } else {
                 $isSelectAll = false;
             }
@@ -203,9 +223,38 @@ class CartController extends BaseController
         return view("cart/list_items", [
             'cart' => $cart,
             'totalPrice' => $totalPrice,
+            'totalCount' => $totalCount,
             'isSelectAll' => $isSelectAll,
             'productModel' => $this->productModel,
             'productOptionModel' => $this->productOptionModel,
+        ]);
+    }
+    public function payment()
+    {
+        $cart = $this->session->get('cart') ?? [];
+        $cart_ok = [
+            'items' => [],
+        ];
+        foreach ($cart['items'] as $item) {
+            if ($item['selected']) {
+                $cart_ok['items'][] = $item;
+            }
+        }
+        $totalPrice = 0;
+        $totalCount = 0;
+        foreach ($cart_ok['items'] as $item) {
+            $product = $this->productModel->find($item['product_id']);
+            $totalPrice += $item['quantity'] * $product['sell_price'];
+            $totalCount += $item['quantity'];
+        }
+        return view("cart/payment", [
+            'cart' => $cart_ok,
+            'totalPrice' => $totalPrice,
+            'vat' => $totalPrice * 0.1,
+            'totalPriceWithVat' => $totalPrice + $totalPrice * 0.1,
+            'totalCount' => $totalCount,
+            'productModel' => $this->productModel,
+            'productOptionModel' => $this->productOptionModel
         ]);
     }
 }

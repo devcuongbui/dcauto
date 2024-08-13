@@ -51,25 +51,23 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                 id: cart_item_id,
                 quantity: quantity,
             },
-            success: function(result) {
-                console.log(result);
+            success: function (result) {
                 $("#cartMainContent").html(result);
             }
         })
     }
     function deleteCart(obj) {
         var cart_item_id = $(obj).data('cart-item-id');
-            $.ajax({
-                type: "POST",
-                url: "/cart/remove",
-                data: {
-                    id: cart_item_id
-                },
-                success: function(result) {
-                    console.log(result);
-                    $("#cartMainContent").html(result);
-                }
-            })
+        $.ajax({
+            type: "POST",
+            url: "/cart/remove",
+            data: {
+                id: cart_item_id
+            },
+            success: function (result) {
+                $("#cartMainContent").html(result);
+            }
+        })
     }
     function decrement(obj) {
         var $input = $(obj).parent().find('input');
@@ -87,5 +85,35 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
         updateCart(cart_item_id, count);
         return false;
     };
+    function checkboxChange(cart_item_id, obj) {
+        var checked = $(obj).is(":checked");
+        $.ajax({
+            type: "POST",
+            url: "/cart/select",
+            data: {
+                id: cart_item_id,
+                checked: checked ? "Y" : "N",
+            },
+            success: function (result) {
+                $("#cartMainContent").html(result);
+            }
+        })
+    }
+    function selectAll(obj) {
+        var checked = $(obj).is(":checked");
+        $.ajax({
+            type: "POST",
+            url: "/cart/select_all",
+            data: {
+                checked: checked ? "Y" : "N",
+            },
+            success: function (result) {
+                $("#cartMainContent").html(result);
+            }
+        })
+    }
+    function submitCart() {
+        location.href = "/cart/payment";
+    }
 </script>
 <?= $this->endSection() ?>

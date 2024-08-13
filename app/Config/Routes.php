@@ -23,7 +23,15 @@ $routes->group("cart", static function ($routes) {
     $routes->post('add', 'CartController::add', ['as' => 'cart.add']);
     $routes->post('remove', 'CartController::remove', ['as' => 'cart.remove']);
     $routes->post('update', 'CartController::update', ['as' => 'cart.update']);
-    $routes->get('checkout', 'CartController::checkout', ['as' => 'cart.checkout']);
+    $routes->post('select', 'CartController::select', ['as' => 'cart.select']);
+    $routes->post('select_all', 'CartController::selectAll', ['as' => 'cart.select_all']);
+    $routes->post('submit', 'CartController::submit', ['as' => 'cart.submit']);
+    $routes->get('payment', 'CartController::payment', ['as' => 'cart.payment']);
+});
+
+$routes->group("orders", static function ($routes) {
+    $routes->post('add', 'OrdersController::add', ['as' => 'orders.add']);
+    $routes->get('(:segment)', 'OrdersController::preview/$1', ['as' => 'orders.preview']);
 });
 
 //$routes->group("admin", static function ($routes) {
