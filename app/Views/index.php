@@ -252,7 +252,7 @@
                                             </option>
                                         </select>
                                         <select brand="Honda" class="form-control selectType search_input" id="ten_xe">
-                                            <option value="">Chọn dòng xe</option>
+                                            <option value="">Chọn dòng xe []</option>
                                             <option href="man-hinh-android-xe-honda-civic/<?php echo route_to('home'); ?>" value="Honda Civic">
                                                 Honda Civic
                                             </option>
