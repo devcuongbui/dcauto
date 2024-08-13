@@ -37,4 +37,17 @@ class ProductController extends BaseController
 
         return $this->response->setJSON($product);
     }
+    public function getOneByOption($id = null, $optionId = null)
+    {
+        $product = $this->productModel->find($id);
+
+        if (!$product) {
+            return $this->response->setJSON(['message' => 'Không tìm thấy sản phẩm'])->setStatusCode(404);
+        }
+
+        $productOption = $this->productOptionModel->where(['product_id' => $id, 'option_id' => $optionId])->get()->getRowArray();
+        $product['option'] = $productOption;
+
+        return $this->response->setJSON($product);
+    }
 }

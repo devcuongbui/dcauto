@@ -53,7 +53,7 @@
 <script crossorigin='anonymous'
         integrity='sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=='
         referrerpolicy='no-referrer'
-        src='https://cloudflare/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js'></script>
+        src='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js'></script>
 <!-- /fancy box -->
 <script src='/assets/jsdelivr/npm/fancyapps/ui/dist/fancybox/fancybox.umd.js'></script>
 <link href='/assets/jsdelivr/npm/fancyapps/ui/dist/fancybox/fancybox.css' rel='stylesheet'>

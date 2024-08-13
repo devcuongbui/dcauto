@@ -20,6 +20,10 @@ $routes->group("admin", static function ($routes) {
 
 $routes->group("cart", static function ($routes) {
     $routes->get('list', 'CartController::list', ['as' => 'cart.list']);
+    $routes->post('add', 'CartController::add', ['as' => 'cart.add']);
+    $routes->post('remove', 'CartController::remove', ['as' => 'cart.remove']);
+    $routes->post('update', 'CartController::update', ['as' => 'cart.update']);
+    $routes->get('checkout', 'CartController::checkout', ['as' => 'cart.checkout']);
 });
 
 //$routes->group("admin", static function ($routes) {

@@ -42,4 +42,50 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
         <?php endif; ?>
     </section>
 </main>
+<script>
+    function updateCart(cart_item_id, quantity) {
+        $.ajax({
+            type: "POST",
+            url: "/cart/update",
+            data: {
+                id: cart_item_id,
+                quantity: quantity,
+            },
+            success: function(result) {
+                console.log(result);
+                $("#cartMainContent").html(result);
+            }
+        })
+    }
+    function deleteCart(obj) {
+        var cart_item_id = $(obj).data('cart-item-id');
+            $.ajax({
+                type: "POST",
+                url: "/cart/remove",
+                data: {
+                    id: cart_item_id
+                },
+                success: function(result) {
+                    console.log(result);
+                    $("#cartMainContent").html(result);
+                }
+            })
+    }
+    function decrement(obj) {
+        var $input = $(obj).parent().find('input');
+        var cart_item_id = $($input).data('cart-item-id');
+        var count = parseInt($input.val()) - 1;
+        count = count < 1 ? 1 : count;
+        updateCart(cart_item_id, count);
+        return false;
+    };
+    function increment(obj) {
+        var $input = $(obj).parent().find('input');
+        var cart_item_id = $($input).data('cart-item-id');
+        var count = parseInt($input.val()) + 1;
+        count = count > 100 ? 100 : count;
+        updateCart(cart_item_id, count);
+        return false;
+    };
+</script>
 <?= $this->endSection() ?>
