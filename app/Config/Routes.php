@@ -16,6 +16,11 @@ $routes->group("admin", static function ($routes) {
     $routes->get('login', 'AuthController::login', ['as' => 'auth.login']);
     $routes->post('login', 'AuthController::handleLogin', ['as' => 'auth.handle.login']);
     $routes->get('logout', 'AuthController::logout', ['as' => 'auth.logout']);
+    $routes->group("category", static function ($routes) {
+        $routes->get('list', 'CategoryController::list', ['as' => 'category.list']);
+        $routes->post('write', 'CartController::write', ['as' => 'category.write']);
+    });
+
 });
 
 $routes->group("contact", static function ($routes) {

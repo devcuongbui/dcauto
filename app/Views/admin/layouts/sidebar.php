@@ -116,6 +116,20 @@
         </li><!-- End Forms Nav -->
 
         <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#category-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-layout-text-window-reverse"></i><span>Danh mục</span><i
+                        class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="category-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="/admin/category/list">
+                        <i class="bi bi-circle"></i><span>Danh sách danh mục</span>
+                    </a>
+                </li>
+            </ul>
+        </li><!-- End Tables Nav -->
+
+        <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-layout-text-window-reverse"></i><span>Tin tức</span><i
                         class="bi bi-chevron-down ms-auto"></i>
