@@ -14,20 +14,20 @@
     </div><!-- End Page Title -->
 
     <section class="section">
-        <form method="post" action="<?= route_to('admin.news.handleCreate') ?>">
+        <form id="form">
             <div class="form-group">
                 <label for="title">Tiêu đề:</label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="Nhập tiêu đề..." required>
+                <input type="text" class="form-control main_item" id="title" name="title"
+                       placeholder="Nhập tiêu đề..." required>
             </div>
             <div class="form-group">
                 <label for="content">Nội dung</label>
-                <textarea name="content" id="content" class="form-control" rows="5"
-                          placeholder="Nhập nội dung..." required></textarea>
+                <textarea name="content" id="content" cols="20" rows="10" class="tinymce-editor"></textarea>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="inputState">Loại:</label>
-                    <select id="inputState" class="form-control">
+                    <label for="type">Loại:</label>
+                    <select id="type" class="form-control main_item">
                         <option value="0" selected>Chọn loại tin tức...</option>
                         <option value="0">Tin khuyến mãi</option>
                         <option value="1">Kiến thức ô tô</option>
@@ -41,7 +41,58 @@
                     </label>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">Tạo mới</button>
+            <button id="btnCreate" type="button" onclick="createNews();" class="btn btn-primary">Tạo mới</button>
         </form>
     </section>
+    <script>
+        async function createNews() {
+            $('#btnCreate').prop('disabled', true).text('Đang tạo mới...');
+
+            let data = {}
+            let inputs = $('#form input.main_item, #form select.main_item');
+            for (let i = 0; i < inputs.length; i++) {
+                if (!$(inputs[i]).val() && $(inputs[i]).attr('type') !== 'checkbox') {
+                    console.log(inputs[i]);
+                    let text = $(inputs[i]).prev().text();
+                    alert(text + ' không được bỏ trống!');
+                    $('#btnCreate').prop('disabled', false).text('Tạo mới');
+                    return
+                }
+                data[$(inputs[i]).attr('id')] = $(inputs[i]).val();
+            }
+
+            data['is_show'] = $('#is_show').is(":checked");
+            // data['content'] = $('#content').find('.ql-editor').html();
+            data['content'] = tinymce.get('content').getContent();
+
+            let api = '<?php echo route_to('admin.news.handleCreate'); ?>';
+            try {
+                let result = await fetch(api, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(data),
+                });
+
+                console.log(data);
+
+                if (result.ok) {
+                    alert('Tạo mới thành công!')
+                    let res = await result.json();
+                    console.log(res);
+                    window.location.href = '<?php echo route_to('admin.news.list'); ?>';
+                } else {
+                    let res = await result.json();
+                    alert(res.message)
+                    $('#btnCreate').prop('disabled', false).text('Tạo mới');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Đã xảy ra lỗi trong quá trình tạo mới.');
+                $('#btnCreate').prop('disabled', false).text('Tạo mới');
+            }
+        }
+    </script>
 <?= $this->endSection() ?>
