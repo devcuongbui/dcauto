@@ -1,5 +1,7 @@
 <?php
 $setting = '';
+$cart = session()->get('cart') ?? [ 'items' => [] ];
+$totalCountCart = count($cart['items']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +31,7 @@ $setting = '';
 <!-- End Google Tag Manager (noscript) -->
 
 <!-- ======= Header ======= -->
-<?php echo view('/layouts/header', ["setting" => $setting]); ?>
+<?php echo view('/layouts/header', ["setting" => $setting, 'totalCountCart' => $totalCountCart]); ?>
 <!-- End Header -->
 
 <!-- ======= Main ======= -->

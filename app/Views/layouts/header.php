@@ -322,7 +322,7 @@
                 <a class="cartBlock_1 aTag" href="<?php echo route_to('cart.list'); ?>" title="giỏ hàng">
                     <div class="cartItem">
                         <i aria-hidden="true" class="fa fa-cart-plus"></i>
-                        <i class="amountProduct cart-count d-none" data-count="0">0</i>
+                        <i class="amountProduct cart-count <?=$totalCountCart == 0 ? 'd-none' : '' ?>" data-count="<?=$totalCountCart?>"><?=$totalCountCart?></i>
                     </div>
                 </a>
             </div>
@@ -398,7 +398,7 @@
                 <a class="cartBlock_1 aTag" href="cart/<?php echo route_to('home'); ?>" title="giỏ hàng">
                     <div class="cartItem">
                         <i aria-hidden="true" class="fa fa-cart-plus"></i>
-                        <i class="amountProduct order_items d-none" data-count="0">0</i>
+                        <i class="amountProduct order_items <?=$totalCountCart == 0 ? 'd-none' : '' ?>" data-count="<?=$totalCountCart?>"><?=$totalCountCart?></i>
                     </div>
                 </a>
                 <p class="textUnderItem">Giỏ hàng</p>

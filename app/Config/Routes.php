@@ -28,6 +28,10 @@ $routes->group("contact", static function ($routes) {
     $routes->post('save', 'ContactController::save',['as' => 'contact.save']);
 });
 
+$routes->group("product", static function ($routes) {
+    $routes->get('view/(:segment)', 'ProductController::view/$1',['as' => 'product.view']);
+});
+
 
 $routes->group("cart", static function ($routes) {
     $routes->get('list', 'CartController::list', ['as' => 'cart.list']);

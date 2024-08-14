@@ -24,6 +24,15 @@ class ProductController extends BaseController
 
         return $this->response->setJSON($products);
     }
+    public function view($id = null) {
+        if (!$id) {
+            return view('errors/404');
+        }
+        $product = $this->productModel->find($id);
+        $productOptions = $this->productOptionModel->where('product_id', $id)->findAll();
+        $product['options'] = $productOptions;
+        return view('product/view', ['product' => $product]);
+    }
     public function getOneById($id = null)
     {
         $product = $this->productModel->find($id);

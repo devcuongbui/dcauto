@@ -36,7 +36,7 @@ class CartController extends BaseController
             ],
         ];
         $this->session->set('cart', $model1);
-        $cart = $this->session->get('cart') ?? [];
+        $cart = $this->session->get('cart') ?? [ 'items' => [] ];
         $totalPrice = 0;
         $totalCount = 0;
         $isSelectAll = true;
@@ -63,7 +63,7 @@ class CartController extends BaseController
         $product_id = $this->request->getPost('product_id');
         $quantity = $this->request->getPost('quantity');
         $option_id = $this->request->getPost('option_id');
-        $cart = $this->session->get('cart') ?? [];
+        $cart = $this->session->get('cart') ?? [ 'items' => [] ];
         $item = [
             'id' => uniqid(),
             'product_id' => $product_id,
@@ -97,7 +97,7 @@ class CartController extends BaseController
     public function remove()
     {
         $id = $this->request->getPost('id');
-        $cart = $this->session->get('cart') ?? [];
+        $cart = $this->session->get('cart') ?? [ 'items' => [] ];
         foreach ($cart['items'] as $key => $item) {
             if ($item['id'] == $id) {
                 unset($cart['items'][$key]);
@@ -130,7 +130,7 @@ class CartController extends BaseController
     {
         $id = $this->request->getPost('id');
         $quantity = $this->request->getPost('quantity');
-        $cart = $this->session->get('cart') ?? [];
+        $cart = $this->session->get('cart') ?? [ 'items' => [] ];
         foreach ($cart['items'] as $key => $item) {
             if ($item['id'] == $id) {
                 $cart['items'][$key]['quantity'] = $quantity;
@@ -161,7 +161,7 @@ class CartController extends BaseController
     }
     public function selectAll()
     {
-        $cart = $this->session->get('cart') ?? [];
+        $cart = $this->session->get('cart') ?? [ 'items' => [] ];
         $checked = $this->request->getPost('checked');
         foreach ($cart['items'] as $key => $item) {
             if ($checked == 'Y') {
@@ -194,7 +194,7 @@ class CartController extends BaseController
     }
     public function select()
     {
-        $cart = $this->session->get('cart') ?? [];
+        $cart = $this->session->get('cart') ?? [ 'items' => [] ];
         $checked = $this->request->getPost('checked');
         $id = $this->request->getPost('id');
         foreach ($cart['items'] as $key => $item) {
@@ -231,7 +231,7 @@ class CartController extends BaseController
     }
     public function payment()
     {
-        $cart = $this->session->get('cart') ?? [];
+        $cart = $this->session->get('cart') ?? [ 'items' => [] ];
         $cart_ok = [
             'items' => [],
         ];
