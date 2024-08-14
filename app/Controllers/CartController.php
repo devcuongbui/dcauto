@@ -17,26 +17,26 @@ class CartController extends BaseController
     }
     public function list()
     {
-        $model1 = [
-            'items' => [
-                [
-                    'id' => uniqid(),
-                    'product_id' => '1',
-                    'option_id' => '1',
-                    'quantity' => 1,
-                    'selected' => false
-                ],
-                [
-                    'id' => uniqid(),
-                    'product_id' => '2',
-                    'option_id' => '3',
-                    'quantity' => 2,
-                    'selected' => true
-                ]
-            ],
-        ];
-        $this->session->set('cart', $model1);
-        $cart = $this->session->get('cart') ?? [ 'items' => [] ];
+        // $model1 = [
+        //     'items' => [
+        //         [
+        //             'id' => uniqid(),
+        //             'product_id' => '1',
+        //             'option_id' => '1',
+        //             'quantity' => 1,
+        //             'selected' => false
+        //         ],
+        //         [
+        //             'id' => uniqid(),
+        //             'product_id' => '2',
+        //             'option_id' => '3',
+        //             'quantity' => 2,
+        //             'selected' => true
+        //         ]
+        //     ],
+        // ];
+        // $this->session->set('cart', $model1);
+        $cart = $this->session->get('cart') ?? ['items' => []];
         $totalPrice = 0;
         $totalCount = 0;
         $isSelectAll = true;
@@ -63,41 +63,81 @@ class CartController extends BaseController
         $product_id = $this->request->getPost('product_id');
         $quantity = $this->request->getPost('quantity');
         $option_id = $this->request->getPost('option_id');
-        $cart = $this->session->get('cart') ?? [ 'items' => [] ];
+        $cart = $this->session->get('cart') ?? ['items' => []];
+        if (!$product_id || !$option_id || !$quantity) {
+            return $this->response->setJSON([
+                'message' => 'Vui lòng chọn sản phẩm và số lượng',
+            ])->setStatusCode(400);
+        }
         $item = [
             'id' => uniqid(),
             'product_id' => $product_id,
             'option_id' => $option_id,
             'quantity' => $quantity,
+            'selected' => true
         ];
 
-        $cart['items'][] = $item;
-        $totalPrice = 0;
-        $totalCount = 0;
-        $isSelectAll = true;
+        $is_existed = false;
         foreach ($cart['items'] as $item) {
-            $product = $this->productModel->find($item['product_id']);
-            if ($item['selected']) {
-                $totalPrice += $item['quantity'] * $product['sell_price'];
-                $totalCount += $item['quantity'];
-            } else {
-                $isSelectAll = false;
+            if ($item['product_id'] == $product_id && $item['option_id'] == $option_id) {
+                $is_existed = true;
+                break;
             }
         }
+
+        if ($is_existed) {
+            $item['quantity'] = $item['quantity'] + $quantity;
+        } else {
+            $cart['items'][] = $item;
+        }
+        $totalCountCart = count($cart['items']);
         $this->session->set('cart', $cart);
-        return view("cart/list_items", [
-            'cart' => $cart,
-            'totalPrice' => $totalPrice,
-            'totalCount' => $totalCount,
-            'isSelectAll' => $isSelectAll,
-            'productModel' => $this->productModel,
-            'productOptionModel' => $this->productOptionModel,
+        return $this->response->setJSON([
+            'totalCountCart' => $totalCountCart,
+        ]);
+    }
+    public function buy_now()
+    {
+        $product_id = $this->request->getPost('product_id');
+        $quantity = $this->request->getPost('quantity');
+        $option_id = $this->request->getPost('option_id');
+        $cart = $this->session->get('cart') ?? ['items' => []];
+        if (!$product_id || !$option_id || !$quantity) {
+            return $this->response->setJSON([
+                'message' => 'Vui lòng chọn sản phẩm và số lượng',
+            ])->setStatusCode(400);
+        }
+        $item = [
+            'id' => uniqid(),
+            'product_id' => $product_id,
+            'option_id' => $option_id,
+            'quantity' => $quantity,
+            'selected' => true
+        ];
+
+        $is_existed = false;
+        foreach ($cart['items'] as $key => $item) {
+            if ($item['product_id'] == $product_id && $item['option_id'] == $option_id) {
+                $is_existed = true;
+            } else {
+                $cart['items'][$key]['selected'] = false;
+            }
+        }
+
+        if (!$is_existed) {
+            $cart['items'][] = $item;
+        }
+
+        $totalCountCart = count($cart['items']);
+        $this->session->set('cart', $cart);
+        return $this->response->setJSON([
+            'totalCountCart' => $totalCountCart,
         ]);
     }
     public function remove()
     {
         $id = $this->request->getPost('id');
-        $cart = $this->session->get('cart') ?? [ 'items' => [] ];
+        $cart = $this->session->get('cart') ?? ['items' => []];
         foreach ($cart['items'] as $key => $item) {
             if ($item['id'] == $id) {
                 unset($cart['items'][$key]);
@@ -130,7 +170,7 @@ class CartController extends BaseController
     {
         $id = $this->request->getPost('id');
         $quantity = $this->request->getPost('quantity');
-        $cart = $this->session->get('cart') ?? [ 'items' => [] ];
+        $cart = $this->session->get('cart') ?? ['items' => []];
         foreach ($cart['items'] as $key => $item) {
             if ($item['id'] == $id) {
                 $cart['items'][$key]['quantity'] = $quantity;
@@ -161,7 +201,7 @@ class CartController extends BaseController
     }
     public function selectAll()
     {
-        $cart = $this->session->get('cart') ?? [ 'items' => [] ];
+        $cart = $this->session->get('cart') ?? ['items' => []];
         $checked = $this->request->getPost('checked');
         foreach ($cart['items'] as $key => $item) {
             if ($checked == 'Y') {
@@ -194,7 +234,7 @@ class CartController extends BaseController
     }
     public function select()
     {
-        $cart = $this->session->get('cart') ?? [ 'items' => [] ];
+        $cart = $this->session->get('cart') ?? ['items' => []];
         $checked = $this->request->getPost('checked');
         $id = $this->request->getPost('id');
         foreach ($cart['items'] as $key => $item) {
@@ -231,7 +271,7 @@ class CartController extends BaseController
     }
     public function payment()
     {
-        $cart = $this->session->get('cart') ?? [ 'items' => [] ];
+        $cart = $this->session->get('cart') ?? ['items' => []];
         $cart_ok = [
             'items' => [],
         ];

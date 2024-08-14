@@ -17,6 +17,13 @@ $routes->group("news", static function ($routes) {
     $routes->delete('delete/(:any)', 'Admin\AdminNewsController::delete/$1', ['as' => 'admin.news.delete']);
 });
 
+$routes->group("orders", static function ($routes) {
+    $routes->get('list', 'Admin\AdminOrdersController::list', ['as' => 'admin.orders.list']);
+    $routes->get('detail/(:any)', 'Admin\AdminOrdersController::detail/$1', ['as' => 'admin.orders.detail']);
+    $routes->put('update/(:any)', 'Admin\AdminOrdersController::update/$1', ['as' => 'admin.orders.update']);
+    $routes->delete('delete/(:any)', 'Admin\AdminOrdersController::delete/$1', ['as' => 'admin.orders.delete']);
+});
+
 $routes->group("contact", static function ($routes) {
     $routes->get('list', 'Admin\AdminContactController::list', ['as' => 'admin.contact.list']);
 });

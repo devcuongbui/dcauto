@@ -31,6 +31,7 @@ class ProductController extends BaseController
         $product = $this->productModel->find($id);
         $productOptions = $this->productOptionModel->where('product_id', $id)->findAll();
         $product['options'] = $productOptions;
+        $product['relatedProducts'] = $this->productModel->where('category_id', $product['category_id'])->findAll();
         return view('product/view', ['product' => $product]);
     }
 
