@@ -252,7 +252,7 @@
                                             </option>
                                         </select>
                                         <select brand="Honda" class="form-control selectType search_input" id="ten_xe">
-                                            <option value="">Chọn dòng xe []</option>
+                                            <option value="">Chọn dòng xe</option>
                                             <option href="man-hinh-android-xe-honda-civic/<?php echo route_to('home'); ?>" value="Honda Civic">
                                                 Honda Civic
                                             </option>
@@ -303,8 +303,7 @@
                                         </select>
                                     </div>
                                     <div class="form-group col-lg-2 col-md-6 col-12">
-                                        <a class="btnSubmit btnType_1 run_search" selectbrand="hang_xe" selecttype="ten_xe">Tìm
-                                            kiếm</a>
+                                        <a class="btnSubmit btnType_1 run_search" selectbrand="hang_xe" selecttype="ten_xe">Tìm kiếm</a>
                                     </div>
                                 </div>
                             </div>
@@ -1746,3 +1745,9 @@
         </div>
     </main>
 <?= $this->endSection() ?>
+
+<script>
+function submitCart() {
+    location.href = "/product/details";
+}
+</script>
