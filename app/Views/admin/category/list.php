@@ -14,16 +14,16 @@
     </div><!-- End Page Title -->
 
     <section class="section">
-        <table class="table">
+        <table class="table datatable">
             <thead>
             <tr>
-                <th scope="col">Số thứ tự</th>
-                <th scope="col">Mã số</th>
-                <th scope="col">Tên danh mục</th>
-                <th scope="col">DEPTH</th>
-                <th scope="col">Tình trạng sử dụng</th>
-                <th scope="col">Mức độ ưu tiên</th>
-                <th scope="col">Quản lý</th>
+                <th class="text-center" scope="col">Số thứ tự</th>
+                <th class="text-center" scope="col">Mã số</th>
+                <th class="text-center" scope="col">Tên danh mục</th>
+                <th class="text-center" scope="col">DEPTH</th>
+                <th class="text-center" scope="col">Tình trạng sử dụng</th>
+                <th class="text-center" scope="col">Mức độ ưu tiên</th>
+                <th class="text-center" scope="col">Quản lý</th>
             </tr>
             </thead>
             <tbody>
@@ -37,11 +37,11 @@
                         }
                 ?>     
                     <tr>
-                        <th scope="row"><?=$i?></th>
-                        <td><?=$category["code_no"]?></td>
-                        <td><?=$category["code_name"]?></td>
-                        <td><?=$category["depth"]?></td>
-                        <td><?=$status?></td>
+                        <th class="text-center align-middle" scope="row"><?=$i?></th>
+                        <td class="text-center align-middle"><?=$category["code_no"]?></td>
+                        <td class="text-center align-middle"><?=$category["code_name"]?></td>
+                        <td class="text-center align-middle"><?=$category["depth"]?></td>
+                        <td class="text-center align-middle"><?=$status?></td>
                         <td class="text-center align-middle">
                             <div class="d-flex align-items-center justify-content-center">
                                 <input type="text" name="onum[]" value="<?= $category["onum"] ?>"
@@ -50,7 +50,13 @@
                                         class="form-control"/>
                             </div>
                         </td>
-                        <td><?=$category["code_no"]?></td>
+                        <td class="text-center align-middle">
+                            <a href=" # " class="btn btn-primary">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <button type="button" data-id="" onclick="confirmDelete('')"
+                                    class="btn btnDelete btn-danger"><i class="bi bi-trash"></i></button>
+                        </td>
                     </tr>   
                 <?php
                     }
