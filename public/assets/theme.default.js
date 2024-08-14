@@ -766,7 +766,8 @@ $(document).ready(function () {
           });
         var e = $(".variants p" + data_variant),
           t = e.attr("variant_id"),
-          a = e.attr("price");
+          a = e.attr("price"),
+          v = e.attr("picever");
         null != a
           ? ($("input#price").attr("value", a),
             $(".price_change").text(

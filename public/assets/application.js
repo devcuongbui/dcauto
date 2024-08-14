@@ -361,10 +361,6 @@
   function ee(e) {
     e.target.checked ? fe(null, pe()) : fe(null, 0);
   }
-  function te(e) {
-    const t = parseInt($(e.target).val());
-    $(".product-form .add-to-cart").data("quantity", t);
-  }
   function ne() {
     const e = me();
     0 != e.length
@@ -13832,9 +13828,6 @@
           : t.trigger("onInvalid");
       });
   }),
-    $(function () {
-      $("form.order-form").submit(ye), $("form.product-form").submit(be);
-    }),
     $(function () {
       $("form.search .submit").click(() => {
         $("form.search").submit();

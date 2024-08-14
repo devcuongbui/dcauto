@@ -67,7 +67,7 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                     <h1 class="titlePr"><?= $product['product_name'] ?></h1>
                     <div class="pricePart">
                         <p class="currentPrice price_change"><?= $product['sell_price'] ?>đ</p>
-                        <p class="originalPrice"><?= $product['init_price'] ?>đ</p>
+                        <p class="originalPrice price_change_init"><?= $product['init_price'] ?>đ</p>
                     </div>
                     <article class="artSelectOpt variant_options">
                         <div class="showSelectedOpt">
@@ -87,7 +87,7 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                         <p loai-cam="<?= $option['po_name'] ?>" price="<?= $option['po_sell_price']?>" variant_id="<?= $option['po_id'] ?>"><?= $product['product_name'] ?>-<?= $option['po_name'] ?></p>
                         <?php endforeach; ?>
                     </div>
-                    <form class="product-form" target="/payment/">
+                    <form class="product-form" method="post" action="/cart/payment">
                         <input type="hidden" name="product_id" id="product_id" value="<?= $product['product_id'] ?>" autocomplete="off">
                         <input type="hidden" name="variant_id" id="variant_id" value="" autocomplete="off">
                         <input type="hidden" name="variants[loai-cam]" id="variants_loai-cam" value=""
@@ -95,7 +95,7 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                         <input type="hidden" name="image_url" id="image_url"
                             value="/storage/e7/76/e776ti6fml6jhflawwqf5w6toq9v_Screenshot_2024-06-11_104524.png"
                             autocomplete="off">
-                        <input type="hidden" name="price" id="price" value="1500000.0" autocomplete="off">
+                        <input type="hidden" name="price" id="price" value="" autocomplete="off">
                         <input type="hidden" name="direct_buy" id="direct_buy" value="true" autocomplete="off">
                         <div class="addNumPr">
                             <p class="titleArea">Số lượng</p>
