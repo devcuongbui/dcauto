@@ -24,6 +24,18 @@ class ProductController extends BaseController
 
         return $this->response->setJSON($products);
     }
+
+    public function details()
+    {
+        return view('product/details', [
+            // 'cart' => $cart,
+            // 'totalPrice' => $totalPrice,
+            // 'totalCount' => $totalCount,
+            // 'isSelectAll' => $isSelectAll,
+            // 'productModel' => $this->productModel,
+            // 'productOptionModel' => $this->productOptionModel,
+        ]);
+    }
     public function getOneById($id = null)
     {
         $product = $this->productModel->find($id);
