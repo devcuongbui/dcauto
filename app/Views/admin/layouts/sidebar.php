@@ -163,6 +163,20 @@
         </li>
 
         <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#cars-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-car-front-fill"></i><span>Danh mục Ô tô</span><i
+                        class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="cars-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="<?= route_to('admin.cars.list') ?>">
+                    <i class="bi bi-circle"></i><span>Phụ kiện ô tô</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-bar-chart"></i><span>Charts</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>

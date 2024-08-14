@@ -44,6 +44,10 @@ $routes->group("cart", static function ($routes) {
     $routes->get('payment', 'CartController::payment', ['as' => 'cart.payment']);
 });
 
+$routes->group("product", static function ($routes) {
+    $routes->get('details', 'ProductController::details', ['as' => 'product.details']);
+});
+
 $routes->group("orders", static function ($routes) {
     $routes->post('add', 'OrdersController::add', ['as' => 'orders.add']);
     $routes->get('(:segment)', 'OrdersController::preview/$1', ['as' => 'orders.preview']);
