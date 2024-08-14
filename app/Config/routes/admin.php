@@ -17,3 +17,7 @@ $routes->group("news", static function ($routes) {
     $routes->delete('delete/(:any)', 'Admin\AdminNewsController::delete/$1', ['as' => 'admin.news.delete']);
 });
 
+$routes->group("contact", static function ($routes) {
+    $routes->get('list', 'Admin\AdminContactController::list', ['as' => 'admin.contact.list']);
+});
+

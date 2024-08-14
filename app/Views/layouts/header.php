@@ -314,7 +314,7 @@
                         </div>
                     </div>
                     <div class="menuItem_1">
-                        <a class="linkLevel_1" href="lien-he/<?php echo route_to('home'); ?>">LIÊN HỆ</a>
+                        <a class="linkLevel_1" href="<?php echo route_to('contact.index'); ?>">LIÊN HỆ</a>
                     </div>
                 </div>
             </div>

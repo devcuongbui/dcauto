@@ -18,6 +18,12 @@ $routes->group("admin", static function ($routes) {
     $routes->get('logout', 'AuthController::logout', ['as' => 'auth.logout']);
 });
 
+$routes->group("contact", static function ($routes) {
+    $routes->get('index', 'ContactController::index',['as' => 'contact.index']);
+    $routes->post('save', 'ContactController::save',['as' => 'contact.save']);
+});
+
+
 $routes->group("cart", static function ($routes) {
     $routes->get('list', 'CartController::list', ['as' => 'cart.list']);
     $routes->post('add', 'CartController::add', ['as' => 'cart.add']);
