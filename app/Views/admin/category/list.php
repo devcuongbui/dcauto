@@ -27,7 +27,7 @@
             </tr>
             </thead>
             <tbody>
-                <?
+                <?php
                     $i = $total;
                     foreach($categories as $category) {
                         if($category["status"] == "1"){
@@ -52,7 +52,7 @@
                         </td>
                         <td><?=$category["code_no"]?></td>
                     </tr>   
-                <?
+                <?php
                     }
                 ?>
                 
