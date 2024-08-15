@@ -32,23 +32,23 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                 <div class="row rowFix">
                     <div class="colPart">
                         <p class="text1">Mã đơn hàng</p>
-                        <p class="text2">LD018189187E0</p>
+                        <p class="text2"><?= $order['orders_code'] ?></p>
                     </div>
                     <div class="colPart">
                         <p class="text1">Ngày đăng ký</p>
-                        <p class="text2">13-08-2024</p>
+                        <p class="text2"><?= $order['created_at'] ?></p>
                     </div>
                     <div class="colPart">
                         <p class="text1">Giá trị đơn hàng</p>
-                        <p class="text2">13.300.000đ</p>
+                        <p class="text2"><?= $order['total_amount'] ?>đ</p>
                     </div>
                     <div class="colPart">
                         <p class="text1">Phương thức thanh toán:</p>
-                        <p class="text2">COD</p>
+                        <p class="text2"><?= getPayMethodName($order['pay_method_id']) ?></p>
                     </div>
                     <div class="colPart lastCol">
                         <p class="text1">Phương thức nhận hàng</p>
-                        <p class="text2">Giao hàng tận nơi</p>
+                        <p class="text2"><?= getShippingMethodName($order['shipping_form_id']) ?></p>
                     </div>
                 </div>
             </div>
@@ -58,19 +58,19 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                     <tbody>
                         <tr>
                             <td class="col1">Họ tên</td>
-                            <td class="col2">tan</td>
+                            <td class="col2"><?= $order['reciever_name'] ?></td>
                         </tr>
                         <tr>
                             <td class="col1">Email</td>
-                            <td class="col2">123@gmail.com</td>
+                            <td class="col2"><?= $order['order_email'] ?></td>
                         </tr>
                         <tr>
                             <td class="col1">Điện thoại</td>
-                            <td class="col2">010236544589</td>
+                            <td class="col2"><?= $order['order_phone'] ?></td>
                         </tr>
                         <tr>
                             <td class="col1">Địa chỉ nhận hàng</td>
-                            <td class="col2">hh</td>
+                            <td class="col2"><?=$order['province']?>, <?=$order['district'] ?>, <?=$order['commune'] ?>, <?= $order['order_detail_address'] ?></td>
                         </tr>
                     </tbody>
                 </table>
@@ -79,7 +79,7 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                     <tbody>
                         <tr>
                             <td class="col1">Địa chỉ</td>
-                            <td class="col2">hh</td>
+                            <td class="col2"><?= $order['invoice_address'] ?></td>
                         </tr>
                     </tbody>
                 </table>

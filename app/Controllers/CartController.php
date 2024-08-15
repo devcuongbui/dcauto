@@ -8,12 +8,14 @@ class CartController extends BaseController
     private $productModel;
     private $productOptionModel;
     private $orderModel;
+    private $provinceModel;
     public function __construct()
     {
         $this->session = session();
         $this->productModel = model('ProductModel');
         $this->productOptionModel = model('ProductOptionModel');
         $this->orderModel = model('OrdersModel');
+        $this->provinceModel = model('ProvinceModel');
     }
     private function getCartInfo($cart)
     {
@@ -234,6 +236,7 @@ class CartController extends BaseController
             $totalPrice += $item['quantity'] * $product['sell_price'];
             $totalCount += $item['quantity'];
         }
+        $provinces = $this->provinceModel->findAll();
         return view("cart/payment", [
             'cart' => $cart_ok,
             'totalPrice' => $totalPrice,
@@ -241,7 +244,8 @@ class CartController extends BaseController
             'totalPriceWithVat' => $totalPrice + $totalPrice * 0.1,
             'totalCount' => $totalCount,
             'productModel' => $this->productModel,
-            'productOptionModel' => $this->productOptionModel
+            'productOptionModel' => $this->productOptionModel,
+            'provinces' => $provinces
         ]);
     }
     public function count()

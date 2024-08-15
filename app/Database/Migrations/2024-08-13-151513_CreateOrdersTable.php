@@ -125,6 +125,31 @@ class CreateOrdersTable extends Migration
                 'null' => true,
                 'unsigned' => true,
             ],
+            'invoice_required' => [
+                'type' => 'CHAR',
+                'constraint' => '1',
+                'null' => true,
+            ],
+            'company_name' => [
+                'type' => 'VARCHAR',
+                'constraint' => '1000',
+                'null' => true,
+            ],
+            'tax_number' => [
+                'type' => 'VARCHAR',
+                'constraint' => '200',
+                'null' => true,
+            ],
+            'invoice_address' => [
+                'type' => 'VARCHAR',
+                'constraint' => '1000',
+                'null' => true,
+            ],
+            'invoice_note' => [
+                'type' => 'VARCHAR',
+                'constraint' => '5000',
+                'null' => true,
+            ],
         ]);
 
         $this->forge->addKey('order_id', true);

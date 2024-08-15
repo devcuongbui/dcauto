@@ -28,6 +28,11 @@ class OrdersSeeder extends Seeder
             'district_id' => 1,
             'commune_id' => 1,
             'country_id' => 1,
+            'invoice_required' => 'Y',
+            'company_name' => 'Company Name',
+            'tax_number' => '123456789',
+            'invoice_address' => '123 Main Street',
+            'invoice_note' => 'Invoice Note',
         ];
 
         $this->db->table('orders')->insert($data);

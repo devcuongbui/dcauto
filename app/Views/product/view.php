@@ -78,7 +78,7 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                             <?php foreach ($product['options'] as $option): ?>
                                 <div class="optPart optionBlock option" name="<?= $option['po_name'] ?>"
                                     picever="<?= $option['po_init_price'] ?>" price="<?= $option['po_sell_price'] ?>"
-                                    option_id="<?= $option['po_id'] ?>">>
+                                    option_id="<?= $option['po_id'] ?>">
                                     <?= $product['product_name'] ?>-<?= $option['po_name'] ?>
                                 </div>
                             <?php endforeach; ?>

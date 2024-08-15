@@ -92,3 +92,30 @@ define('EVENT_PRIORITY_NORMAL', 100);
  * @deprecated Use \CodeIgniter\Events\Events::PRIORITY_HIGH instead.
  */
 define('EVENT_PRIORITY_HIGH', 10);
+
+define('SHIPPING_METHOD_IDS', [
+    'deliver' => '1',
+    'pickup' => '2',
+    'other' => '3',
+]);
+
+define('SHIPPING_METHOD_NAMES', [
+    'deliver' => 'Giao hàng tận nơi',
+    'pickup' => 'Nhận hàng trực tiếp tại siêu thị',
+    'other' => 'Khác',
+    '1' => 'Giao hàng tận nơi',
+    '2' => 'Nhận hàng trực tiếp tại siêu thị',
+    '3' => 'Khác',
+]);
+
+define('PAY_METHOD_IDS', [
+    'cod' => '1',
+    'transfer' => '2',
+]);
+
+define('PAY_METHOD_NAMES', [
+    'cod' => 'Thanh toán khi giao hàng (COD)',
+    'transfer' => 'Thanh toán chuyển khoản qua Ngân Hàng',
+    '1' => 'Thanh toán khi giao hàng (COD)',
+    '2' => 'Thanh toán chuyển khoản qua Ngân Hàng',
+]);

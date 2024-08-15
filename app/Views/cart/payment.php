@@ -16,10 +16,8 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
             </nav>
         </div>
     </section>
-    <form class="secMainContent order-form" action="/orders/add" method="post" name="new_order" id="new_order" novalidate="novalidate">
-        <input type="hidden" name="authenticity_token" id="authenticity_token"
-            value="WGw12_tKnlbv-W84NZvsuyzFnV1i6kaD9GqaWWzA-rCEZjPCj274rw-7-f8I9DOA8ybcZ502rNyU2hgSP5nxeQ"
-            autocomplete="off">
+    <form class="secMainContent order-form" action="/orders/add" method="post" name="new_order" id="new_order"
+        novalidate="novalidate">
         <div class="container">
             <div class="text-center">
                 <div class="titleBlock_2">
@@ -30,45 +28,54 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                 <p class="text1">THÔNG TIN GIAO / NHẬN HÀNG</p>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <input class="form-control" name="customer_name" placeholder="Họ và Tên" type="text">
+                        <input class="form-control" name="reciever_name" id="reciever_name" placeholder="Họ và Tên" type="text">
                     </div>
                     <div class="form-group col-md-3">
-                        <input class="form-control" name="customer_email" placeholder="Email" type="email">
+                        <input class="form-control" name="order_email" id="order_email" placeholder="Email" type="email">
                     </div>
                     <div class="form-group col-md-3">
-                        <input class="form-control" name="customer_phone" placeholder="Số điện thoại" type="text">
+                        <input class="form-control" name="order_phone" id="order_phone" placeholder="Số điện thoại" type="text">
                     </div>
                 </div>
                 <p class="text2">Phương thức nhận hàng</p>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <select class="form-control" name="shipping_method">
+                        <select class="form-control" name="shipping_method" id="shipping_method">
                             <option selected="selected" value="deliver">Giao hàng tận nơi</option>
                             <option value="pickup">Nhận hàng trực tiếp tại siêu thị</option>
                             <option value="other">Khác</option>
                         </select>
                     </div>
                     <div class="form-group col-md-6">
-                        <input class="form-control" name="shipping_address[address]" placeholder="Địa chỉ" type="text">
+                        <input class="form-control" name="order_detail_address" placeholder="Địa chỉ" type="text">
                     </div>
                     <div class="form-group col-md-4">
-                        <input class="form-control" name="shipping_address[province]" placeholder="Nhập tỉnh/thành"
-                            type="text">
+                        <!-- <input class="form-control" name="shipping_address[province]" placeholder="Nhập tỉnh/thành" type="text"> -->
+                        <select class="form-control" name="province_id" id="province">
+                            <option selected="selected" value="deliver">Chọn tỉnh/thành</option>
+                            <?php foreach ($provinces as $province) : ?>
+                                <option value="<?= $province['province_id'] ?>"><?= $province['province_name'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
                     <div class="form-group col-md-4">
-                        <input class="form-control" name="shipping_address[district]" placeholder="Nhập quận/huyện"
-                            type="text">
+                        <!-- <input class="form-control" name="shipping_address[district]" placeholder="Nhập quận/huyện" type="text"> -->
+                        <select class="form-control" name="district_id" id="district">
+                            <option selected="selected" value="deliver">Chọn quận/huyện</option>
+                        </select>
                     </div>
                     <div class="form-group col-md-4">
-                        <input class="form-control" name="shipping_address[ward]" placeholder="Nhập phường/xã"
-                            type="text">
+                        <!-- <input class="form-control" name="shipping_address[ward]" placeholder="Nhập phường/xã" type="text"> -->
+                        <select class="form-control" name="commune_id" id="commune">
+                            <option selected="selected" value="deliver">Chọn phường/xã</option>
+                        </select>
                     </div>
                 </div>
                 <p class="text2">Yêu cầu xuất hóa đơn (VAT)</p>
                 <div class="wrapForm-check">
                     <div class="form-check form-check-inline">
                         <input class="form-check-input update_price" data_object="order_items" id="invoice"
-                            name="invoice_required" object_id="37" object_name="Order" type="checkbox" value="true"
+                            name="invoice_required" object_id="37" object_name="Order" type="checkbox" value="Y"
                             data-gtm-form-interact-field-id="0">
                         <label class="form-check-label" for="invoice" style="margin-top: 10px;">
                             <p class="text_invoice">Thông tin xuất hóa đơn (nếu có)</p>
@@ -87,10 +94,10 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                                 type="text">
                         </div>
                         <div class="form-group col-md-6">
-                            <input class="form-control" name="invoice_data[address]" placeholder="Địa chỉ" type="text">
+                            <input class="form-control" name="invoice_data[invoice_address]" placeholder="Địa chỉ" type="text">
                         </div>
                         <div class="form-group col-md-12">
-                            <input class="form-control" name="invoice_data[note]" placeholder="Ghi chú nội dung hóa đơn"
+                            <input class="form-control" name="invoice_data[invoice_note]" placeholder="Ghi chú nội dung hóa đơn"
                                 type="text">
                         </div>
                     </div>
@@ -156,24 +163,24 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                                         <label class="col-form-label labelText" for="soTaiKhoan">Số Tài Khoản:</label>
                                         <div class="col-8" style="padding-right: 0;">
                                             <input class="form-control inputBox" id="soTaiKhoan"
-                                                placeholder="........................................................................"
-                                                type="text">
+                                                value="1234567890"
+                                                type="text" readonly>
                                         </div>
                                     </div>
                                     <div class="form-group row m-0">
                                         <label class="col-form-label labelText" for="nganHang">Ngân hàng:</label>
                                         <div class="col-8" style="padding-right: 0;">
                                             <input class="form-control inputBox" id="nganHang"
-                                                placeholder="........................................................................"
-                                                type="text">
+                                                value="Vietcombank"
+                                                type="text" readonly>
                                         </div>
                                     </div>
                                     <div class="form-group row m-0">
                                         <label class="col-form-label labelText" for="chuTaiKhoan">Chủ tài khoản:</label>
                                         <div class="col-8" style="padding-right: 0;">
                                             <input class="form-control inputBox" id="chuTaiKhoan"
-                                                placeholder="........................................................................"
-                                                type="text">
+                                                value="Nguyen Van A"
+                                                type="text" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -209,8 +216,7 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                                 <div class="productPriceBlock">
                                     <div class="wrapImg">
                                         <div class="imgPart">
-                                            <img alt="product"
-                                                src="/uploads/product/<?= $img ?>">
+                                            <img alt="product" src="/uploads/product/<?= $img ?>">
                                             <div class="bgAmountProduct"></div>
                                             <p class="amountProduct"><?= $quantity ?></p>
                                         </div>
@@ -227,7 +233,7 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                             <div class="underline"></div>
                             <div class="wrapText">
                                 <p class="text1">Tổng tiền tạm tính</p>
-                                <p class="text2" price_total="<?=$totalPrice?>"><?=$totalPrice?>đ</p>
+                                <p class="text2" price_total="<?= $totalPrice ?>"><?= $totalPrice ?>đ</p>
                             </div>
                             <div class="wrapText">
                                 <p class="text1">Phí vận chuyển</p>
@@ -236,14 +242,16 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                             <div class="TTXuatHD" style="display: none;">
                                 <div class="wrapText">
                                     <p class="text1">Thuế (Vat)</p>
-                                    <p class="text2"><?=$vat?>đ</p>
+                                    <p class="text2"><?= $vat ?>đ</p>
                                 </div>
                             </div>
                             <div class="underline"></div>
                             <div class="wrapText">
                                 <p class="total">TỔNG CỘNG</p>
-                                <p class="priceTotal" id="subtotal" no_vat="<?=$totalPrice?>đ" vat="<?=$totalPriceWithVat?>đ">
-                                    <?= $totalPrice ?>đ</p>
+                                <p class="priceTotal" id="subtotal" no_vat="<?= $totalPrice ?>đ"
+                                    vat="<?= $totalPriceWithVat ?>đ">
+                                    <?= $totalPrice ?>đ
+                                </p>
                             </div>
                         </div>
                         <div style="padding: 0 15px;">
@@ -257,9 +265,99 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
     </form>
 </main>
 <script>
-    $("#submit-order").click(function() {
-        console.log("submit-order");
-        $("#new_order")[0]?.submit();
+    $("#submit-order").click(function () {
+//         reciever_name
+// order_email
+// order_phone
+// province
+// district
+// commune
+        if ($("#reciever_name").val() == "") {
+            alert("Vui lòng nhập tên người nhận hàng!");
+            $("#reciever_name").focus();
+            return false;
+        }
+
+        if ($("#order_phone").val() == "") {
+            alert("Vui lòng nhập số điện thoại nhận hàng!");
+            $("#order_phone").focus();
+            return false;
+        }
+
+        if ($("#order_email").val() == "") {
+            alert("Vui lòng nhập email!");
+            $("#order_email").focus();
+            return false;
+        }
+
+        if ($("#province").val() == "") {
+            alert("Vui lòng chọn tỉnh/thành!");
+            $("#province").focus();
+            return false;
+        }
+
+        if ($("#district").val() == "") {
+            alert("Vui lòng chọn quận/huyện!");
+            $("#district").focus();
+            return false;
+        }
+
+        if ($("#commune").val() == "") {
+            alert("Vui lòng chọn phường/xã!");
+            $("#commune").focus();
+            return false;
+        }
+        $.ajax({
+            type: "POST",
+            url: $("#new_order").attr("action"),
+            data: $("#new_order").serialize(),
+            dataType: "json",
+            success: function (response) {
+                if (response?.orders_code) {
+                    location.replace(`/orders/preview/${response.orders_code}`);
+                }
+            },
+        })
+    });
+    $(document).ready(function () {
+        $('#province').change(function () {
+            var province_id = $(this).val();
+
+            $('#district').html('<option value="">Chọn quận/huyện</option>');
+            $('#commune').html('<option value="">Chọn phường/xã</option>');
+
+            if (province_id != '') {
+                $.ajax({
+                    url: '/location/district/' + province_id,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (response) {
+                        $.each(response, function (key, district) {
+                            $('#district').append('<option value="' + district.district_id + '">' + district.district_name + '</option>');
+                        });
+                    }
+                });
+            }
+        });
+
+        $('#district').change(function () {
+            var district_id = $(this).val();
+
+            $('#commune').html('<option value="">Chọn phường/xã</option>');
+
+            if (district_id != '') {
+                $.ajax({
+                    url: '/location/commune/' + district_id,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (response) {
+                        $.each(response, function (key, commune) {
+                            $('#commune').append('<option value="' + commune.commune_id + '">' + commune.commune_name + '</option>');
+                        });
+                    }
+                });
+            }
+        });
     });
 </script>
 <?= $this->endSection() ?>
