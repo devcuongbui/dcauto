@@ -26,6 +26,8 @@ $routes->group("orders", static function ($routes) {
 
 $routes->group("contact", static function ($routes) {
     $routes->get('list', 'Admin\AdminContactController::list', ['as' => 'admin.contact.list']);
+    $routes->get('detail/(:any)', 'Admin\AdminContactController::detail/$1', ['as' => 'admin.contact.detail']);
+    $routes->delete('delete/(:any)', 'Admin\AdminContactController::delete/$1', ['as' => 'admin.contact.delete']);
 });
 
 $routes->group("cars", static function ($routes) {
