@@ -54,6 +54,11 @@ $routes->group("orders", static function ($routes) {
     $routes->get('(:segment)', 'OrdersController::preview/$1', ['as' => 'orders.preview']);
 });
 
+$routes->group("news", static function ($routes) {
+    $routes->get('list', 'NewsController::list', ['as' => 'news.list']);
+    $routes->get('detail', 'NewsController::detail', ['as' => 'news.detail']);
+});
+
 //$routes->group("admin", static function ($routes) {
 //    $routes->get('dashboard', 'Admin\AdminHomeController::index', ['as' => 'home.admin']);
 //});
