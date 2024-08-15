@@ -137,12 +137,12 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                                         <option data="Hyundai" href="/hyundai/">Hyundai</option>
                                         <option data="Honda" href="/honda/">Honda</option>
                                         <option data="KIA" href="/kia/">KIA</option>
-                                        <option data="Mitsubishi" href="/mitsubishi/">Mitsubishi</option>
+                                        <option data="Mitsubishi" href="/product/mitsubishi/">Mitsubishi</option>
                                         <option data="BMW" href="/bmw/">BMW</option>
                                         <option data="Chevrolet" href="/chevrolet/">Chevrolet</option>
-                                        <option data="Mazda" href="/mazda/">Mazda</option>
-                                        <option data="Ôtô tải" href="/man-hinh-android-xe-tai/">Ôtô tải</option>
-                                        <option data="Mistubishi" href="/mistubishi/">Mistubishi</option>
+                                        <option data="Mazda" href="/product/mazda/">Mazda</option>
+                                        <option data="Ôtô tải" href="/product/man-hinh-android-xe-tai/">Ôtô tải</option>
+                                        <option data="Mistubishi" href="/product/mistubishi/">Mistubishi</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-5 col-12">
@@ -152,63 +152,63 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                                     </select>
                                     <select brand="Ford" class="form-control selectType search_input" id="ten_xe">
                                         <option value="">Chọn dòng xe</option>
-                                        <option href="/man-hinh-android-xe-ford-ranger/" value="Ford Ranger">Ford Ranger
+                                        <option href="/product/man-hinh-android-xe-ford-ranger/" value="Ford Ranger">Ford Ranger
                                         </option>
                                     </select>
                                     <select brand="Toyota" class="form-control selectType search_input" id="ten_xe">
                                         <option value="">Chọn dòng xe</option>
                                         <option href="/toyota-1/" value="Toyota 1">Toyota 1</option>
-                                        <option href="/man-hinh-android-xe-vios/" value="Toyota Vios">Toyota Vios
+                                        <option href="/product/man-hinh-android-xe-vios/" value="Toyota Vios">Toyota Vios
                                         </option>
-                                        <option href="/man-hinh-android-xe-innova/" value="Toyota Innova">Toyota Innova
+                                        <option href="/product/man-hinh-android-xe-innova/" value="Toyota Innova">Toyota Innova
                                         </option>
-                                        <option href="/man-hinh-android-xe-altis/" value="Toyota Altis">Toyota Altis
+                                        <option href="/product/man-hinh-android-xe-altis/" value="Toyota Altis">Toyota Altis
                                         </option>
                                     </select>
                                     <select brand="Hyundai" class="form-control selectType search_input" id="ten_xe">
                                         <option value="">Chọn dòng xe</option>
                                         <option href="/hyundai1/" value="Hyundai1">Hyundai1</option>
                                         <option href="/hyundai-2/" value="Huyndai 2">Huyndai 2</option>
-                                        <option href="/man-hinh-android-xe-getz/" value="Hyundai Getz">Hyundai Getz
+                                        <option href="/product/man-hinh-android-xe-getz/" value="Hyundai Getz">Hyundai Getz
                                         </option>
-                                        <option href="/man-hinh-android-xe-i10/" value="Hyundai i10">Hyundai i10
+                                        <option href="/product/man-hinh-android-xe-i10/" value="Hyundai i10">Hyundai i10
                                         </option>
                                     </select>
                                     <select brand="Honda" class="form-control selectType search_input" id="ten_xe">
                                         <option value="">Chọn dòng xe</option>
-                                        <option href="/man-hinh-android-xe-honda-civic/" value="Honda Civic">Honda Civic
+                                        <option href="/product/man-hinh-android-xe-honda-civic/" value="Honda Civic">Honda Civic
                                         </option>
-                                        <option href="/man-hinh-android-xe-honda-city/" value="Honda City">Honda City
+                                        <option href="/product/man-hinh-android-xe-honda-city/" value="Honda City">Honda City
                                         </option>
                                     </select>
                                     <select brand="KIA" class="form-control selectType search_input" id="ten_xe">
                                         <option value="">Chọn dòng xe</option>
-                                        <option href="/man-hinh-android-xe-kia-morning/" value="Kia Morning">Kia Morning
+                                        <option href="/product/man-hinh-android-xe-kia-morning/" value="Kia Morning">Kia Morning
                                         </option>
-                                        <option href="/man-hinh-android-xe-kia-rondo/" value="Kia Rondo">Kia Rondo
+                                        <option href="/product/man-hinh-android-xe-kia-rondo/" value="Kia Rondo">Kia Rondo
                                         </option>
                                     </select>
                                     <select brand="Mitsubishi" class="form-control selectType search_input" id="ten_xe">
                                         <option value="">Chọn dòng xe</option>
-                                        <option href="/man-hinh-android-xe-attrage/" value="Mitsubishi Attrage">
+                                        <option href="/product/man-hinh-android-xe-attrage/" value="Mitsubishi Attrage">
                                             Mitsubishi Attrage</option>
-                                        <option href="/man-hinh-android-xe-xpander/" value="Mitsubishi Xpander">
+                                        <option href="/product/man-hinh-android-xe-xpander/" value="Mitsubishi Xpander">
                                             Mitsubishi Xpander</option>
                                     </select>
                                     <select brand="BMW" class="form-control selectType search_input" id="ten_xe">
                                         <option value="">Chọn dòng xe</option>
-                                        <option href="/man-hinh-android-xe-bmw-320i/" value="BMW 320i">BMW 320i</option>
+                                        <option href="/product/man-hinh-android-xe-bmw-320i/" value="BMW 320i">BMW 320i</option>
                                     </select>
                                     <select brand="Chevrolet" class="form-control selectType search_input" id="ten_xe">
                                         <option value="">Chọn dòng xe</option>
-                                        <option href="/man-hinh-android-xe-aveo/" value="Chevrolet Aveo">Chevrolet Aveo
+                                        <option href="/product/man-hinh-android-xe-aveo/" value="Chevrolet Aveo">Chevrolet Aveo
                                         </option>
                                     </select>
                                     <select brand="Mazda" class="form-control selectType search_input" id="ten_xe">
                                         <option value="">Chọn dòng xe</option>
-                                        <option href="/man-hinh-android-xe-mazda-bt50/" value="Mazda BT-50">Mazda BT-50
+                                        <option href="/product/man-hinh-android-xe-mazda-bt50/" value="Mazda BT-50">Mazda BT-50
                                         </option>
-                                        <option href="/man-hinh-android-xe-mazda-3/" value="Mazda 3">Mazda 3</option>
+                                        <option href="/product/man-hinh-android-xe-mazda-3/" value="Mazda 3">Mazda 3</option>
                                     </select>
                                     <select brand="Ôtô tải" class="form-control selectType search_input" id="ten_xe">
                                         <option value="">Chọn dòng xe</option>
@@ -771,7 +771,7 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
 </main>
 <script>
 function submitCart() {
-    location.href = "/cart/payment";
+    location.href = "/product/1";
 }
 </script>
 <?= $this->endSection() ?>
