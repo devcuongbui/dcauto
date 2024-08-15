@@ -30,6 +30,8 @@ $routes->group("contact", static function ($routes) {
 
 $routes->group("product", static function ($routes) {
     $routes->get('view/(:segment)', 'ProductController::view/$1',['as' => 'product.view']);
+    $routes->get('(:segment)', 'ProductController::index/$1', ['as' => 'product.index']);
+    $routes->get('list/(:segment)', 'ProductController::list/$1', ['as' => 'product.list']);
 });
 
 
@@ -45,9 +47,6 @@ $routes->group("cart", static function ($routes) {
     $routes->post('buy_now', 'CartController::buy_now', ['as' => 'cart.buy_now']);
 });
 
-$routes->group("product", static function ($routes) {
-    $routes->get('details', 'ProductController::details', ['as' => 'product.details']);
-});
 
 $routes->group("orders", static function ($routes) {
     $routes->post('add', 'OrdersController::add', ['as' => 'orders.add']);
