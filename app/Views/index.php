@@ -207,12 +207,12 @@
                                             <option data="Hyundai.html" href="hyundai/<?php echo route_to('home'); ?>">Hyundai</option>
                                             <option data="Honda.html" href="honda/<?php echo route_to('home'); ?>">Honda</option>
                                             <option data="KIA.html" href="kia/<?php echo route_to('home'); ?>">KIA</option>
-                                            <option data="Mitsubishi.html" href="mitsubishi/<?php echo route_to('home'); ?>">Mitsubishi</option>
+                                            <option data="Mitsubishi.html" href="/product/mitsubishi/<?php echo route_to('home'); ?>">Mitsubishi</option>
                                             <option data="BMW.html" href="bmw/<?php echo route_to('home'); ?>">BMW</option>
                                             <option data="Chevrolet.html" href="chevrolet/<?php echo route_to('home'); ?>">Chevrolet</option>
-                                            <option data="Mazda" href="mazda/<?php echo route_to('home'); ?>">Mazda</option>
+                                            <option data="Mazda" href="/product/mazda/<?php echo route_to('home'); ?>">Mazda</option>
                                             <option data="%c3%94t%c3%b4%20t%e1%ba%a3i.html"
-                                                    href="man-hinh-android-xe-tai/<?php echo route_to('home'); ?>">Ôtô tải
+                                                    href="/product/man-hinh-android-xe-tai/<?php echo route_to('home'); ?>">Ôtô tải
                                             </option>
                                         </select>
                                     </div>
@@ -223,20 +223,20 @@
                                         </select>
                                         <select brand="Ford" class="form-control selectType search_input" id="ten_xe">
                                             <option value="">Chọn dòng xe</option>
-                                            <option href="man-hinh-android-xe-ford-ranger/<?php echo route_to('home'); ?>" value="Ford Ranger">
+                                            <option href="/product/man-hinh-android-xe-ford-ranger/<?php echo route_to('home'); ?>" value="Ford Ranger">
                                                 Ford Ranger
                                             </option>
                                         </select>
                                         <select brand="Toyota" class="form-control selectType search_input" id="ten_xe">
                                             <option value="">Chọn dòng xe</option>
                                             <option href="toyota-1/<?php echo route_to('home'); ?>" value="Toyota 1">Toyota 1</option>
-                                            <option href="man-hinh-android-xe-vios/<?php echo route_to('home'); ?>" value="Toyota Vios">Toyota
+                                            <option href="/product/man-hinh-android-xe-vios/<?php echo route_to('home'); ?>" value="Toyota Vios">Toyota
                                                 Vios
                                             </option>
-                                            <option href="man-hinh-android-xe-innova/<?php echo route_to('home'); ?>" value="Toyota Innova">
+                                            <option href="/product/man-hinh-android-xe-innova/<?php echo route_to('home'); ?>" value="Toyota Innova">
                                                 Toyota Innova
                                             </option>
-                                            <option href="man-hinh-android-xe-altis/<?php echo route_to('home'); ?>" value="Toyota Altis">Toyota
+                                            <option href="/product/man-hinh-android-xe-altis/<?php echo route_to('home'); ?>" value="Toyota Altis">Toyota
                                                 Altis
                                             </option>
                                         </select>
@@ -244,58 +244,58 @@
                                             <option value="">Chọn dòng xe</option>
                                             <option href="hyundai1/<?php echo route_to('home'); ?>" value="Hyundai1">Hyundai1</option>
                                             <option href="hyundai-2/<?php echo route_to('home'); ?>" value="Huyndai 2">Huyndai 2</option>
-                                            <option href="man-hinh-android-xe-getz/<?php echo route_to('home'); ?>" value="Hyundai Getz">Hyundai
+                                            <option href="/product/man-hinh-android-xe-getz/<?php echo route_to('home'); ?>" value="Hyundai Getz">Hyundai
                                                 Getz
                                             </option>
-                                            <option href="man-hinh-android-xe-i10/<?php echo route_to('home'); ?>" value="Hyundai i10">Hyundai
+                                            <option href="/product/man-hinh-android-xe-i10/<?php echo route_to('home'); ?>" value="Hyundai i10">Hyundai
                                                 i10
                                             </option>
                                         </select>
                                         <select brand="Honda" class="form-control selectType search_input" id="ten_xe">
-                                            <option value="">Chọn dòng xe []</option>
-                                            <option href="man-hinh-android-xe-honda-civic/<?php echo route_to('home'); ?>" value="Honda Civic">
+                                            <option value="">Chọn dòng xe</option>
+                                            <option href="/product/man-hinh-android-xe-honda-civic/<?php echo route_to('home'); ?>" value="Honda Civic">
                                                 Honda Civic
                                             </option>
-                                            <option href="man-hinh-android-xe-honda-city/<?php echo route_to('home'); ?>" value="Honda City">
+                                            <option href="/product/man-hinh-android-xe-honda-city/<?php echo route_to('home'); ?>" value="Honda City">
                                                 Honda City
                                             </option>
                                         </select>
                                         <select brand="KIA" class="form-control selectType search_input" id="ten_xe">
                                             <option value="">Chọn dòng xe</option>
-                                            <option href="man-hinh-android-xe-kia-morning/<?php echo route_to('home'); ?>" value="Kia Morning">
+                                            <option href="/product/man-hinh-android-xe-kia-morning/<?php echo route_to('home'); ?>" value="Kia Morning">
                                                 Kia Morning
                                             </option>
-                                            <option href="man-hinh-android-xe-kia-rondo/<?php echo route_to('home'); ?>" value="Kia Rondo">Kia
+                                            <option href="/product/man-hinh-android-xe-kia-rondo/<?php echo route_to('home'); ?>" value="Kia Rondo">Kia
                                                 Rondo
                                             </option>
                                         </select>
                                         <select brand="Mitsubishi" class="form-control selectType search_input" id="ten_xe">
                                             <option value="">Chọn dòng xe</option>
-                                            <option href="man-hinh-android-xe-attrage/<?php echo route_to('home'); ?>"
+                                            <option href="/product/man-hinh-android-xe-attrage/<?php echo route_to('home'); ?>"
                                                     value="Mitsubishi Attrage">Mitsubishi Attrage
                                             </option>
-                                            <option href="man-hinh-android-xe-xpander/<?php echo route_to('home'); ?>"
+                                            <option href="/product/man-hinh-android-xe-xpander/<?php echo route_to('home'); ?>"
                                                     value="Mitsubishi Xpander">Mitsubishi Xpander
                                             </option>
                                         </select>
                                         <select brand="BMW" class="form-control selectType search_input" id="ten_xe">
                                             <option value="">Chọn dòng xe</option>
-                                            <option href="man-hinh-android-xe-bmw-320i/<?php echo route_to('home'); ?>" value="BMW 320i">BMW
+                                            <option href="/product/man-hinh-android-xe-bmw-320i/<?php echo route_to('home'); ?>" value="BMW 320i">BMW
                                                 320i
                                             </option>
                                         </select>
                                         <select brand="Chevrolet" class="form-control selectType search_input" id="ten_xe">
                                             <option value="">Chọn dòng xe</option>
-                                            <option href="man-hinh-android-xe-aveo/<?php echo route_to('home'); ?>" value="Chevrolet Aveo">
+                                            <option href="/product/man-hinh-android-xe-aveo/<?php echo route_to('home'); ?>" value="Chevrolet Aveo">
                                                 Chevrolet Aveo
                                             </option>
                                         </select>
                                         <select brand="Mazda" class="form-control selectType search_input" id="ten_xe">
                                             <option value="">Chọn dòng xe</option>
-                                            <option href="man-hinh-android-xe-mazda-bt50/<?php echo route_to('home'); ?>" value="Mazda BT-50">
+                                            <option href="/product/man-hinh-android-xe-mazda-bt50/<?php echo route_to('home'); ?>" value="Mazda BT-50">
                                                 Mazda BT-50
                                             </option>
-                                            <option href="man-hinh-android-xe-mazda-3/<?php echo route_to('home'); ?>" value="Mazda 3">Mazda 3
+                                            <option href="/product/man-hinh-android-xe-mazda-3/<?php echo route_to('home'); ?>" value="Mazda 3">Mazda 3
                                             </option>
                                         </select>
                                         <select brand="Ôtô tải" class="form-control selectType search_input" id="ten_xe">
@@ -303,8 +303,7 @@
                                         </select>
                                     </div>
                                     <div class="form-group col-lg-2 col-md-6 col-12">
-                                        <a class="btnSubmit btnType_1 run_search" selectbrand="hang_xe" selecttype="ten_xe">Tìm
-                                            kiếm</a>
+                                        <a class="btnSubmit btnType_1 run_search" selectbrand="hang_xe" selecttype="ten_xe">Tìm kiếm</a>
                                     </div>
                                 </div>
                             </div>
@@ -316,11 +315,11 @@
                     <div class="flexLine">
                         <div class="colCate">
                             <div class="contentPart">
-                                <a class="imgPart" href="man-hinh-android-o-to/<?php echo route_to('home'); ?>">
+                                <a class="imgPart" href="/product/man-hinh-android-o-to/<?php echo route_to('home'); ?>">
                                     <img alt="Màn Hình Android Ô Tô " loading="lazy"
                                          src="storage/ji/fn/jifn7eh4t01h2nayrkshu3x2ha9v_man-hinh-android-o-to-10.webp">
                                 </a>
-                                <a class="linkCate" href="man-hinh-android-o-to/<?php echo route_to('home'); ?>">Màn Hình Android Ô Tô </a>
+                                <a class="linkCate" href="/product/man-hinh-android-o-to/<?php echo route_to('home'); ?>">Màn Hình Android Ô Tô </a>
                             </div>
                         </div>
                         <div class="colCate">
@@ -394,7 +393,7 @@
             <div class="container">
                 <section class="secCatePr">
                     <div class="setLineUnderTitle">
-                        <a class="titleBlock_1" href="man-hinh-android-o-to/<?php echo route_to('home'); ?>">
+                        <a class="titleBlock_1" href="/product/man-hinh-android-o-to/<?php echo route_to('home'); ?>">
                             <h2 class="titleText wk-editable-text" id="home-section3-text1">Màn Hình Android Ô Tô </h2>
                         </a>
                     </div>
@@ -574,7 +573,7 @@
                         </div>
                     </div>
                     <div class="btnViewAll">
-                        <a class="btnType_2" href="man-hinh-android-o-to/<?php echo route_to('home'); ?>">
+                        <a class="btnType_2" href="/product/man-hinh-android-o-to/<?php echo route_to('home'); ?>">
                             <span class="textBtn wk-editable-text" id="home-section3-text2">Xem thêm sản phẩm</span>
                             <i class="bi bi-chevron-right iconRight"></i>
                         </a>
@@ -1746,3 +1745,14 @@
         </div>
     </main>
 <?= $this->endSection() ?>
+
+<script>
+
+$('.run_search').on('click', function(e) {
+    location.href = "/product/1";
+}
+
+function submitCart() {
+    location.href = "/product/details";
+}
+</script>

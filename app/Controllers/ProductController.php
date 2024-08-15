@@ -13,16 +13,50 @@ class ProductController extends BaseController
         $this->productModel = model("ProductModel");
         $this->productOptionModel =  model("ProductOptionModel");
     }
-    public function list()
+//    public function list()
+//    {
+//        $products = $this->productModel->findAll();
+//
+//        foreach ($products as &$product) {
+//            $productOptions = $this->productOptionModel->where('product_id', $product['product_id'])->findAll();
+//            $product['options'] = $productOptions;
+//        }
+//
+//        return $this->response->setJSON($products);
+//    }
+
+    public function list($id = null)
     {
-        $products = $this->productModel->findAll();
-
-        foreach ($products as &$product) {
-            $productOptions = $this->productOptionModel->where('product_id', $product['product_id'])->findAll();
-            $product['options'] = $productOptions;
+        if (!$id) {
+            return view('errors/404');
         }
+//        $category = $this->categoryModel->find($id);
+//        $productOptions = $this->productOptionModel->where('product_id', $id)->findAll();
+//        $product['options'] = $productOptions;
+//        $product['relatedProducts'] = $this->productModel->where('category_id', $product['category_id'])->findAll();
+        return view('product/list');
+    }
+    public function view($id = null) {
+        if (!$id) {
+            return view('errors/404');
+        }
+        $product = $this->productModel->find($id);
+        $productOptions = $this->productOptionModel->where('product_id', $id)->findAll();
+        $product['options'] = $productOptions;
+        $product['relatedProducts'] = $this->productModel->where('category_id', $product['category_id'])->findAll();
+        return view('product/view', ['product' => $product]);
+    }
 
-        return $this->response->setJSON($products);
+    public function index($id = null)
+    {
+        if (!$id) {
+            return view('errors/404');
+        }
+//        $category = $this->categoryModel->find($id);
+//        $productOptions = $this->productOptionModel->where('product_id', $id)->findAll();
+//        $product['options'] = $productOptions;
+//        $product['relatedProducts'] = $this->productModel->where('category_id', $product['category_id'])->findAll();
+        return view('product/index');
     }
     public function getOneById($id = null)
     {

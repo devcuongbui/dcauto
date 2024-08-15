@@ -14,11 +14,13 @@
     </div><!-- End Page Title -->
 
     <section class="section">
-        <table class="table">
+        <table class="table datatable">
             <thead>
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Tiêu đề</th>
+                <th scope="col">Hình ảnh</th>
+                <th scope="col">Mô tả</th>
                 <th scope="col">Loại danh mục</th>
                 <th scope="col">Đang hiển thị</th>
                 <th scope="col">Trạng thái</th>
@@ -26,23 +28,29 @@
             </tr>
             </thead>
             <tbody>
-            <?php foreach ($news as $item):
-                $i = 1;
+            <?php  $i = 1;
+                    foreach ($news as $item):
                 ?>
                 <tr>
-                    <th scope="row"><?= $i++ ?></th>
+                    <th scope="row"><?= $i ?></th>
                     <td><?= $item['title'] ?></td>
+                    <td>
+                        <img src="<?= site_url('uploads/news/') . $item['thumbnail'] ?>" alt="<?= $item['title'] ?>"
+                             width="100px">
+                    </td>
+                    <td><?= $item['description'] ?></td>
                     <td><?= $item['type'] == 0 ? 'Tin khuyến mãi' : 'Kiến thức ôtô' ?></td>
                     <td><?= $item['is_show'] == 1 ? 'Có' : 'Không' ?></td>
                     <td><?= $item['status'] == 1 ? '<span class="text-success">Đang hoạt động </span>' : '<span class="text-danger"> Đã xoá </span>' ?></td>
                     <td>
-                        <a href="<?= route_to('admin.news.detail', $item['id']) ?> " class="btn btn-primary">
+                        <a href="<?= route_to('admin.news.detail', $item['id']) ?>" class="btn btn-primary">
                             <i class="bi bi-eye"></i>
                         </a>
                         <button type="button" data-id="<?= $item['id'] ?>" onclick="confirmDelete('<?= $item['id'] ?>')"
                                 class="btn btnDelete btn-danger"><i class="bi bi-trash"></i></button>
                     </td>
                 </tr>
+                <?php $i = $i + 1; ?>
             <?php endforeach; ?>
 
             </tbody>
@@ -50,7 +58,7 @@
     </section>
     <script>
         function confirmDelete(id) {
-            if (confirm('Bạn bán muốn xóa tin này?')) {
+            if (confirm('Bạn chắc chắn muốn xóa tin này?')) {
                 deleteNews(id);
             }
         }

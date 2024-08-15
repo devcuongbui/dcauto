@@ -306,10 +306,10 @@
                         <a class="linkLevel_1" href="tin-t%e1%bb%a9c/<?php echo route_to('home'); ?>">TIN TỨC</a>
                         <div class="blockCateLevel_2">
                             <div class="menuItem_2">
-                                <a class="linkLevel_2" href="tin-khuyen-mai/<?php echo route_to('home'); ?>">Tin Khuyến Mãi</a>
+                                <a class="linkLevel_2" href="<?php echo route_to('news.list'); ?>?type=tin-khuyen-mai">Tin Khuyến Mãi</a>
                             </div>
                             <div class="menuItem_2">
-                                <a class="linkLevel_2" href="kien-thuc-o-to/<?php echo route_to('home'); ?>">Kiến Thức Ô Tô</a>
+                                <a class="linkLevel_2" href="<?php echo route_to('news.list'); ?>?type=kien-thuc-o-to">Kiến Thức Ô Tô</a>
                             </div>
                         </div>
                     </div>
@@ -322,7 +322,7 @@
                 <a class="cartBlock_1 aTag" href="<?php echo route_to('cart.list'); ?>" title="giỏ hàng">
                     <div class="cartItem">
                         <i aria-hidden="true" class="fa fa-cart-plus"></i>
-                        <i class="amountProduct cart-count d-none" data-count="0">0</i>
+                        <i class="amountProduct cart-count <?=$totalCountCart == 0 ? 'd-none' : '' ?>" data-count="<?=$totalCountCart?>"><?=$totalCountCart?></i>
                     </div>
                 </a>
             </div>
@@ -330,7 +330,8 @@
                 <div class="searchIconEvent">
                     <i aria-hidden="true" class="fa fa-search searchBtn"></i>
                     <i aria-hidden="true" class="fa fa-times-circle-o searchBtn searchBtnHide d-none"></i>
-                    <form action="https://dcauto.com.vn/search" class="search searchForm search" method="GET">
+                    <form class="search searchForm search" method="post" action="<?php //echo route_to('product.list'); ?>"
+                          enctype="multipart/form-data">
                         <article class="searchBlock">
                             <div class="form-group">
                                 <input class="form-control" name="key" placeholder="Bạn có thể tìm kiếm nhanh tại đây"
@@ -398,7 +399,7 @@
                 <a class="cartBlock_1 aTag" href="cart/<?php echo route_to('home'); ?>" title="giỏ hàng">
                     <div class="cartItem">
                         <i aria-hidden="true" class="fa fa-cart-plus"></i>
-                        <i class="amountProduct order_items d-none" data-count="0">0</i>
+                        <i class="amountProduct order_items <?=$totalCountCart == 0 ? 'd-none' : '' ?>" data-count="<?=$totalCountCart?>"><?=$totalCountCart?></i>
                     </div>
                 </a>
                 <p class="textUnderItem">Giỏ hàng</p>
@@ -837,3 +838,59 @@
         </div>
     </div>
 </div>
+<script>
+    $('.iTagSearch').on('click', function(event) {
+        location.href = "/product/1";
+    });
+    // Trigger search on clicking the search button
+    //
+    // // Trigger search when hitting enter in the search input field
+    // $('input[name="key"]').on('keypress', function(event) {
+    //     if (event.which === 13) {
+    //         event.preventDefault();
+    //         performSearch();
+    //     }
+    // });
+
+    //async function performSearch() {
+    //    let searchQuery = $('input[name="key"]').val().trim();
+    //
+    //    if (searchQuery === '') {
+    //        alert('Please enter a search term.');
+    //        return;
+    //    }
+    //
+    //    const formData = new FormData();
+    //    formData.append('key', searchQuery);
+    //
+    //    const api = '<?php //echo route_to('product.list'); ?>//';
+    //
+    //    try {
+    //        await $.ajax({
+    //            url: api,
+    //            method: 'POST',
+    //            contentType: false,
+    //            cache: false,
+    //            processData: false,
+    //            data: formData,
+    //            success: function(response) {
+    //                // Handle successful response
+    //                console.log(response);
+    //                // Update the UI with the search results (customize as needed)
+    //                // $('#searchResults').html(response);
+    //            },
+    //            error: function(xhr) {
+    //                // Handle errors
+    //                if (xhr.status === 400) {
+    //                    alert(xhr.responseJSON.message);
+    //                } else {
+    //                    alert('An error occurred while performing the search.');
+    //                }
+    //            }
+    //        });
+    //    } catch (error) {
+    //        console.log(error);
+    //        alert('An error occurred while performing the search.');
+    //    }
+    //}
+</script>

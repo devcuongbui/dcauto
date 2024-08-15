@@ -149,6 +149,19 @@
         </li><!-- End Tables Nav -->
 
         <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#tables-orders-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-layout-text-window-reverse"></i><span>Đơn hàng</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="tables-orders-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="<?= route_to('admin.orders.list') ?>">
+                        <i class="bi bi-circle"></i><span>Danh sách đơn hàng</span>
+                    </a>
+                </li>
+            </ul>
+        </li><!-- End Tables Nav -->
+
+        <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#contact-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-envelope"></i><span>Liên Hệ</span><i
                         class="bi bi-chevron-down ms-auto"></i>
@@ -157,6 +170,20 @@
                 <li>
                     <a href="<?= route_to('admin.contact.list') ?>">
                     <i class="bi bi-circle"></i><span>Danh sách liên hệ</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#cars-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-car-front-fill"></i><span>Danh mục Ô tô</span><i
+                        class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="cars-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="<?= route_to('admin.cars.list') ?>">
+                    <i class="bi bi-circle"></i><span>Phụ kiện ô tô</span>
                     </a>
                 </li>
             </ul>

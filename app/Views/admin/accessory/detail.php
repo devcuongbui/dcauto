@@ -21,22 +21,12 @@
                        placeholder="Nhập tiêu đề..." value="<?= $news['title'] ?>" required>
             </div>
             <div class="form-group">
-                <label for="description">Mô tả ngắn</label>
-                <textarea name="description" id="description" class="form-control main_item" cols="5"
-                          rows="5"><?= $news['description'] ?></textarea>
-            </div>
-            <div class="form-group">
                 <label for="content">Nội dung</label>
                 <textarea name="content" id="content" cols="20" rows="10" class="tinymce-editor">
                     <?= $news['content'] ?>
                 </textarea>
             </div>
-            <div class="row">
-                <div class="form-group col-md-6">
-                    <label for="type">Hình ảnh:</label>
-                    <input type="file" name="file" id="file" class="form-control">
-                    <img src="<?= base_url('uploads/news/' . $news['thumbnail']) ?>" class="mt-3" alt="" width="200px">
-                </div>
+            <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="type">Loại:</label>
                     <select id="type" class="form-control main_item">
@@ -45,13 +35,14 @@
                         <option <?= $news['type'] == 1 ? ' selected' : '' ?> value="1">Kiến thức ô tô</option>
                     </select>
                 </div>
-            </div>
-            <div class="form-check ">
-                <input class="form-check-input" type="checkbox" name="is_show"
-                       id="is_show" <?= $news['is_show'] == 1 ? ' checked' : '' ?>>
-                <label class="form-check-label" for="is_show">
-                    Hiển thị tin tức
-                </label>
+
+                <div class="form-check ">
+                    <input class="form-check-input" type="checkbox" name="is_show"
+                           id="is_show" <?= $news['is_show'] == 1 ? ' checked' : '' ?>>
+                    <label class="form-check-label" for="is_show">
+                        Hiển thị tin tức
+                    </label>
+                </div>
             </div>
             <button id="btnCreate" type="button" onclick="updateNews();" class="btn btn-primary">Lưu lại</button>
         </form>
@@ -61,56 +52,50 @@
         async function updateNews() {
             $('#btnCreate').prop('disabled', true).text('Đang lưu lại...');
 
-            const formData = new FormData();
-            let inputs = $('#form input.main_item, textarea.main_item, #form select.main_item');
+            let data = {}
+            let inputs = $('#form input.main_item, #form select.main_item');
             for (let i = 0; i < inputs.length; i++) {
                 if (!$(inputs[i]).val() && $(inputs[i]).attr('type') !== 'checkbox') {
+                    console.log(inputs[i]);
                     let text = $(inputs[i]).prev().text();
                     alert(text + ' không được bỏ trống!');
                     $('#btnCreate').prop('disabled', false).text('Đang lưu lại');
                     return
                 }
-                formData.append($(inputs[i]).attr('id'), $(inputs[i]).val());
+                data[$(inputs[i]).attr('id')] = $(inputs[i]).val();
             }
 
-            formData.append('is_show', $('#is_show').is(":checked"));
-            formData.append('content', tinymce.get('content').getContent());
-
-            const photo = $('#file')[0].files[0];
-
-            if (photo) {
-                formData.append('file', photo);
-            }
+            data['is_show'] = $('#is_show').is(":checked");
+            data['content'] = tinymce.get('content').getContent();
 
             let api = '<?php echo route_to('admin.news.update', $news["id"]); ?>';
 
             try {
-                await $.ajax({
-                    url: api,
-                    method: 'POST',
-                    contentType: false,
-                    cache: false,
-                    processData: false,
-                    data: formData,
-                    success: function (response) {
-                        console.log(response);
-                        alert('Lưu thành công!')
-                        window.location.href = '<?php echo route_to('admin.news.list'); ?>';
+                let result = await fetch(api, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
                     },
-                    error: function (xhr) {
-                        if (xhr.status === 400) {
-                            alert(xhr.responseJSON.message);
-                            $('#btnCreate').prop('disabled', false).text('Lưu lại');
-                        } else {
-                            alert('Đã xảy ra lỗi trong quá trình lưu.');
-                            $('#btnCreate').prop('disabled', false).text('Lưu lại');
-                        }
-                    }
+                    body: JSON.stringify(data),
                 });
+
+                console.log(data);
+
+                if (result.ok) {
+                    alert('Lưu thành công!')
+                    let res = await result.json();
+                    console.log(res);
+                    window.location.href = '<?php echo route_to('admin.news.list'); ?>';
+                } else {
+                    let res = await result.json();
+                    alert(res.message)
+                    $('#btnCreate').prop('disabled', false).text('Đang lưu lại');
+                }
             } catch (error) {
-                console.log(error)
+                console.error('Error:', error);
                 alert('Đã xảy ra lỗi trong quá trình lưu.');
-                $('#btnCreate').prop('disabled', false).text('Lưu lại');
+                $('#btnCreate').prop('disabled', false).text('Đang lưu lại');
             }
         }
     </script>

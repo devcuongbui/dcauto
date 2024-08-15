@@ -1,10 +1,10 @@
 <?= $this->extend("/admin/layouts/master") ?>
 <?= $this->section("title") ?>
-    Danh sách liên hệ
+    Danh sách tin tức
 <?= $this->endSection() ?>
 <?= $this->section("body") ?>
     <div class="pagetitle">
-        <h1>Quản lý liên hệ</h1>
+        <h1>Quản lý tin tức</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="<?php echo route_to('home'); ?>">Trang quản trị</a></li>
@@ -14,47 +14,49 @@
     </div><!-- End Page Title -->
 
     <section class="section">
-        <table class="table datatable">
+        <table class="table">
             <thead>
             <tr>
-                <th scope="col">Số</th>
-                <th scope="col">Tên</th>
-                <th scope="col">Email</th>
-                <th scope="col">Số điện thoại</th>
-                <th scope="col">Ngày tạo</th>
+                <th scope="col">#</th>
+                <th scope="col">Tiêu đề</th>
+                <th scope="col">Loại danh mục</th>
+                <th scope="col">Đang hiển thị</th>
+                <th scope="col">Trạng thái</th>
                 <th scope="col">Hành động</th>
             </tr>
             </thead>
             <tbody>
-            <?php foreach ($list as $row) { ?>
-
+            <?php foreach ($news as $item):
+                $i = 1;
+                ?>
                 <tr>
-                    <th scope="row">1</th>
-                    <td><?=$row["name"]?></td>
-                    <td><?=$row["email"]?></td>
-                    <td><?=$row["phone"]?></td>
-                    <td><?=$row["created_at"]?></td>
+                    <th scope="row"><?= $i++ ?></th>
+                    <td><?= $item['title'] ?></td>
+                    <td><?= $item['type'] == 0 ? 'Tin khuyến mãi' : 'Kiến thức ôtô' ?></td>
+                    <td><?= $item['is_show'] == 1 ? 'Có' : 'Không' ?></td>
+                    <td><?= $item['status'] == 1 ? '<span class="text-success">Đang hoạt động </span>' : '<span class="text-danger"> Đã xoá </span>' ?></td>
                     <td>
-                        <a href="<?= route_to('admin.contact.detail', $row['id']) ?> " class="btn btn-primary">
+                        <a href="<?= route_to('admin.news.detail', $item['id']) ?> " class="btn btn-primary">
                             <i class="bi bi-eye"></i>
                         </a>
-                        <button type="button" data-id="<?= $row['id'] ?>" onclick="confirmDelete('<?= $row['id'] ?>')"
+                        <button type="button" data-id="<?= $item['id'] ?>" onclick="confirmDelete('<?= $item['id'] ?>')"
                                 class="btn btnDelete btn-danger"><i class="bi bi-trash"></i></button>
                     </td>
                 </tr>
-            <?php } ?>
+            <?php endforeach; ?>
+
             </tbody>
         </table>
     </section>
     <script>
         function confirmDelete(id) {
-            if (confirm('Bạn chắc chắn muốn liên hệ này?')) {
+            if (confirm('Bạn bán muốn xóa tin này?')) {
                 deleteNews(id);
             }
         }
 
         async function deleteNews(id) {
-            let api = '<?php echo route_to('admin.contact.delete', ':id'); ?>';
+            let api = '<?php echo route_to('admin.news.delete', ':id'); ?>';
             api = api.replace(':id', id);
 
             try {
@@ -67,7 +69,7 @@
                 });
 
                 if (result.ok) {
-                    alert('Xoá thành công!')
+                    alert('Xoá thành công thành công!')
                     let res = await result.json();
                     console.log(res);
                     window.location.reload();

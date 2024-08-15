@@ -549,10 +549,31 @@ $(document).ready(function () {
     //         .val(e)
     //         .trigger("change");
     //   }),
-      $(".artAddPrToCart .aTag1").click(function () {
-        $(this).css("display", "none"),
-          $(this).parent().find(".aTag2").fadeIn(600);
-      }),
+    $(".artAddPrToCart .aTag1").click(function () {
+      var option_id = $("input#option_id").val();
+      var product_id = $(this).data("product-id");
+      var quantity = $("input#quantity").val() || 1;
+      var $this = $(this);
+      if (option_id) {
+        $.ajax({
+          type: "POST",
+          url: "/cart/add",
+          data: { option_id, product_id, quantity },
+          dataType: "json",
+          success: function (data) {
+            var e = $this.parent().find(".aTag2");
+            $this.css("display", "none"), e.fadeIn(600);
+            $(".amountProduct").text(data.totalCountCart);
+            $(".amountProduct").data("count", data.totalCountCart);
+          },
+          error: function (data) {
+            alert("Có lỗi xảy ra. Vui lòng thử lại sau");
+          },
+        });
+      } else {
+        alert("Vui lòng chọn một tùy chọn cho sản phẩm");
+      }
+    }),
       $(".artSelectOpt .listOptArea .optPart").click(function () {
         if (!$(this).hasClass("active")) {
           var e = $(this).text();
@@ -573,34 +594,34 @@ $(document).ready(function () {
             minWidth: 992,
           });
       }, 2e3),
-    //   $(".payBlock #selectAllDesk").click(function () {
-    //     $(this).is(":checked")
-    //       ? ($(".cartTable .line2 .form-check-input").prop("checked", !0),
-    //         $(this).prop("checked", !0))
-    //       : ($(".cartTable .line2 .form-check-input").prop("checked", !1),
-    //         $(this).prop("checked", !1));
-    //   }),
-    //   $(".cartTable .line2 .form-check-input").click(function () {
-    //     $(this).is(":checked") ||
-    //       $(".payBlock #selectAllDesk").prop("checked", !1);
-    //   }),
-    //   $(".payBlock #selectAllMobile").click(function () {
-    //     $(this).is(":checked")
-    //       ? ($(".cartPayMobile .artDetailPr_3 .form-check-input").prop(
-    //           "checked",
-    //           !0
-    //         ),
-    //         $(this).prop("checked", !0))
-    //       : ($(".cartPayMobile .artDetailPr_3 .form-check-input").prop(
-    //           "checked",
-    //           !1
-    //         ),
-    //         $(this).prop("checked", !1));
-    //   }),
-    //   $(".cartPayMobile .artDetailPr_3 .form-check-input").click(function () {
-    //     $(this).is(":checked") ||
-    //       $(".payBlock #selectAllMobile").prop("checked", !1);
-    //   }),
+      //   $(".payBlock #selectAllDesk").click(function () {
+      //     $(this).is(":checked")
+      //       ? ($(".cartTable .line2 .form-check-input").prop("checked", !0),
+      //         $(this).prop("checked", !0))
+      //       : ($(".cartTable .line2 .form-check-input").prop("checked", !1),
+      //         $(this).prop("checked", !1));
+      //   }),
+      //   $(".cartTable .line2 .form-check-input").click(function () {
+      //     $(this).is(":checked") ||
+      //       $(".payBlock #selectAllDesk").prop("checked", !1);
+      //   }),
+      //   $(".payBlock #selectAllMobile").click(function () {
+      //     $(this).is(":checked")
+      //       ? ($(".cartPayMobile .artDetailPr_3 .form-check-input").prop(
+      //           "checked",
+      //           !0
+      //         ),
+      //         $(this).prop("checked", !0))
+      //       : ($(".cartPayMobile .artDetailPr_3 .form-check-input").prop(
+      //           "checked",
+      //           !1
+      //         ),
+      //         $(this).prop("checked", !1));
+      //   }),
+      //   $(".cartPayMobile .artDetailPr_3 .form-check-input").click(function () {
+      //     $(this).is(":checked") ||
+      //       $(".payBlock #selectAllMobile").prop("checked", !1);
+      //   }),
       $(".deliveryInforBlock .wrapForm-check #invoice").click(function () {
         $(this).is(":checked")
           ? ($(".deliveryInforBlock .TTXuatHD").fadeIn(600),
@@ -765,8 +786,9 @@ $(document).ready(function () {
               ).attr("value", $(t).find(".option.active").attr("name"));
           });
         var e = $(".variants p" + data_variant),
-          t = e.attr("variant_id"),
-          a = e.attr("price");
+          t = e.attr("option_id"),
+          a = e.attr("price"),
+          v = e.attr("picever");
         null != a
           ? ($("input#price").attr("value", a),
             $(".price_change").text(
@@ -775,10 +797,16 @@ $(document).ready(function () {
           : ((a = $(".price_change").text()),
             $("input#price").attr("value", a),
             $(".price_change").text(a)),
+          null != v
+            ? $(".price_change_init").text(
+                Intl.NumberFormat("de-DE").format(v) + "\u0111"
+              )
+            : ((v = $(".price_change_init").text()),
+              $(".price_change_init").text(a)),
           null != t
-            ? ($("input#variant_id").attr("value", t),
-              $(".add-to-cart").attr("data-variant-id", t))
-            : ($(".add-to-cart").removeAttr("data-variant-id"),
-              $("input#variant_id").removeAttr("value"));
+            ? ($("input#option_id").attr("value", t),
+              $(".add-to-cart").attr("data-option-id", t))
+            : ($(".add-to-cart").removeAttr("data-option-id"),
+              $("input#option_id").removeAttr("value"));
       });
   });

@@ -1,5 +1,7 @@
 <?php
 $setting = '';
+$cart = session()->get('cart') ?? ['items' => []];
+$totalCountCart = count($cart['items']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +15,8 @@ $setting = '';
     <meta content="" name="keywords">
 
     <?php echo view('/layouts/head', ["setting" => $setting]); ?>
-
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -29,7 +32,7 @@ $setting = '';
 <!-- End Google Tag Manager (noscript) -->
 
 <!-- ======= Header ======= -->
-<?php echo view('/layouts/header', ["setting" => $setting]); ?>
+<?php echo view('/layouts/header', ["setting" => $setting, 'totalCountCart' => $totalCountCart]); ?>
 <!-- End Header -->
 
 <!-- ======= Main ======= -->
@@ -97,8 +100,105 @@ $setting = '';
 <?php echo view('/layouts/scripts', ["setting" => $setting]); ?>
 
 <script>
+    $(document).ready(function () {
+        let html = ``;
 
+        let main_content = $('.data_contents');
+
+        let list_bookmark = $('#bookmark-list');
+
+        let data = [];
+
+        main_content.find('h2').each(function () {
+            let children = [];
+            let title = $(this).text();
+
+            let id_convert = convertStringToSlug(title);
+
+            $(this).attr('id', id_convert);
+
+
+            //
+            // $(main_content).find('h3').each(function () {
+            //     let title = $(this).text();
+            //     let id_convert = convertStringToSlug(title);
+            //
+            //     $(this).attr('id', id_convert);
+            //     children.push({
+            //         title: title,
+            //         id: id_convert
+            //     })
+            // })
+            //
+            // let nextSibling = $(this).next;
+            //
+            // do {
+            //     console.log($(nextSibling).prop('tagName'))
+            //     if ($(nextSibling).prop('tagName') === 'H3') {
+            //         let title = $($(nextSibling)).text();
+            //         let id_convert = convertStringToSlug(title);
+            //
+            //         $($(nextSibling)).attr('id', id_convert);
+            //         children.push({
+            //             title: title,
+            //             id: id_convert
+            //         })
+            //     }
+            //     nextSibling = $(nextSibling).next;
+            // }
+            // while (!$(nextSibling).length || $(nextSibling).prop('tagName') === 'H2');
+
+            data.push({
+                title: title,
+                id: id_convert,
+                children: children
+            });
+        });
+
+        for (let i = 0; i < data.length; i++) {
+            let item = data[i];
+
+            let title = item.title;
+            let id = item.id;
+
+            let childrens = item.children;
+
+            let content_html = `
+                <li class="data">
+                    <a href="#${id}">
+                       ${title}
+                    </a>
+                </li>`;
+
+            for (let j = 0; j < childrens.length; j++) {
+                let child = childrens[j];
+                let title = child.title;
+                let id = child.id;
+
+                let content_child = `
+                    <li class="sub_data">
+                        <a href="#${id}">
+                           ${title}
+                        </a>
+                    </li>`;
+
+                content_html += content_child;
+            }
+
+            html += content_html;
+        }
+
+        list_bookmark.html(html);
+    })
+
+    function convertStringToSlug(str) {
+        str = str.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        str = str.replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-');
+        str = str.replace(/^-+|-+$/g, '');
+        return str;
+    }
 </script>
+
 </body>
 
 </html>
