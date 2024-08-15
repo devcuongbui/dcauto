@@ -12,7 +12,14 @@
             </ol>
         </nav>
     </div><!-- End Page Title -->
-
+    <div class="d-flex" style="gap: 30px;">
+        <div class="d-flex align-items-center" style="gap: 5px;">
+            <button type="button" onclick="change_it()" class="btn btn-success btn-sm">Thay đổi thứ tự</button>
+            <a href="/admin/category/write?s_parent_code_no=<?= $s_parent_code_no ?>" class="btn btn-primary btn-sm">
+                <i class="fas fa-edit"></i> Thêm mới
+            </a>
+        </div>
+    </div>
     <section class="section">
         <table class="table datatable">
             <thead>
@@ -30,7 +37,7 @@
                 <?php
                     $i = $total;
                     foreach($categories as $category) {
-                        if($category["status"] == "1"){
+                        if($category["status"] == "Y"){
                             $status = "Sử dụng";
                         }else {
                             $status = "Không sử dụng";
@@ -51,11 +58,14 @@
                             </div>
                         </td>
                         <td class="text-center align-middle">
-                            <a href=" # " class="btn btn-primary">
-                                <i class="bi bi-eye"></i>
-                            </a>
-                            <button type="button" data-id="" onclick="confirmDelete('')"
-                                    class="btn btnDelete btn-danger"><i class="bi bi-trash"></i></button>
+                            <div class="d-flex justify-content-center" style="gap: 10px;">
+                                <a href="#!" onclick="code_delete('<?= $category['c_idx'] ?>');"
+                                    class="btn btn-outline-danger">Xóa</a>
+                                <a href="/admin/category/write?s_parent_code_no=<?= $category["code_no"] ?>"
+                                    class="btn btn-outline-secondary">Đăng kí</a>
+                                <a href="/admin/category/list?s_parent_code_no=<?= $category["code_no"] ?>"
+                                    class="btn btn-outline-secondary">Danh sách phụ</a>                           
+                            </div>
                         </td>
                     </tr>   
                 <?php

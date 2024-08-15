@@ -18,7 +18,8 @@ $routes->group("admin", static function ($routes) {
     $routes->get('logout', 'AuthController::logout', ['as' => 'auth.logout']);
     $routes->group("category", static function ($routes) {
         $routes->get('list', 'CategoryController::list', ['as' => 'admin.category.list']);
-        $routes->post('write', 'CartController::write', ['as' => 'admin.category.write']);
+        $routes->get('write', 'CategoryController::write', ['as' => 'admin.category.write']);
+        $routes->post('save', 'CategoryController::save', ['as' => 'admin.category.save']);
     });
 
 });
