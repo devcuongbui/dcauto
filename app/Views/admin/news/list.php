@@ -28,14 +28,15 @@
             </tr>
             </thead>
             <tbody>
-            <?php foreach ($news as $item):
-                $i = 1;
+            <?php  $i = 1;
+                    foreach ($news as $item):
                 ?>
                 <tr>
-                    <th scope="row"><?= $i++ ?></th>
+                    <th scope="row"><?= $i ?></th>
                     <td><?= $item['title'] ?></td>
                     <td>
-                        <img src="<?= site_url('uploads/news/') . $item['thumbnail'] ?>" alt="<?= $item['title'] ?>" width="100px">
+                        <img src="<?= site_url('uploads/news/') . $item['thumbnail'] ?>" alt="<?= $item['title'] ?>"
+                             width="100px">
                     </td>
                     <td><?= $item['description'] ?></td>
                     <td><?= $item['type'] == 0 ? 'Tin khuyến mãi' : 'Kiến thức ôtô' ?></td>
@@ -49,6 +50,7 @@
                                 class="btn btnDelete btn-danger"><i class="bi bi-trash"></i></button>
                     </td>
                 </tr>
+                <?php $i = $i + 1; ?>
             <?php endforeach; ?>
 
             </tbody>
