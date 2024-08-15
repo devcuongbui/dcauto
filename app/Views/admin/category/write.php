@@ -57,6 +57,10 @@
             var frm = document.frm;
             formData = new FormData(frm);
 
+            console.log(formData);
+
+            formData.append('contents', tinymce.get('contents').getContent())
+            
             $.ajax({
                 url: "/admin/category/save",
                 type: "POST",
@@ -69,7 +73,7 @@
                 , success : function(response, status, request) {
                     if (response.result == true) {
                         alert(response.message);
-                        location.href="/admin/category/list?s_parent_code_no=" + response.parent_code;
+                        // location.href="/admin/category/list?s_parent_code_no=" + response.parent_code;
                         return;
                     } else {
                         alert(response.message);
