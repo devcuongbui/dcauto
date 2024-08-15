@@ -13,6 +13,7 @@ class AdminNewsController extends BaseController
 
     public function __construct()
     {
+        helper('text');
         $this->model = new \App\Models\News();
         $this->user_id = session()->get('user')['id'];
     }
@@ -40,11 +41,29 @@ class AdminNewsController extends BaseController
     public function handleCreate()
     {
         try {
-            $data = $this->request->getJSON(true);
+            $file = $this->request->getFile('file');
+
+            $data = $this->request->getPost();
 
             $title = $data['title'] ?? null;
             $content = $data['content'] ?? null;
-            $type = $data['type'] ?? null;
+            $type = $data['type'] ?? 0;
+            $description = $data['description'] ?? null;
+
+            if ($file->isValid() && !$file->hasMoved()) {
+                $newName = $file->getRandomName();
+                $publicPath = WRITEPATH . '../public/uploads/news';
+                $file->move($publicPath, $newName);
+
+                $thumbnail = $newName;
+            } else {
+                return $this->response->setStatusCode(400)
+                    ->setJSON([
+                        'status' => 'error',
+                        'data' => 'error',
+                        'message' => 'Hình ảnh không được bỏ trống!'
+                    ]);
+            }
 
             if (empty($title) || empty($content)) {
                 return $this->response->setStatusCode(400)
@@ -61,9 +80,13 @@ class AdminNewsController extends BaseController
                 $show = 1;
             }
 
+            $slug = $data['slug'] ?? url_title(convert_vn_to_str($title), '-', true);
             $user_id = $this->user_id;
             $this->model->save([
                 'title' => $title,
+                'slug' => $slug,
+                'thumbnail' => $thumbnail,
+                'description' => $description,
                 'content' => $content,
                 'type' => $type,
                 'status' => 1,
@@ -93,6 +116,8 @@ class AdminNewsController extends BaseController
     public function update($id)
     {
         try {
+            $file = $this->request->getFile('file');
+
             $news = $this->model->find($id);
             if (!$news || $news['status'] != 1) {
                 return $this->response
@@ -103,10 +128,12 @@ class AdminNewsController extends BaseController
                     ]);
             }
 
-            $data = $this->request->getJSON(true);
+            $data = $this->request->getPost();
+
             $title = $data['title'] ?? null;
             $content = $data['content'] ?? null;
             $type = $data['type'] ?? null;
+
 
             if (empty($title) || empty($content)) {
                 return $this->response->setStatusCode(400)
@@ -116,6 +143,19 @@ class AdminNewsController extends BaseController
                         'message' => 'Vui long nhap day du thong tin'
                     ]);
             }
+            $description = $data['description'] ?? null;
+
+            $thumbnail = $news['thumbnail'] ?? '';
+
+            if ($file){
+                if ($file->isValid() && !$file->hasMoved()) {
+                    $newName = $file->getRandomName();
+                    $publicPath = WRITEPATH . '../public/uploads/news';
+                    $file->move($publicPath, $newName);
+
+                    $thumbnail = $newName;
+                }
+            }
 
             $is_show = $data['is_show'] ?? false;
             $show = 0;
@@ -123,8 +163,12 @@ class AdminNewsController extends BaseController
                 $show = 1;
             }
 
+            $slug = $data['slug'] ?? url_title(convert_vn_to_str($title), '-', true);
             $this->model->update($id, [
                 'title' => $title,
+                'slug' => $slug,
+                'thumbnail' => $thumbnail,
+                'description' => $description,
                 'content' => $content,
                 'type' => $type,
                 'updated_at' => date('Y-m-d H:i:s'),
