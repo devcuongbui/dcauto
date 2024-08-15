@@ -8,13 +8,11 @@ use CodeIgniter\HTTP\ResponseInterface;
 class NewsController extends BaseController
 {
     protected $model;
-    protected $user_id;
 
 
     public function __construct()
     {
         $this->model = new \App\Models\News();
-        $this->user_id = session()->get('user')['id'];
     }
 
     public function list()
