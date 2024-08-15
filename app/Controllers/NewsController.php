@@ -18,6 +18,11 @@ class NewsController extends BaseController
     public function list()
     {
         $type = $this->request->getVar('type');
+        $page = $this->request->getVar('page');
+
+        if (empty($page)) {
+            $page = 1;
+        }
 
         if ($type == 'kien-thuc-o-to') {
             $type = 1;
@@ -25,7 +30,12 @@ class NewsController extends BaseController
             $type = 0;
         }
         $news = $this->model->where('status', 1)->where('type', $type)->orderBy('id', 'desc')->findAll();
-        return view('news/list', ['news' => $news, 'type' => $type]);
+
+        $count = count($news);
+        $per_page = 9;
+        $total_page = ceil($count / $per_page);
+        $news = array_slice($news, ($page - 1) * $per_page, $per_page);
+        return view('news/list', ['news' => $news, 'type' => $type, 'page' => $page, 'total_page' => $total_page]);
     }
 
     public function detail()
