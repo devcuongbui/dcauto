@@ -306,10 +306,10 @@
                         <a class="linkLevel_1" href="tin-t%e1%bb%a9c/<?php echo route_to('home'); ?>">TIN TỨC</a>
                         <div class="blockCateLevel_2">
                             <div class="menuItem_2">
-                                <a class="linkLevel_2" href="tin-khuyen-mai/<?php echo route_to('home'); ?>">Tin Khuyến Mãi</a>
+                                <a class="linkLevel_2" href="<?php echo route_to('news.list'); ?>?type=tin-khuyen-mai">Tin Khuyến Mãi</a>
                             </div>
                             <div class="menuItem_2">
-                                <a class="linkLevel_2" href="kien-thuc-o-to/<?php echo route_to('home'); ?>">Kiến Thức Ô Tô</a>
+                                <a class="linkLevel_2" href="<?php echo route_to('news.list'); ?>?type=kien-thuc-o-to">Kiến Thức Ô Tô</a>
                             </div>
                         </div>
                     </div>
