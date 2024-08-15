@@ -66,8 +66,8 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                 <div class="middleArea">
                     <h1 class="titlePr"><?= $product['product_name'] ?></h1>
                     <div class="pricePart">
-                        <p class="currentPrice price_change"><?= $product['sell_price'] ?>đ</p>
-                        <p class="originalPrice price_change_init"><?= $product['init_price'] ?>đ</p>
+                        <p class="currentPrice price_change"><?= number_format($product['sell_price'], 0, ',', '.') ?>đ</p>
+                        <p class="originalPrice price_change_init"><?= number_format($product['init_price'], 0, ',', '.') ?>đ</p>
                     </div>
                     <article class="artSelectOpt variant_options">
                         <div class="showSelectedOpt">
@@ -77,7 +77,8 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                         <div class="listOptArea">
                             <?php foreach ($product['options'] as $option): ?>
                                 <div class="optPart optionBlock option" name="<?= $option['po_name'] ?>"
-                                    picever="<?= $option['po_init_price'] ?>" price="<?= $option['po_sell_price'] ?>">
+                                    picever="<?= $option['po_init_price'] ?>" price="<?= $option['po_sell_price'] ?>"
+                                    option_id="<?= $option['po_id'] ?>">>
                                     <?= $product['product_name'] ?>-<?= $option['po_name'] ?>
                                 </div>
                             <?php endforeach; ?>
@@ -86,6 +87,7 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                     <div class="variants d-none">
                         <?php foreach ($product['options'] as $option): ?>
                             <p loai-cam="<?= $option['po_name'] ?>" price="<?= $option['po_sell_price'] ?>"
+                                picever="<?= $option['po_init_price'] ?>"
                                 option_id="<?= $option['po_id'] ?>">
                                 <?= $product['product_name'] ?>-<?= $option['po_name'] ?></p>
                         <?php endforeach; ?>
@@ -348,8 +350,8 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                                             <a class="prName"
                                                 href="/product/view/<?= $product_item['product_id'] ?>"><?= $product_item['product_name'] ?></a>
                                             <div class="pricePart">
-                                                <p class="currentPrice"><?= $product_item['sell_price'] ?>đ</p>
-                                                <p class="originalPrice"><?= $product_item['init_price'] ?>đ</p>
+                                                <p class="currentPrice"><?= number_format($product_item['sell_price'], 0, ',', '.') ?>đ</p>
+                                                <p class="originalPrice"><?= number_format($product_item['init_price'], 0, ',', '.') ?>đ</p>
                                             </div>
                                         </div>
                                     </article>

@@ -1,3 +1,15 @@
+function updateCartCount() {
+  $.ajax({
+    type: "GET",
+    url: "/cart/count",
+    dataType: "json",
+    success: function (data) {
+      $(".amountProduct").attr('style', 'display: block !important;');
+      $(".amountProduct").text(data.totalCountCart);
+      $(".amountProduct").data("count", data.totalCountCart);
+    },
+  })
+}
 function fixDataContents() {
   $(".data_contents p span").css("font-size", "unset"),
     $(".data_contents div span").css("font-size", "unset"),
@@ -563,11 +575,10 @@ $(document).ready(function () {
           success: function (data) {
             var e = $this.parent().find(".aTag2");
             $this.css("display", "none"), e.fadeIn(600);
-            $(".amountProduct").text(data.totalCountCart);
-            $(".amountProduct").data("count", data.totalCountCart);
+            updateCartCount();
           },
           error: function (data) {
-            alert("Có lỗi xảy ra. Vui lòng thử lại sau");
+            alert(data.message || "Có lỗi xảy ra vui lòng thử lại!");
           },
         });
       } else {
@@ -785,10 +796,14 @@ $(document).ready(function () {
                   ']"]'
               ).attr("value", $(t).find(".option.active").attr("name"));
           });
-        var e = $(".variants p" + data_variant),
-          t = e.attr("option_id"),
+        var e = $(".variants p" + data_variant)
+          console.log(e);
+          
+          var t = e.attr("option_id"),
           a = e.attr("price"),
           v = e.attr("picever");
+          console.log(a, v, t);
+          
         null != a
           ? ($("input#price").attr("value", a),
             $(".price_change").text(

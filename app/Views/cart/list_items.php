@@ -17,10 +17,11 @@
                     $cartId = $item['id'];
                     $product = $productModel->find($item['product_id']);
                     $option = $productOptionModel->find($item['option_id']);
-                    $price = $product['sell_price'];
+                    $price = $option['po_sell_price'] ?? $product['sell_price'];
+                    $price = intval($price);
                     $quantity = $item['quantity'];
                     $total_price = $quantity * $price;
-                    $product_name = $product['product_name'];
+                    $product_name = $option['po_name'] ? $product['product_name'] . '-' . $option['po_name'] : $product['product_name'];
                     $img = $product['product_image'];
                     ?>
                     <tr class="line2 cart-item-row cart-item-row-<?= $cartId ?>"
@@ -56,10 +57,10 @@
                             </div>
                         </td>
                         <td>
-                            <p class="priceText" value="7290000.0"><?= $price ?>đ</p>
+                            <p class="priceText" value="<?= $price ?>"><?= number_format($price, 0, ",", ".") ?>đ</p>
                         </td>
                         <td>
-                            <p class="thanhTien cart-item-total-price"><?= $total_price?>đ</p>
+                            <p class="thanhTien cart-item-total-price"><?= number_format($total_price, 0, ",", ".") ?>đ</p>
                         </td>
                         <td>
                             <p class="deletClass remove-cart-item" data-cart-item-id="<?= $cartId?>" onclick="deleteCart(this)">Xóa</p>
@@ -84,7 +85,7 @@
                         <p class="number">(<?=$totalCount?> sản phẩm)</p>
                     </div>
                     <div class="price">
-                        <p class="numberPrice cart-sub-total" data-amount="<?=$totalPrice?>"><??><?=$totalPrice?>đ</p>
+                        <p class="numberPrice cart-sub-total" data-amount="<?=$totalPrice?>"><??><?= number_format($totalPrice, 0, ",", ".") ?>đ</p>
                         <p class="tax">(Chưa bao gồm thuế GTGT)</p>
                     </div>
                 </div>
@@ -101,10 +102,11 @@
                     $cartId = $item['id'];
                     $product = $productModel->find($item['product_id']);
                     $option = $productOptionModel->find($item['option_id']);
-                    $price = $product['sell_price'];
+                    $price = $option['po_sell_price'] ?? $product['sell_price'];
+                    $price = intval($price);
                     $quantity = $item['quantity'];
                     $total_price = $quantity * $price;
-                    $product_name = $product['product_name'];
+                    $product_name = $option ? $product['product_name'] . ' - ' . $option['po_name'] : $product['product_name'];
                     $img = $product['product_image'];
                     ?>
             <div class="artDetailPr_3 cart-item-row cart-item-row-<?=$cartId?>" data-id="<?=$cartId?>" data-price="<?=$price?>"
@@ -129,7 +131,7 @@
                         <input class="form-control form-controlFix quantity cart-item-quantity"
                             data-cart-item-id="<?= $cartId ?>" type="text" value="<?= $quantity ?>">
                     </div>
-                    <p class="priceProduct" value="<?=$total_price?>" style="color: var(--do_hay_dung);"><?= $total_price ?>đ</p>
+                    <p class="priceProduct" value="<?=$total_price?>" style="color: var(--do_hay_dung);"><?= number_format($total_price, 0, ",", ".") ?>đ</p>
                     <button class="deletClass remove_item remove-cart-item" data-cart-item-id="<?= $cartId ?>" onclick="deleteCart(this)">Xóa</button>
                 </div>
             </div>
@@ -150,7 +152,7 @@
                             <p class="number">(<?=$totalCount?> sản phẩm)</p>
                         </div>
                         <div class="price">
-                            <p class="numberPrice cart-sub-total">21.290.000đ</p>
+                            <p class="numberPrice cart-sub-total"><? number_format($totalPrice, 0, ",", ".") ?>đ</p>
                             <p class="tax">(Chưa bao gồm thuế GTGT)</p>
                         </div>
                     </div>

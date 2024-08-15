@@ -15,6 +15,31 @@ class CartController extends BaseController
         $this->productOptionModel = model('ProductOptionModel');
         $this->orderModel = model('OrdersModel');
     }
+    private function getCartInfo($cart)
+    {
+        $totalPrice = 0;
+        $totalCount = 0;
+        $isSelectAll = true;
+        foreach ($cart['items'] as $item) {
+            $product = $this->productModel->find($item['product_id']);
+            $option = $this->productOptionModel->find($item['option_id']);
+            $price = $option['po_sell_price'] ?? $product['sell_price'];
+            if ($item['selected']) {
+                $totalPrice += $item['quantity'] * $price;
+                $totalCount += $item['quantity'];
+            } else {
+                $isSelectAll = false;
+            }
+        }
+        return [
+            'cart' => $cart,
+            'totalPrice' => $totalPrice,
+            'totalCount' => $totalCount,
+            'isSelectAll' => $isSelectAll,
+            'productModel' => $this->productModel,
+            'productOptionModel' => $this->productOptionModel,
+        ];
+    }
     public function list()
     {
         // $model1 = [
@@ -37,26 +62,18 @@ class CartController extends BaseController
         // ];
         // $this->session->set('cart', $model1);
         $cart = $this->session->get('cart') ?? ['items' => []];
-        $totalPrice = 0;
-        $totalCount = 0;
-        $isSelectAll = true;
-        foreach ($cart['items'] as $item) {
-            $product = $this->productModel->find($item['product_id']);
-            if ($item['selected']) {
-                $totalPrice += $item['quantity'] * $product['sell_price'];
-                $totalCount += $item['quantity'];
-            } else {
-                $isSelectAll = false;
-            }
-        }
-        return view('cart/list', [
-            'cart' => $cart,
-            'totalPrice' => $totalPrice,
-            'totalCount' => $totalCount,
-            'isSelectAll' => $isSelectAll,
-            'productModel' => $this->productModel,
-            'productOptionModel' => $this->productOptionModel,
-        ]);
+        // $totalPrice = 0;
+        // $totalCount = 0;
+        // foreach ($cart['items'] as $item) {
+        //     $product = $this->productModel->find($item['product_id']);
+        //     if ($item['selected']) {
+        //         $totalPrice += $item['quantity'] * $product['sell_price'];
+        //         $totalCount += $item['quantity'];
+        //     } else {
+        //         $isSelectAll = false;
+        //     }
+        // }
+        return view('cart/list', $this->getCartInfo($cart));
     }
     public function add()
     {
@@ -64,13 +81,14 @@ class CartController extends BaseController
         $quantity = $this->request->getPost('quantity');
         $option_id = $this->request->getPost('option_id');
         $cart = $this->session->get('cart') ?? ['items' => []];
+
         if (!$product_id || !$option_id || !$quantity) {
             return $this->response->setJSON([
                 'message' => 'Vui lòng chọn sản phẩm và số lượng',
             ])->setStatusCode(400);
         }
         $item = [
-            'id' => uniqid(),
+            'id' => floor(microtime(true) * 1000),
             'product_id' => $product_id,
             'option_id' => $option_id,
             'quantity' => $quantity,
@@ -78,22 +96,27 @@ class CartController extends BaseController
         ];
 
         $is_existed = false;
-        foreach ($cart['items'] as $item) {
+        for ($index = 0; $index < count($cart['items']); $index++) {
+            $item = $cart['items'][$index];
             if ($item['product_id'] == $product_id && $item['option_id'] == $option_id) {
                 $is_existed = true;
+                $item['quantity'] = $item['quantity'] + $quantity;
+                $cart['items'][$index] = $item;
                 break;
             }
         }
 
-        if ($is_existed) {
-            $item['quantity'] = $item['quantity'] + $quantity;
-        } else {
+        if (!$is_existed) {
             $cart['items'][] = $item;
         }
-        $totalCountCart = count($cart['items']);
         $this->session->set('cart', $cart);
+
         return $this->response->setJSON([
-            'totalCountCart' => $totalCountCart,
+            'cart' => $cart,
+            'product_id' => $product_id,
+            'option_id' => $option_id,
+            'quantity' => $quantity,
+            'is_existed' => $is_existed
         ]);
     }
     public function buy_now()
@@ -108,7 +131,7 @@ class CartController extends BaseController
             ])->setStatusCode(400);
         }
         $item = [
-            'id' => uniqid(),
+            'id' => floor(microtime(true) * 1000),
             'product_id' => $product_id,
             'option_id' => $option_id,
             'quantity' => $quantity,
@@ -144,27 +167,8 @@ class CartController extends BaseController
                 break;
             }
         }
-        $totalPrice = 0;
-        $totalCount = 0;
-        $isSelectAll = true;
-        foreach ($cart['items'] as $item) {
-            $product = $this->productModel->find($item['product_id']);
-            if ($item['selected']) {
-                $totalPrice += $item['quantity'] * $product['sell_price'];
-                $totalCount += $item['quantity'];
-            } else {
-                $isSelectAll = false;
-            }
-        }
         $this->session->set('cart', $cart);
-        return view("cart/list_items", [
-            'cart' => $cart,
-            'totalPrice' => $totalPrice,
-            'totalCount' => $totalCount,
-            'isSelectAll' => $isSelectAll,
-            'productModel' => $this->productModel,
-            'productOptionModel' => $this->productOptionModel,
-        ]);
+        return view("cart/list_items", $this->getCartInfo($cart));
     }
     public function update()
     {
@@ -177,27 +181,8 @@ class CartController extends BaseController
                 break;
             }
         }
-        $totalPrice = 0;
-        $totalCount = 0;
-        $isSelectAll = true;
-        foreach ($cart['items'] as $item) {
-            $product = $this->productModel->find($item['product_id']);
-            if ($item['selected']) {
-                $totalPrice += $item['quantity'] * $product['sell_price'];
-                $totalCount += $item['quantity'];
-            } else {
-                $isSelectAll = false;
-            }
-        }
         $this->session->set('cart', $cart);
-        return view("cart/list_items", [
-            'cart' => $cart,
-            'totalPrice' => $totalPrice,
-            'totalCount' => $totalCount,
-            'isSelectAll' => $isSelectAll,
-            'productModel' => $this->productModel,
-            'productOptionModel' => $this->productOptionModel,
-        ]);
+        return view("cart/list_items", $this->getCartInfo($cart));
     }
     public function selectAll()
     {
@@ -210,27 +195,8 @@ class CartController extends BaseController
                 $cart['items'][$key]['selected'] = false;
             }
         }
-        $totalPrice = 0;
-        $totalCount = 0;
-        $isSelectAll = true;
-        foreach ($cart['items'] as $item) {
-            $product = $this->productModel->find($item['product_id']);
-            if ($item['selected']) {
-                $totalPrice += $item['quantity'] * $product['sell_price'];
-                $totalCount += $item['quantity'];
-            } else {
-                $isSelectAll = false;
-            }
-        }
         $this->session->set('cart', $cart);
-        return view("cart/list_items", [
-            'cart' => $cart,
-            'totalPrice' => $totalPrice,
-            'totalCount' => $totalCount,
-            'isSelectAll' => $isSelectAll,
-            'productModel' => $this->productModel,
-            'productOptionModel' => $this->productOptionModel,
-        ]);
+        return view("cart/list_items", $this->getCartInfo($cart));
     }
     public function select()
     {
@@ -247,27 +213,8 @@ class CartController extends BaseController
                 break;
             }
         }
-        $totalPrice = 0;
-        $totalCount = 0;
-        $isSelectAll = true;
-        foreach ($cart['items'] as $item) {
-            $product = $this->productModel->find($item['product_id']);
-            if ($item['selected']) {
-                $totalPrice += $item['quantity'] * $product['sell_price'];
-                $totalCount += $item['quantity'];
-            } else {
-                $isSelectAll = false;
-            }
-        }
         $this->session->set('cart', $cart);
-        return view("cart/list_items", [
-            'cart' => $cart,
-            'totalPrice' => $totalPrice,
-            'totalCount' => $totalCount,
-            'isSelectAll' => $isSelectAll,
-            'productModel' => $this->productModel,
-            'productOptionModel' => $this->productOptionModel,
-        ]);
+        return view("cart/list_items", $this->getCartInfo($cart));
     }
     public function payment()
     {
@@ -296,5 +243,11 @@ class CartController extends BaseController
             'productModel' => $this->productModel,
             'productOptionModel' => $this->productOptionModel
         ]);
+    }
+    public function count()
+    {
+        $cart = $this->session->get('cart') ?? ['items' => []];
+        $totalCountCart = count($cart['items']);
+        return $this->response->setJSON(['totalCountCart' => $totalCountCart]);
     }
 }

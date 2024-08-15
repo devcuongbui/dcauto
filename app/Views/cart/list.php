@@ -66,6 +66,7 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
             },
             success: function (result) {
                 $("#cartMainContent").html(result);
+                updateCartCount();
             }
         })
     }

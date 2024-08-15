@@ -43,6 +43,7 @@ $routes->group("cart", static function ($routes) {
     $routes->post('submit', 'CartController::submit', ['as' => 'cart.submit']);
     $routes->get('payment', 'CartController::payment', ['as' => 'cart.payment']);
     $routes->post('buy_now', 'CartController::buy_now', ['as' => 'cart.buy_now']);
+    $routes->get('count', 'CartController::count', ['as' => 'cart.count']);
 });
 
 $routes->group("product", static function ($routes) {
