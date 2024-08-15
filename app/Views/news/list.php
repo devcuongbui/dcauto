@@ -36,13 +36,13 @@ if (!isset($type)) {
                         <div class="col-lg-4 col-md-4 col-sm-6 col-12 colPart">
                             <article class="artDetailNews_3">
                                 <a class="imgNews figure2"
-                                   href="<?= route_to('news_detail') . '?slug=' . $item['slug'] ?>"
+                                   href="<?= route_to('news.detail') . '?slug=' . $item['slug'] ?>"
                                    title="<?= $item['title'] ?>">
                                     <img alt="<?= $item['title'] ?>" class="imgOnFrame"
-                                         src="../storage/4b/z0/4bz06r88sikcgxx656mzw6c36cjp_co-nen-lap-android-box-cho-o-to-1.webp">
+                                         src="<?= base_url() . '/uploads/news/' . $item['thumbnail'] ?>">
                                 </a>
                                 <div class="wrapNewsInfo">
-                                    <a class="linkNews" href="<?= route_to('news_detail') . '?slug=' . $item['slug'] ?>"
+                                    <a class="linkNews" href="<?= route_to('news.detail') . '?slug=' . $item['slug'] ?>"
                                        title="<?= $item['title'] ?>">
                                         <p class="titleNews" title="<?= $item['title'] ?>"><?= $item['title'] ?></p>
                                     </a>
@@ -53,9 +53,7 @@ if (!isset($type)) {
                                 <div class="timesPart">
                                     <?php
                                     $datetimeStr = $item['created_at'];
-                                    $datetime = new DateTime($datetimeStr);
-                                    $formattedDate = strftime('%d Tháng %m, %Y', $datetime->getTimestamp());
-
+                                    $formattedDate = convert_time($datetimeStr);
                                     ?>
                                     <p class="timeText"> <?= $formattedDate ?></p>
                                 </div>

@@ -32,6 +32,19 @@ class NewsController extends BaseController
 
     public function detail()
     {
-        return view('news/detail');
+        $slug = $this->request->getVar('slug');
+//        $news = $this->model->where('slug', $slug)->where('status', 1)->first();
+//        $news = $this->model->where('slug', '%' . $slug . '%', 'like')->where('status', 1)->first();
+        $news = $this->model->like('slug', '%' . $slug . '%')->where('status', 1)->first();
+        if ($news == null) {
+            return view('errors/404');
+        }
+
+        $more_news = $this->model->where('status', 1)
+            ->where('type', $news['type'])
+            ->where('id !=', $news['id'])
+            ->orderBy('id', 'desc')
+            ->findAll(4);
+        return view('news/detail', ['news' => $news, 'more_news' => $more_news]);
     }
 }

@@ -62,7 +62,7 @@
             $('#btnCreate').prop('disabled', true).text('Đang tạo mới...');
 
             const formData = new FormData();
-            let inputs = $('#form input.main_item, #form select.main_item');
+            let inputs = $('#form input.main_item, textarea.main_item, #form select.main_item');
             for (let i = 0; i < inputs.length; i++) {
                 if (!$(inputs[i]).val() && $(inputs[i]).attr('type') !== 'checkbox') {
                     let text = $(inputs[i]).prev().text();

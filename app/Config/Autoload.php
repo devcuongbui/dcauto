@@ -90,6 +90,6 @@ class Autoload extends AutoloadConfig
      *
      * @var list<string>
      */
-    public $helpers = ['text'];
+    public $helpers = ['text', 'convert_time'];
 
 }
