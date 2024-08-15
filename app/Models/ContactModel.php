@@ -11,4 +11,7 @@ class ContactModel extends Model
     protected $allowedFields = [
         'name', 'phone', 'email', 'note', 'created_at' 
     ];
+
+    protected $createdField = 'created_at';
+    protected $deletedField = 'deleted_at';
 }
