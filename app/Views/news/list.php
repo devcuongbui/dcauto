@@ -1,10 +1,13 @@
 <?php
 if (!isset($type)) {
     $type_text = 'Tin khuyến mãi';
+    $type_code = 'tin-khuyen-mai';
 } elseif ($type == 1) {
     $type_text = 'Kiến thức oto';
+    $type_code = 'kien-thuc-o-to';
 } else {
     $type_text = 'Tin khuyến mãi';
+    $type_code = 'tin-khuyen-mai';
 }
 
 ?>
@@ -66,23 +69,11 @@ if (!isset($type)) {
                         <div class="paginationBlock">
                             <nav aria-label="Page navigation example" class="paginationNav" style="margin:auto;">
                                 <ul class="pagination">
-                                    <li class="page-item">
-                                        <a class="page-link" href="index2679.html?page=1" id="selected-page">1</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="index4658.html?page=2" id="">2</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="index9ba9.html?page=3">
-                                            3
-                                        </a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="index4658.html?page=2">&gt;</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="index9ba9.html?page=3">&gt;&gt;</a>
-                                    </li>
+                                    <?php for ($i = 0; $i < $total_page; $i++) {
+                                        echo ' <li class="page-item">
+                                                    <a class="page-link" href="' . route_to('news.list') . '?type=' . $type_code . '&page=' . ($i + 1) . '' . '"">' . ($i + 1) . '</a>
+                                                </li>';
+                                    } ?>
                                 </ul>
                             </nav>
                         </div>
