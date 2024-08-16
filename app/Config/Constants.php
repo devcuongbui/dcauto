@@ -119,3 +119,21 @@ define('PAY_METHOD_NAMES', [
     '1' => 'Thanh toán khi giao hàng (COD)',
     '2' => 'Thanh toán chuyển khoản qua Ngân Hàng',
 ]);
+
+define('ORDER_STATUS_IDS', [
+    'order_complete' => '1',
+    'payment_complete' => '2',
+    'shipping' => '3',
+    'shipping_complete' => '4',
+]);
+
+define('ORDER_STATUS_NAMES', [
+    'order_complete' => 'Đặt hàng thành công',
+    'payment_complete' => 'Thanh toán thành công',
+    'shipping' => 'Đang giao hàng',
+    'shipping_complete' => 'Giao hàng thành công',
+    '1' => 'Đặt hàng thành công',
+    '2' => 'Thanh toán thành công',
+    '3' => 'Đang giao hàng',
+    '4' => 'Giao hàng thành công',
+]);

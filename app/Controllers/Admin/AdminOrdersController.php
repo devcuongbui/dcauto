@@ -19,8 +19,29 @@ class AdminOrdersController extends BaseController
 
     public function list()
     {
-        $list = $this->model->where('status_id', 1)->orderBy('order_id', 'desc')->findAll();
-        return view('admin/orders/list', ['list' => $list]);
+        $g_list_rows = 10;
+        $pg = $this->request->getVar("pg");
+
+        $nTotalCount = $this->model->orderBy('order_id', 'desc')->countAllResults();
+        $nPage = ceil($nTotalCount / $g_list_rows);
+        if ($pg == "")
+            $pg = 1;
+        $nFrom = ($pg - 1) * $g_list_rows;
+        $list = $this->model
+            ->orderBy('order_id', 'desc')
+            ->limit($g_list_rows, $nFrom)
+            ->get()
+            ->getResultArray();
+        $num = $nTotalCount - $nFrom;
+        return view('admin/orders/list', [
+            'list' => $list,
+            "num" => $num,
+            "pg" => $pg,
+            "nPage" => $nPage,
+            "nTotalCount" => $nTotalCount,
+            "currentUri" => $this->request->getUri()->getPath(),
+            "g_list_rows" => $g_list_rows
+        ]);
     }
 
     public function detail($id)

@@ -28,4 +28,9 @@ class OrdersModel extends Model
     protected $createdField = 'created_at';
     protected $updatedField = 'updated_at';
     protected $deletedField = 'deleted_at';
+
+    function getOrder($id)
+    {
+        return $this->where('order_id', $id)->get()->getRowArray();
+    }
 }

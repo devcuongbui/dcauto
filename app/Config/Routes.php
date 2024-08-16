@@ -57,6 +57,8 @@ $routes->group("cart", static function ($routes) {
 
 $routes->group("orders", static function ($routes) {
     $routes->post('add', 'OrdersController::add', ['as' => 'orders.add']);
+    $routes->post('update', 'OrdersController::update', ['as' => 'orders.update']);
+    $routes->post('delete', 'OrdersController::delete', ['as' => 'orders.delete']);
     $routes->get('(:segment)', 'OrdersController::preview/$1', ['as' => 'orders.preview']);
 });
 
