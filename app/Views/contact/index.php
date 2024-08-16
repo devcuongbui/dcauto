@@ -42,6 +42,11 @@
 <div class="form-group">
 <textarea class="form-control" name="note" placeholder="Nhập nội dung" rows="4"></textarea>
 </div>
+<?php if (session()->getFlashdata('message')): ?>
+    <div id="success-message" class="alert alert-success">
+        <?= session()->getFlashdata('message'); ?>
+    </div>
+<?php endif; ?>
 <div class="btnPart">
 <button class="btnType_1" onclick="send_it();">Gửi</button>
 </div>
@@ -98,6 +103,17 @@
     
         $('#frm').submit();
     }
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        if (document.getElementById('success-message') && !sessionStorage.getItem('messageDisplayed')) {
+            setTimeout(function() {
+                document.getElementById('success-message').style.display = 'none';
+            }, 3000);
+
+            sessionStorage.setItem('messageDisplayed', 'true');
+        }
+    });
 </script>
 
 <?= $this->endSection() ?>
