@@ -39,3 +39,11 @@ $routes->group("cars", static function ($routes) {
     $routes->delete('delete/(:any)', 'Admin\AdminCarsController::delete/$1', ['as' => 'admin.cars.delete']);
 });
 
+$routes->group("products", static function ($routes) {
+    $routes->get('list', 'Admin\AdminProductController::list', ['as' => 'admin.products.list']);
+    $routes->get('create', 'Admin\AdminProductController::create', ['as' => 'admin.products.create']);
+    $routes->get('detail/(:any)', 'Admin\AdminProductController::detail/$1', ['as' => 'admin.products.detail']);
+    $routes->post('create', 'Admin\AdminProductController::store', ['as' => 'admin.products.store']);
+    $routes->post('update/(:any)', 'Admin\AdminProductController::update/$1', ['as' => 'admin.products.update']);
+    $routes->delete('delete/(:any)', 'Admin\AdminProductController::delete/$1', ['as' => 'admin.products.delete']);
+});

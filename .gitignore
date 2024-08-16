@@ -124,7 +124,7 @@ nb-configuration.xml
 
 /results/
 /phpunit*.xml
-
+composer.lock
 # No import file from serve
 .htaccess
 
