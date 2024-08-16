@@ -9,9 +9,7 @@ class ContactModel extends Model
     protected $table = 'contact';
     protected $primaryKey = 'id';
     protected $allowedFields = [
-        'name', 'phone', 'email', 'note', 'type', 'created_at' 
+        'name', 'phone', 'email', 'note', 'type', 'created_at', 'deleted_at' 
     ];
 
-    protected $createdField = 'created_at';
-    protected $deletedField = 'deleted_at';
 }

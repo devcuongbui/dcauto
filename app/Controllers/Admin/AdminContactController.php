@@ -18,7 +18,8 @@ class AdminContactController extends BaseController
 
     public function list()
     {
-        $sql = " select * from contact order by created_at desc";
+
+        $sql = " select * from contact WHERE deleted_at IS NULL order by created_at desc";
         $list = $this->db->query($sql)->getResultArray();
 
         return view("admin/contact/list", [
@@ -45,7 +46,7 @@ class AdminContactController extends BaseController
                     ]);
             }
 
-            $this->model->delete($id);
+            $this->model->update($id, ['deleted_at' => date('Y-m-d H:i:s')]);
             return $this->response
                 ->setStatusCode(200)
                 ->setJSON([
