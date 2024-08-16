@@ -11,6 +11,7 @@ class OrdersController extends BaseController
 {
     private $session;
     private $orderModel;
+    private $orderDetailModel;
     private $productModel;
     private $productOptionModel;
     public function __construct()
@@ -19,6 +20,7 @@ class OrdersController extends BaseController
         $this->orderModel = model('OrdersModel');
         $this->productModel = model('ProductModel');
         $this->productOptionModel = model('ProductOptionModel');
+        $this->orderDetailModel = model('OrderDetailModel');
     }
     public function add()
     {
@@ -47,17 +49,24 @@ class OrdersController extends BaseController
         $cart_ok = [
             'items' => [],
         ];
-        foreach ($cart['items'] as $item) {
-            if ($item['selected']) {
-                $cart_ok['items'][] = $item;
+
+        for($index = 0; $index < count($cart['items']); $index++) {
+            if ($cart['items'][$index]['selected']) {
+                $cart_ok['items'][] = $cart['items'][$index];
+                unset($cart['items'][$index]);
             }
         }
+
+        $this->session->set('cart', $cart);
 
         $totalPrice = 0;
         $totalCount = 0;
         foreach ($cart_ok['items'] as $item) {
             $product = $this->productModel->find($item['product_id']);
-            $totalPrice += $item['quantity'] * $product['sell_price'];
+            $option = $this->productOptionModel->find($item['option_id']);
+            $price = $option['po_sell_price'] ?? $product['sell_price'];
+            $subTotal = $item['quantity'] * $price;
+            $totalPrice += $subTotal;
             $totalCount += $item['quantity'];
         }
 
@@ -98,6 +107,27 @@ class OrdersController extends BaseController
             'invoice_note' => $invoice_note
         ];
         $this->orderModel->insert($data);
+        
+        $order_id = $this->orderModel->getInsertID();
+        for($index = 0; $index < count($cart_ok['items']); $index++) {
+            $item = $cart_ok['items'][$index];
+            $product = $this->productModel->find($item['product_id']);
+            $option = $this->productOptionModel->find($item['option_id']);
+            $price = $option['po_sell_price'] ?? $product['sell_price'];
+            $init_price = $option['po_init_price'] ?? $product['init_price'];
+            $subTotal = $item['quantity'] * $price;
+            $this->orderDetailModel->insert([
+                'order_id'      => $order_id,
+                'product_id'    => $item['product_id'],
+                'quantity'      => $item['quantity'],
+                'subtotal'      => $subTotal,
+                'init_price'    => $init_price,
+                'sale_price'    => $price,
+                'option_id'     => $item['option_id'],
+                'combo_id'      => null,
+            ]);
+        }
+
         return $this->response->setJSON($data);
     }
 
@@ -132,5 +162,18 @@ class OrdersController extends BaseController
         $orderCode = $prefix . str_pad($newNumber, 4, '0', STR_PAD_LEFT);
 
         return $orderCode;
+    }
+    public function update() {
+
+        $data = $this->request->getPost();
+        if (isset($data['order_id'])) {
+            $this->orderModel->update($data['order_id'], $data);
+        }
+        return $this->response->setJSON($data);
+    }
+    public function delete() {
+        $order_id = $this->request->getPost('order_id');
+        $data = $this->orderModel->delete($order_id);
+        return $this->response->setJSON($data);
     }
 }
