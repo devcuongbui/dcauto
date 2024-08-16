@@ -21,18 +21,25 @@
                 <th scope="col">Tên</th>
                 <th scope="col">Email</th>
                 <th scope="col">Số điện thoại</th>
+                <th scope="col">Loại</th>
                 <th scope="col">Ngày tạo</th>
                 <th scope="col">Hành động</th>
             </tr>
             </thead>
             <tbody>
-            <?php foreach ($list as $row) { ?>
-
+            <?php foreach ($list as $row) {
+                if($row["type"] == "1") {
+                    $type = "hỏi đáp";
+                } elseif ($row["type"] == "2") {
+                    $type = "tư vấn";
+                }
+            ?>
                 <tr>
                     <th scope="row">1</th>
                     <td><?=$row["name"]?></td>
                     <td><?=$row["email"]?></td>
                     <td><?=$row["phone"]?></td>
+                    <td><?=$type?></td>
                     <td><?=$row["created_at"]?></td>
                     <td>
                         <a href="<?= route_to('admin.contact.detail', $row['id']) ?> " class="btn btn-primary">

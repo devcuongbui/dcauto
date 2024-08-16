@@ -26,6 +26,7 @@ $routes->group("admin", static function ($routes) {
 $routes->group("contact", static function ($routes) {
     $routes->get('index', 'ContactController::index',['as' => 'contact.index']);
     $routes->post('save', 'ContactController::save',['as' => 'contact.save']);
+    $routes->post('save_advise', 'ContactController::save_advise',['as' => 'contact.save_advise']);
 });
 
 $routes->group("product", static function ($routes) {

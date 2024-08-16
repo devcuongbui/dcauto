@@ -1509,7 +1509,8 @@
                             <b> 0818.918.981</b>
                         </p>
                     </div>
-                    <form class="formRegister dang-ky contact-form" target="/thankyou/">
+                    <form class="formRegister dang-ky"  name="frm" id="frm" method="post" enctype="multipart/form-data" action="/contact/save_advise">
+                    <?= csrf_field() ?>
                         <input type="hidden" name="authenticity_token" id="authenticity_token"
                                value="gu663RtjcVV8VXImWnftMvhALg5U3IVhoiNHGh0ZCJtE8Cmoz-fsiXBbVAQ4zWfHlgn55gL0CJ0DgoXVImnzJw"
                                autocomplete="off">
@@ -1521,7 +1522,7 @@
                             <input class="form-control" name="phone" placeholder="Điện thoại" type="text">
                         </div>
                         <div class="btnSubmit">
-                            <button class="btnType_1 fixBtn">Tư vấn ngay</button>
+                            <button class="btnType_1 fixBtn" onclick="send_it();">Tư vấn ngay</button>
                         </div>
                     </form>
                 </article>
@@ -1745,6 +1746,12 @@
         </div>
     </main>
 <?= $this->endSection() ?>
+<script>
+    function send_it() {
+    
+        $('#frm').submit();
+    }
+</script>
 
 <script>
 
@@ -1755,4 +1762,5 @@ $('.run_search').on('click', function(e) {
 function submitCart() {
     location.href = "/product/details";
 }
+
 </script>
