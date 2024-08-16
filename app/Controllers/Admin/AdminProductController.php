@@ -19,7 +19,11 @@ class AdminProductController extends BaseController
 
     public function list()
     {
-        return view('admin/products/list');
+        $products = $this->model->where('deleted_at !=', null)->orderBy('product_id', 'desc')
+            ->Join('categories', 'products.category_id = categories.category_id')
+            ->select('products.*, categories.category_name')
+            ->findAll();
+        return view('admin/products/list', ['products' => $products]);
     }
 
     public function store()
