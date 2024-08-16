@@ -17,6 +17,7 @@ class Category extends Model
         'depth',
         'status',
         'contents',
-        'onum'
+        'onum',
+        'slug'
     ];
 }

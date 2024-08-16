@@ -840,7 +840,7 @@
 </div>
 <script>
     $('.iTagSearch').on('click', function(event) {
-        location.href = "/product/1";
+        location.href = "/product/list/toyota-ky";
     });
     // Trigger search on clicking the search button
     //

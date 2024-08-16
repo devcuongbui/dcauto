@@ -239,12 +239,12 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
             <div class="row fixMar">
                 <div class="colPart">
                     <article class="artProduct">
-                        <a class="imgPr figure2" href="/san-pham/man-hinh-android-Zestech-Z800-pro/">
+                        <a class="imgPr figure2" href="/product/view/man-hinh-android-Zestech-Z800-pro/">
                             <img alt="Màn Hình Android Zestech Z800pro" loading="lazy"
                                 src="/storage/ry/4s/ry4sbmkvsrwgvqqhj7bcar761mcp_DC_13.1_inch_(27).png">
                         </a>
                         <div class="textInforPr">
-                            <a class="linkPr" href="/san-pham/man-hinh-android-Zestech-Z800-pro/">
+                            <a class="linkPr" href="/product/view/man-hinh-android-Zestech-Z800-pro/">
                                 <p class="namePr">Màn Hình Android Zestech Z800pro</p>
                             </a>
                             <div class="labelGift">
@@ -258,12 +258,12 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                 </div>
                 <div class="colPart">
                     <article class="artProduct">
-                        <a class="imgPr figure2" href="/san-pham/man-hinh-android-zestech-zt-360-base/">
+                        <a class="imgPr figure2" href="/product/view/man-hinh-android-zestech-zt-360-base/">
                             <img alt="Màn Hình Android ZESTECH ZT360 Base " loading="lazy"
                                 src="/storage/do/5w/do5w8mg10iccfx0wbkp0lz8m0470_DC_13.1_inch_(12).png">
                         </a>
                         <div class="textInforPr">
-                            <a class="linkPr" href="/san-pham/man-hinh-android-zestech-zt-360-base/">
+                            <a class="linkPr" href="/product/view/man-hinh-android-zestech-zt-360-base/">
                                 <p class="namePr">Màn Hình Android ZESTECH ZT360 Base </p>
                             </a>
                             <div class="labelGift">
@@ -277,12 +277,12 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                 </div>
                 <div class="colPart">
                     <article class="artProduct">
-                        <a class="imgPr figure2" href="/san-pham/man-hinh-android-zestech-z500/">
+                        <a class="imgPr figure2" href="/product/view/man-hinh-android-zestech-z500/">
                             <img alt="Màn Hình Android Zestech Z500" loading="lazy"
                                 src="/storage/ho/2a/ho2atlkcp83vfko4w0tydsmijznj_cam_ht_carplay_ANDROID_BOX_(68).png">
                         </a>
                         <div class="textInforPr">
-                            <a class="linkPr" href="/san-pham/man-hinh-android-zestech-z500/">
+                            <a class="linkPr" href="/product/view/man-hinh-android-zestech-z500/">
                                 <p class="namePr">Màn Hình Android Zestech Z500</p>
                             </a>
                             <div class="labelGift">
@@ -296,12 +296,12 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                 </div>
                 <div class="colPart">
                     <article class="artProduct">
-                        <a class="imgPr figure2" href="/san-pham/man-hinh-android-zestech-s500/">
+                        <a class="imgPr figure2" href="/product/view/man-hinh-android-zestech-s500/">
                             <img alt="Màn Hình Android Zestech S500 " loading="lazy"
                                 src="/storage/kn/hg/knhgvumj0tlrpn03h8ol1tqtskfz_cam_ht_carplay_ANDROID_BOX_(69).png">
                         </a>
                         <div class="textInforPr">
-                            <a class="linkPr" href="/san-pham/man-hinh-android-zestech-s500/">
+                            <a class="linkPr" href="/product/view/man-hinh-android-zestech-s500/">
                                 <p class="namePr">Màn Hình Android Zestech S500 </p>
                             </a>
                             <div class="labelGift">
@@ -315,12 +315,12 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                 </div>
                 <div class="colPart">
                     <article class="artProduct">
-                        <a class="imgPr figure2" href="/san-pham/man-hinh-android-zestech-s100j/">
+                        <a class="imgPr figure2" href="/product/view/man-hinh-android-zestech-s100j/">
                             <img alt="Màn Hình Android Zestech S100J" loading="lazy"
                                 src="/storage/rh/xx/rhxx7v3qum6cx5a73vs2h98ehas7_cam_ht_carplay_ANDROID_BOX_(70).png">
                         </a>
                         <div class="textInforPr">
-                            <a class="linkPr" href="/san-pham/man-hinh-android-zestech-s100j/">
+                            <a class="linkPr" href="/product/view/man-hinh-android-zestech-s100j/">
                                 <p class="namePr">Màn Hình Android Zestech S100J</p>
                             </a>
                             <div class="labelGift">
@@ -334,12 +334,12 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                 </div>
                 <div class="colPart">
                     <article class="artProduct">
-                        <a class="imgPr figure2" href="/san-pham/man-hinh-android-zestech-kovar-t1/">
+                        <a class="imgPr figure2" href="/product/view/man-hinh-android-zestech-kovar-t1/">
                             <img alt="Màn Hình Android Zestech Kovar T1 " loading="lazy"
                                 src="/storage/mw/rv/mwrvxppn300gn4dvvce4rryx7g0x_cam_ht_carplay_ANDROID_BOX_(71).png">
                         </a>
                         <div class="textInforPr">
-                            <a class="linkPr" href="/san-pham/man-hinh-android-zestech-kovar-t1/">
+                            <a class="linkPr" href="/product/view/man-hinh-android-zestech-kovar-t1/">
                                 <p class="namePr">Màn Hình Android Zestech Kovar T1 </p>
                             </a>
                             <div class="labelGift">
