@@ -27,7 +27,9 @@
             </tr>
             </thead>
             <tbody>
-            <?php foreach ($list as $row) {
+            <?php 
+            $num = 1;
+            foreach ($list as $row) {
                 if($row["type"] == "1") {
                     $type = "hỏi đáp";
                 } elseif ($row["type"] == "2") {
@@ -35,7 +37,7 @@
                 }
             ?>
                 <tr>
-                    <th scope="row">1</th>
+                    <th scope="row"><?= $num++ ?></th>
                     <td><?=$row["name"]?></td>
                     <td><?=$row["email"]?></td>
                     <td><?=$row["phone"]?></td>
