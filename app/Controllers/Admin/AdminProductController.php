@@ -7,6 +7,7 @@ use App\Controllers\BaseController;
 class AdminProductController extends BaseController
 {
     protected $model;
+    protected $category_model;
     protected $user_id;
 
 
@@ -15,13 +16,14 @@ class AdminProductController extends BaseController
         helper('text');
         $this->model = new \App\Models\ProductModel();
         $this->user_id = session()->get('user')['id'];
+        $this->category_model = new \App\Models\Category();
     }
 
     public function list()
     {
         $products = $this->model->where('deleted_at !=', null)->orderBy('product_id', 'desc')
-            ->Join('categories', 'products.category_id = categories.category_id')
-            ->select('products.*, categories.category_name')
+            ->Join('category', 'products.category_id = category.c_idx')
+            ->select('products.*, category.code_name')
             ->findAll();
         return view('admin/products/list', ['products' => $products]);
     }
@@ -33,12 +35,19 @@ class AdminProductController extends BaseController
 
     public function create()
     {
-        return view('admin/products/create');
+        $categories = $this->category_model->where('status', 'Y')->orderBy('c_idx', 'desc')->findAll();
+        return view('admin/products/create', ['categories' => $categories]);
     }
 
     public function detail($id)
     {
-        return view('admin/products/detail');
+        $products = $this->model->where('product_id', $id)->first();
+
+        if ($products == null || $products['deleted_at'] != null) {
+            return view('errors/404');
+        }
+        $categories = $this->category_model->where('status', 'Y')->orderBy('c_idx', 'desc')->findAll();
+        return view('admin/products/detail', ['products' => $products, 'categories' => $categories]);
     }
 
     public function update($id)
