@@ -27,12 +27,19 @@ $routes->group("admin", static function ($routes) {
 $routes->group("contact", static function ($routes) {
     $routes->get('index', 'ContactController::index',['as' => 'contact.index']);
     $routes->post('save', 'ContactController::save',['as' => 'contact.save']);
+    $routes->post('save_advise', 'ContactController::save_advise',['as' => 'contact.save_advise']);
 });
 
 $routes->group("product", static function ($routes) {
     $routes->get('view/(:segment)', 'ProductController::view/$1',['as' => 'product.view']);
     $routes->get('(:segment)', 'ProductController::index/$1', ['as' => 'product.index']);
     $routes->get('list/(:segment)', 'ProductController::list/$1', ['as' => 'product.list']);
+});
+
+$routes->group("location", static function ($routes) {
+    $routes->get('province', 'Location::getProvinces',['as' => 'location.province']);
+    $routes->get('district/(:segment)', 'Location::getDistricts/$1', ['as' => 'location.district']);
+    $routes->get('commune/(:segment)', 'Location::getCommunes/$1', ['as' => 'location.commune']);
 });
 
 
@@ -46,11 +53,14 @@ $routes->group("cart", static function ($routes) {
     $routes->post('submit', 'CartController::submit', ['as' => 'cart.submit']);
     $routes->get('payment', 'CartController::payment', ['as' => 'cart.payment']);
     $routes->post('buy_now', 'CartController::buy_now', ['as' => 'cart.buy_now']);
+    $routes->get('count', 'CartController::count', ['as' => 'cart.count']);
 });
 
 
 $routes->group("orders", static function ($routes) {
     $routes->post('add', 'OrdersController::add', ['as' => 'orders.add']);
+    $routes->post('update', 'OrdersController::update', ['as' => 'orders.update']);
+    $routes->post('delete', 'OrdersController::delete', ['as' => 'orders.delete']);
     $routes->get('(:segment)', 'OrdersController::preview/$1', ['as' => 'orders.preview']);
 });
 

@@ -1,3 +1,15 @@
+function updateCartCount() {
+  $.ajax({
+    type: "GET",
+    url: "/cart/count",
+    dataType: "json",
+    success: function (data) {
+      $(".amountProduct").attr('style', 'display: block !important;');
+      $(".amountProduct").text(data.totalCountCart);
+      $(".amountProduct").data("count", data.totalCountCart);
+    },
+  })
+}
 function fixDataContents() {
   $(".data_contents p span").css("font-size", "unset"),
     $(".data_contents div span").css("font-size", "unset"),
@@ -246,75 +258,75 @@ $(document).ready(function () {
           $(this).parent().find("~ .toggleBlockLevel3").slideToggle(200);
       });
   }),
-  // $(function () {
-  //   $("form.order-form").each((e, t) => {
-  //     $(t).validate({
-  //       onfocusout: !1,
-  //       onkeyup: !1,
-  //       onclick: !1,
-  //       rules: {
-  //         customer_name: { required: !0 },
-  //         customer_phone: { required: !0, phoneNumber: !0 },
-  //         customer_email: { required: !0, email: !0 },
-  //         "shipping_address[address]": { required: !0 },
-  //         "shipping_address[province]": { required: !0 },
-  //         "shipping_address[district]": { required: !0 },
-  //         "shipping_address[ward]": { required: !0 },
-  //         "invoice_data[company_name]": { required: !0 },
-  //         "invoice_data[tax_number]": { required: !0 },
-  //         "invoice_data[address]": { required: !0 },
-  //       },
-  //       messages: {},
-  //     });
-  //   }),
-  //     // $("form.order-form .submit-order").click(() => {
-  //     //   $("form.order-form").submit();
-  //     // }),
-  //     $(".submit-direct-order.ksch").click(() => {
-  //       const e = $("form.product-form").find(".typePet.active"),
-  //         t = e.attr("typeroom"),
-  //         a = e.text(),
-  //         i = e.attr("priceroom"),
-  //         n = $("form.product-form");
-  //       n.find('input[name="variants[room_type]"]').val(t),
-  //         n.find('input[name="variants[pet_type]"]').val(a),
-  //         n.find('input[name="price"]').val(i),
-  //         n.submit();
-  //     }),
-  //     $(".submit-direct-order.spa-cho-meo").click(() => {
-  //       const e = $("form.product-form"),
-  //         t = e.find(".serviceTab.active").text(),
-  //         a = e.find(".serviceBlock.active").find(".typePet.active"),
-  //         i = a.text(),
-  //         n = a.attr("priceroom");
-  //       e.find('input[name="variants[room_type]"]').val(t),
-  //         e.find('input[name="variants[pet_type]"]').val(i),
-  //         e.find('input[name="price"]').val(n),
-  //         e.submit();
-  //     }),
-  //     $(".submit-direct-order.product").click(() => {
-  //       $("form.product-form").submit();
-  //     }),
-  //     $("form.order-form").on("onValid", function () {
-  //       $(this).parent().find(".buttonload_booking").css("display", "block"),
-  //         $(this).parent().find(".submit-order").css("display", "none");
-  //     }),
-  //     $("form.order-form").on("onSuccess", function () {
-  //       $(this).parent().find(".buttonload_booking").css("display", "none"),
-  //         $(this).parent().find(".submit-order").css("display", "block");
-  //     }),
-  //     $("form.order-form").on("onError", function () {
-  //       $(this).parent().find(".buttonload_booking").css("display", "none"),
-  //         $(this).parent().find(".submit-order").css("display", "block");
-  //     }),
-  //     $("#invoice").change(function () {
-  //       var e = $("#subtotal").attr("vat"),
-  //         t = $("#subtotal").attr("no_vat");
-  //       $(this).is(":checked")
-  //         ? $("#subtotal").empty().append(e)
-  //         : $("#subtotal").empty().append(t);
-  //     });
-  // }),
+  $(function () {
+    // $("form.order-form").each((e, t) => {
+    //   $(t).validate({
+    //     onfocusout: !1,
+    //     onkeyup: !1,
+    //     onclick: !1,
+    //     rules: {
+    //       customer_name: { required: !0 },
+    //       customer_phone: { required: !0, phoneNumber: !0 },
+    //       customer_email: { required: !0, email: !0 },
+    //       "shipping_address[address]": { required: !0 },
+    //       "shipping_address[province]": { required: !0 },
+    //       "shipping_address[district]": { required: !0 },
+    //       "shipping_address[ward]": { required: !0 },
+    //       "invoice_data[company_name]": { required: !0 },
+    //       "invoice_data[tax_number]": { required: !0 },
+    //       "invoice_data[address]": { required: !0 },
+    //     },
+    //     messages: {},
+    //   });
+    // }),
+      // $("form.order-form .submit-order").click(() => {
+      //   $("form.order-form").submit();
+      // }),
+      // $(".submit-direct-order.ksch").click(() => {
+      //   const e = $("form.product-form").find(".typePet.active"),
+      //     t = e.attr("typeroom"),
+      //     a = e.text(),
+      //     i = e.attr("priceroom"),
+      //     n = $("form.product-form");
+      //   n.find('input[name="variants[room_type]"]').val(t),
+      //     n.find('input[name="variants[pet_type]"]').val(a),
+      //     n.find('input[name="price"]').val(i),
+      //     n.submit();
+      // }),
+      // $(".submit-direct-order.spa-cho-meo").click(() => {
+      //   const e = $("form.product-form"),
+      //     t = e.find(".serviceTab.active").text(),
+      //     a = e.find(".serviceBlock.active").find(".typePet.active"),
+      //     i = a.text(),
+      //     n = a.attr("priceroom");
+      //   e.find('input[name="variants[room_type]"]').val(t),
+      //     e.find('input[name="variants[pet_type]"]').val(i),
+      //     e.find('input[name="price"]').val(n),
+      //     e.submit();
+      // }),
+      // $(".submit-direct-order.product").click(() => {
+      //   $("form.product-form").submit();
+      // }),
+      // $("form.order-form").on("onValid", function () {
+      //   $(this).parent().find(".buttonload_booking").css("display", "block"),
+      //     $(this).parent().find(".submit-order").css("display", "none");
+      // }),
+      // $("form.order-form").on("onSuccess", function () {
+      //   $(this).parent().find(".buttonload_booking").css("display", "none"),
+      //     $(this).parent().find(".submit-order").css("display", "block");
+      // }),
+      // $("form.order-form").on("onError", function () {
+      //   $(this).parent().find(".buttonload_booking").css("display", "none"),
+      //     $(this).parent().find(".submit-order").css("display", "block");
+      // }),
+      $("#invoice").change(function () {
+        var e = $("#subtotal").attr("vat"),
+          t = $("#subtotal").attr("no_vat");
+        $(this).is(":checked")
+          ? $("#subtotal").empty().append(e)
+          : $("#subtotal").empty().append(t);
+      });
+  }),
   $(document).ready(function () {
     var e = $(window).width();
     if (
@@ -563,11 +575,10 @@ $(document).ready(function () {
           success: function (data) {
             var e = $this.parent().find(".aTag2");
             $this.css("display", "none"), e.fadeIn(600);
-            $(".amountProduct").text(data.totalCountCart);
-            $(".amountProduct").data("count", data.totalCountCart);
+            updateCartCount();
           },
           error: function (data) {
-            alert("Có lỗi xảy ra. Vui lòng thử lại sau");
+            alert(data.message || "Có lỗi xảy ra vui lòng thử lại!");
           },
         });
       } else {
@@ -785,10 +796,14 @@ $(document).ready(function () {
                   ']"]'
               ).attr("value", $(t).find(".option.active").attr("name"));
           });
-        var e = $(".variants p" + data_variant),
-          t = e.attr("option_id"),
+        var e = $(".variants p" + data_variant)
+          console.log(e);
+          
+          var t = e.attr("option_id"),
           a = e.attr("price"),
           v = e.attr("picever");
+          console.log(a, v, t);
+          
         null != a
           ? ($("input#price").attr("value", a),
             $(".price_change").text(

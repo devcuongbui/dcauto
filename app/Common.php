@@ -13,3 +13,31 @@
  *
  * @see: https://codeigniter.com/user_guide/extending/common.html
  */
+
+function getShippingMethodId($code)
+{
+    return SHIPPING_METHOD_IDS[$code] ?? "";
+}
+
+function getShippingMethodName($code)
+{
+    return SHIPPING_METHOD_NAMES[$code] ?? "";
+}
+
+function getPayMethodId($code)
+{
+    return PAY_METHOD_IDS[$code] ?? "";
+}
+
+function getPayMethodName($code)
+{
+    return PAY_METHOD_NAMES[$code] ?? "";
+}
+
+function getOrderStatusId($code) {
+    return ORDER_STATUS_IDS[$code] ?? "";
+}
+
+function getOrderStatusName($code) {
+    return ORDER_STATUS_NAMES[$code] ?? "";
+}
