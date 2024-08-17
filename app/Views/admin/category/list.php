@@ -46,7 +46,11 @@
                     <tr>
                         <th class="text-center align-middle" scope="row"><?=$i?></th>
                         <td class="text-center align-middle"><?=$category["code_no"]?></td>
-                        <td class="text-center align-middle"><?=$category["code_name"]?></td>
+                        <td class="text-center align-middle">
+                            <a href="/admin/category/write?c_idx=<?=$category["c_idx"]?>&s_parent_code_no=<?=$category["parent_code_no"]?>">
+                                <?=$category["code_name"]?>
+                            </a>
+                        </td>
                         <td class="text-center align-middle"><?=$category["depth"]?></td>
                         <td class="text-center align-middle"><?=$status?></td>
                         <td class="text-center align-middle">
@@ -59,8 +63,12 @@
                         </td>
                         <td class="text-center align-middle">
                             <div class="d-flex justify-content-center" style="gap: 10px;">
-                                <a href="#!" onclick="code_delete('<?= $category['c_idx'] ?>');"
-                                    class="btn btn-outline-danger">Xóa</a>
+                                <?php if($category["cnt"] <= 1 ){?>
+                                    <a href="#!" onclick="code_delete('<?= $category['c_idx'] ?>');"
+                                        class="btn btn-outline-danger">Xóa</a>
+                                <?php
+                                    }
+                                ?>
                                 <a href="/admin/category/write?s_parent_code_no=<?= $category["code_no"] ?>"
                                     class="btn btn-outline-secondary">Đăng kí</a>
                                 <a href="/admin/category/list?s_parent_code_no=<?= $category["code_no"] ?>"
@@ -69,6 +77,7 @@
                         </td>
                     </tr>   
                 <?php
+                    $i--;
                     }
                 ?>
                 
