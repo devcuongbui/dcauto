@@ -112,7 +112,7 @@
             </a>
             <ul id="category-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="/admin/category/list">
+                    <a href="<?=route_to('admin.category.list')?>">
                         <i class="bi bi-circle"></i><span>Danh sách danh mục</span>
                     </a>
                 </li>
