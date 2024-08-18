@@ -32,6 +32,28 @@ class CategoryController extends BaseController
         return view('admin/category/list', $data);
     }
 
+    public function categoryHome()
+    {
+        $s_parent_code_no = $this->request->getGet('s_parent_code_no');
+        if(empty($s_parent_code_no)){
+            $s_parent_code_no = 0;
+        }
+        $builder = $builder = $this->category->builder();
+        $builder->select('c1.*, COUNT(DISTINCT c2.code_no) AS cnt');
+        $builder->from('category AS c1');
+        $builder->join('category AS c2', 'c1.code_no = c2.parent_code_no', 'left');
+        $builder->where('c1.parent_code_no', $s_parent_code_no);
+
+        $builder->groupBy('c1.code_no');
+        $builder->orderBy("onum", "desc")
+            ->orderBy('c_idx', 'desc');
+        $query = $builder->get();
+        $data["categories"] = $query->getResultArray();
+        $data["total"] = count($data["categories"]);
+        $data["s_parent_code_no"] = $s_parent_code_no;
+        return view('index', $data);
+    }
+
     public function write()
     {
         $s_parent_code_no = $this->request->getGet('s_parent_code_no');

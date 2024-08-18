@@ -36,6 +36,10 @@ $routes->group("product", static function ($routes) {
     $routes->get('list/(:segment)', 'ProductController::list/$1', ['as' => 'product.list']);
 });
 
+$routes->group("category", static function ($routes) {
+    $routes->get('list', 'CategoryController::categoryHome', ['as' => 'category.category_home']);
+});
+
 $routes->group("location", static function ($routes) {
     $routes->get('province', 'Location::getProvinces',['as' => 'location.province']);
     $routes->get('district/(:segment)', 'Location::getDistricts/$1', ['as' => 'location.district']);
