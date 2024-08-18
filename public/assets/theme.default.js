@@ -46,10 +46,10 @@ $(document).ready(function () {
         null == a ||
         "" == a ||
         null !=
-          $("#"+ selectType + ".search_input.active")
+          $("#" + selectType + ".search_input.active")
             .find("option:selected")
             .attr("href")
-          ? $("#"+ selectType + ".search_input.active")
+          ? $("#" + selectType + ".search_input.active")
               .find("option:selected")
               .attr("href")
           : a),

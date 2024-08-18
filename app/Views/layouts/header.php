@@ -334,7 +334,7 @@
                           enctype="multipart/form-data">
                         <article class="searchBlock">
                             <div class="form-group">
-                                <input class="form-control" name="key" placeholder="Bạn có thể tìm kiếm nhanh tại đây"
+                                <input class="form-control" name="key" placeholder="Bạn có thể tìm kiếm nhanh tại đây!"
                                        type="text">
                             </div>
                             <i aria-hidden="true" class="iTagSearch fa fa-search submit"></i>
@@ -839,58 +839,35 @@
     </div>
 </div>
 <script>
-    $('.iTagSearch').on('click', function(event) {
-        location.href = "/product/list/toyota-ky";
-    });
-    // Trigger search on clicking the search button
-    //
-    // // Trigger search when hitting enter in the search input field
-    // $('input[name="key"]').on('keypress', function(event) {
-    //     if (event.which === 13) {
-    //         event.preventDefault();
-    //         performSearch();
-    //     }
-    // });
+    $('.submit').on('click', function() {
+        // Get the value from the input field
+        var keyword = $('input[name="key"]').val().trim();
 
-    //async function performSearch() {
-    //    let searchQuery = $('input[name="key"]').val().trim();
-    //
-    //    if (searchQuery === '') {
-    //        alert('Please enter a search term.');
-    //        return;
-    //    }
-    //
-    //    const formData = new FormData();
-    //    formData.append('key', searchQuery);
-    //
-    //    const api = '<?php //echo route_to('product.list'); ?>//';
-    //
-    //    try {
-    //        await $.ajax({
-    //            url: api,
-    //            method: 'POST',
-    //            contentType: false,
-    //            cache: false,
-    //            processData: false,
-    //            data: formData,
-    //            success: function(response) {
-    //                // Handle successful response
-    //                console.log(response);
-    //                // Update the UI with the search results (customize as needed)
-    //                // $('#searchResults').html(response);
-    //            },
-    //            error: function(xhr) {
-    //                // Handle errors
-    //                if (xhr.status === 400) {
-    //                    alert(xhr.responseJSON.message);
-    //                } else {
-    //                    alert('An error occurred while performing the search.');
-    //                }
-    //            }
-    //        });
-    //    } catch (error) {
-    //        console.log(error);
-    //        alert('An error occurred while performing the search.');
-    //    }
-    //}
+        // Get the current URL
+        var currentUrl = window.location.pathname;
+
+        // Determine the base URL for the search
+        var searchUrl;
+        if (currentUrl === '/' || currentUrl === '/home') {
+            // If on the home page or the root URL, redirect to 'product/list/search'
+            searchUrl = '/product/list/search?key=' + encodeURIComponent(keyword);
+        } else if (currentUrl === '/product/list') {
+            // If on the product list page, just add '?key=' to the current URL
+            searchUrl = '/product/list/search?key=' + encodeURIComponent(keyword);
+        } else {
+            // If on any other page, redirect to the home page search
+            searchUrl = '/product/list/search?key=' + encodeURIComponent(keyword);
+        }
+
+        // Redirect to the search URL with the keyword as a parameter
+        if (keyword) {
+            window.location.href = searchUrl;
+        }
+    });
+
+    // Also allow form submission via pressing Enter key
+    $('.searchForm').on('submit', function(e) {
+        e.preventDefault(); // Prevent the default form submission
+        $('.submit').click(); // Trigger the click event on the search icon
+    });
 </script>

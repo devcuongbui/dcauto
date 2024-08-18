@@ -33,7 +33,8 @@ class ProductModel extends Model
         'is_best',
         'is_new',
         'pot_id',
-        'brand_id'
+        'brand_id',
+        'slug'
     ];
 
     protected $useTimestamps = true;

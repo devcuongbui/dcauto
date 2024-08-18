@@ -11,53 +11,92 @@ class ProductController extends BaseController
     {
         $this->session = session();
         $this->productModel = model("ProductModel");
+        $this->category = model("Category");
         $this->productOptionModel =  model("ProductOptionModel");
     }
-//    public function list()
-//    {
-//        $products = $this->productModel->findAll();
-//
-//        foreach ($products as &$product) {
-//            $productOptions = $this->productOptionModel->where('product_id', $product['product_id'])->findAll();
-//            $product['options'] = $productOptions;
-//        }
-//
-//        return $this->response->setJSON($products);
-//    }
 
-    public function list($id = null)
+    public function index($category_slug = null)
     {
-        if (!$id) {
+        // Fetch categories for the layout
+        $s_parent_code_no = $this->request->getGet('s_parent_code_no') ?: 0;
+        $categories = $this->category->getCategoriesWithSubcategories($s_parent_code_no);
+
+        // Check if a category slug is provided
+        if (!$category_slug) {
             return view('errors/404');
         }
-//        $category = $this->categoryModel->find($id);
-//        $productOptions = $this->productOptionModel->where('product_id', $id)->findAll();
-//        $product['options'] = $productOptions;
-//        $product['relatedProducts'] = $this->productModel->where('category_id', $product['category_id'])->findAll();
-        return view('product/list');
+
+        // Find the category by slug
+        $category = $this->category->where('slug', $category_slug)->first();
+        if (!$category) {
+            return view('errors/404');
+        }
+
+        // Fetch products based on whether the category is a parent or child
+        if ($category['parent_code_no'] == 0) {
+            // If the category is a parent category, get products from this category and its child categories
+            $childCategories = $this->category->where('parent_code_no', $category['code_no'])->findAll();
+            $childCategoryIds = array_column($childCategories, 'code_no');
+            $childCategoryIds[] = $category['code_no']; // Include the parent category itself
+
+            $products = $this->productModel->whereIn('category_id', $childCategoryIds)->findAll();
+        } else {
+            // If the category is a child category, get products from this category only
+            $products = $this->productModel->where('category_id', $category['code_no'])->findAll();
+        }
+
+        // Pass the categories and products to the view
+        return view('product/index', [
+            'products' => $products,
+            'category' => $category,
+            'categories' => $categories,
+            'total' => count($categories),
+            's_parent_code_no' => $s_parent_code_no
+        ]);
     }
-    public function view($id = null) {
-        if (!$id) {
+
+
+    public function list()
+    {
+        // Load the product model
+        $this->productModel = model('ProductModel');
+
+        // Get the keyword from query parameters
+        $keyword = $this->request->getGet('key');
+        $slug = $keyword ? $this->convertToSlug($keyword) : '';
+
+        // If slug is empty, fetch all products with a limit
+        if (empty($slug)) {
+            $products = $this->productModel->limit(20)->findAll();
+        } else {
+            // Search for products by keyword in the slug field
+            $products = $this->productModel->like('slug', $slug)->findAll();
+        }
+
+        return view('product/list', ['products' => $products]);
+    }
+
+    public function view($slug = null) {
+        if (!$slug) {
             return view('errors/404');
         }
-        $product = $this->productModel->find($id);
-        $productOptions = $this->productOptionModel->where('product_id', $id)->findAll();
+
+        // Find the product by slug
+        $product = $this->productModel->where('slug', $slug)->first();
+        if (!$product) {
+            return view('errors/404');
+        }
+
+        // Fetch product options and related products
+        $productOptions = $this->productOptionModel->where('product_id', $product['product_id'])->findAll();
         $product['options'] = $productOptions;
-        $product['relatedProducts'] = $this->productModel->where('category_id', $product['category_id'])->findAll();
+        $product['relatedProducts'] = $this->productModel->where('category_id', $product['category_id'])
+            ->where('slug !=', $slug) // Exclude the current product
+            ->findAll();
+
         return view('product/view', ['product' => $product]);
     }
 
-    public function index($id = null)
-    {
-        if (!$id) {
-            return view('errors/404');
-        }
-//        $category = $this->categoryModel->find($id);
-//        $productOptions = $this->productOptionModel->where('product_id', $id)->findAll();
-//        $product['options'] = $productOptions;
-//        $product['relatedProducts'] = $this->productModel->where('category_id', $product['category_id'])->findAll();
-        return view('product/index');
-    }
     public function getOneById($id = null)
     {
         $product = $this->productModel->find($id);
@@ -83,5 +122,10 @@ class ProductController extends BaseController
         $product['option'] = $productOption;
 
         return $this->response->setJSON($product);
+    }
+
+    private function convertToSlug($text)
+    {
+        return strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $text)));
     }
 }
