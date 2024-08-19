@@ -13,6 +13,7 @@ class ProductModel extends Model
 
     protected $returnType = 'array';
     protected $useSoftDeletes = true;
+    protected $protectFields = false; //if true is default
 
     protected $allowedFields = [
         'product_name',
