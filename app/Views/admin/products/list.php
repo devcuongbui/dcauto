@@ -51,7 +51,7 @@
                         <a href="<?= route_to('admin.products.detail', $item['product_id']) ?>" class="btn btn-primary">
                             <i class="bi bi-eye"></i>
                         </a>
-                        <button type="button" data-id="<?= $item['id'] ?>"
+                        <button type="button" data-id="<?= $item['product_id'] ?>"
                                 onclick="confirmDelete('<?= $item['product_id'] ?>')"
                                 class="btn btnDelete btn-danger"><i class="bi bi-trash"></i></button>
                     </td>
