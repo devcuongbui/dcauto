@@ -66,8 +66,11 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                 <div class="middleArea">
                     <h1 class="titlePr"><?= $product['product_name'] ?></h1>
                     <div class="pricePart">
-                        <p class="currentPrice price_change"><?= number_format($product['sell_price'], 0, ',', '.') ?>đ</p>
-                        <p class="originalPrice price_change_init"><?= number_format($product['init_price'], 0, ',', '.') ?>đ</p>
+                        <p class="currentPrice price_change"><?= number_format($product['sell_price'], 0, ',', '.') ?>đ
+                        </p>
+                        <p class="originalPrice price_change_init">
+                            <?= number_format($product['init_price'], 0, ',', '.') ?>đ
+                        </p>
                     </div>
                     <article class="artSelectOpt variant_options">
                         <div class="showSelectedOpt">
@@ -87,9 +90,9 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                     <div class="variants d-none">
                         <?php foreach ($product['options'] as $option): ?>
                             <p loai-cam="<?= $option['po_name'] ?>" price="<?= $option['po_sell_price'] ?>"
-                                picever="<?= $option['po_init_price'] ?>"
-                                option_id="<?= $option['po_id'] ?>">
-                                <?= $product['product_name'] ?>-<?= $option['po_name'] ?></p>
+                                picever="<?= $option['po_init_price'] ?>" option_id="<?= $option['po_id'] ?>">
+                                <?= $product['product_name'] ?>-<?= $option['po_name'] ?>
+                            </p>
                         <?php endforeach; ?>
                     </div>
                     <form class="product-form" method="post" action="/cart/payment">
@@ -298,6 +301,33 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                                             </div>
                                         </div>
                                         <div class="panel">
+                                        <div class="panel-body wk-comments-body" data-owner-id="101"
+                                            data-owner-type="Product" data-url="/comments/">
+                                            <div class="media-block">
+                                                <div class="media-left">
+                                                    <i class="bi bi-person-square" style="font-size: 40px"></i>
+                                                </div>
+                                                <div class="media-body">
+                                                    <div class="mar-btm">
+                                                        <p
+                                                            class="btn-link text-semibold media-heading box-inline rating text-decoration-none">
+                                                            Nguyễn Văn Minh
+                                                            <span class="badge badge-info">
+                                                                Đang chờ duyệt
+                                                            </span>
+                                                            [
+                                                            translation missing:
+                                                            vi.datetime.distance_in_words.less_than_x_minutes ago
+                                                            ]
+                                                        </p>
+                                                    </div>
+                                                    <p>Màn Hình Android Rất tốt</p>
+                                                    <hr>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="panel">
                                             <div class="panel-body wk-comments-body" data-owner-id="260"
                                                 data-owner-type="Product" data-url="/comments/"></div>
                                             <div class="load-more-comments text-center d-none" data-page="2"
@@ -307,7 +337,8 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="modal" id="comment-message-modal" role="dialog" tabindex="-1">
+                                <div class="modal show" id="comment-message-modal" role="dialog" tabindex="-1"
+                                    aria-modal="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header" style="border: none">
@@ -317,7 +348,14 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <p class="comment-result-message"></p>
+                                                <p class="comment-result-message">
+                                                <div class="alert alert-success" role="alert">
+                                                    <h4 class="alert-heading text-center">Cảm ơn bạn đã gửi cảm nhận
+                                                    </h4>
+                                                    <p>Hệ thống sẽ kiểm duyệt đánh giá của bạn và đăng lên sau 24h nếu
+                                                        phù hợp</p>
+                                                </div>
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
@@ -341,7 +379,8 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                                 <div class="boxPr">
                                     <article class="artDetailPr">
                                         <div class="wrapImgPr">
-                                            <a class="imgPr figure2" href="/product/view/<?= $product_item['product_id'] ?>">
+                                            <a class="imgPr figure2"
+                                                href="/product/view/<?= $product_item['product_id'] ?>">
                                                 <img alt="<?= $product_item['product_name'] ?>" loading="lazy"
                                                     src="/uploads/products/<?= $product_item['product_image'] ?>">
                                             </a>
@@ -350,8 +389,12 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                                             <a class="prName"
                                                 href="/product/view/<?= $product_item['product_id'] ?>"><?= $product_item['product_name'] ?></a>
                                             <div class="pricePart">
-                                                <p class="currentPrice"><?= number_format($product_item['sell_price'], 0, ',', '.') ?>đ</p>
-                                                <p class="originalPrice"><?= number_format($product_item['init_price'], 0, ',', '.') ?>đ</p>
+                                                <p class="currentPrice">
+                                                    <?= number_format($product_item['sell_price'], 0, ',', '.') ?>đ
+                                                </p>
+                                                <p class="originalPrice">
+                                                    <?= number_format($product_item['init_price'], 0, ',', '.') ?>đ
+                                                </p>
                                             </div>
                                         </div>
                                     </article>
