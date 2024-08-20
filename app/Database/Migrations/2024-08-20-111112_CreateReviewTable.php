@@ -42,7 +42,7 @@ class CreateReviewTable extends Migration
                 'type' => 'TEXT',
                 'null' => true,
             ],
-            'post' => [
+            'post_status' => [
                 'type' => 'CHAR',
                 'constraint' => '1',
                 'null' => true,
@@ -50,6 +50,16 @@ class CreateReviewTable extends Migration
             'img1' => [
                 'type' => 'VARCHAR',
                 'constraint' => '255',
+                'null' => true,
+            ],
+            'phone' => [
+                'type' => 'VARCHAR',
+                'constraint' => '45',
+                'null' => true,
+            ],
+            'address' => [
+                'type' => 'VARCHAR',
+                'constraint' => '1000',
                 'null' => true,
             ],
             'file_name1' => [
@@ -97,7 +107,7 @@ class CreateReviewTable extends Migration
                 'constraint' => '255',
                 'null' => true,
             ],
-            'start' => [
+            'star' => [
                 'type' => 'TINYINT',
                 'null' => true,
             ],

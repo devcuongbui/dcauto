@@ -27,7 +27,7 @@ class ReviewSeeder extends Seeder
                 'file_name4' => 'image4',
                 'img5' => 'image5.jpg',
                 'file_name5' => 'image5',
-                'start' => 1,
+                'star' => 1,
                 'reply' => 'Thank you for your feedback!',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),

@@ -13,23 +13,28 @@ class ReviewController extends BaseController
         return view('reviews_view', $data);
     }
 
-    public function create()
+    public function save()
     {
         $model = new ReviewModel();
+        $content = $this->request->getPost('content');
+        $name = $this->request->getPost('name');
+        $phone = $this->request->getPost('phone');
+        $address = $this->request->getPost('address');
+        $product_id = $this->request->getPost('product_id');
+        $rate = $this->request->getPost('rate');
         $data = [
-            'user_name' => 'Jane Doe',
-            'user_id' => 2,
-            'product_id' => 'P002',
-            'review_type' => 'Neutral',
-            'title' => 'Okay Product',
-            'review_des' => 'The product was okay, but it didn’t meet my expectations.',
-            'post' => 'Y',
-            'img1' => 'image6.jpg',
-            'file_name1' => 'image6',
-            'start' => 0,
-            'reply' => 'We appreciate your feedback.',
+            'user_name' => $name,
+            'user_id' => null,
+            'product_id' => $product_id,
+            'review_type' => 'product',
+            'title' => null,
+            'review_des' => $content,
+            'post_status' => 'N',
+            'phone' => $phone,
+            'address' => $address,
+            'star' => $rate
         ];
         $model->save($data);
-        return "OK";
+        return $this->response->setJSON(['msg' => 'Cảm ơn bạn đã gửi cảm nhận! \\n Hệ thống sẽ kiểm duyệt đánh giá của bạn và đăng lên sau 24h nếu phù hợp']);
     }
 }

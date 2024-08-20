@@ -201,8 +201,9 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                                                         <i class="bi bi-person-square" style="font-size: 40px"></i>
                                                     </div>
                                                     <div class="media-body">
-                                                        <form action="/comments/save" class="wk-comment-form"
-                                                            method="post" novalidate="novalidate">
+                                                        <form action="/review/save" class="wk-comment-form"
+                                                            method="post" novalidate="novalidate" id="wk-comment-form" name="wk-comment-form">
+                                                            <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
                                                             <div class="row">
                                                                 <div class="col-md-8 col-sm-12">
                                                                     <div class="row">
@@ -288,11 +289,10 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                                                                 </div>
                                                                 <div
                                                                     class="col-md-8 col-sm-12 mar-top clearfix mar-top">
-                                                                    <input name="owner_id" type="hidden" value="260">
-                                                                    <input name="owner_type" type="hidden"
-                                                                        value="Product">
+                                                                    <input name="review_type" type="hidden"
+                                                                        value="product">
                                                                     <button class="btn btn-sm btn-danger w-100"
-                                                                        type="button">Gửi bình luận</button>
+                                                                        type="button" id="btn_submit_review">Gửi bình luận</button>
                                                                 </div>
                                                             </div>
                                                         </form>
@@ -300,33 +300,31 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                                                 </div>
                                             </div>
                                         </div>
+                                        <?php foreach ($reviewList as $review): ?>
                                         <div class="panel">
-                                        <div class="panel-body wk-comments-body" data-owner-id="101"
-                                            data-owner-type="Product" data-url="/comments/">
-                                            <div class="media-block">
-                                                <div class="media-left">
-                                                    <i class="bi bi-person-square" style="font-size: 40px"></i>
-                                                </div>
-                                                <div class="media-body">
-                                                    <div class="mar-btm">
-                                                        <p
-                                                            class="btn-link text-semibold media-heading box-inline rating text-decoration-none">
-                                                            Nguyễn Văn Minh
-                                                            <span class="badge badge-info">
-                                                                Đang chờ duyệt
-                                                            </span>
-                                                            [
-                                                            translation missing:
-                                                            vi.datetime.distance_in_words.less_than_x_minutes ago
-                                                            ]
-                                                        </p>
+                                            <div class="panel-body wk-comments-body" data-owner-id="101"
+                                                data-owner-type="Product" data-url="/comments/">
+                                                <div class="media-block">
+                                                    <div class="media-left">
+                                                        <i class="bi bi-person-square" style="font-size: 40px"></i>
                                                     </div>
-                                                    <p>Màn Hình Android Rất tốt</p>
-                                                    <hr>
+                                                    <div class="media-body">
+                                                        <div class="mar-btm">
+                                                            <p
+                                                                class="btn-link text-semibold media-heading box-inline rating text-decoration-none">
+                                                                <?=$review['user_name']?>
+                                                                <span class="badge badge-<?=getReviewStatusColor($review['post_status'])?> ?>">
+                                                                    <?=getReviewStatusName($review['post_status'])?>
+                                                                </span>
+                                                            </p>
+                                                        </div>
+                                                        <p><?=$review['review_des']?></p>
+                                                        <hr>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        </div>
+                                        <?php endforeach; ?>
                                         <div class="panel">
                                             <div class="panel-body wk-comments-body" data-owner-id="260"
                                                 data-owner-type="Product" data-url="/comments/"></div>
@@ -446,5 +444,37 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
             alert("Vui lòng chọn một tùy chọn cho sản phẩm");
         }
     })
+    $("#btn_submit_review").click(function () {
+        const form = $("#wk-comment-form");
+        if (form.find("input[name='content']").val() == "") {
+            alert("Vui lòng nhập đánh giá!");
+            form.find("input[name='content']").focus();
+            return;
+        }
+        if (form.find("input[name='name']").val() == "") {
+            alert("Vui lòng nhập họ và tên của bạn!");
+            form.find("input[name='name']").focus();
+            return;
+        }
+        if (form.find("textarea[name='phone']").val() == "") {
+            alert("Vui lòng nhập số điện thoại liên hệ của bạn!");
+            form.find("textarea[name='phone']").focus();
+            return;
+        }
+        $.ajax({
+            type: "POST",
+            url: "/review/save",
+            data: form.serialize(),
+            dataType: "json",
+            success: function (data) {
+                alert(data.msg);
+                location.reload();
+            },
+            error: function (data) {
+                alert("Có lỗi xảy ra. Vui lòng thử lại sau");
+            },
+        });
+    })
+
 </script>
 <?= $this->endSection() ?>
