@@ -181,7 +181,7 @@
                             <div class="col-md-10 row">
                                 <div class="form-group">
                                     <label for="po_value">Tên giá trị</label>
-                                    <input type="text" class="form-control" id="po_value" name="po_value"
+                                    <input type="text" class="form-control po_value" name="po_value"
                                            placeholder="Tên giá trị">
                                 </div>
                                 <div class="form-group col-md-6">
@@ -294,16 +294,16 @@
                 property['po_init_price'] = $(this).find('.po_init_price').val();
                 property['po_quantity'] = $(this).find('.po_quantity').val();
 
-                let po_image = $('#product_image')[0].files[0];
+                let po_image = $(this).find('.po_image')[0].files[0];
 
                 if (po_image) {
-                    property['po_image'] = po_image;
+                    formData.append('po_image[]', po_image);
                 }
 
                 list_properties.push(property);
             });
 
-            formData.append('list_properties[]', list_properties);
+            formData.append('list_properties', JSON.stringify(list_properties));
 
             let api = '<?php echo route_to('admin.products.store'); ?>';
 
@@ -318,7 +318,7 @@
                     success: function (response) {
                         console.log(response);
                         alert('Tạo mới thành công!')
-                        //window.location.href = '<?php //echo route_to('admin.news.list'); ?>//';
+                        window.location.href = '<?php echo route_to('admin.products.list'); ?>';
                     },
                     error: function (xhr) {
                         if (xhr.status === 400) {
