@@ -212,22 +212,74 @@ class AdminProductController extends BaseController
 
     public function detail($id)
     {
-        $products = $this->model->where('product_id', $id)->first();
+        $product = $this->model->where('product_id', $id)->first();
 
-        if ($products == null || $products['deleted_at'] != null) {
+        if ($product == null || $product['deleted_at'] != null) {
             return view('errors/404');
         }
         $categories = $this->category_model->where('status', 'Y')->orderBy('c_idx', 'desc')->findAll();
-        return view('admin/products/detail', ['products' => $products, 'categories' => $categories]);
+        return view('admin/products/detail', ['product' => $product, 'categories' => $categories]);
     }
 
     public function update($id)
     {
+        try {
+            $product = $this->model->find($id);
+            if (!$product || $product['deleted_at'] != null) {
+                return $this->response
+                    ->setStatusCode(404)
+                    ->setJSON([
+                        'status' => 'error',
+                        'message' => 'Products not found!'
+                    ]);
+            }
 
+
+            return $this->response
+                ->setStatusCode(200)
+                ->setJSON([
+                    'status' => 'success',
+                    'message' => 'Sửa thành công'
+                ]);
+        } catch (\Exception $e) {
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON([
+                    'status' => 'error',
+                    'message' => $e->getMessage()
+                ]);
+        }
     }
 
     public function delete($id)
     {
+        try {
+            $product = $this->model->find($id);
+            if (!$product || $product['deleted_at'] != null) {
+                return $this->response
+                    ->setStatusCode(404)
+                    ->setJSON([
+                        'status' => 'error',
+                        'message' => 'Products not found!'
+                    ]);
+            }
 
+            $this->model->update($id, [
+                'deleted_at' => date('Y-m-d H:i:s'),
+            ]);
+            return $this->response
+                ->setStatusCode(200)
+                ->setJSON([
+                    'status' => 'success',
+                    'message' => 'Xoá thành công'
+                ]);
+        } catch (\Exception $e) {
+            return $this->response
+                ->setStatusCode(400)
+                ->setJSON([
+                    'status' => 'error',
+                    'message' => $e->getMessage()
+                ]);
+        }
     }
 }
