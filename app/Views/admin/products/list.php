@@ -62,4 +62,39 @@
             </tbody>
         </table>
     </section>
+    <script>
+        function confirmDelete(id) {
+            if (confirm('Bạn chắc chắn muốn xóa sản phẩm này?')) {
+                deleteProducts(id);
+            }
+        }
+
+        async function deleteProducts(id) {
+            let api = '<?php echo route_to('admin.products.delete', ':id'); ?>';
+            api = api.replace(':id', id);
+
+            try {
+                let result = await fetch(api, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                });
+
+                if (result.ok) {
+                    alert('Xoá thành công thành công!')
+                    let res = await result.json();
+                    console.log(res);
+                    window.location.reload();
+                } else {
+                    let res = await result.json();
+                    alert(res.message)
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Đã xảy ra lỗi trong quá trình xoá.');
+            }
+        }
+    </script>
 <?= $this->endSection() ?>
