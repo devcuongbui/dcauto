@@ -18,6 +18,8 @@ class Category extends Model
         'status',
         'contents',
         'onum',
+        'ufile1',
+        'rfile1',
         'slug'
     ];
 
