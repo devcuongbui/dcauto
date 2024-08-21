@@ -41,3 +41,11 @@ function getOrderStatusId($code) {
 function getOrderStatusName($code) {
     return ORDER_STATUS_NAMES[$code] ?? "";
 }
+
+function getReviewStatusColor($code) {
+    return REVIEW_STATUS_COLORS[$code] ?? "";
+}
+
+function getReviewStatusName($code) {
+    return REVIEW_STATUS_NAMES[$code] ?? "";
+}
