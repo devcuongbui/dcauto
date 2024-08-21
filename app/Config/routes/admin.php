@@ -30,15 +30,6 @@ $routes->group("contact", static function ($routes) {
     $routes->delete('delete/(:any)', 'Admin\AdminContactController::delete/$1', ['as' => 'admin.contact.delete']);
 });
 
-$routes->group("cars", static function ($routes) {
-    $routes->get('list', 'Admin\AdminCarsController::list', ['as' => 'admin.cars.list']);
-    $routes->get('create', 'Admin\AdminCarsController::create', ['as' => 'admin.cars.create']);
-    $routes->get('detail/(:any)', 'Admin\AdminCarsController::detail/$1', ['as' => 'admin.cars.detail']);
-    $routes->post('create', 'Admin\AdminCarsController::handleCreate', ['as' => 'admin.cars.handleCreate']);
-    $routes->put('update/(:any)', 'Admin\AdminCarsController::update/$1', ['as' => 'admin.cars.update']);
-    $routes->delete('delete/(:any)', 'Admin\AdminCarsController::delete/$1', ['as' => 'admin.cars.delete']);
-});
-
 $routes->group("products", static function ($routes) {
     $routes->get('list', 'Admin\AdminProductController::list', ['as' => 'admin.products.list']);
     $routes->get('create', 'Admin\AdminProductController::create', ['as' => 'admin.products.create']);

@@ -63,6 +63,7 @@ Danh sách đơn hàng
 
         </tbody>
     </table>
+    <?= custom_paginate($pg, $nPage) ?>
 </section>
 <?php foreach ($list as $key => $item): ?>
     <?= view("admin/orders/modal_order", ['order_id' => $item['order_id']]) ?>

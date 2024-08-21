@@ -72,9 +72,10 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                             <?= number_format($product['init_price'], 0, ',', '.') ?>đ
                         </p>
                     </div>
+                    <?php if ($product['pot_name']):?>
                     <article class="artSelectOpt variant_options">
                         <div class="showSelectedOpt">
-                            <p class="text title variant_name" key="loai-cam">Loại cam: </p>
+                            <p class="text title variant_name" key="loai-cam"><?= $product['pot_name'] ?>: </p>
                             <p class="text optText"></p>
                         </div>
                         <div class="listOptArea">
@@ -95,6 +96,7 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                             </p>
                         <?php endforeach; ?>
                     </div>
+                    <?php endif; ?>
                     <form class="product-form" method="post" action="/cart/payment">
                         <input type="hidden" name="product_id" id="product_id" value="<?= $product['product_id'] ?>"
                             autocomplete="off">
