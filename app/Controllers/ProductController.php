@@ -37,14 +37,14 @@ class ProductController extends BaseController
         // Fetch products based on whether the category is a parent or child
         if ($category['parent_code_no'] == 0) {
             // If the category is a parent category, get products from this category and its child categories
-            $childCategories = $this->category->where('parent_code_no', $category['code_no'])->findAll();
+            $childCategories = $this->category->where('parent_code_no', $category['c_idx'])->findAll();
             $childCategoryIds = array_column($childCategories, 'code_no');
             $childCategoryIds[] = $category['code_no']; // Include the parent category itself
 
             $products = $this->productModel->whereIn('category_id', $childCategoryIds)->findAll();
         } else {
             // If the category is a child category, get products from this category only
-            $products = $this->productModel->where('category_id', $category['code_no'])->findAll();
+            $products = $this->productModel->where('category_id', $category['c_idx'])->findAll();
         }
 
         // Pass the categories and products to the view

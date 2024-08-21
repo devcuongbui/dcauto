@@ -42,4 +42,14 @@ class Category extends Model
 
         return $categories;
     }
+
+    public function getTopCategories($limit = 5)
+    {
+        return $this->orderBy('onum', 'desc')
+            ->orderBy('c_idx', 'desc')
+            ->where('parent_code_no', 0)
+            ->limit($limit)
+            ->findAll();
+    }
+
 }

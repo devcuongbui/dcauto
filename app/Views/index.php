@@ -191,198 +191,60 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
     <?php echo view('/layouts/select_category'); ?>
     <section class="secMultiSecCate">
         <div class="container">
-            <section class="secCatePr">
-                <div class="setLineUnderTitle">
-                    <a class="titleBlock_1" href="/product/man-hinh-android-o-to/<?php echo route_to('home'); ?>">
-                        <h2 class="titleText wk-editable-text" id="home-section3-text1">Màn Hình Android Ô Tô </h2>
-                    </a>
-                </div>
-                <div class="mainOfSec">
-                    <div class="colImg">
-                        <div class="bannerPart">
-                            <img alt="Màn Hình Android Ô Tô " class="wk-editable-image" id="home-section2-img5"
-                                 loading="lazy"
-                                 src="storage/ji/fn/jifn7eh4t01h2nayrkshu3x2ha9v_man-hinh-android-o-to-10.webp">
-                        </div>
+            <?php foreach ($productsByCategory as $categorySlug => $products): ?>
+                <section class="secCatePr">
+                    <div class="setLineUnderTitle">
+                        <a class="titleBlock_1" href="/product/<?php echo $categorySlug; ?>">
+                            <h2 class="titleText wk-editable-text"><?php echo ucwords(str_replace('-', ' ', $categorySlug)); ?></h2>
+                        </a>
                     </div>
-                    <div class="colListPr">
-                        <div class="owl-carousel owl-theme slideProducts">
-                            <div class="slidePart">
-                                <article class="artProduct">
-                                    <a class="imgPr figure2"
-                                       href="san-pham/man-hinh-android-lien-khoi-danh-rieng-cho-mercedes-benz-cla-2011-2018-dinh-cao-cong-nghe-tren-xe-yeu/<?php echo route_to('home'); ?>">
-                                        <img alt="Màn Hình Android Liền Khối Dành Riêng Cho Mercedes Benz CLA 2011 - 2018: Đỉnh Cao Công Nghệ Trên Xế Yêu"
-                                             loading="lazy"
-                                             src="storage/k0/ib/k0ibbtmb54wza4xsi3bnow40q8qb_z5050501997310_1d15a8624423b07fb5c531bc07caeb0a.jpg">
-                                    </a>
-                                    <div class="textInforPr">
-                                        <a class="linkPr"
-                                           href="san-pham/man-hinh-android-lien-khoi-danh-rieng-cho-mercedes-benz-cla-2011-2018-dinh-cao-cong-nghe-tren-xe-yeu/<?php echo route_to('home'); ?>">
-                                            <h3 class="namePr">Màn Hình Android Liền Khối Dành Riêng Cho Mercedes Benz
-                                                CLA 2011 - 2018: Đỉnh Cao Công Nghệ Trên Xế Yêu</h3>
-                                        </a>
-                                        <div class="labelGift">
-                                            <i class="bi bi-gift-fill giftIcon"></i>
-                                            <span class="giftInfo">Phòng dán chuẩn Mỹ</span>
-                                        </div>
-                                        <p class="originalPrice">14.800.000đ</p>
-                                        <p class="currentPrice">15.500.000đ</p>
-                                    </div>
-                                </article>
+                    <div class="mainOfSec">
+                        <div class="colImg">
+                            <div class="bannerPart">
+                                <img alt="<?php echo ucwords(str_replace('-', ' ', $categorySlug)); ?>" class="wk-editable-image"
+                                     loading="lazy"
+                                     src="path/to/your/banner/image/<?php echo $categorySlug; ?>.webp">
                             </div>
-                            <div class="slidePart">
-                                <article class="artProduct">
-                                    <a class="imgPr figure2"
-                                       href="san-pham/man-hinh-android-oledpro-ultra-2k/<?php echo route_to('home'); ?>">
-                                        <img alt="Màn hình Andorid Oledpro Ultra 2K" loading="lazy"
-                                             src="storage/0a/b0/0ab075a2ue9x56dopx37exbmhl0e_Screenshot_2024-06-18_152041.png">
-                                    </a>
-                                    <div class="textInforPr">
-                                        <a class="linkPr"
-                                           href="san-pham/man-hinh-android-oledpro-ultra-2k/<?php echo route_to('home'); ?>">
-                                            <h3 class="namePr">Màn hình Andorid Oledpro Ultra 2K</h3>
-                                        </a>
-                                        <div class="labelGift">
-                                            <i class="bi bi-gift-fill giftIcon"></i>
-                                            <span class="giftInfo">Phòng dán chuẩn Mỹ</span>
-                                        </div>
-                                        <p class="originalPrice">6.300.000đ</p>
-                                        <p class="currentPrice">6.100.000đ</p>
+                        </div>
+                        <div class="colListPr">
+                            <div class="owl-carousel owl-theme slideProducts">
+                                <?php foreach ($products as $product): ?>
+                                    <div class="slidePart">
+                                        <article class="artProduct">
+                                            <a class="imgPr figure2"
+                                               href="<?php echo base_url('product/view/' . $product['slug']); ?>">
+                                                <img alt="<?php echo $product['product_name']; ?>"
+                                                     loading="lazy"
+                                                     src="<?php echo base_url('storage/' . $product['product_image']); ?>">
+                                            </a>
+                                            <div class="textInforPr">
+                                                <a class="linkPr"
+                                                   href="<?php echo base_url('product/view/' . $product['slug']); ?>">
+                                                    <h3 class="namePr"><?php echo $product['product_name']; ?></h3>
+                                                </a>
+                                                <div class="labelGift">
+                                                    <i class="bi bi-gift-fill giftIcon"></i>
+                                                    <span class="giftInfo">Phòng dán chuẩn Mỹ</span>
+                                                </div>
+                                                <?php if (!empty($product['init_price'])): ?>
+                                                    <p class="originalPrice"><?php echo number_format($product['init_price'], 0, ',', '.'); ?>đ</p>
+                                                <?php endif; ?>
+                                                <p class="currentPrice"><?php echo !empty($product['sell_price']) ? number_format($product['sell_price'], 0, ',', '.') . 'đ' : 'Liên hệ'; ?></p>
+                                            </div>
+                                        </article>
                                     </div>
-                                </article>
-                            </div>
-                            <div class="slidePart">
-                                <article class="artProduct">
-                                    <a class="imgPr figure2"
-                                       href="san-pham/man-hinh-android-mercedes-benz-gle-gls-2016-2019/<?php echo route_to('home'); ?>">
-                                        <img alt="Màn Hình Android Mercedes Benz GLE GLS 2016-2019" loading="lazy"
-                                             src="storage/fw/wx/fwwxwmua2b6idmbtikrbl6yfd9eo_Screenshot_2024-06-18_152921.png">
-                                    </a>
-                                    <div class="textInforPr">
-                                        <a class="linkPr"
-                                           href="san-pham/man-hinh-android-mercedes-benz-gle-gls-2016-2019/<?php echo route_to('home'); ?>">
-                                            <h3 class="namePr">Màn Hình Android Mercedes Benz GLE GLS 2016-2019</h3>
-                                        </a>
-                                        <div class="labelGift">
-                                            <i class="bi bi-gift-fill giftIcon"></i>
-                                            <span class="giftInfo">Phòng dán chuẩn Mỹ</span>
-                                        </div>
-                                        <p class="currentPrice">Liên hệ</p>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="slidePart">
-                                <article class="artProduct">
-                                    <a class="imgPr figure2"
-                                       href="san-pham/man-android-oled-7-inch/<?php echo route_to('home'); ?>">
-                                        <img alt="Màn Android Oled 7 Inch dành cho xe hơi, giá tốt" loading="lazy"
-                                             src="storage/1b/c1/1bc17xksg2mx0o37n0dz718uijr2_Screenshot_2024-06-18_153121.png">
-                                    </a>
-                                    <div class="textInforPr">
-                                        <a class="linkPr"
-                                           href="san-pham/man-android-oled-7-inch/<?php echo route_to('home'); ?>">
-                                            <h3 class="namePr">Màn Android Oled 7 Inch dành cho xe hơi, giá tốt</h3>
-                                        </a>
-                                        <div class="labelGift">
-                                            <i class="bi bi-gift-fill giftIcon"></i>
-                                            <span class="giftInfo">Phòng dán chuẩn Mỹ</span>
-                                        </div>
-                                        <p class="currentPrice">Liên hệ</p>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="slidePart">
-                                <article class="artProduct">
-                                    <a class="imgPr figure2"
-                                       href="san-pham/man-hinh-hud/<?php echo route_to('home'); ?>">
-                                        <img alt="Màn Hình HUD Hiển Thị Trên Kính Lái" loading="lazy"
-                                             src="storage/uc/7q/uc7ql91i03d8usnrkc3d01xontme_man-hinh-hud-3.webp">
-                                    </a>
-                                    <div class="textInforPr">
-                                        <a class="linkPr" href="san-pham/man-hinh-hud/<?php echo route_to('home'); ?>">
-                                            <h3 class="namePr">Màn Hình HUD Hiển Thị Trên Kính Lái</h3>
-                                        </a>
-                                        <div class="labelGift">
-                                            <i class="bi bi-gift-fill giftIcon"></i>
-                                            <span class="giftInfo">Phòng dán chuẩn Mỹ</span>
-                                        </div>
-                                        <p class="currentPrice">Liên hệ</p>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="slidePart">
-                                <article class="artProduct">
-                                    <a class="imgPr figure2"
-                                       href="san-pham/man-hinh-android-mercedes-benz-c-class-2011-2015/<?php echo route_to('home'); ?>">
-                                        <img alt="Màn Hình Android mercedes benz C class 2011 2015 " loading="lazy"
-                                             src="storage/k0/69/k069o53m5hzgu2ejefqrggb0sxp1_cam_ht_carplay_ANDROID_BOX_(28).png">
-                                    </a>
-                                    <div class="textInforPr">
-                                        <a class="linkPr"
-                                           href="san-pham/man-hinh-android-mercedes-benz-c-class-2011-2015/<?php echo route_to('home'); ?>">
-                                            <h3 class="namePr">Màn Hình Android mercedes benz C class 2011 2015 </h3>
-                                        </a>
-                                        <div class="labelGift">
-                                            <i class="bi bi-gift-fill giftIcon"></i>
-                                            <span class="giftInfo">Phòng dán chuẩn Mỹ</span>
-                                        </div>
-                                        <p class="originalPrice">15.800.000đ</p>
-                                        <p class="currentPrice">14.800.000đ</p>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="slidePart">
-                                <article class="artProduct">
-                                    <a class="imgPr figure2"
-                                       href="san-pham/man-hinh-android-mercedes-benz-c-class-2007-2010/<?php echo route_to('home'); ?>">
-                                        <img alt="Màn Hình Android mercedes benz C class 2007 2010" loading="lazy"
-                                             src="storage/ha/f0/haf03ndryboatf0fkmgyea5xvyh7_cam_ht_carplay_ANDROID_BOX_(27).png">
-                                    </a>
-                                    <div class="textInforPr">
-                                        <a class="linkPr"
-                                           href="san-pham/man-hinh-android-mercedes-benz-c-class-2007-2010/<?php echo route_to('home'); ?>">
-                                            <h3 class="namePr">Màn Hình Android mercedes benz C class 2007 2010</h3>
-                                        </a>
-                                        <div class="labelGift">
-                                            <i class="bi bi-gift-fill giftIcon"></i>
-                                            <span class="giftInfo">Phòng dán chuẩn Mỹ</span>
-                                        </div>
-                                        <p class="originalPrice">15.800.000đ</p>
-                                        <p class="currentPrice">14.800.000đ</p>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="slidePart">
-                                <article class="artProduct">
-                                    <a class="imgPr figure2"
-                                       href="san-pham/man-hinh-android-mercedes-benz-a-class/<?php echo route_to('home'); ?>">
-                                        <img alt="Màn Hình Android Mercedes Benz A class 2011 2018" loading="lazy"
-                                             src="storage/dh/if/dhifl6eiatcf5j2epd9amhnkldna_cam_ht_carplay_ANDROID_BOX_(26).png">
-                                    </a>
-                                    <div class="textInforPr">
-                                        <a class="linkPr"
-                                           href="san-pham/man-hinh-android-mercedes-benz-a-class/<?php echo route_to('home'); ?>">
-                                            <h3 class="namePr">Màn Hình Android Mercedes Benz A class 2011 2018</h3>
-                                        </a>
-                                        <div class="labelGift">
-                                            <i class="bi bi-gift-fill giftIcon"></i>
-                                            <span class="giftInfo">Phòng dán chuẩn Mỹ</span>
-                                        </div>
-                                        <p class="originalPrice">15.800.000đ</p>
-                                        <p class="currentPrice">14.800.000đ</p>
-                                    </div>
-                                </article>
+                                <?php endforeach; ?>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="btnViewAll">
-                    <a class="btnType_2" href="/product/man-hinh-android-o-to/<?php echo route_to('home'); ?>">
-                        <span class="textBtn wk-editable-text" id="home-section3-text2">Xem thêm sản phẩm</span>
-                        <i class="bi bi-chevron-right iconRight"></i>
-                    </a>
-                </div>
-            </section>
+                    <div class="btnViewAll">
+                        <a class="btnType_2" href="/product/<?php echo $categorySlug; ?>">
+                            <span class="textBtn wk-editable-text">Xem thêm sản phẩm</span>
+                            <i class="bi bi-chevron-right iconRight"></i>
+                        </a>
+                    </div>
+                </section>
+            <?php endforeach; ?>
             <section class="secCatePr">
                 <div class="setLineUnderTitle">
                     <a class="titleBlock_1" href="anroid-box-o-to/<?php echo route_to('home'); ?>">
@@ -401,13 +263,13 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                             <div class="slidePart">
                                 <article class="artProduct">
                                     <a class="imgPr figure2"
-                                       href="san-pham/android-box-carlinkit-tbox-ambient/<?php echo route_to('home'); ?>">
+                                       href="product/view/android-box-carlinkit-tbox-ambient/<?php echo route_to('home'); ?>">
                                         <img alt="Android box Carlinkit Tbox Ambient" loading="lazy"
                                              src="storage/o4/ch/o4chokv6vnv87ebgwkjj1h3fhvvq_DC_13.1_inch.png">
                                     </a>
                                     <div class="textInforPr">
                                         <a class="linkPr"
-                                           href="san-pham/android-box-carlinkit-tbox-ambient/<?php echo route_to('home'); ?>">
+                                           href="product/view/android-box-carlinkit-tbox-ambient/<?php echo route_to('home'); ?>">
                                             <h3 class="namePr">Android box Carlinkit Tbox Ambient</h3>
                                         </a>
                                         <div class="labelGift">
@@ -422,13 +284,13 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                             <div class="slidePart">
                                 <article class="artProduct">
                                     <a class="imgPr figure2"
-                                       href="san-pham/android-box-gotech-gb-8/<?php echo route_to('home'); ?>">
+                                       href="product/view/android-box-gotech-gb-8/<?php echo route_to('home'); ?>">
                                         <img alt="Android Box Gotech GB8" loading="lazy"
                                              src="storage/jd/fy/jdfywxzgi9nc7y3qlmfqieny7d2o_DC_13.1_inch_(1).png">
                                     </a>
                                     <div class="textInforPr">
                                         <a class="linkPr"
-                                           href="san-pham/android-box-gotech-gb-8/<?php echo route_to('home'); ?>">
+                                           href="product/view/android-box-gotech-gb-8/<?php echo route_to('home'); ?>">
                                             <h3 class="namePr">Android Box Gotech GB8</h3>
                                         </a>
                                         <div class="labelGift">
@@ -443,14 +305,14 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                             <div class="slidePart">
                                 <article class="artProduct">
                                     <a class="imgPr figure2"
-                                       href="san-pham/bo-carplay-android-box-picasou-ai-carlinkit-cam-sim-4G/<?php echo route_to('home'); ?>">
+                                       href="product/view/bo-carplay-android-box-picasou-ai-carlinkit-cam-sim-4G/<?php echo route_to('home'); ?>">
                                         <img alt="Bộ Carplay Android Box PICASOU AI/ CARLINKIT Cắm Sim 4G |Biến Màn Zin ô tô Thành Màn Hình Android"
                                              loading="lazy"
                                              src="storage/2m/0w/2m0w7q1gbhxfp9e3hanf7pwvdw79_cam_ht_carplay_ANDROID_BOX_(76).png">
                                     </a>
                                     <div class="textInforPr">
                                         <a class="linkPr"
-                                           href="san-pham/bo-carplay-android-box-picasou-ai-carlinkit-cam-sim-4G/<?php echo route_to('home'); ?>">
+                                           href="product/view/bo-carplay-android-box-picasou-ai-carlinkit-cam-sim-4G/<?php echo route_to('home'); ?>">
                                             <h3 class="namePr">Bộ Carplay Android Box PICASOU AI/ CARLINKIT Cắm Sim 4G
                                                 |Biến Màn Zin ô tô Thành Màn Hình Android</h3>
                                         </a>
@@ -466,14 +328,14 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                             <div class="slidePart">
                                 <article class="artProduct">
                                     <a class="imgPr figure2"
-                                       href="san-pham/bo-carplay-android-box-lien-camera-lap-sim-4G/<?php echo route_to('home'); ?>">
+                                       href="product/view/bo-carplay-android-box-lien-camera-lap-sim-4G/<?php echo route_to('home'); ?>">
                                         <img alt="Bộ Carplay Android Box liền CAMERA lắp Sim 4G - Biến Màn Zin ô tô Thành Màn Hình Android"
                                              loading="lazy"
                                              src="storage/1y/ja/1yja2zuzq1auyre3w7xzzua58ks9_cam_ht_carplay_ANDROID_BOX_(62).png">
                                     </a>
                                     <div class="textInforPr">
                                         <a class="linkPr"
-                                           href="san-pham/bo-carplay-android-box-lien-camera-lap-sim-4G/<?php echo route_to('home'); ?>">
+                                           href="product/view/bo-carplay-android-box-lien-camera-lap-sim-4G/<?php echo route_to('home'); ?>">
                                             <h3 class="namePr">Bộ Carplay Android Box liền CAMERA lắp Sim 4G - Biến Màn
                                                 Zin ô tô Thành Màn Hình Android</h3>
                                         </a>
@@ -489,13 +351,13 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                             <div class="slidePart">
                                 <article class="artProduct">
                                     <a class="imgPr figure2"
-                                       href="san-pham/bo-android-box-zestech-dx265-dx14-pro/<?php echo route_to('home'); ?>">
+                                       href="product/view/bo-android-box-zestech-dx265-dx14-pro/<?php echo route_to('home'); ?>">
                                         <img alt="Bộ Android Box Zestech DX265 / DX14 PRO Vietmap S2 " loading="lazy"
                                              src="storage/xv/lp/xvlpjhb1w11gitlxoakccly4j2fy_cam_ht_carplay_ANDROID_BOX_(65).png">
                                     </a>
                                     <div class="textInforPr">
                                         <a class="linkPr"
-                                           href="san-pham/bo-android-box-zestech-dx265-dx14-pro/<?php echo route_to('home'); ?>">
+                                           href="product/view/bo-android-box-zestech-dx265-dx14-pro/<?php echo route_to('home'); ?>">
                                             <h3 class="namePr">Bộ Android Box Zestech DX265 / DX14 PRO Vietmap S2 </h3>
                                         </a>
                                         <div class="labelGift">
@@ -510,13 +372,13 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                             <div class="slidePart">
                                 <article class="artProduct">
                                     <a class="imgPr figure2"
-                                       href="san-pham/android-box-elliview-d4/<?php echo route_to('home'); ?>">
+                                       href="product/view/android-box-elliview-d4/<?php echo route_to('home'); ?>">
                                         <img alt="Android Box Elliview D4" loading="lazy"
                                              src="storage/dk/5a/dk5aygwdbyi7wgiwexo7udxw996n_cam_ht_carplay_ANDROID_BOX_(66).png">
                                     </a>
                                     <div class="textInforPr">
                                         <a class="linkPr"
-                                           href="san-pham/android-box-elliview-d4/<?php echo route_to('home'); ?>">
+                                           href="product/view/android-box-elliview-d4/<?php echo route_to('home'); ?>">
                                             <h3 class="namePr">Android Box Elliview D4</h3>
                                         </a>
                                         <div class="labelGift">
@@ -531,13 +393,13 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                             <div class="slidePart">
                                 <article class="artProduct">
                                     <a class="imgPr figure2"
-                                       href="san-pham/android-box-vietmap-bs10/<?php echo route_to('home'); ?>">
+                                       href="product/view/android-box-vietmap-bs10/<?php echo route_to('home'); ?>">
                                         <img alt="Android Box Vietmap BS10" loading="lazy"
                                              src="storage/ug/kz/ugkz65bx3n518wtx9vb3hr2dk83s_cam_ht_carplay_ANDROID_BOX_(67).png">
                                     </a>
                                     <div class="textInforPr">
                                         <a class="linkPr"
-                                           href="san-pham/android-box-vietmap-bs10/<?php echo route_to('home'); ?>">
+                                           href="product/view/android-box-vietmap-bs10/<?php echo route_to('home'); ?>">
                                             <h3 class="namePr">Android Box Vietmap BS10</h3>
                                         </a>
                                         <div class="labelGift">
@@ -554,782 +416,6 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                 </div>
                 <div class="btnViewAll">
                     <a class="btnType_2" href="anroid-box-o-to/<?php echo route_to('home'); ?>">
-                        <span class="textBtn wk-editable-text" id="home-section3-text2">Xem thêm sản phẩm</span>
-                        <i class="bi bi-chevron-right iconRight"></i>
-                    </a>
-                </div>
-            </section>
-            <section class="secCatePr">
-                <div class="setLineUnderTitle">
-                    <a class="titleBlock_1" href="camera-hanh-trinh/<?php echo route_to('home'); ?>">
-                        <h2 class="titleText wk-editable-text" id="home-section3-text1">Camera Hành Trình</h2>
-                    </a>
-                </div>
-                <div class="mainOfSec">
-                    <div class="colImg">
-                        <div class="bannerPart">
-                            <img alt="Camera Hành Trình" class="wk-editable-image" id="home-section2-img5"
-                                 loading="lazy"
-                                 src="storage/t9/m5/t9m56ro48xgzk9et5zyglz9opjgf_camera-hanh-trinh-11.webp">
-                        </div>
-                    </div>
-                    <div class="colListPr">
-                        <div class="owl-carousel owl-theme slideProducts">
-                            <div class="slidePart">
-                                <article class="artProduct">
-                                    <a class="imgPr figure2"
-                                       href="san-pham/cam-hanh-trinh-tich-hop-man-android-x9/<?php echo route_to('home'); ?>">
-                                        <img alt="Camera Hành Trình Tich Hợp Màn Android X9" loading="lazy"
-                                             src="storage/kw/sr/kwsrzn07bqyjduo9qwxd7i5p7jrr_Screenshot_2024-06-11_164357.png">
-                                    </a>
-                                    <div class="textInforPr">
-                                        <a class="linkPr"
-                                           href="san-pham/cam-hanh-trinh-tich-hop-man-android-x9/<?php echo route_to('home'); ?>">
-                                            <h3 class="namePr">Camera Hành Trình Tich Hợp Màn Android X9</h3>
-                                        </a>
-                                        <div class="labelGift">
-                                            <i class="bi bi-gift-fill giftIcon"></i>
-                                            <span class="giftInfo">Phòng dán chuẩn Mỹ</span>
-                                        </div>
-                                        <p class="originalPrice">400.000đ</p>
-                                        <p class="currentPrice">380.000đ</p>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="slidePart">
-                                <article class="artProduct">
-                                    <a class="imgPr figure2"
-                                       href="san-pham/cam-hanh-trinh-utour-c2l-max/<?php echo route_to('home'); ?>">
-                                        <img alt="Camera Hành Trình UTOUR C2 MAX | SIÊU NÉT 4K | 8 TÍNH NÂNG ADAS AI"
-                                             loading="lazy"
-                                             src="storage/e7/76/e776ti6fml6jhflawwqf5w6toq9v_Screenshot_2024-06-11_104524.png">
-                                    </a>
-                                    <div class="textInforPr">
-                                        <a class="linkPr"
-                                           href="san-pham/cam-hanh-trinh-utour-c2l-max/<?php echo route_to('home'); ?>">
-                                            <h3 class="namePr">Camera Hành Trình UTOUR C2 MAX | SIÊU NÉT 4K | 8 TÍNH
-                                                NÂNG ADAS AI</h3>
-                                        </a>
-                                        <div class="labelGift">
-                                            <i class="bi bi-gift-fill giftIcon"></i>
-                                            <span class="giftInfo">Utour C2 Max là dòng camera hành trình đầu tiên tích hợp công nghệ trí tuệ nhân tạo AI cùng tính năng cảnh báo tiền va chạm. Sản phẩm này giúp phát hiện những tình huống nguy hiểm và cảnh báo kịp thời, giúp người lái đưa ra biện pháp xử lý phù hợp, giảm thiểu nguy cơ tai nạn.</span>
-                                        </div>
-                                        <p class="originalPrice">1.800.000đ</p>
-                                        <p class="currentPrice">1.500.000đ</p>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="slidePart">
-                                <article class="artProduct">
-                                    <a class="imgPr figure2"
-                                       href="san-pham/cam-hanh-trinh-utour-c2l/<?php echo route_to('home'); ?>">
-                                        <img alt="Camera Hành trình UTOUR C2L | QUAY SIÊU NÉT 4K | BH 18 THÁNG"
-                                             loading="lazy"
-                                             src="storage/xi/q3/xiq3idjucou60i32f4m6nl5ywowy_Screenshot_2024-06-11_102135.png">
-                                    </a>
-                                    <div class="textInforPr">
-                                        <a class="linkPr"
-                                           href="san-pham/cam-hanh-trinh-utour-c2l/<?php echo route_to('home'); ?>">
-                                            <h3 class="namePr">Camera Hành trình UTOUR C2L | QUAY SIÊU NÉT 4K | BH 18
-                                                THÁNG</h3>
-                                        </a>
-                                        <div class="labelGift">
-                                            <i class="bi bi-gift-fill giftIcon"></i>
-                                            <span class="giftInfo">Phòng dán chuẩn Mỹ</span>
-                                        </div>
-                                        <p class="originalPrice">1.500.000đ</p>
-                                        <p class="currentPrice">1.200.000đ</p>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="slidePart">
-                                <article class="artProduct">
-                                    <a class="imgPr figure2"
-                                       href="san-pham/camera-hanh-trinh-70-mai/<?php echo route_to('home'); ?>">
-                                        <img alt="Camera Hành Trình 70mai A500s/ A800s/ M300/ M500" loading="lazy"
-                                             src="storage/q2/7f/q27f6mgzi305wmql94thjsrnibds_Screenshot_2024-06-11_094845.png">
-                                    </a>
-                                    <div class="textInforPr">
-                                        <a class="linkPr"
-                                           href="san-pham/camera-hanh-trinh-70-mai/<?php echo route_to('home'); ?>">
-                                            <h3 class="namePr">Camera Hành Trình 70mai A500s/ A800s/ M300/ M500</h3>
-                                        </a>
-                                        <div class="labelGift">
-                                            <i class="bi bi-gift-fill giftIcon"></i>
-                                            <span class="giftInfo">Phòng dán chuẩn Mỹ</span>
-                                        </div>
-                                        <p class="originalPrice">199.000đ</p>
-                                        <p class="currentPrice">899.000đ</p>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="slidePart">
-                                <article class="artProduct">
-                                    <a class="imgPr figure2"
-                                       href="san-pham/camera-3-mat-elliview-y5/<?php echo route_to('home'); ?>">
-                                        <img alt="Hệ thống camera 3 mắt Elliview Y5 hỗ trợ lái xe an toàn"
-                                             loading="lazy"
-                                             src="storage/wx/jf/wxjfkevqtzs6b6lqkoahvoi1hqz5_cam_ht_carplay_ANDROID_BOX_(9).png">
-                                    </a>
-                                    <div class="textInforPr">
-                                        <a class="linkPr"
-                                           href="san-pham/camera-3-mat-elliview-y5/<?php echo route_to('home'); ?>">
-                                            <h3 class="namePr">Hệ thống camera 3 mắt Elliview Y5 hỗ trợ lái xe an
-                                                toàn</h3>
-                                        </a>
-                                        <div class="labelGift">
-                                            <i class="bi bi-gift-fill giftIcon"></i>
-                                            <span class="giftInfo">Phòng dán chuẩn Mỹ</span>
-                                        </div>
-                                        <p class="originalPrice">5.800.000đ</p>
-                                        <p class="currentPrice">5.300.000đ</p>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="slidePart">
-                                <article class="artProduct">
-                                    <a class="imgPr figure2"
-                                       href="san-pham/camera-hanh-trinh-ghi-hinh-truoc-sau-kc01/<?php echo route_to('home'); ?>">
-                                        <img alt="Camera hành trình VIETMAP KC01 | Cảnh Báo Giao Thông" loading="lazy"
-                                             src="storage/2h/2q/2h2q0oqt97px2o0kxs1hahse5ymb_cam_ht_carplay_ANDROID_BOX_(64).png">
-                                    </a>
-                                    <div class="textInforPr">
-                                        <a class="linkPr"
-                                           href="san-pham/camera-hanh-trinh-ghi-hinh-truoc-sau-kc01/<?php echo route_to('home'); ?>">
-                                            <h3 class="namePr">Camera hành trình VIETMAP KC01 | Cảnh Báo Giao Thông</h3>
-                                        </a>
-                                        <div class="labelGift">
-                                            <i class="bi bi-gift-fill giftIcon"></i>
-                                            <span class="giftInfo">VIETMAP KC01 là dòng sản phẩm camera hành trình đầu tiên của VIETMAP sử dụng chuẩn hình ảnh H.265 và công nghệ truyền dữ liệu không dây băng tần 5.0 GHz. Điều này cho phép người dùng xem lại và trích xuất video một cách nhanh chóng trên các thiết bị chạy hệ điều hành Android và iOS thông qua ứng dụng VIETMAP REC.</span>
-                                        </div>
-                                        <p class="originalPrice">3.950.000đ</p>
-                                        <p class="currentPrice">3.450.000đ</p>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="slidePart">
-                                <article class="artProduct">
-                                    <a class="imgPr figure2"
-                                       href="san-pham/camera-hanh-trinh-vietmap-c61/<?php echo route_to('home'); ?>">
-                                        <img alt="Camera hành trình Vietmap C61 Quay Nét 4K - Có Wifi - Cảnh Báo"
-                                             loading="lazy"
-                                             src="storage/pt/1k/pt1kp5shyp5n6zwgr6jloyi150g8_DC_13.1_inch_(24).png">
-                                    </a>
-                                    <div class="textInforPr">
-                                        <a class="linkPr"
-                                           href="san-pham/camera-hanh-trinh-vietmap-c61/<?php echo route_to('home'); ?>">
-                                            <h3 class="namePr">Camera hành trình Vietmap C61 Quay Nét 4K - Có Wifi -
-                                                Cảnh Báo</h3>
-                                        </a>
-                                        <div class="labelGift">
-                                            <i class="bi bi-gift-fill giftIcon"></i>
-                                            <span class="giftInfo">Camera Hành Trình VietMap C61 Pro là sự lựa chọn hoàn hảo cho những ai muốn nâng cao trải nghiệm lái xe với độ phân giải 4K Ultra HD. Được trang bị chip xử lý hình ảnh cao cấp, camera này ghi lại hình ảnh rõ nét cả ban ngày lẫn ban đêm, đồng thời ghi hình với thông tin tọa độ, bản đồ và tốc độ.</span>
-                                        </div>
-                                        <p class="originalPrice">3.440.000đ</p>
-                                        <p class="currentPrice">3.050.000đ</p>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="slidePart">
-                                <article class="artProduct">
-                                    <a class="imgPr figure2"
-                                       href="san-pham/bo-carplay-android-box-lien-camera-lap-sim-4G/<?php echo route_to('home'); ?>">
-                                        <img alt="Bộ Carplay Android Box liền CAMERA lắp Sim 4G - Biến Màn Zin ô tô Thành Màn Hình Android"
-                                             loading="lazy"
-                                             src="storage/1y/ja/1yja2zuzq1auyre3w7xzzua58ks9_cam_ht_carplay_ANDROID_BOX_(62).png">
-                                    </a>
-                                    <div class="textInforPr">
-                                        <a class="linkPr"
-                                           href="san-pham/bo-carplay-android-box-lien-camera-lap-sim-4G/<?php echo route_to('home'); ?>">
-                                            <h3 class="namePr">Bộ Carplay Android Box liền CAMERA lắp Sim 4G - Biến Màn
-                                                Zin ô tô Thành Màn Hình Android</h3>
-                                        </a>
-                                        <div class="labelGift">
-                                            <i class="bi bi-gift-fill giftIcon"></i>
-                                            <span class="giftInfo">Phòng dán chuẩn Mỹ</span>
-                                        </div>
-                                        <p class="originalPrice">4.500.000đ</p>
-                                        <p class="currentPrice">4.000.000đ</p>
-                                    </div>
-                                </article>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="btnViewAll">
-                    <a class="btnType_2" href="camera-hanh-trinh/<?php echo route_to('home'); ?>">
-                        <span class="textBtn wk-editable-text" id="home-section3-text2">Xem thêm sản phẩm</span>
-                        <i class="bi bi-chevron-right iconRight"></i>
-                    </a>
-                </div>
-            </section>
-            <section class="secCatePr">
-                <div class="setLineUnderTitle">
-                    <a class="titleBlock_1" href="camera-360/<?php echo route_to('home'); ?>">
-                        <h2 class="titleText wk-editable-text" id="home-section3-text1">Camera 360</h2>
-                    </a>
-                </div>
-                <div class="mainOfSec">
-                    <div class="colImg">
-                        <div class="bannerPart">
-                            <img alt="Camera 360" class="wk-editable-image" id="home-section2-img5" loading="lazy"
-                                 src="storage/8i/9m/8i9m7xp0kwm72zv9hbrlrp0d2qm8_C%e1%bb%90P_%c4%90I%e1%bb%86N_%c3%94_T%c3%94_(4)_(1).png">
-                        </div>
-                    </div>
-                    <div class="colListPr">
-                        <div class="owl-carousel owl-theme slideProducts">
-                            <div class="slidePart">
-                                <article class="artProduct">
-                                    <a class="imgPr figure2"
-                                       href="san-pham/camera-360-o-to-icar-elliview-v5s-v5p/<?php echo route_to('home'); ?>">
-                                        <img alt="Camera 360 Ô Tô ICAR Elliview V5S/ V5P" loading="lazy"
-                                             src="storage/07/vq/07vqhszav99e2u0gdng11azwsj7a_DC_13.1_inch_(31).png">
-                                    </a>
-                                    <div class="textInforPr">
-                                        <a class="linkPr"
-                                           href="san-pham/camera-360-o-to-icar-elliview-v5s-v5p/<?php echo route_to('home'); ?>">
-                                            <h3 class="namePr">Camera 360 Ô Tô ICAR Elliview V5S/ V5P</h3>
-                                        </a>
-                                        <div class="labelGift">
-                                            <i class="bi bi-gift-fill giftIcon"></i>
-                                            <span class="giftInfo">Phòng dán chuẩn Mỹ</span>
-                                        </div>
-                                        <p class="originalPrice">13.500.000đ</p>
-                                        <p class="currentPrice">12.650.000đ</p>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="slidePart">
-                                <article class="artProduct">
-                                    <a class="imgPr figure2"
-                                       href="san-pham/camera-360-do-owin-pro-2d-3d-chinh-hang/<?php echo route_to('home'); ?>">
-                                        <img alt="CAMERA 360 ĐỘ OWIN PRO 2D/ 3D CHÍNH HÃNG" loading="lazy"
-                                             src="storage/bo/gp/bogpk9f38ja5foghpio37oap8v5u_DC_13.1_inch_(29).png">
-                                    </a>
-                                    <div class="textInforPr">
-                                        <a class="linkPr"
-                                           href="san-pham/camera-360-do-owin-pro-2d-3d-chinh-hang/<?php echo route_to('home'); ?>">
-                                            <h3 class="namePr">CAMERA 360 ĐỘ OWIN PRO 2D/ 3D CHÍNH HÃNG</h3>
-                                        </a>
-                                        <div class="labelGift">
-                                            <i class="bi bi-gift-fill giftIcon"></i>
-                                            <span class="giftInfo">Phòng dán chuẩn Mỹ</span>
-                                        </div>
-                                        <p class="originalPrice">8.000.000đ</p>
-                                        <p class="currentPrice">7.490.000đ</p>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="slidePart">
-                                <article class="artProduct">
-                                    <a class="imgPr figure2"
-                                       href="san-pham/camera-360-do-panorama-han-quoc-sieu-net/<?php echo route_to('home'); ?>">
-                                        <img alt="Camera 360 Độ Panorama Hàn Quốc Siêu Nét" loading="lazy"
-                                             src="storage/09/2t/092td7dvg3x4j8eyoibmnltiu4j2_DC_13.1_inch_(28).png">
-                                    </a>
-                                    <div class="textInforPr">
-                                        <a class="linkPr"
-                                           href="san-pham/camera-360-do-panorama-han-quoc-sieu-net/<?php echo route_to('home'); ?>">
-                                            <h3 class="namePr">Camera 360 Độ Panorama Hàn Quốc Siêu Nét</h3>
-                                        </a>
-                                        <div class="labelGift">
-                                            <i class="bi bi-gift-fill giftIcon"></i>
-                                            <span class="giftInfo">Phòng dán chuẩn Mỹ</span>
-                                        </div>
-                                        <p class="originalPrice">6.500.000đ</p>
-                                        <p class="currentPrice">5.990.000đ</p>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="slidePart">
-                                <article class="artProduct">
-                                    <a class="imgPr figure2"
-                                       href="san-pham/camera-360-do-dct-t1-pro-danh-cho-xe-o-to/<?php echo route_to('home'); ?>">
-                                        <img alt="CAMERA 360 ĐỘ DCT T1 PRO DÀNH CHO XE Ô TÔ" loading="lazy"
-                                             src="storage/1x/v5/1xv5jxxtybgjjdld5eh5xev4di63_DC_13.1_inch_(26).png">
-                                    </a>
-                                    <div class="textInforPr">
-                                        <a class="linkPr"
-                                           href="san-pham/camera-360-do-dct-t1-pro-danh-cho-xe-o-to/<?php echo route_to('home'); ?>">
-                                            <h3 class="namePr">CAMERA 360 ĐỘ DCT T1 PRO DÀNH CHO XE Ô TÔ</h3>
-                                        </a>
-                                        <div class="labelGift">
-                                            <i class="bi bi-gift-fill giftIcon"></i>
-                                            <span class="giftInfo">Phòng dán chuẩn Mỹ</span>
-                                        </div>
-                                        <p class="originalPrice">12.000.000đ</p>
-                                        <p class="currentPrice">11.500.000đ</p>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="slidePart">
-                                <article class="artProduct">
-                                    <a class="imgPr figure2"
-                                       href="san-pham/camera-360-lap-zin-cho-cac-dong-xe/<?php echo route_to('home'); ?>">
-                                        <img alt="Camera 360 lắp zin cho các dòng xe FORD /HUYNDAI/ MAZDA/ KIA/ HONDA chính hãng"
-                                             loading="lazy"
-                                             src="storage/wq/py/wqpyjq6kz0gbsymrfaubyayc1lik_cam_ht_carplay_ANDROID_BOX_(63).png">
-                                    </a>
-                                    <div class="textInforPr">
-                                        <a class="linkPr"
-                                           href="san-pham/camera-360-lap-zin-cho-cac-dong-xe/<?php echo route_to('home'); ?>">
-                                            <h3 class="namePr">Camera 360 lắp zin cho các dòng xe FORD /HUYNDAI/ MAZDA/
-                                                KIA/ HONDA chính hãng</h3>
-                                        </a>
-                                        <div class="labelGift">
-                                            <i class="bi bi-gift-fill giftIcon"></i>
-                                            <span class="giftInfo">Phòng dán chuẩn Mỹ</span>
-                                        </div>
-                                        <p class="originalPrice">4.900.000đ</p>
-                                        <p class="currentPrice">4.400.000đ</p>
-                                    </div>
-                                </article>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="btnViewAll">
-                    <a class="btnType_2" href="camera-360/<?php echo route_to('home'); ?>">
-                        <span class="textBtn wk-editable-text" id="home-section3-text2">Xem thêm sản phẩm</span>
-                        <i class="bi bi-chevron-right iconRight"></i>
-                    </a>
-                </div>
-            </section>
-            <section class="secCatePr">
-                <div class="setLineUnderTitle">
-                    <a class="titleBlock_1" href="phim-cach-nhiet/<?php echo route_to('home'); ?>">
-                        <h2 class="titleText wk-editable-text" id="home-section3-text1">Phim Cách Nhiệt </h2>
-                    </a>
-                </div>
-                <div class="mainOfSec">
-                    <div class="colImg">
-                        <div class="bannerPart">
-                            <img alt="Phim Cách Nhiệt " class="wk-editable-image" id="home-section2-img5" loading="lazy"
-                                 src="storage/0a/5d/0a5dn4f7p0jjknmvpkunpb96n4vt_phim-cach-nhiet.jpg">
-                        </div>
-                    </div>
-                    <div class="colListPr">
-                        <div class="owl-carousel owl-theme slideProducts">
-                            <div class="slidePart">
-                                <article class="artProduct">
-                                    <a class="imgPr figure2"
-                                       href="san-pham/phim-cach-nhiet-vkool/<?php echo route_to('home'); ?>">
-                                        <img alt="Phim cách nhiệt Vkool" loading="lazy"
-                                             src="storage/5f/gl/5fglrzvtnusnsbhdt4hjcoysfuky_phim-cach-nhiet-vkool-2.webp">
-                                    </a>
-                                    <div class="textInforPr">
-                                        <a class="linkPr"
-                                           href="san-pham/phim-cach-nhiet-vkool/<?php echo route_to('home'); ?>">
-                                            <h3 class="namePr">Phim cách nhiệt Vkool</h3>
-                                        </a>
-                                        <div class="labelGift">
-                                            <i class="bi bi-gift-fill giftIcon"></i>
-                                            <span class="giftInfo">Phòng dán chuẩn Mỹ</span>
-                                        </div>
-                                        <p class="currentPrice">Liên hệ</p>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="slidePart">
-                                <article class="artProduct">
-                                    <a class="imgPr figure2"
-                                       href="san-pham/phim-cach-nhiet-kinh-lai-3m-cr-70/<?php echo route_to('home'); ?>">
-                                        <img alt="Phim cách nhiệt lái 3M CR 70 chất lượng, giá tốt" loading="lazy"
-                                             src="storage/n4/zk/n4zk06rls1pvxxysng2w7pdvul28_phim-cach-nhiet-kinh-lai-3m-cr-70-3.webp">
-                                    </a>
-                                    <div class="textInforPr">
-                                        <a class="linkPr"
-                                           href="san-pham/phim-cach-nhiet-kinh-lai-3m-cr-70/<?php echo route_to('home'); ?>">
-                                            <h3 class="namePr">Phim cách nhiệt lái 3M CR 70 chất lượng, giá tốt</h3>
-                                        </a>
-                                        <div class="labelGift">
-                                            <i class="bi bi-gift-fill giftIcon"></i>
-                                            <span class="giftInfo">Phòng dán chuẩn Mỹ</span>
-                                        </div>
-                                        <p class="currentPrice">Liên hệ</p>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="slidePart">
-                                <article class="artProduct">
-                                    <a class="imgPr figure2"
-                                       href="san-pham/phim-cach-nhiet-sunkool/<?php echo route_to('home'); ?>">
-                                        <img alt="Phim Cách Nhiệt Sunkool" loading="lazy"
-                                             src="storage/xl/ig/xligb3s6shdu96jsb55garwsv31w_phim-cach-nhiet-sunkool-6.webp">
-                                    </a>
-                                    <div class="textInforPr">
-                                        <a class="linkPr"
-                                           href="san-pham/phim-cach-nhiet-sunkool/<?php echo route_to('home'); ?>">
-                                            <h3 class="namePr">Phim Cách Nhiệt Sunkool</h3>
-                                        </a>
-                                        <div class="labelGift">
-                                            <i class="bi bi-gift-fill giftIcon"></i>
-                                            <span class="giftInfo">Phòng dán chuẩn Mỹ</span>
-                                        </div>
-                                        <p class="currentPrice">Liên hệ</p>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="slidePart">
-                                <article class="artProduct">
-                                    <a class="imgPr figure2"
-                                       href="san-pham/phim-cach-nhiet-cool-n-lite/<?php echo route_to('home'); ?>">
-                                        <img alt="Phim Cách Nhiệt Cool N Lite" loading="lazy"
-                                             src="storage/ne/en/neen217sqn9dcvtrqogtiik5dxhe_phim-cach-nhiet-cool-n-lite-6.webp">
-                                    </a>
-                                    <div class="textInforPr">
-                                        <a class="linkPr"
-                                           href="san-pham/phim-cach-nhiet-cool-n-lite/<?php echo route_to('home'); ?>">
-                                            <h3 class="namePr">Phim Cách Nhiệt Cool N Lite</h3>
-                                        </a>
-                                        <div class="labelGift">
-                                            <i class="bi bi-gift-fill giftIcon"></i>
-                                            <span class="giftInfo">Phòng dán chuẩn Mỹ</span>
-                                        </div>
-                                        <p class="currentPrice">Liên hệ</p>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="slidePart">
-                                <article class="artProduct">
-                                    <a class="imgPr figure2"
-                                       href="san-pham/phim-cach-nhiet-llumar/<?php echo route_to('home'); ?>">
-                                        <img alt="Phim Cách Nhiệt Llumar" loading="lazy"
-                                             src="storage/kv/p7/kvp7jsr6b5ri7hx85bj2gi8fxd12_phim-cach-nhiet-llumar-2.webp">
-                                    </a>
-                                    <div class="textInforPr">
-                                        <a class="linkPr"
-                                           href="san-pham/phim-cach-nhiet-llumar/<?php echo route_to('home'); ?>">
-                                            <h3 class="namePr">Phim Cách Nhiệt Llumar</h3>
-                                        </a>
-                                        <div class="labelGift">
-                                            <i class="bi bi-gift-fill giftIcon"></i>
-                                            <span class="giftInfo">Phòng dán chuẩn Mỹ</span>
-                                        </div>
-                                        <p class="currentPrice">Liên hệ</p>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="slidePart">
-                                <article class="artProduct">
-                                    <a class="imgPr figure2"
-                                       href="san-pham/phim-cach-nhiet-3m/<?php echo route_to('home'); ?>">
-                                        <img alt="Phim Cách Nhiệt 3M" loading="lazy"
-                                             src="storage/9t/e5/9te59prvr60lbauaqgdo8u3h4px8_phim-cach-nhiet-3m-1.webp">
-                                    </a>
-                                    <div class="textInforPr">
-                                        <a class="linkPr"
-                                           href="san-pham/phim-cach-nhiet-3m/<?php echo route_to('home'); ?>">
-                                            <h3 class="namePr">Phim Cách Nhiệt 3M</h3>
-                                        </a>
-                                        <div class="labelGift">
-                                            <i class="bi bi-gift-fill giftIcon"></i>
-                                            <span class="giftInfo">Phòng dán chuẩn Mỹ</span>
-                                        </div>
-                                        <p class="currentPrice">Liên hệ</p>
-                                    </div>
-                                </article>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="btnViewAll">
-                    <a class="btnType_2" href="phim-cach-nhiet/<?php echo route_to('home'); ?>">
-                        <span class="textBtn wk-editable-text" id="home-section3-text2">Xem thêm sản phẩm</span>
-                        <i class="bi bi-chevron-right iconRight"></i>
-                    </a>
-                </div>
-            </section>
-            <section class="secCatePr">
-                <div class="setLineUnderTitle">
-                    <a class="titleBlock_1" href="do-led-noi-that-o-to/<?php echo route_to('home'); ?>">
-                        <h2 class="titleText wk-editable-text" id="home-section3-text1">Độ LED Nội Thất Ô Tô</h2>
-                    </a>
-                </div>
-                <div class="mainOfSec">
-                    <div class="colImg">
-                        <div class="bannerPart">
-                            <img alt="Độ LED Nội Thất Ô Tô" class="wk-editable-image" id="home-section2-img5"
-                                 loading="lazy"
-                                 src="storage/vz/kj/vzkjbe07nda9nptk4n40unjz0knw_sn2vi363gv66qy2sgqz3b0ovcllg_%e1%ba%a2NH_WEB_(7).jpg">
-                        </div>
-                    </div>
-                    <div class="colListPr">
-                        <div class="owl-carousel owl-theme slideProducts">
-                            <div class="slidePart">
-                                <article class="artProduct">
-                                    <a class="imgPr figure2"
-                                       href="san-pham/led-vien-noi-that0o-to-v4-22-chi-tiet/<?php echo route_to('home'); ?>">
-                                        <img alt="Led Viền Nội Thất Ô Tô V4 22 Chi Tiết" loading="lazy"
-                                             src="storage/sn/2v/sn2vi363gv66qy2sgqz3b0ovcllg_%e1%ba%a2NH_WEB_(7).jpg">
-                                    </a>
-                                    <div class="textInforPr">
-                                        <a class="linkPr"
-                                           href="san-pham/led-vien-noi-that0o-to-v4-22-chi-tiet/<?php echo route_to('home'); ?>">
-                                            <h3 class="namePr">Led Viền Nội Thất Ô Tô V4 22 Chi Tiết</h3>
-                                        </a>
-                                        <div class="labelGift">
-                                            <i class="bi bi-gift-fill giftIcon"></i>
-                                            <span class="giftInfo">Phòng dán chuẩn Mỹ</span>
-                                        </div>
-                                        <p class="originalPrice">4.000.000đ</p>
-                                        <p class="currentPrice">3.300.000đ</p>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="slidePart">
-                                <article class="artProduct">
-                                    <a class="imgPr figure2"
-                                       href="san-pham/led-vien-noi-that-o-to-v3-20-chi-tiet/<?php echo route_to('home'); ?>">
-                                        <img alt="Led Viền Nội Thất Ô Tô V3 20 Chi Tiết" loading="lazy"
-                                             src="storage/hf/gn/hfgn95ydzfb2yobo3jlmh98x9p7a_%e1%ba%a2NH_WEB_(7).jpg">
-                                    </a>
-                                    <div class="textInforPr">
-                                        <a class="linkPr"
-                                           href="san-pham/led-vien-noi-that-o-to-v3-20-chi-tiet/<?php echo route_to('home'); ?>">
-                                            <h3 class="namePr">Led Viền Nội Thất Ô Tô V3 20 Chi Tiết</h3>
-                                        </a>
-                                        <div class="labelGift">
-                                            <i class="bi bi-gift-fill giftIcon"></i>
-                                            <span class="giftInfo">Phòng dán chuẩn Mỹ</span>
-                                        </div>
-                                        <p class="originalPrice">3.000.000đ</p>
-                                        <p class="currentPrice">2.500.000đ</p>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="slidePart">
-                                <article class="artProduct">
-                                    <a class="imgPr figure2"
-                                       href="san-pham/led-vien-noi-that-o-to-v2-18-chi-tiet-thanh-led-1-mau/<?php echo route_to('home'); ?>">
-                                        <img alt="LED VIỀN NỘI THẤT Ô TÔ V2 18 CHI TIẾT – THANH LED 1 MÀU "
-                                             loading="lazy"
-                                             src="storage/sw/4s/sw4sk73v0hfu7lj36mmhjnjxjf9j_%e1%ba%a2NH_WEB_(7).jpg">
-                                    </a>
-                                    <div class="textInforPr">
-                                        <a class="linkPr"
-                                           href="san-pham/led-vien-noi-that-o-to-v2-18-chi-tiet-thanh-led-1-mau/<?php echo route_to('home'); ?>">
-                                            <h3 class="namePr">LED VIỀN NỘI THẤT Ô TÔ V2 18 CHI TIẾT – THANH LED 1
-                                                MÀU </h3>
-                                        </a>
-                                        <div class="labelGift">
-                                            <i class="bi bi-gift-fill giftIcon"></i>
-                                            <span class="giftInfo">Phòng dán chuẩn Mỹ</span>
-                                        </div>
-                                        <p class="originalPrice">2.000.000đ</p>
-                                        <p class="currentPrice">1.500.000đ</p>
-                                    </div>
-                                </article>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="btnViewAll">
-                    <a class="btnType_2" href="do-led-noi-that-o-to/<?php echo route_to('home'); ?>">
-                        <span class="textBtn wk-editable-text" id="home-section3-text2">Xem thêm sản phẩm</span>
-                        <i class="bi bi-chevron-right iconRight"></i>
-                    </a>
-                </div>
-            </section>
-            <section class="secCatePr">
-                <div class="setLineUnderTitle">
-                    <a class="titleBlock_1" href="do-san-o-to/<?php echo route_to('home'); ?>">
-                        <h2 class="titleText wk-editable-text" id="home-section3-text1">Độ Sàn Ô Tô</h2>
-                    </a>
-                </div>
-                <div class="mainOfSec">
-                    <div class="colImg">
-                        <div class="bannerPart">
-                            <img alt="Độ Sàn Ô Tô" class="wk-editable-image" id="home-section2-img5" loading="lazy"
-                                 src="storage/f0/y1/f0y1v8t137gho6ta1o65luqclvyn_Screenshot_2024-04-25_164619.png">
-                        </div>
-                    </div>
-                    <div class="colListPr">
-                        <div class="owl-carousel owl-theme slideProducts">
-                            <div class="slidePart">
-                                <article class="artProduct">
-                                    <a class="imgPr figure2"
-                                       href="san-pham/san-go-kia-carnival-chi-nhom/<?php echo route_to('home'); ?>">
-                                        <img alt="Sàn Gỗ Kia Carnival Chỉ Nhôm – Vệ Sinh Nhanh, Không Bám Mùi"
-                                             loading="lazy"
-                                             src="storage/3h/kr/3hkrnueg5pruc4jyvarbx5i21vx6_Screenshot_2024-06-06_162918.png">
-                                    </a>
-                                    <div class="textInforPr">
-                                        <a class="linkPr"
-                                           href="san-pham/san-go-kia-carnival-chi-nhom/<?php echo route_to('home'); ?>">
-                                            <h3 class="namePr">Sàn Gỗ Kia Carnival Chỉ Nhôm – Vệ Sinh Nhanh, Không Bám
-                                                Mùi</h3>
-                                        </a>
-                                        <div class="labelGift">
-                                            <i class="bi bi-gift-fill giftIcon"></i>
-                                            <span class="giftInfo">Phòng dán chuẩn Mỹ</span>
-                                        </div>
-                                        <p class="originalPrice">17.000.000đ</p>
-                                        <p class="currentPrice">15.500.000đ</p>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="slidePart">
-                                <article class="artProduct">
-                                    <a class="imgPr figure2"
-                                       href="san-pham/san-go-kia-carnival-chi-den/<?php echo route_to('home'); ?>">
-                                        <img alt="Sàn Gỗ Kia Carnival Chỉ Đen – Bảo Vệ Sàn Nguyên Bản, Tăng Thẩm Mỹ Nội Thất Xe"
-                                             loading="lazy"
-                                             src="storage/1q/ae/1qaech88kd561drqbt9xnotedm6a_Screenshot_2024-06-06_162622.png">
-                                    </a>
-                                    <div class="textInforPr">
-                                        <a class="linkPr"
-                                           href="san-pham/san-go-kia-carnival-chi-den/<?php echo route_to('home'); ?>">
-                                            <h3 class="namePr">Sàn Gỗ Kia Carnival Chỉ Đen – Bảo Vệ Sàn Nguyên Bản, Tăng
-                                                Thẩm Mỹ Nội Thất Xe</h3>
-                                        </a>
-                                        <div class="labelGift">
-                                            <i class="bi bi-gift-fill giftIcon"></i>
-                                            <span class="giftInfo">Phòng dán chuẩn Mỹ</span>
-                                        </div>
-                                        <p class="originalPrice">15.000.000đ</p>
-                                        <p class="currentPrice">13.500.000đ</p>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="slidePart">
-                                <article class="artProduct">
-                                    <a class="imgPr figure2"
-                                       href="san-pham/san-carbon-kia-sedona-la-vang/<?php echo route_to('home'); ?>">
-                                        <img alt="Sàn Carbon Kia Sedona Lá Vàng – Lựa Chọn Hoàn Hảo Cho Xe Hạng Sang"
-                                             loading="lazy"
-                                             src="storage/em/jt/emjtivkcnkkb9rh2dyj5ojzvftrt_Screenshot_2024-06-06_162146.png">
-                                    </a>
-                                    <div class="textInforPr">
-                                        <a class="linkPr"
-                                           href="san-pham/san-carbon-kia-sedona-la-vang/<?php echo route_to('home'); ?>">
-                                            <h3 class="namePr">Sàn Carbon Kia Sedona Lá Vàng – Lựa Chọn Hoàn Hảo Cho Xe
-                                                Hạng Sang</h3>
-                                        </a>
-                                        <div class="labelGift">
-                                            <i class="bi bi-gift-fill giftIcon"></i>
-                                            <span class="giftInfo">Phòng dán chuẩn Mỹ</span>
-                                        </div>
-                                        <p class="originalPrice">19.000.000đ</p>
-                                        <p class="currentPrice">17.500.000đ</p>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="slidePart">
-                                <article class="artProduct">
-                                    <a class="imgPr figure2"
-                                       href="san-pham/san-go-hyundai-palisade-chi-den/<?php echo route_to('home'); ?>">
-                                        <img alt="Sàn Gỗ Hyundai Palisade Chỉ Đen - Nâng Tầm Đẳng Cấp" loading="lazy"
-                                             src="storage/0a/k4/0ak42oeotguj98dxjnncz3axxruh_Screenshot_2024-06-06_161826.png">
-                                    </a>
-                                    <div class="textInforPr">
-                                        <a class="linkPr"
-                                           href="san-pham/san-go-hyundai-palisade-chi-den/<?php echo route_to('home'); ?>">
-                                            <h3 class="namePr">Sàn Gỗ Hyundai Palisade Chỉ Đen - Nâng Tầm Đẳng Cấp</h3>
-                                        </a>
-                                        <div class="labelGift">
-                                            <i class="bi bi-gift-fill giftIcon"></i>
-                                            <span class="giftInfo">Phòng dán chuẩn Mỹ</span>
-                                        </div>
-                                        <p class="originalPrice">15.000.000đ</p>
-                                        <p class="currentPrice">13.500.000đ</p>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="slidePart">
-                                <article class="artProduct">
-                                    <a class="imgPr figure2"
-                                       href="san-pham/san-go-mercedes-benz-v220-chi-den/<?php echo route_to('home'); ?>">
-                                        <img alt="Sàn Gỗ Mercedes Benz V220 Chỉ Đen - Nâng Tầm Đẳng Cấp" loading="lazy"
-                                             src="storage/y6/zl/y6zl2ltt03g9raaj2z2i7v79hnrg_Screenshot_2024-06-06_161415.png">
-                                    </a>
-                                    <div class="textInforPr">
-                                        <a class="linkPr"
-                                           href="san-pham/san-go-mercedes-benz-v220-chi-den/<?php echo route_to('home'); ?>">
-                                            <h3 class="namePr">Sàn Gỗ Mercedes Benz V220 Chỉ Đen - Nâng Tầm Đẳng
-                                                Cấp</h3>
-                                        </a>
-                                        <div class="labelGift">
-                                            <i class="bi bi-gift-fill giftIcon"></i>
-                                            <span class="giftInfo">Phòng dán chuẩn Mỹ</span>
-                                        </div>
-                                        <p class="originalPrice">21.000.000đ</p>
-                                        <p class="currentPrice">19.500.000đ</p>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="slidePart">
-                                <article class="artProduct">
-                                    <a class="imgPr figure2"
-                                       href="san-pham/san-go-mercedes-benz-v250-chi-den/<?php echo route_to('home'); ?>">
-                                        <img alt="Sàn Gỗ Mercedes Benz V250 AMG Chỉ Đen - Nâng Tầm Đẳng Cấp"
-                                             loading="lazy"
-                                             src="storage/8z/mw/8zmwuwtxxj6w3rvsnejw64f1nmfz_Screenshot_2024-06-06_160958.png">
-                                    </a>
-                                    <div class="textInforPr">
-                                        <a class="linkPr"
-                                           href="san-pham/san-go-mercedes-benz-v250-chi-den/<?php echo route_to('home'); ?>">
-                                            <h3 class="namePr">Sàn Gỗ Mercedes Benz V250 AMG Chỉ Đen - Nâng Tầm Đẳng
-                                                Cấp</h3>
-                                        </a>
-                                        <div class="labelGift">
-                                            <i class="bi bi-gift-fill giftIcon"></i>
-                                            <span class="giftInfo">Phòng dán chuẩn Mỹ</span>
-                                        </div>
-                                        <p class="originalPrice">21.000.000đ</p>
-                                        <p class="currentPrice">19.500.000đ</p>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="slidePart">
-                                <article class="artProduct">
-                                    <a class="imgPr figure2"
-                                       href="san-pham/san-go-lexus-lm500h-chi-den/<?php echo route_to('home'); ?>">
-                                        <img alt="Sàn Gỗ Lexus LM500h Chỉ Đen - Nâng Tầm Đẳng Cấp" loading="lazy"
-                                             src="storage/eq/nk/eqnkee67gawqe4ryy8enmszlfkaz_Screenshot_2024-06-06_160609.png">
-                                    </a>
-                                    <div class="textInforPr">
-                                        <a class="linkPr"
-                                           href="san-pham/san-go-lexus-lm500h-chi-den/<?php echo route_to('home'); ?>">
-                                            <h3 class="namePr">Sàn Gỗ Lexus LM500h Chỉ Đen - Nâng Tầm Đẳng Cấp</h3>
-                                        </a>
-                                        <div class="labelGift">
-                                            <i class="bi bi-gift-fill giftIcon"></i>
-                                            <span class="giftInfo">Phòng dán chuẩn Mỹ</span>
-                                        </div>
-                                        <p class="originalPrice">15.000.000đ</p>
-                                        <p class="currentPrice">13.500.000đ</p>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="slidePart">
-                                <article class="artProduct">
-                                    <a class="imgPr figure2"
-                                       href="san-pham/san-go-lexus-lm300h-chi-nhom/<?php echo route_to('home'); ?>">
-                                        <img alt="Sàn Gỗ Lexus LM300h Chỉ Nhôm Cao Cấp – Vẻ Đẹp Sang Trọng Cho Nội Thất Ô Tô"
-                                             loading="lazy"
-                                             src="storage/52/h2/52h2fki3qxydk1ykw9ed20853b4q_Screenshot_2024-06-06_160244.png">
-                                    </a>
-                                    <div class="textInforPr">
-                                        <a class="linkPr"
-                                           href="san-pham/san-go-lexus-lm300h-chi-nhom/<?php echo route_to('home'); ?>">
-                                            <h3 class="namePr">Sàn Gỗ Lexus LM300h Chỉ Nhôm Cao Cấp – Vẻ Đẹp Sang Trọng
-                                                Cho Nội Thất Ô Tô</h3>
-                                        </a>
-                                        <div class="labelGift">
-                                            <i class="bi bi-gift-fill giftIcon"></i>
-                                            <span class="giftInfo">Phòng dán chuẩn Mỹ</span>
-                                        </div>
-                                        <p class="originalPrice">17.000.000đ</p>
-                                        <p class="currentPrice">15.500.000đ</p>
-                                    </div>
-                                </article>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="btnViewAll">
-                    <a class="btnType_2" href="do-san-o-to/<?php echo route_to('home'); ?>">
                         <span class="textBtn wk-editable-text" id="home-section3-text2">Xem thêm sản phẩm</span>
                         <i class="bi bi-chevron-right iconRight"></i>
                     </a>
