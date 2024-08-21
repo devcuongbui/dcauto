@@ -137,3 +137,15 @@ define('ORDER_STATUS_NAMES', [
     '3' => 'Đang giao hàng',
     '4' => 'Giao hàng thành công',
 ]);
+
+define('REVIEW_STATUS_COLORS', [
+    'N' => 'info',
+    'Y' => 'success',
+    'C' => 'warning',
+]);
+
+define('REVIEW_STATUS_NAMES', [
+    'N' => 'Đang chờ duyệt',
+    'Y' => 'Đã được duyệt',
+    'C' => 'Đã xóa',
+]);

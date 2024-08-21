@@ -7,12 +7,14 @@ class ProductController extends BaseController
     private $session;
     protected $productModel;
     protected $productOptionModel;
+    protected $reviewModel;
     public function __construct()
     {
         $this->session = session();
         $this->productModel = model("ProductModel");
         $this->category = model("Category");
         $this->productOptionModel =  model("ProductOptionModel");
+        $this->reviewModel = model("ReviewModel");
     }
 
     public function index($category_slug = null)
@@ -93,8 +95,9 @@ class ProductController extends BaseController
         $product['relatedProducts'] = $this->productModel->where('category_id', $product['category_id'])
             ->where('slug !=', $slug) // Exclude the current product
             ->findAll();
+        $reviewList = $this->reviewModel->where('product_id', $product['product_id'])->findAll();
 
-        return view('product/view', ['product' => $product]);
+        return view('product/view', ['product' => $product, 'reviewList' => $reviewList]);
     }
 
     public function getOneById($id = null)

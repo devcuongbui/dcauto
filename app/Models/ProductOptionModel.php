@@ -13,19 +13,20 @@ class ProductOptionModel extends Model
 
     protected $returnType = 'array';
     protected $useSoftDeletes = true;
+    protected $protectFields = false; //if true is default
 
     protected $allowedFields = [
-        'product_id',
-        'pot_id',
-        'po_name',
-        'po_description',
-        'po_value',
-        'po_init_price',
-        'po_image',
-        'po_sell_price',
-        'created_at',
-        'updated_at',
-        'deleted_at'
+//        'product_id',
+//        'pot_id',
+//        'po_name',
+//        'po_description',
+//        'po_value',
+//        'po_init_price',
+//        'po_image',
+//        'po_sell_price',
+//        'created_at',
+//        'updated_at',
+//        'deleted_at'
     ];
 
     protected $useTimestamps = true;

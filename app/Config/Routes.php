@@ -41,6 +41,10 @@ $routes->group("category", static function ($routes) {
     $routes->get('list', 'CategoryController::categoryHome', ['as' => 'category.category_home']);
 });
 
+$routes->group("review", static function ($routes) {
+    $routes->post('save', 'ReviewController::save', ['as' => 'review.save']);
+});
+
 $routes->group("location", static function ($routes) {
     $routes->get('province', 'Location::getProvinces',['as' => 'location.province']);
     $routes->get('district/(:segment)', 'Location::getDistricts/$1', ['as' => 'location.district']);
