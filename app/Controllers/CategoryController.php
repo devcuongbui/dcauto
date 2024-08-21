@@ -31,6 +31,25 @@ class CategoryController extends BaseController
         $data["s_parent_code_no"] = $s_parent_code_no;     
         return view('admin/category/list', $data);
     }
+    
+    public function change_order()
+    {
+        $c_idx = $this->request->getPost("c_idx");
+        $onum = $this->request->getPost("onum");
+        if(is_array($c_idx)){
+            for($i = 0; $i < count($c_idx); $i++) {
+                $result = $this->category->update($c_idx[$i], ["onum" => $onum[$i]]);
+            }
+            if($result) {
+                $resultArr['result'] = true;
+                $resultArr['message'] = "Thay đổi thứ tự thành công!";
+            }else{
+                $resultArr['result'] = false;
+                $resultArr['message'] = "Thay đổi thứ tự thất bại!";
+            }
+        }
+        return $this->response->setJSON($resultArr);
+    }
 
     public function categoryHome()
     {
