@@ -58,6 +58,21 @@
                 <label for="contents" class="form-label">Nội dung: </label>
                 <textarea name="contents" id="contents" cols="20" rows="10" class="tinymce-editor"><?=$contents?></textarea>
             </div>
+            <div class="form-group">
+                <label for="ufile1" class="form-label">Hình ảnh: </label>
+                <input type="file" name="ufile1" id="ufile1" class="form-control main_item">
+                <?php
+                    if(!empty($ufile1)){
+                ?>
+                    <a href="<?=!empty($ufile1) ? "/public/uploads/category/{$ufile1}" : null?>" download="<?=$rfile1?>">
+                        <img src="<?=!empty($ufile1) ? "/public/uploads/category/{$ufile1}" : null?>" style="width: 100px; height: 100px; object-fit: cover; margin-top: 10px;">
+                    </a>
+                    <br>
+                    Xoá ảnh: <input type="checkbox" class="form-check-input" name="del_img" value='Y'>        
+                <?php
+                    }
+                ?>
+            </div>
             <div class="mt-2 d-flex justify-content-center align-items-center">
                 <button id="btnCreate" type="button" onclick="send_it();" class="btn btn-primary">Lưu lại</button>
             </div>

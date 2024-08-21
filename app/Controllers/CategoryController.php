@@ -6,6 +6,8 @@ class CategoryController extends BaseController
 {
     protected $category;
 
+    private $uploadPath = FCPATH ."public/uploads/category/";
+
     public function __construct()
     {
         $this->category = model("Category");
@@ -30,6 +32,25 @@ class CategoryController extends BaseController
         $data["total"] = count($data["categories"]);
         $data["s_parent_code_no"] = $s_parent_code_no;     
         return view('admin/category/list', $data);
+    }
+    
+    public function change_order()
+    {
+        $c_idx = $this->request->getPost("c_idx");
+        $onum = $this->request->getPost("onum");
+        if(is_array($c_idx)){
+            for($i = 0; $i < count($c_idx); $i++) {
+                $result = $this->category->update($c_idx[$i], ["onum" => $onum[$i]]);
+            }
+            if($result) {
+                $resultArr['result'] = true;
+                $resultArr['message'] = "Thay đổi thứ tự thành công!";
+            }else{
+                $resultArr['result'] = false;
+                $resultArr['message'] = "Thay đổi thứ tự thất bại!";
+            }
+        }
+        return $this->response->setJSON($resultArr);
     }
 
     public function categoryHome()
@@ -71,6 +92,8 @@ class CategoryController extends BaseController
             $data["status"] = $record["status"];
             $data["contents"] = $record["contents"];
             $data["onum"] = $record["onum"];
+            $data["ufile1"] = $record["ufile1"];
+            $data["rfile1"] = $record["rfile1"];
             $data["s_parent_code_no"] = $s_parent_code_no;
         }else {
             $row_category = $this->category->where('code_no', $s_parent_code_no)->findAll();
@@ -87,6 +110,8 @@ class CategoryController extends BaseController
             $data["depth"] = $depth;
             $data["code_no"] = $code_no;
             $data["onum"] = 0;
+            $data["ufile1"] = "";
+            $data["rfile1"] = "";
             $data["s_parent_code_no"] = $s_parent_code_no;
         }
 
@@ -98,8 +123,49 @@ class CategoryController extends BaseController
         $s_parent_code_no = $this->request->getPost("parent_code_no");
         $c_idx = $this->request->getPost("c_idx");
         $data = $this->request->getPost();
+        $del_img = $this->request->getPost("del_img");
+        $file = $this->request->getFile('ufile1');
+
+        $uploadPath = $this->uploadPath;
+        if(!is_dir($uploadPath)){
+            mkdir($uploadPath, 0755, true);
+        }
+
         if(!empty($c_idx)){
             $result = $this->category->update($c_idx, $data);
+            $category = $this->category->find($c_idx);
+            if(!empty($del_img) && $del_img == 'Y'){
+                if($category["ufile1"]){
+                    $filePath = $uploadPath . $category["ufile1"];
+                    if(file_exists($filePath)){
+                        unlink($filePath);
+                    }
+                    $this->category->update($c_idx, [
+                        "ufile1" => "",
+                        "rfile1" => ""
+                    ]);
+                }
+            }
+
+            if($file->isValid() && !$file->hasMoved()){
+                if($category["ufile1"]){
+                    $filePath = $uploadPath . $category["ufile1"];
+                    if(file_exists($filePath)){
+                        unlink($filePath);
+                    }
+                }
+                $newName = $file->getRandomName();
+                $oldName = $file->getClientName();
+                if($newName){
+                    $file->move($uploadPath, $newName);
+                }
+                $data_file = [
+                    "ufile1" => $newName,
+                    "rfile1" => $oldName
+                ];
+                $this->category->update($c_idx, $data_file);
+            }
+
             if($result) {
                 $resultArr['result'] = true;
                 $resultArr['message'] = "Cập nhật thành công!";
@@ -110,6 +176,20 @@ class CategoryController extends BaseController
             $resultArr['c_idx'] = $c_idx;
         }else{
             $id = $this->category->insert($data);
+
+            if($file->isValid() && !$file->hasMoved()){
+                $newName = $file->getRandomName();
+                $oldName = $file->getClientName();
+                if($newName){
+                    $file->move($uploadPath, $newName);
+                }
+                $data_file = [
+                    "ufile1" => $newName,
+                    "rfile1" => $oldName
+                ];
+                $this->category->update($id, $data_file);
+            }
+
             if($id) {
                 $resultArr['result'] = true;
                 $resultArr['message'] = "Thêm mới thành công!";
@@ -118,6 +198,7 @@ class CategoryController extends BaseController
                 $resultArr['message'] = "Thêm mới thất bại!";
             }
         }
+
         $resultArr['parent_code'] = $s_parent_code_no;
         return $this->response->setJSON($resultArr);
     }

@@ -21,67 +21,93 @@
         </div>
     </div>
     <section class="section">
-        <table class="table datatable">
-            <thead>
-            <tr>
-                <th class="text-center" scope="col">Số thứ tự</th>
-                <th class="text-center" scope="col">Mã số</th>
-                <th class="text-center" scope="col">Tên danh mục</th>
-                <th class="text-center" scope="col">DEPTH</th>
-                <th class="text-center" scope="col">Tình trạng sử dụng</th>
-                <th class="text-center" scope="col">Mức độ ưu tiên</th>
-                <th class="text-center" scope="col">Quản lý</th>
-            </tr>
-            </thead>
-            <tbody>
-                <?php
-                    $i = $total;
-                    foreach($categories as $category) {
-                        if($category["status"] == "Y"){
-                            $status = "Sử dụng";
-                        }else {
-                            $status = "Không sử dụng";
+        <form name="frm" id="frm">
+            <table class="table datatable">
+                <thead>
+                <tr>
+                    <th class="text-center" scope="col">Số thứ tự</th>
+                    <th class="text-center" scope="col">Mã số</th>
+                    <th class="text-center" scope="col">Tên danh mục</th>
+                    <th class="text-center" scope="col">DEPTH</th>
+                    <th class="text-center" scope="col">Tình trạng sử dụng</th>
+                    <th class="text-center" scope="col">Mức độ ưu tiên</th>
+                    <th class="text-center" scope="col">Quản lý</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <?php
+                        $i = $total;
+                        foreach($categories as $category) {
+                            if($category["status"] == "Y"){
+                                $status = "Sử dụng";
+                            }else {
+                                $status = "Không sử dụng";
+                            }
+                    ?>     
+                        <tr>
+                            <th class="text-center align-middle" scope="row"><?=$i?></th>
+                            <td class="text-center align-middle"><?=$category["code_no"]?></td>
+                            <td class="text-center align-middle">
+                                <a href="/admin/category/write?c_idx=<?=$category["c_idx"]?>&s_parent_code_no=<?=$category["parent_code_no"]?>">
+                                    <?=$category["code_name"]?>
+                                </a>
+                            </td>
+                            <td class="text-center align-middle"><?=$category["depth"]?></td>
+                            <td class="text-center align-middle"><?=$status?></td>
+                            <td class="text-center align-middle">
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <input type="text" name="onum[]" value="<?= $category["onum"] ?>"
+                                            class="form-control text-center" style="width:100px"/>
+                                    <input type="hidden" name="c_idx[]" value="<?= $category["c_idx"] ?>"
+                                            class="form-control"/>
+                                </div>
+                            </td>
+                            <td class="text-center align-middle">
+                                <div class="d-flex justify-content-center" style="gap: 10px;">
+                                    <?php if($category["cnt"] <= 1 ){?>
+                                        <a href="#!" onclick="code_delete('<?= $category['c_idx'] ?>');"
+                                            class="btn btn-outline-danger">Xóa</a>
+                                    <?php
+                                        }
+                                    ?>
+                                    <a href="/admin/category/write?s_parent_code_no=<?= $category["code_no"] ?>"
+                                        class="btn btn-outline-secondary">Đăng kí</a>
+                                    <a href="/admin/category/list?s_parent_code_no=<?= $category["code_no"] ?>"
+                                        class="btn btn-outline-secondary">Danh sách phụ</a>                           
+                                </div>
+                            </td>
+                        </tr>   
+                    <?php
+                        $i--;
                         }
-                ?>     
-                    <tr>
-                        <th class="text-center align-middle" scope="row"><?=$i?></th>
-                        <td class="text-center align-middle"><?=$category["code_no"]?></td>
-                        <td class="text-center align-middle">
-                            <a href="/admin/category/write?c_idx=<?=$category["c_idx"]?>&s_parent_code_no=<?=$category["parent_code_no"]?>">
-                                <?=$category["code_name"]?>
-                            </a>
-                        </td>
-                        <td class="text-center align-middle"><?=$category["depth"]?></td>
-                        <td class="text-center align-middle"><?=$status?></td>
-                        <td class="text-center align-middle">
-                            <div class="d-flex align-items-center justify-content-center">
-                                <input type="text" name="onum[]" value="<?= $category["onum"] ?>"
-                                        class="form-control text-center" style="width:100px"/>
-                                <input type="hidden" name="code_idx[]" value="<?= $category["c_idx"] ?>"
-                                        class="form-control"/>
-                            </div>
-                        </td>
-                        <td class="text-center align-middle">
-                            <div class="d-flex justify-content-center" style="gap: 10px;">
-                                <?php if($category["cnt"] <= 1 ){?>
-                                    <a href="#!" onclick="code_delete('<?= $category['c_idx'] ?>');"
-                                        class="btn btn-outline-danger">Xóa</a>
-                                <?php
-                                    }
-                                ?>
-                                <a href="/admin/category/write?s_parent_code_no=<?= $category["code_no"] ?>"
-                                    class="btn btn-outline-secondary">Đăng kí</a>
-                                <a href="/admin/category/list?s_parent_code_no=<?= $category["code_no"] ?>"
-                                    class="btn btn-outline-secondary">Danh sách phụ</a>                           
-                            </div>
-                        </td>
-                    </tr>   
-                <?php
-                    $i--;
-                    }
-                ?>
-                
-            </tbody>
-        </table>
+                    ?>
+                    
+                </tbody>
+            </table>
+        </form>
     </section>
+<script>
+    function change_it() {
+        $.ajax({
+            url: "/admin/category/change_order",
+            type: "POST",
+            data: $("#frm").serialize(),
+            error : function(request, status, error) {
+                //통신 에러 발생시 처리
+                alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+            }
+            , success : function(response, status, request) {
+                if (response.result == true)
+                {
+                    alert(response.message);
+                    location.reload();
+                    return;
+                } else {
+                    alert(response.message);
+                    return;
+                }
+            }
+        });
+    }
+</script>
 <?= $this->endSection() ?>
