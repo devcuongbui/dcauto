@@ -36,5 +36,11 @@ $routes->group("products", static function ($routes) {
     $routes->get('detail/(:any)', 'Admin\AdminProductController::detail/$1', ['as' => 'admin.products.detail']);
     $routes->post('create', 'Admin\AdminProductController::store', ['as' => 'admin.products.store']);
     $routes->post('update/(:any)', 'Admin\AdminProductController::update/$1', ['as' => 'admin.products.update']);
+    $routes->post('create-image/(:any)', 'Admin\AdminProductController::createImage/$1', ['as' => 'admin.products.gallery.create']);
+    $routes->post('create-attribute/(:any)', 'Admin\AdminProductController::createAttribute/$1', ['as' => 'admin.properties.create']);
+    $routes->post('update-image/(:any)', 'Admin\AdminProductController::updateImage/$1', ['as' => 'admin.products.gallery.update']);
+    $routes->post('update-attribute/(:any)', 'Admin\AdminProductController::updateAttribute/$1', ['as' => 'admin.properties.update']);
     $routes->delete('delete/(:any)', 'Admin\AdminProductController::delete/$1', ['as' => 'admin.products.delete']);
+    $routes->delete('delete-image/(:any)', 'Admin\AdminProductController::deleteImage/$1', ['as' => 'admin.products.gallery.delete']);
+    $routes->delete('delete-attribute/(:any)', 'Admin\AdminProductController::deleteAttribute/$1', ['as' => 'admin.products.properties.delete']);
 });
