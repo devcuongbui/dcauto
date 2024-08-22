@@ -38,7 +38,7 @@
                     <td>
                         <img src="<?= site_url('uploads/products/') . $item['product_image'] ?>"
                              alt="<?= $item['product_name'] ?>"
-                             width="100px">
+                             width="100px" loading="lazy">
                     </td>
                     <td><?= $item['product_code'] ?></td>
                     <td><?= $item['init_price'] ?></td>
