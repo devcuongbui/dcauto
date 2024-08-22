@@ -11,4 +11,8 @@ class AdminHomeController extends BaseController
     {
         return view('admin/dashboard');
     }
+    public function users_profile()
+    {
+        return view('admin/account/users_profile');
+    }
 }

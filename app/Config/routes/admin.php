@@ -7,6 +7,7 @@ use CodeIgniter\Router\RouteCollection;
  */
 
 $routes->get('dashboard', 'Admin\AdminHomeController::index', ['as' => 'home.admin']);
+$routes->get('users-profile', 'Admin\AdminHomeController::users_profile', ['as' => 'home.users_profile']);
 
 $routes->group("news", static function ($routes) {
     $routes->get('list', 'Admin\AdminNewsController::list', ['as' => 'admin.news.list']);
