@@ -30,20 +30,17 @@ $routes->group("contact", static function ($routes) {
     $routes->delete('delete/(:any)', 'Admin\AdminContactController::delete/$1', ['as' => 'admin.contact.delete']);
 });
 
-$routes->group("cars", static function ($routes) {
-    $routes->get('list', 'Admin\AdminCarsController::list', ['as' => 'admin.cars.list']);
-    $routes->get('create', 'Admin\AdminCarsController::create', ['as' => 'admin.cars.create']);
-    $routes->get('detail/(:any)', 'Admin\AdminCarsController::detail/$1', ['as' => 'admin.cars.detail']);
-    $routes->post('create', 'Admin\AdminCarsController::handleCreate', ['as' => 'admin.cars.handleCreate']);
-    $routes->put('update/(:any)', 'Admin\AdminCarsController::update/$1', ['as' => 'admin.cars.update']);
-    $routes->delete('delete/(:any)', 'Admin\AdminCarsController::delete/$1', ['as' => 'admin.cars.delete']);
-});
-
 $routes->group("products", static function ($routes) {
     $routes->get('list', 'Admin\AdminProductController::list', ['as' => 'admin.products.list']);
     $routes->get('create', 'Admin\AdminProductController::create', ['as' => 'admin.products.create']);
     $routes->get('detail/(:any)', 'Admin\AdminProductController::detail/$1', ['as' => 'admin.products.detail']);
     $routes->post('create', 'Admin\AdminProductController::store', ['as' => 'admin.products.store']);
     $routes->post('update/(:any)', 'Admin\AdminProductController::update/$1', ['as' => 'admin.products.update']);
+    $routes->post('create-image/(:any)', 'Admin\AdminProductController::createImage/$1', ['as' => 'admin.products.gallery.create']);
+    $routes->post('create-attribute/(:any)', 'Admin\AdminProductController::createAttribute/$1', ['as' => 'admin.products.properties.create']);
+    $routes->post('update-image/(:any)', 'Admin\AdminProductController::updateImage/$1', ['as' => 'admin.products.gallery.update']);
+    $routes->post('update-attribute/(:any)', 'Admin\AdminProductController::updateAttribute/$1', ['as' => 'admin.products.properties.update']);
     $routes->delete('delete/(:any)', 'Admin\AdminProductController::delete/$1', ['as' => 'admin.products.delete']);
+    $routes->delete('delete-image/(:any)', 'Admin\AdminProductController::deleteImage/$1', ['as' => 'admin.products.gallery.delete']);
+    $routes->delete('delete-attribute/(:any)', 'Admin\AdminProductController::deleteAttribute/$1', ['as' => 'admin.products.properties.delete']);
 });

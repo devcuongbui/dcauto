@@ -38,7 +38,7 @@
                     <td>
                         <img src="<?= site_url('uploads/products/') . $item['product_image'] ?>"
                              alt="<?= $item['product_name'] ?>"
-                             width="100px">
+                             width="100px" loading="lazy">
                     </td>
                     <td><?= $item['product_code'] ?></td>
                     <td><?= $item['init_price'] ?></td>
@@ -51,7 +51,7 @@
                         <a href="<?= route_to('admin.products.detail', $item['product_id']) ?>" class="btn btn-primary">
                             <i class="bi bi-eye"></i>
                         </a>
-                        <button type="button" data-id="<?= $item['id'] ?>"
+                        <button type="button" data-id="<?= $item['product_id'] ?>"
                                 onclick="confirmDelete('<?= $item['product_id'] ?>')"
                                 class="btn btnDelete btn-danger"><i class="bi bi-trash"></i></button>
                     </td>
@@ -62,4 +62,39 @@
             </tbody>
         </table>
     </section>
+    <script>
+        function confirmDelete(id) {
+            if (confirm('Bạn chắc chắn muốn xóa sản phẩm này?')) {
+                deleteProducts(id);
+            }
+        }
+
+        async function deleteProducts(id) {
+            let api = '<?php echo route_to('admin.products.delete', ':id'); ?>';
+            api = api.replace(':id', id);
+
+            try {
+                let result = await fetch(api, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                });
+
+                if (result.ok) {
+                    alert('Xoá thành công thành công!')
+                    let res = await result.json();
+                    console.log(res);
+                    window.location.reload();
+                } else {
+                    let res = await result.json();
+                    alert(res.message)
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Đã xảy ra lỗi trong quá trình xoá.');
+            }
+        }
+    </script>
 <?= $this->endSection() ?>

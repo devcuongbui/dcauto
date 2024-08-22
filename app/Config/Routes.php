@@ -20,6 +20,7 @@ $routes->group("admin", static function ($routes) {
         $routes->get('list', 'CategoryController::list', ['as' => 'admin.category.list']);
         $routes->get('write', 'CategoryController::write', ['as' => 'admin.category.write']);
         $routes->post('save', 'CategoryController::save', ['as' => 'admin.category.save']);
+        $routes->post('change_order', 'CategoryController::change_order', ['as' => 'admin.category.change_order']);
     });
 
 });
@@ -38,6 +39,10 @@ $routes->group("product", static function ($routes) {
 
 $routes->group("category", static function ($routes) {
     $routes->get('list', 'CategoryController::categoryHome', ['as' => 'category.category_home']);
+});
+
+$routes->group("review", static function ($routes) {
+    $routes->post('save', 'ReviewController::save', ['as' => 'review.save']);
 });
 
 $routes->group("location", static function ($routes) {

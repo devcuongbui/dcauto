@@ -7,12 +7,14 @@ class ProductController extends BaseController
     private $session;
     protected $productModel;
     protected $productOptionModel;
+    protected $reviewModel;
     public function __construct()
     {
         $this->session = session();
         $this->productModel = model("ProductModel");
         $this->category = model("Category");
         $this->productOptionModel =  model("ProductOptionModel");
+        $this->reviewModel = model("ReviewModel");
     }
 
     public function index($category_slug = null)
@@ -35,14 +37,14 @@ class ProductController extends BaseController
         // Fetch products based on whether the category is a parent or child
         if ($category['parent_code_no'] == 0) {
             // If the category is a parent category, get products from this category and its child categories
-            $childCategories = $this->category->where('parent_code_no', $category['code_no'])->findAll();
+            $childCategories = $this->category->where('parent_code_no', $category['c_idx'])->findAll();
             $childCategoryIds = array_column($childCategories, 'code_no');
             $childCategoryIds[] = $category['code_no']; // Include the parent category itself
 
             $products = $this->productModel->whereIn('category_id', $childCategoryIds)->findAll();
         } else {
             // If the category is a child category, get products from this category only
-            $products = $this->productModel->where('category_id', $category['code_no'])->findAll();
+            $products = $this->productModel->where('category_id', $category['c_idx'])->findAll();
         }
 
         // Pass the categories and products to the view
@@ -93,8 +95,9 @@ class ProductController extends BaseController
         $product['relatedProducts'] = $this->productModel->where('category_id', $product['category_id'])
             ->where('slug !=', $slug) // Exclude the current product
             ->findAll();
+        $reviewList = $this->reviewModel->where('product_id', $product['product_id'])->findAll();
 
-        return view('product/view', ['product' => $product]);
+        return view('product/view', ['product' => $product, 'reviewList' => $reviewList]);
     }
 
     public function getOneById($id = null)

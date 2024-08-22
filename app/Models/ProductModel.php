@@ -13,6 +13,7 @@ class ProductModel extends Model
 
     protected $returnType = 'array';
     protected $useSoftDeletes = true;
+    protected $protectFields = false; //if true is default
 
     protected $allowedFields = [
         'product_name',
@@ -45,4 +46,10 @@ class ProductModel extends Model
     protected $validationRules    = [];
     protected $validationMessages = [];
     protected $skipValidation     = false;
+
+    public function getProductsByCategories(array $categoryIds)
+    {
+        return $this->whereIn('category_id', $categoryIds)
+            ->findAll();
+    }
 }

@@ -66,12 +66,16 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                 <div class="middleArea">
                     <h1 class="titlePr"><?= $product['product_name'] ?></h1>
                     <div class="pricePart">
-                        <p class="currentPrice price_change"><?= number_format($product['sell_price'], 0, ',', '.') ?>đ</p>
-                        <p class="originalPrice price_change_init"><?= number_format($product['init_price'], 0, ',', '.') ?>đ</p>
+                        <p class="currentPrice price_change"><?= number_format($product['sell_price'], 0, ',', '.') ?>đ
+                        </p>
+                        <p class="originalPrice price_change_init">
+                            <?= number_format($product['init_price'], 0, ',', '.') ?>đ
+                        </p>
                     </div>
+                    <?php if ($product['pot_name']):?>
                     <article class="artSelectOpt variant_options">
                         <div class="showSelectedOpt">
-                            <p class="text title variant_name" key="loai-cam">Loại cam: </p>
+                            <p class="text title variant_name" key="loai-cam"><?= $product['pot_name'] ?>: </p>
                             <p class="text optText"></p>
                         </div>
                         <div class="listOptArea">
@@ -87,11 +91,12 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                     <div class="variants d-none">
                         <?php foreach ($product['options'] as $option): ?>
                             <p loai-cam="<?= $option['po_name'] ?>" price="<?= $option['po_sell_price'] ?>"
-                                picever="<?= $option['po_init_price'] ?>"
-                                option_id="<?= $option['po_id'] ?>">
-                                <?= $product['product_name'] ?>-<?= $option['po_name'] ?></p>
+                                picever="<?= $option['po_init_price'] ?>" option_id="<?= $option['po_id'] ?>">
+                                <?= $product['product_name'] ?>-<?= $option['po_name'] ?>
+                            </p>
                         <?php endforeach; ?>
                     </div>
+                    <?php endif; ?>
                     <form class="product-form" method="post" action="/cart/payment">
                         <input type="hidden" name="product_id" id="product_id" value="<?= $product['product_id'] ?>"
                             autocomplete="off">
@@ -198,8 +203,9 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                                                         <i class="bi bi-person-square" style="font-size: 40px"></i>
                                                     </div>
                                                     <div class="media-body">
-                                                        <form action="/comments/save" class="wk-comment-form"
-                                                            method="post" novalidate="novalidate">
+                                                        <form action="/review/save" class="wk-comment-form"
+                                                            method="post" novalidate="novalidate" id="wk-comment-form" name="wk-comment-form">
+                                                            <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
                                                             <div class="row">
                                                                 <div class="col-md-8 col-sm-12">
                                                                     <div class="row">
@@ -285,11 +291,10 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                                                                 </div>
                                                                 <div
                                                                     class="col-md-8 col-sm-12 mar-top clearfix mar-top">
-                                                                    <input name="owner_id" type="hidden" value="260">
-                                                                    <input name="owner_type" type="hidden"
-                                                                        value="Product">
+                                                                    <input name="review_type" type="hidden"
+                                                                        value="product">
                                                                     <button class="btn btn-sm btn-danger w-100"
-                                                                        type="button">Gửi bình luận</button>
+                                                                        type="button" id="btn_submit_review">Gửi bình luận</button>
                                                                 </div>
                                                             </div>
                                                         </form>
@@ -297,6 +302,31 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                                                 </div>
                                             </div>
                                         </div>
+                                        <?php foreach ($reviewList as $review): ?>
+                                        <div class="panel">
+                                            <div class="panel-body wk-comments-body" data-owner-id="101"
+                                                data-owner-type="Product" data-url="/comments/">
+                                                <div class="media-block">
+                                                    <div class="media-left">
+                                                        <i class="bi bi-person-square" style="font-size: 40px"></i>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <div class="mar-btm">
+                                                            <p
+                                                                class="btn-link text-semibold media-heading box-inline rating text-decoration-none">
+                                                                <?=$review['user_name']?>
+                                                                <span class="badge badge-<?=getReviewStatusColor($review['post_status'])?> ?>">
+                                                                    <?=getReviewStatusName($review['post_status'])?>
+                                                                </span>
+                                                            </p>
+                                                        </div>
+                                                        <p><?=$review['review_des']?></p>
+                                                        <hr>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <?php endforeach; ?>
                                         <div class="panel">
                                             <div class="panel-body wk-comments-body" data-owner-id="260"
                                                 data-owner-type="Product" data-url="/comments/"></div>
@@ -307,7 +337,8 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="modal" id="comment-message-modal" role="dialog" tabindex="-1">
+                                <div class="modal show" id="comment-message-modal" role="dialog" tabindex="-1"
+                                    aria-modal="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header" style="border: none">
@@ -317,7 +348,14 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <p class="comment-result-message"></p>
+                                                <p class="comment-result-message">
+                                                <div class="alert alert-success" role="alert">
+                                                    <h4 class="alert-heading text-center">Cảm ơn bạn đã gửi cảm nhận
+                                                    </h4>
+                                                    <p>Hệ thống sẽ kiểm duyệt đánh giá của bạn và đăng lên sau 24h nếu
+                                                        phù hợp</p>
+                                                </div>
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
@@ -341,7 +379,8 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                                 <div class="boxPr">
                                     <article class="artDetailPr">
                                         <div class="wrapImgPr">
-                                            <a class="imgPr figure2" href="/product/view/<?= $product_item['product_id'] ?>">
+                                            <a class="imgPr figure2"
+                                                href="/product/view/<?= $product_item['product_id'] ?>">
                                                 <img alt="<?= $product_item['product_name'] ?>" loading="lazy"
                                                     src="/uploads/products/<?= $product_item['product_image'] ?>">
                                             </a>
@@ -350,8 +389,12 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                                             <a class="prName"
                                                 href="/product/view/<?= $product_item['product_id'] ?>"><?= $product_item['product_name'] ?></a>
                                             <div class="pricePart">
-                                                <p class="currentPrice"><?= number_format($product_item['sell_price'], 0, ',', '.') ?>đ</p>
-                                                <p class="originalPrice"><?= number_format($product_item['init_price'], 0, ',', '.') ?>đ</p>
+                                                <p class="currentPrice">
+                                                    <?= number_format($product_item['sell_price'], 0, ',', '.') ?>đ
+                                                </p>
+                                                <p class="originalPrice">
+                                                    <?= number_format($product_item['init_price'], 0, ',', '.') ?>đ
+                                                </p>
                                             </div>
                                         </div>
                                     </article>
@@ -403,5 +446,37 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
             alert("Vui lòng chọn một tùy chọn cho sản phẩm");
         }
     })
+    $("#btn_submit_review").click(function () {
+        const form = $("#wk-comment-form");
+        if (form.find("input[name='content']").val() == "") {
+            alert("Vui lòng nhập đánh giá!");
+            form.find("input[name='content']").focus();
+            return;
+        }
+        if (form.find("input[name='name']").val() == "") {
+            alert("Vui lòng nhập họ và tên của bạn!");
+            form.find("input[name='name']").focus();
+            return;
+        }
+        if (form.find("textarea[name='phone']").val() == "") {
+            alert("Vui lòng nhập số điện thoại liên hệ của bạn!");
+            form.find("textarea[name='phone']").focus();
+            return;
+        }
+        $.ajax({
+            type: "POST",
+            url: "/review/save",
+            data: form.serialize(),
+            dataType: "json",
+            success: function (data) {
+                alert(data.msg);
+                location.reload();
+            },
+            error: function (data) {
+                alert("Có lỗi xảy ra. Vui lòng thử lại sau");
+            },
+        });
+    })
+
 </script>
 <?= $this->endSection() ?>
