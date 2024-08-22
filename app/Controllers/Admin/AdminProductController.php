@@ -444,7 +444,7 @@ class AdminProductController extends BaseController
 
             $po_value = $data['new_po_value'] ?? '';
             $init_price = $data['new_po_init_price'] ?? '';
-            $sell_price = $data['new_po_init_price'] ?? '';
+            $sell_price = $data['new_po_sell_price'] ?? '';
             $quantity = $data['new_po_quantity'] ?? '';
 
             if ($file->isValid() && !$file->hasMoved()) {
@@ -469,7 +469,7 @@ class AdminProductController extends BaseController
                 'po_description' => '',
                 'po_value' => $po_value,
                 'po_init_price' => $init_price,
-                'sell_price' => $sell_price,
+                'po_sell_price' => $sell_price,
                 'po_quantity' => $quantity,
                 'po_image' => $thumbnail
             ]);
@@ -492,25 +492,27 @@ class AdminProductController extends BaseController
 
     public function updateImage($id)
     {
+        $main_url = '/uploads/products/';
         try {
-            $product = $this->model->find($id);
-            if (!$product || $product['deleted_at'] != null) {
-                return $this->response
-                    ->setStatusCode(404)
-                    ->setJSON([
-                        'status' => 'error',
-                        'message' => 'Products not found!'
-                    ]);
+            $file = $this->request->getFile('update_image');
+            if ($file->isValid() && !$file->hasMoved()) {
+                $publicPath = WRITEPATH . '../public/uploads/products';
+                $newName = $file->getRandomName();
+                $file->move($publicPath, $newName);
+
+                $thumbnail = $newName;
+
+                $this->product_image_model->where('image_id', $id)
+                    ->set('image_url', $main_url . $thumbnail)
+                    ->set('file_name', $thumbnail)
+                    ->update();
             }
-
-            $files = $this->request->getFiles();
-
 
             return $this->response
                 ->setStatusCode(200)
                 ->setJSON([
                     'status' => 'success',
-                    'message' => 'Tạo thành công'
+                    'message' => 'Cập nhập thành công'
                 ]);
         } catch (\Exception $e) {
             return $this->response
@@ -525,22 +527,48 @@ class AdminProductController extends BaseController
     public function updateAttribute($id)
     {
         try {
-            $product = $this->model->find($id);
-            if (!$product || $product['deleted_at'] != null) {
+            $file = $this->request->getFile('update_po_image');
+            $data = $this->request->getPost();
+
+            $attribute = $this->product_option_model->where('po_id', $id)->first();
+            if (!$attribute || $attribute['deleted_at'] != null) {
                 return $this->response
                     ->setStatusCode(404)
                     ->setJSON([
                         'status' => 'error',
-                        'message' => 'Products not found!'
+                        'message' => 'Attributes not found!'
                     ]);
             }
 
+            $po_value = $data['update_po_value'] ?? '';
+            $init_price = $data['update_po_init_price'] ?? '';
+            $sell_price = $data['update_po_sell_price'] ?? '';
+            $quantity = $data['update_po_quantity'] ?? '';
+
+            $thumbnail = $attribute['po_image'];
+            if ($file) {
+                if ($file->isValid() && !$file->hasMoved()) {
+                    $publicPath = WRITEPATH . '../public/uploads/products';
+                    $newName = $file->getRandomName();
+                    $file->move($publicPath, $newName);
+
+                    $thumbnail = $newName;
+                }
+            }
+
+            $this->product_option_model->where('po_id', $id)
+                ->set('po_value', $po_value)
+                ->set('po_init_price', $init_price)
+                ->set('po_sell_price', $sell_price)
+                ->set('po_quantity', $quantity)
+                ->set('po_image', $thumbnail)
+                ->update();
 
             return $this->response
                 ->setStatusCode(200)
                 ->setJSON([
                     'status' => 'success',
-                    'message' => 'Tạo thành công'
+                    'message' => 'Cập nhập thành công'
                 ]);
         } catch (\Exception $e) {
             return $this->response

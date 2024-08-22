@@ -127,6 +127,11 @@
                 </div>
 
                 <table class="table">
+                    <colgroup>
+                        <col width="10%">
+                        <col width="80%">
+                        <col width="10%">
+                    </colgroup>
                     <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -142,10 +147,11 @@
                             <th scope="row"><?= $i ?></th>
                             <td><img src="<?= $image['image_url'] ?>" alt="" width="200px"></td>
                             <td>
-                                <a href="<?= route_to('admin.products.gallery.detail', $image['image_id']) ?>"
-                                   class="btn btn-primary">
+                                <button type="button" class="btn btn-primary btnShowImage" data-bs-toggle="modal"
+                                        data-url="<?= $image['image_url'] ?>"
+                                        data-bs-target="#modalUpdateGallery" data-id="<?= $image['image_id'] ?>">
                                     <i class="bi bi-eye"></i>
-                                </a>
+                                </button>
                                 <button type="button" data-id="<?= $image['image_id'] ?>"
                                         onclick="confirmDelete('<?= $image['image_id'] ?>', 0)"
                                         class="btn btnDelete btn-danger"><i class="bi bi-trash"></i>
@@ -173,6 +179,15 @@
                 </div>
 
                 <table class="table">
+                    <colgroup>
+                        <col width="10%">
+                        <col width="20%">
+                        <col width="30%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="10%">
+                    </colgroup>
                     <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -180,6 +195,7 @@
                         <th scope="col">Tên thuộc tính con</th>
                         <th scope="col">Giá khởi tạo</th>
                         <th scope="col">Giá ưu đãi</th>
+                        <th scope="col">Số lượng</th>
                         <th scope="col">Hành động</th>
                     </tr>
                     </thead>
@@ -189,16 +205,23 @@
                         ?>
                         <tr>
                             <th scope="row"><?= $i ?></th>
-                            <td><img src="<?= site_url('uploads/products') . $property['po_image'] ?>" alt=""
-                                     width="200px"></td>
+                            <td><img src="<?= site_url('uploads/products/') . $property['po_image'] ?>" alt=""
+                                     width="200px" loading="lazy"></td>
                             <td><?= $property['po_value'] ?></td>
                             <td><?= $property['po_init_price'] ?></td>
                             <td><?= $property['po_sell_price'] ?></td>
+                            <td><?= $property['po_quantity'] ?></td>
                             <td>
-                                <a href="<?= route_to('admin.products.properties.detail', $property['po_id']) ?>"
-                                   class="btn btn-primary">
+                                <button type="button" class="btn btn-primary btnShowAttribute" data-bs-toggle="modal"
+                                        data-url="<?= site_url('uploads/products/') . $property['po_image'] ?>"
+                                        data-name="<?= $property['po_value'] ?>"
+                                        data-id="<?= $property['po_id'] ?>"
+                                        data-init_price="<?= $property['po_init_price'] ?>"
+                                        data-sell_price="<?= $property['po_sell_price'] ?>"
+                                        data-quantity="<?= $property['po_quantity'] ?>"
+                                        data-bs-target="#modalUpdateAttribute">
                                     <i class="bi bi-eye"></i>
-                                </a>
+                                </button>
                                 <button type="button" data-id="<?= $property['po_id'] ?>"
                                         onclick="confirmDelete('<?= $property['po_id'] ?>', 1)"
                                         class="btn btnDelete btn-danger"><i class="bi bi-trash"></i>
@@ -233,7 +256,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                    <button type="button" class="btn btn-primary">Tạo ngay</button>
+                    <button type="button" onclick="createNewImage();" class="btn btn-primary">Tạo ngay</button>
                 </div>
             </div>
         </div>
@@ -252,43 +275,134 @@
                 </div>
                 <div class="modal-body">
                     <div class="form">
-                        <div class="form-group">
-                            <label for="new_po_value">Tên thuộc tính</label>
-                            <input type="text" name="new_po_value" class="form-control" id="new_po_value">
-                        </div>
-                        <form id="form_create_attribute">
-                            <div class="form-group col-md-4">
+                        <form id="form_create_attribute" class="row">
+                            <div class="form-group">
+                                <label for="new_po_value">Tên thuộc tính</label>
+                                <input type="text" name="new_po_value" class="form-control" id="new_po_value">
+                            </div>
+
+                            <div class="form-group">
                                 <label for="new_po_init_price">Giá sản phẩm</label>
                                 <input type="number" name="new_po_init_price" class="form-control"
                                        id="new_po_init_price">
                             </div>
 
-                            <div class="form-group col-md-4">
+                            <div class="form-group">
                                 <label for="new_po_sell_price">Giá ưu đãi</label>
                                 <input type="number" name="new_po_init_price" class="form-control"
                                        id="new_po_sell_price">
                             </div>
 
-                            <div class="form-group col-md-4">
+                            <div class="form-group">
                                 <label for="new_po_quantity">Số lượng</label>
                                 <input type="number" name="new_po_quantity" class="form-control" id="new_po_quantity">
                             </div>
+
+                            <div class="form-group">
+                                <label for="new_po_image">Hình ảnh</label>
+                                <input type="file" name="new_po_image" class="form-control" id="new_po_image">
+                            </div>
                         </form>
-                        <div class="form-group">
-                            <label for="new_po_image">Hình ảnh</label>
-                            <input type="file" name="new_po_image" class="form-control" id="new_po_image">
-                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                    <button type="button" class="btn btn-primary">Tạo ngay</button>
+                    <button type="button" onclick="createNewAttribute();" class="btn btn-primary">Tạo ngay</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="modalUpdateGallery" tabindex="-1" role="dialog"
+         aria-labelledby="modalUpdateGalleryLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalUpdateGalleryLabel">Chỉnh sửa hình ảnh</h5>
+                    <button type="button" class="close btn btn-outline-secondary" data-bs-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="update_image">Hình ảnh</label>
+                        <input type="file" name="update_image" class="form-control" id="update_image">
+
+                        <input type="text" hidden="hidden" name="update_image_id" id="update_image_id">
+                        <img src="#"
+                             alt="<?= $product['product_name'] ?>" id="imageViewGallery"
+                             width="100px" loading="lazy">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" onclick="updateImage();" class="btn btn-primary">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalUpdateAttribute" tabindex="-1" role="dialog"
+         aria-labelledby="modalUpdateAttributeLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalUpdateAttributeLabel">Chỉnh sửa thuộc tính</h5>
+                    <button type="button" class="close btn btn-outline-secondary" data-bs-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form">
+                        <form id="form_update_attribute" class="row">
+                            <input type="text" class="d-none" id="update_attribute_id" name="update_attribute_id">
+                            <div class="form-group">
+                                <label for="update_po_value">Tên thuộc tính</label>
+                                <input type="text" name="update_po_value" class="form-control" id="update_po_value">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="update_po_init_price">Giá sản phẩm</label>
+                                <input type="number" name="update_po_init_price" class="form-control"
+                                       id="update_po_init_price">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="update_po_sell_price">Giá ưu đãi</label>
+                                <input type="number" name="update_po_init_price" class="form-control"
+                                       id="update_po_sell_price">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="update_po_quantity">Số lượng</label>
+                                <input type="number" name="update_po_quantity" class="form-control"
+                                       id="update_po_quantity">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="update_po_image">Hình ảnh</label>
+                                <input type="file" name="update_po_image" class="form-control" id="update_po_image">
+
+                                <img src="#"
+                                     alt="<?= $product['product_name'] ?>" id="imageViewAttribute"
+                                     width="100px" loading="lazy">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" onclick="updateAttribute();" class="btn btn-primary">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         const product_id = <?= $product['product_id'] ?>;
+        const main_url = `<?= site_url('uploads/products/') ?>`;
 
         async function updateProduct() {
             $('#btnCreate').prop('disabled', true).text('Đang lưu...');
@@ -376,7 +490,7 @@
                 });
 
                 if (result.ok) {
-                    alert('Xoá thành công thành công!')
+                    alert('Xoá thành công!')
                     let res = await result.json();
                     console.log(res);
                     window.location.reload();
@@ -390,12 +504,163 @@
             }
         }
 
-        function createNewAttribute() {
-
+        async function handleCreate(url, formData) {
+            try {
+                await $.ajax({
+                    url: url,
+                    method: 'POST',
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    data: formData,
+                    success: function (response) {
+                        console.log(response);
+                        alert('Lưu lại thành công!')
+                        window.location.reload();
+                    },
+                    error: function (xhr) {
+                        if (xhr.status === 400) {
+                            alert(xhr.responseJSON.message);
+                        } else {
+                            alert('Đã xảy ra lỗi trong quá trình lưu.');
+                        }
+                    }
+                });
+            } catch (error) {
+                console.log(error)
+                alert('Đã xảy ra lỗi trong quá trình lưu.');
+            }
         }
 
-        function createNewImage() {
+        async function createNewAttribute() {
+            let url = '<?php echo route_to('admin.products.properties.create', $product["product_id"]); ?>';
+            const formData = new FormData();
 
+            let inputs = $('#form_create_attribute input');
+            for (let i = 0; i < inputs.length; i++) {
+                if (!$(inputs[i]).val()) {
+                    let text = $(inputs[i]).prev().text();
+                    alert(text + ' không được bỏ trống!');
+                    return
+                }
+                formData.append($(inputs[i]).attr('id'), $(inputs[i]).val());
+            }
+
+            const photo = $('#new_po_image')[0].files[0];
+
+            if (photo) {
+                formData.append('new_po_image', photo);
+            }
+
+            await handleCreate(url, formData);
+        }
+
+        async function createNewImage() {
+            let url = '<?php echo route_to('admin.products.gallery.create', $product['product_id']); ?>';
+            const formData = new FormData();
+
+            const photo = $('#new_image')[0].files[0];
+
+            if (photo) {
+                formData.append('new_image', photo);
+            } else {
+                alert('Vui lòng chọn hình ảnh!');
+                return
+            }
+
+            await handleCreate(url, formData);
+        }
+
+        $('.btnShowImage').click(function () {
+            let img_id = $(this).data('id');
+            let img_url = $(this).data('url');
+
+            $('#imageViewGallery').attr('src', img_url);
+            $('#update_image_id').val(img_id);
+        });
+
+        $('.btnShowAttribute').click(function () {
+            let attr_id = $(this).data('id');
+            let attr_url = $(this).data('url');
+            let attr_name = $(this).data('name');
+            let attr_init_price = $(this).data('init_price');
+            let attr_quantity = $(this).data('quantity');
+            let attr_sell_price = $(this).data('sell_price');
+
+            $('#imageViewAttribute').attr('src', attr_url);
+            $('#update_attribute_id').val(attr_id);
+            $('#update_po_value').val(attr_name);
+            $('#update_po_init_price').val(attr_init_price);
+            $('#update_po_sell_price').val(attr_sell_price);
+            $('#update_po_quantity').val(attr_quantity);
+        });
+
+        async function updateImage() {
+            let id = $('#update_image_id').val();
+            let type = 0;
+
+            let formData = new FormData();
+            const photo = $('#update_image')[0].files[0];
+            if (photo) {
+                formData.append('update_image', photo);
+            }
+            await handleUpdate(id, type, formData);
+        }
+
+        function updateAttribute() {
+            let id = $('#update_attribute_id').val();
+            let type = 1;
+            let formData = new FormData();
+
+            let inputs = $('#form_update_attribute input');
+            for (let i = 0; i < inputs.length; i++) {
+                formData.append($(inputs[i]).attr('id'), $(inputs[i]).val());
+            }
+
+            const photo = $('#update_po_image')[0].files[0];
+
+            if (photo) {
+                formData.append('update_po_image', photo);
+            }
+
+            handleUpdate(id, type, formData);
+        }
+
+        async function handleUpdate(id, type, formData) {
+            let url;
+            if (parseInt(type) === 0) {
+                url = '<?php echo route_to('admin.products.gallery.update', ':id'); ?>';
+            } else {
+                url = '<?php echo route_to('admin.products.properties.update', ':id'); ?>';
+            }
+
+            url = url.replace(':id', id);
+
+            try {
+                await $.ajax({
+                    url: url,
+                    method: 'POST',
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    data: formData,
+                    success: function (response) {
+                        console.log(response);
+                        alert('Lưu lại thành công!')
+                        window.location.reload();
+                    },
+                    error: function (xhr) {
+                        if (xhr.status === 400) {
+                            alert(xhr.responseJSON.message);
+                        } else {
+                            alert('Đã xảy ra lỗi trong quá trình lưu.');
+                        }
+                    }
+                });
+            } catch (error) {
+                console.log(error)
+                alert('Đã xảy ra lỗi trong quá trình lưu.');
+            }
         }
     </script>
 <?= $this->endSection() ?>
