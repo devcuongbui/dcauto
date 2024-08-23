@@ -50,7 +50,7 @@ class OrdersController extends BaseController
             'items' => [],
         ];
 
-        for($index = 0; $index < count($cart['items']); $index++) {
+        for ($index = 0; $index < count($cart['items']); $index++) {
             if ($cart['items'][$index]['selected']) {
                 $cart_ok['items'][] = $cart['items'][$index];
                 unset($cart['items'][$index]);
@@ -70,7 +70,7 @@ class OrdersController extends BaseController
             $totalCount += $item['quantity'];
         }
 
-        if($invoice_required == "Y") {
+        if ($invoice_required == "Y") {
             $vat = $totalPrice * 0.1;
             $totalPrice += $vat;
         }
@@ -107,9 +107,9 @@ class OrdersController extends BaseController
             'invoice_note' => $invoice_note
         ];
         $this->orderModel->insert($data);
-        
+
         $order_id = $this->orderModel->getInsertID();
-        for($index = 0; $index < count($cart_ok['items']); $index++) {
+        for ($index = 0; $index < count($cart_ok['items']); $index++) {
             $item = $cart_ok['items'][$index];
             $product = $this->productModel->find($item['product_id']);
             $option = $this->productOptionModel->find($item['option_id']);
@@ -117,14 +117,14 @@ class OrdersController extends BaseController
             $init_price = $option['po_init_price'] ?? $product['init_price'];
             $subTotal = $item['quantity'] * $price;
             $this->orderDetailModel->insert([
-                'order_id'      => $order_id,
-                'product_id'    => $item['product_id'],
-                'quantity'      => $item['quantity'],
-                'subtotal'      => $subTotal,
-                'init_price'    => $init_price,
-                'sale_price'    => $price,
-                'option_id'     => $item['option_id'],
-                'combo_id'      => null,
+                'order_id' => $order_id,
+                'product_id' => $item['product_id'],
+                'quantity' => $item['quantity'],
+                'subtotal' => $subTotal,
+                'init_price' => $init_price,
+                'sale_price' => $price,
+                'option_id' => $item['option_id'],
+                'combo_id' => null,
             ]);
         }
 
@@ -140,8 +140,10 @@ class OrdersController extends BaseController
         $order['province'] = $provinceModel->find($order['province_id'])["province_name"] ?? "";
         $order['district'] = $districtModel->find($order['district_id'])['district_name'] ?? "";
         $order['commune'] = $communeModel->find($order['commune_id'])['commune_name'] ?? "";
+        $orderDetail = $this->orderDetailModel->where('order_id', $order['order_id'])->findAll();
+        $order['order_detail'] = $orderDetail;
         // var_dump($order['province']);die();
-        return view('orders/preview', ['order' => $order]);
+        return view('orders/preview', ['order' => $order, 'productModel' => $this->productModel, 'productOptionModel' => $this->productOptionModel]);
     }
     private function generateOrderCode()
     {
@@ -149,11 +151,11 @@ class OrdersController extends BaseController
         $prefix = 'ODR' . $date;
 
         $latestOrder = $this->orderModel->where('orders_code LIKE', $prefix . '%')
-                                  ->orderBy('orders_code', 'DESC')
-                                  ->first();
+            ->orderBy('orders_code', 'DESC')
+            ->first();
 
         if ($latestOrder) {
-            $lastNumber = (int)substr($latestOrder['orders_code'], -4);
+            $lastNumber = (int) substr($latestOrder['orders_code'], -4);
             $newNumber = $lastNumber + 1;
         } else {
             $newNumber = 1;
@@ -163,7 +165,8 @@ class OrdersController extends BaseController
 
         return $orderCode;
     }
-    public function update() {
+    public function update()
+    {
 
         $data = $this->request->getPost();
         if (isset($data['order_id'])) {
@@ -171,7 +174,8 @@ class OrdersController extends BaseController
         }
         return $this->response->setJSON($data);
     }
-    public function delete() {
+    public function delete()
+    {
         $order_id = $this->request->getPost('order_id');
         $data = $this->orderModel->delete($order_id);
         return $this->response->setJSON($data);

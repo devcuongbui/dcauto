@@ -28,6 +28,7 @@
 <link rel="stylesheet"
       href="/assets/application.css"
       data-turbo-track="false"/>
+      <link rel="stylesheet" href="/assets/style.css">
       <script src="/assets/lib/jquery/jquery-3.7.1.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
 <!-- <script src="/assets/application.js"
