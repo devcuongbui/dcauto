@@ -126,35 +126,45 @@
                         <p class="titleText"><?php echo $category['code_name'] ?></p>
                     </div>
                 </div>
-                <div class="row fixMar">
-                    <?php if (!empty($products)): ?>
-                        <?php foreach ($products as $product): ?>
-                            <div class="colPart">
-                                <article class="artProduct">
-                                    <a class="imgPr figure2" href="/product/view/<?= $product['slug']; ?>">
-                                        <img alt="<?= $product['product_name']; ?>" loading="lazy"
-                                             src="<?= $product['product_image']; ?>">
-                                    </a>
-                                    <div class="textInforPr">
-                                        <a class="linkPr" href="/product/view/<?= $product['slug']; ?>">
-                                            <p class="namePr"><?= $product['product_name']; ?></p>
-                                        </a>
-                                        <div class="labelGift">
-                                            <i class="bi bi-gift-fill giftIcon"></i>
-                                            <span class="giftInfo">Giá cực tốt</span>
-                                        </div>
-                                        <div class="currentPrice"><?= number_format($product['sell_price'], 0, ',', '.'); ?>đ</div>
-                                        <?php if ($product['init_price'] > $product['sell_price']): ?>
-                                            <p class="originalPrice"><?= number_format($product['init_price'], 0, ',', '.'); ?>đ</p>
-                                        <?php endif; ?>
+                <?php if (!empty($productsByCategory)): ?>
+                    <?php foreach ($productsByCategory as $categorySlug => $products): ?>
+                        <!-- Tạo một hàng mới cho mỗi danh mục -->
+                        <div class="row fixMar">
+                            <h3>Danh sách sản phẩm thuộc danh mục: <?= ucwords(str_replace('-', ' ', $categorySlug)); ?></h3>
+                            <?php if (!empty($products)): ?>
+                                <?php foreach ($products as $product): ?>
+                                    <div class="colPart">
+                                        <article class="artProduct">
+                                            <a class="imgPr figure2" href="/product/view/<?= $product['slug']; ?>">
+                                                <img alt="<?= $product['product_name']; ?>" loading="lazy"
+                                                     src="<?= $product['product_image']; ?>">
+                                            </a>
+                                            <div class="textInforPr">
+                                                <a class="linkPr" href="/product/view/<?= $product['slug']; ?>">
+                                                    <p class="namePr"><?= $product['product_name']; ?></p>
+                                                </a>
+                                                <div class="labelGift">
+                                                    <i class="bi bi-gift-fill giftIcon"></i>
+                                                    <span class="giftInfo">Giá cực tốt</span>
+                                                </div>
+                                                <div class="currentPrice"><?= number_format($product['sell_price'], 0, ',', '.'); ?>đ</div>
+                                                <?php if ($product['init_price'] > $product['sell_price']): ?>
+                                                    <p class="originalPrice"><?= number_format($product['init_price'], 0, ',', '.'); ?>đ</p>
+                                                <?php endif; ?>
+                                            </div>
+                                        </article>
                                     </div>
-                                </article>
-                            </div>
-                        <?php endforeach; ?>
-                    <?php else: ?>
-                        <p style="color: white">Không có sản phẩm nào!</p>
-                    <?php endif; ?>
-                </div>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <p style="color: white">Không có sản phẩm nào trong danh mục này!</p>
+                            <?php endif; ?>
+                        </div> <!-- Kết thúc của hàng cho mỗi danh mục -->
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p style="color: white">Không có sản phẩm nào!</p>
+                <?php endif; ?>
+
+
 
                 <div class="btnAskShowroom">
                     <a class="btnType_2" data-target="#popup_registration_1" data-toggle="modal">
