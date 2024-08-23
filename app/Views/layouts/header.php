@@ -75,233 +75,42 @@
                     <div class="menuItem_1">
                         <a class="linkLevel_1" href="/intro/<?php echo route_to('home'); ?>">GIỚI THIỆU</a>
                     </div>
-                    <div class="menuItem_1 menuItem_1Special dropDown">
-                        <a class="linkLevel_1" href="noi-that-o-to/<?php echo route_to('home'); ?>">NỘI THẤT Ô TÔ</a>
-                        <div class="blockCateLevel_2Type2">
-                            <div class="colPart">
-                                <a class="linkTag linkLevel_2" href="anroid-box-o-to/<?php echo route_to('home'); ?>">Anroid Box Ô Tô</a>
-                                <a class="linkTag linkLevel_3"
-                                   href="android-box-lien-camera-hanh-trinh-o-to/<?php echo route_to('home'); ?>">Android Box Liền Camera
-                                    Hành Trình Ô Tô</a>
-                                <a class="linkTag linkLevel_3" href="android-box-o-to-carlinkit/<?php echo route_to('home'); ?>">Android Box
-                                    Ô Tô Carlinkit</a>
-                                <a class="linkTag linkLevel_3" href="android-box-o-to-elliview/<?php echo route_to('home'); ?>">Android Box Ô
-                                    Tô Elliview</a>
-                                <a class="linkTag linkLevel_3" href="anroid-box-o-to-vietmap/<?php echo route_to('home'); ?>">Android Box Ô
-                                    Tô Vietmap</a>
-                                <a class="linkTag linkLevel_3" href="anroid-box-o-to-zestech/<?php echo route_to('home'); ?>">Android Box Ô
-                                    Tô Zestech</a>
-                            </div>
-                            <div class="colPart">
-                                <a class="linkTag linkLevel_2" href="man-hinh-android-o-to/<?php echo route_to('home'); ?>">Màn Hình Android
-                                    Ô Tô </a>
-                                <a class="linkTag linkLevel_3" href="man-hinh-theo-xe/<?php echo route_to('home'); ?>">Màn hình theo xe</a>
-                                <a class="linkTag linkLevel_3" href="man-hinh-zestech/<?php echo route_to('home'); ?>">Màn hình Zestech</a>
-                                <a class="linkTag linkLevel_3" href="man-hinh-gotech/<?php echo route_to('home'); ?>">Màn hình Gotech</a>
-                                <a class="linkTag linkLevel_3" href="man-hinh-teyes/<?php echo route_to('home'); ?>">Màn hình T'eyes</a>
-                                <a class="linkTag linkLevel_3" href="man-hinh-utour/<?php echo route_to('home'); ?>">Màn Hình Utour</a>
-                                <a class="linkTag linkLevel_3" href="man-hinh-oledpro/<?php echo route_to('home'); ?>">Màn hình OledPro </a>
-                                <a class="linkTag linkLevel_3" href="man-hinh-lca-ellivew/<?php echo route_to('home'); ?>">Màn hình Icar -
-                                    Ellivew</a>
-                            </div>
-                            <div class="colPart">
-                                <a class="linkTag linkLevel_2" href="camera-hanh-trinh/<?php echo route_to('home'); ?>">Camera Hành Trình</a>
-                                <a class="linkTag linkLevel_3" href="camera-hanh-trinh-xiaomi/<?php echo route_to('home'); ?>">Camera hành
-                                    trình Utour </a>
-                                <a class="linkTag linkLevel_3" href="camera-hanh-trinh-co-dinh-vi/<?php echo route_to('home'); ?>">Camera
-                                    hành trình khác</a>
-                                <a class="linkTag linkLevel_3" href="cam-hanh-trinh-xiaomi/<?php echo route_to('home'); ?>">Camera hành trình
-                                    Xiaomi</a>
-                                <a class="linkTag linkLevel_3" href="camera-hanh-trinh-navicom/<?php echo route_to('home'); ?>">Camera hành
-                                    trình Navicom</a>
-                                <a class="linkTag linkLevel_3" href="camera-hanh-trinh-vietmap/<?php echo route_to('home'); ?>">Camera hành
-                                    trình Vietmap </a>
-                            </div>
-                            <div class="colPart">
-                                <a class="linkTag linkLevel_2" href="cam-bien-o-to/<?php echo route_to('home'); ?>">Cảm Biến Ô Tô</a>
-                                <a class="linkTag linkLevel_3" href="canh-bao-diem-mu/<?php echo route_to('home'); ?>">Cảnh báo điểm mù</a>
-                                <a class="linkTag linkLevel_3" href="cam-bien-va-cham/<?php echo route_to('home'); ?>">Cảm biến va chạm</a>
-                                <a class="linkTag linkLevel_3" href="cam-bien-ap-suat-lop/<?php echo route_to('home'); ?>">Cảm biến áp suất
-                                    lốp</a>
-                            </div>
-                            <div class="colPart">
-                                <a class="linkTag linkLevel_2" href="camera-360/<?php echo route_to('home'); ?>">Camera 360</a>
-                                <a class="linkTag linkLevel_3" href="camera-360-panorama/<?php echo route_to('home'); ?>">Camera 360
-                                    Panorama </a>
-                                <a class="linkTag linkLevel_3" href="camera-3-mat-hitech/<?php echo route_to('home'); ?>">Camera 3 mắt
-                                    Hitech</a>
-                                <a class="linkTag linkLevel_3" href="camera-3-mat-texpad/<?php echo route_to('home'); ?>">Camera 3 mắt
-                                    Texpad</a>
-                                <a class="linkTag linkLevel_3" href="camera-360-safeview/<?php echo route_to('home'); ?>">Camera 360
-                                    Safeview</a>
-                                <a class="linkTag linkLevel_3" href="camera-360-elliview/<?php echo route_to('home'); ?>">Camera 360
-                                    Elliview</a>
-                                <a class="linkTag linkLevel_3" href="camera-360-dct/<?php echo route_to('home'); ?>">Camera 360 DCT</a>
-                                <a class="linkTag linkLevel_3" href="camera-360-owin/<?php echo route_to('home'); ?>">Camera 360 Owin </a>
-                            </div>
-                            <div class="colPart">
-                                <a class="linkTag linkLevel_2" href="do-led-noi-that-o-to/<?php echo route_to('home'); ?>">Độ LED Nội Thất Ô
-                                    Tô</a>
-                                <a class="linkTag linkLevel_3" href="22-chi-tiet-da-sac/<?php echo route_to('home'); ?>">22 chi tiết đa
-                                    sắc</a>
-                                <a class="linkTag linkLevel_3" href="18-chi-tiet-don-sac/<?php echo route_to('home'); ?>">18 chi tiết đơn
-                                    sắc</a>
-                            </div>
-                            <div class="colPart">
-                                <a class="linkTag linkLevel_2" href="phim-cach-nhiet/<?php echo route_to('home'); ?>">Phim Cách Nhiệt </a>
-                            </div>
-                            <div class="colPart">
-                                <a class="linkTag linkLevel_2" href="do-tran-sao-o-to/<?php echo route_to('home'); ?>">Độ Trần Sao Ô Tô</a>
-                            </div>
-                            <div class="colPart">
-                                <a class="linkTag linkLevel_2" href="cop-dien-o-to/<?php echo route_to('home'); ?>">Cốp Điện Ô Tô</a>
-                            </div>
-                            <div class="colPart">
-                                <a class="linkTag linkLevel_2" href="dieu-khien-vo-lang/<?php echo route_to('home'); ?>">Điều Khiển Vô
-                                    Lăng</a>
-                            </div>
-                            <div class="colPart">
-                                <a class="linkTag linkLevel_2" href="dan-ppf-noi-that-oto/<?php echo route_to('home'); ?>">Dán PPF Nội Thất Ô
-                                    Tô</a>
-                            </div>
-                            <div class="colPart">
-                                <a class="linkTag linkLevel_2" href="do-loa-o-to/<?php echo route_to('home'); ?>">Độ Loa Ô Tô</a>
-                                <a class="linkTag linkLevel_3" href="amply/<?php echo route_to('home'); ?>">Amply</a>
-                                <a class="linkTag linkLevel_3" href="loa-3-way/<?php echo route_to('home'); ?>">Loa 3 Way</a>
-                                <a class="linkTag linkLevel_3" href="loa-sub-o-to/<?php echo route_to('home'); ?>">Loa sub ô tô</a>
-                                <a class="linkTag linkLevel_3" href="loa-canh-o-to/<?php echo route_to('home'); ?>">Loa cánh ô tô</a>
-                                <a class="linkTag linkLevel_3" href="loa-treble-o-to/<?php echo route_to('home'); ?>">Loa treble ô tô </a>
+                    <?php
+                        helper("gnb");
+                        $categories = get_category(0);
+                        foreach ($categories as $category) {
+                    ?>
+                        <div class="menuItem_1 menuItem_1Special dropDown">
+                            <a class="linkLevel_1" href="product/<?=$category["slug"]?>"><?=$category["code_name"]?></a>
+                            <div class="blockCateLevel_2Type2">
+                                    <?php
+                                        $category_child_1 = get_category($category["code_no"]);
+                                        foreach ($category_child_1 as $child_1) {
+                                    ?>
+                                        <div class="colPart">
+
+                                            <a class="linkTag linkLevel_2" href="product/<?=$child_1["slug"]?>">
+                                                <?=$child_1["code_name"]?>
+                                            </a>
+
+                                            <?php
+                                                $category_child_2 = get_category($child_1["code_no"]);
+                                                foreach ($category_child_2 as $child_2) {
+                                            ?>
+                                                <a class="linkTag linkLevel_3" href="product/<?=$child_2["slug"]?>">
+                                                    <?=$child_2["code_name"]?>
+                                                </a>
+                                            <?php
+                                                }
+                                            ?>
+                                        </div>
+                                    <?php
+                                        }
+                                    ?>
                             </div>
                         </div>
-                    </div>
-                    <div class="menuItem_1 menuItem_1Special dropDown">
-                        <a class="linkLevel_1" href="ngoai-that-o-to/<?php echo route_to('home'); ?>">NGOẠI THẤT Ô TÔ</a>
-                        <div class="blockCateLevel_2Type2">
-                            <div class="colPart">
-                                <a class="linkTag linkLevel_2" href="duoi-gio-o-to/<?php echo route_to('home'); ?>">Đuôi Gió Ô Tô</a>
-                            </div>
-                            <div class="colPart">
-                                <a class="linkTag linkLevel_2" href="nam-thung-ban-tai/<?php echo route_to('home'); ?>">Nắp Thùng Bán Tải</a>
-                                <a class="linkTag linkLevel_3" href="nap-thung-3-tam/<?php echo route_to('home'); ?>">Nắp thùng 3 tấm</a>
-                                <a class="linkTag linkLevel_3" href="nap-thung-co/<?php echo route_to('home'); ?>">Nắp thùng cơ</a>
-                                <a class="linkTag linkLevel_3" href="nap-thung-dien/<?php echo route_to('home'); ?>">Nắp thùng điện</a>
-                            </div>
-                            <div class="colPart">
-                                <a class="linkTag linkLevel_2" href="wrab-xe-o-to/<?php echo route_to('home'); ?>">Wrap xe ô tô</a>
-                            </div>
-                            <div class="colPart">
-                                <a class="linkTag linkLevel_2" href="dan-ppf-ngoai-that-o-to/<?php echo route_to('home'); ?>">Dán PPF Ngoại
-                                    Thất Ô Tô</a>
-                            </div>
-                            <div class="colPart">
-                                <a class="linkTag linkLevel_2" href="phu-gam-oto/<?php echo route_to('home'); ?>">Phủ Gầm Ô Tô</a>
-                                <a class="linkTag linkLevel_3" href="phu-gam-chinh-hang-onzca/<?php echo route_to('home'); ?>">Phủ Gầm Chính
-                                    Hãng Onzca</a>
-                            </div>
-                            <div class="colPart">
-                                <a class="linkTag linkLevel_2" href="cua-hit-o-to/<?php echo route_to('home'); ?>">Cửa Hít Ô Tô</a>
-                            </div>
-                            <div class="colPart">
-                                <a class="linkTag linkLevel_2" href="do-den-o-to/<?php echo route_to('home'); ?>">Độ Đèn Ô Tô</a>
-                                <a class="linkTag linkLevel_3" href="den-pha-o-to/<?php echo route_to('home'); ?>">Đèn Pha Ô Tô</a>
-                                <a class="linkTag linkLevel_3" href="den-bi-gam-o-to/<?php echo route_to('home'); ?>">Đèn bi gầm ô tô</a>
-                                <a class="linkTag linkLevel_3" href="bong-led-o-to/<?php echo route_to('home'); ?>">Bóng Led ô tô</a>
-                                <a class="linkTag linkLevel_3" href="den-led-o-to/<?php echo route_to('home'); ?>">Đèn led ô tô</a>
-                                <a class="linkTag linkLevel_3" href="den-laser-o-to/<?php echo route_to('home'); ?>">Đèn Laser Ô Tô - Công
-                                    Nghệ Ánh Sáng Vượt Trội</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="menuItem_1 menuItem_1Special dropDown">
-                        <a class="linkLevel_1" href="phu-kien-o-to-do-choi-o-to/<?php echo route_to('home'); ?>">PHỤ KIỆN Ô TÔ</a>
-                        <div class="blockCateLevel_2Type2">
-                            <div class="colPart">
-                                <a class="linkTag linkLevel_2" href="bom-lop-o-to/<?php echo route_to('home'); ?>">Bơm lớp ô tô</a>
-                                <a class="linkTag linkLevel_3" href="may-bom-lop-o-to-steelmate/<?php echo route_to('home'); ?>">Máy Bơm Lốp
-                                    Ô Tô STEELMATE</a>
-                                <a class="linkTag linkLevel_3" href="bom-lop-o-to-xiaomi/<?php echo route_to('home'); ?>">Bơm lốp ô tô
-                                    Xiaomi</a>
-                            </div>
-                            <div class="colPart">
-                                <a class="linkTag linkLevel_2" href="nuoc-hoa-o-to/<?php echo route_to('home'); ?>">Nước Hoa Ô Tô</a>
-                                <a class="linkTag linkLevel_3" href="bo-khuech-tan-nuoc-hoa-mercedes/<?php echo route_to('home'); ?>">Bộ
-                                    khuếch tán nước hoa Mercedes</a>
-                                <a class="linkTag linkLevel_3" href="nuoc-hoa-areon/<?php echo route_to('home'); ?>">Nước hoa Areon</a>
-                            </div>
-                            <div class="colPart">
-                                <a class="linkTag linkLevel_2" href="lot-san-o-to/<?php echo route_to('home'); ?>">Lót sàn ô tô</a>
-                                <a class="linkTag linkLevel_3" href="tham-lot-san-o-to-da-simili/<?php echo route_to('home'); ?>">Thảm lót
-                                    sàn ô tô da simili</a>
-                                <a class="linkTag linkLevel_3" href="tham-san-kata/<?php echo route_to('home'); ?>">Thảm sàn KATA</a>
-                                <a class="linkTag linkLevel_3" href="tham-san-lavor/<?php echo route_to('home'); ?>">Thảm sàn LAVOR</a>
-                                <a class="linkTag linkLevel_3" href="tham-san-360/<?php echo route_to('home'); ?>">Thảm sàn 360</a>
-                            </div>
-                            <div class="colPart">
-                                <a class="linkTag linkLevel_2" href="boc-tran-o-to/<?php echo route_to('home'); ?>">Bọc trần ô tô</a>
-                                <a class="linkTag linkLevel_3" href="boc-tran-da-lon/<?php echo route_to('home'); ?>">Bọc trần da lộn</a>
-                                <a class="linkTag linkLevel_3" href="boc-tran-5d-6d/<?php echo route_to('home'); ?>">Bọc trần 5D, 6D</a>
-                                <a class="linkTag linkLevel_3" href="boc-tran-nilon/<?php echo route_to('home'); ?>">Bọc trần nilon</a>
-                            </div>
-                            <div class="colPart">
-                                <a class="linkTag linkLevel_2" href="boc-ghe-da/<?php echo route_to('home'); ?>">Bọc Ghế Da</a>
-                                <a class="linkTag linkLevel_3" href="da-cong-nghiep/<?php echo route_to('home'); ?>">Da công nghiệp</a>
-                                <a class="linkTag linkLevel_3" href="gia-da-simili/<?php echo route_to('home'); ?>">Giả da simili</a>
-                                <a class="linkTag linkLevel_3" href="da-nappa/<?php echo route_to('home'); ?>">Da Nappa</a>
-                            </div>
-                            <div class="colPart">
-                                <a class="linkTag linkLevel_2" href="cach-am-chong-on-o-to/<?php echo route_to('home'); ?>">Cách âm chống ồn
-                                    ô tô</a>
-                                <a class="linkTag linkLevel_3" href="cach-am-chong-on-xe-toyota/<?php echo route_to('home'); ?>">Cách Âm
-                                    Chống Ồn Xe Toyota</a>
-                                <a class="linkTag linkLevel_3" href="cach-am-chong-on-xe-kia/<?php echo route_to('home'); ?>">Cách Âm Chống
-                                    Ồn Xe Kia</a>
-                                <a class="linkTag linkLevel_3" href="cach-am-chong-on-xe-mitsubishi/<?php echo route_to('home'); ?>">Cách Âm
-                                    Chồng Ồn Xe Mitsubishi </a>
-                                <a class="linkTag linkLevel_3" href="cach-am-chong-on-xe-ford/<?php echo route_to('home'); ?>">Cách Âm Chống
-                                    Ồn Xe Ford</a>
-                            </div>
-                            <div class="colPart">
-                                <a class="linkTag linkLevel_2" href="gap-guong-o-to/<?php echo route_to('home'); ?>">Gập Gương Ô Tô</a>
-                                <a class="linkTag linkLevel_3" href="say-guong-4-in-1/<?php echo route_to('home'); ?>">Sấy gương 4 in 1</a>
-                                <a class="linkTag linkLevel_3" href="gap-guong-len-xuong-kinh/<?php echo route_to('home'); ?>">Gập gương lên
-                                    xuống kính</a>
-                                <a class="linkTag linkLevel_3" href="gap-guong-tu-dong/<?php echo route_to('home'); ?>">Gập gương tự động</a>
-                            </div>
-                            <div class="colPart">
-                                <a class="linkTag linkLevel_2" href="smart-key-o-to/<?php echo route_to('home'); ?>">Smart key ô tô </a>
-                                <a class="linkTag linkLevel_3" href="de-no-tu-xa-mykey/<?php echo route_to('home'); ?>">Đề nổ từ xa -
-                                    Mykey</a>
-                                <a class="linkTag linkLevel_3" href="smart-key-lcd/<?php echo route_to('home'); ?>">Smart key LCD</a>
-                                <a class="linkTag linkLevel_3" href="de-no-tu-xa-pke/<?php echo route_to('home'); ?>">Đề nổ từ xa - PKE</a>
-                                <a class="linkTag linkLevel_3" href="chia-khoa-thong-minh-starstop/<?php echo route_to('home'); ?>">Chìa khóa
-                                    thông minh - Starstop</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="menuItem_1 menuItem_1Special dropDown">
-                        <a class="linkLevel_1" href="bao-duong-xe-o-to/<?php echo route_to('home'); ?>">BẢO DƯỠNG XE Ô TÔ</a>
-                        <div class="blockCateLevel_2Type2">
-                            <div class="colPart">
-                                <a class="linkTag linkLevel_2" href="cham-soc-noi-that-o-to/<?php echo route_to('home'); ?>">Chăm Sóc Nội
-                                    Thất Ô Tô</a>
-                                <a class="linkTag linkLevel_3" href="ve-sinh-khoang-may-o-to/<?php echo route_to('home'); ?>">Vệ sinh khoang
-                                    máy ô tô</a>
-                                <a class="linkTag linkLevel_3" href="ve-sinh-dieu-hoa-o-to/<?php echo route_to('home'); ?>">Vệ sinh điều hòa
-                                    ô tô</a>
-                                <a class="linkTag linkLevel_3" href="ve-sinh-noi-that-o-to/<?php echo route_to('home'); ?>">Vệ sinh nội thất
-                                    ô tô</a>
-                                <a class="linkTag linkLevel_3" href="xong-hoi-khu-mui-o-to/<?php echo route_to('home'); ?>">Xông hơi khử mùi
-                                    ô tô</a>
-                            </div>
-                            <div class="colPart">
-                                <a class="linkTag linkLevel_2" href="cham-soc-ngoai-that-o-to/<?php echo route_to('home'); ?>">Chăm Sóc Ngoại
-                                    Thất Ô Tô </a>
-                                <a class="linkTag linkLevel_3" href="phu-gam-o-to/<?php echo route_to('home'); ?>">Phủ gầm ô tô</a>
-                                <a class="linkTag linkLevel_3" href="phu-ceramic/<?php echo route_to('home'); ?>">Phủ Ceramic</a>
-                                <a class="linkTag linkLevel_3" href="danh-bong-xe/<?php echo route_to('home'); ?>">Đánh bóng xe</a>
-                            </div>
-                        </div>
-                    </div>
+                    <?php } ?>
+
                     <div class="menuItem_1 dropDown">
                         <a class="linkLevel_1" href="tin-t%e1%bb%a9c/<?php echo route_to('home'); ?>">TIN TỨC</a>
                         <div class="blockCateLevel_2">
