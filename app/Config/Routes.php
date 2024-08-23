@@ -6,6 +6,7 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->get('/', 'Home::index', ['as' => 'home']);
+$routes->get('/intro', 'Home::intro', ['as' => 'intro']);
 
 $routes->set404Override(function () {
     echo view('errors/404');

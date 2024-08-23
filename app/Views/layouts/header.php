@@ -73,7 +73,7 @@
             <div class="menuBlock">
                 <div class="wrapFlex">
                     <div class="menuItem_1">
-                        <a class="linkLevel_1" href="gioi-thieu/<?php echo route_to('home'); ?>">GIỚI THIỆU</a>
+                        <a class="linkLevel_1" href="/intro/<?php echo route_to('home'); ?>">GIỚI THIỆU</a>
                     </div>
                     <div class="menuItem_1 menuItem_1Special dropDown">
                         <a class="linkLevel_1" href="noi-that-o-to/<?php echo route_to('home'); ?>">NỘI THẤT Ô TÔ</a>
@@ -459,7 +459,7 @@
         <div class="wrapScrollY">
             <div class="mainTabsMenu">
                 <div class="blockLevel1">
-                    <a class="link1" href="gioi-thieu/<?php echo route_to('home'); ?>">GIỚI THIỆU</a>
+                    <a class="link1" href="intro/<?php echo route_to('home'); ?>">GIỚI THIỆU</a>
                 </div>
                 <div class="blockLevel1 dropMore">
                     <a class="link1" href="noi-that-o-to/<?php echo route_to('home'); ?>">NỘI THẤT Ô TÔ</a>
