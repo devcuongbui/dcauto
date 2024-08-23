@@ -43,5 +43,8 @@ class Home extends BaseController
         return view('index', $data);
     }
 
-
+    public function intro()
+    {
+        return view('intro');
+    }
 }
