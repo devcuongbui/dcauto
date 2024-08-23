@@ -8,6 +8,7 @@ class ProductController extends BaseController
     protected $productModel;
     protected $productOptionModel;
     protected $reviewModel;
+    protected $product_image_model;
     public function __construct()
     {
         $this->session = session();
@@ -15,6 +16,7 @@ class ProductController extends BaseController
         $this->category = model("Category");
         $this->productOptionModel =  model("ProductOptionModel");
         $this->reviewModel = model("ReviewModel");
+        $this->product_image_model = model("ProductImages");
     }
 
     public function index($category_slug = null)
@@ -83,21 +85,23 @@ class ProductController extends BaseController
             return view('errors/404');
         }
 
-        // Find the product by slug
         $product = $this->productModel->where('slug', $slug)->first();
         if (!$product) {
             return view('errors/404');
         }
 
-        // Fetch product options and related products
         $productOptions = $this->productOptionModel->where('product_id', $product['product_id'])->findAll();
         $product['options'] = $productOptions;
         $product['relatedProducts'] = $this->productModel->where('category_id', $product['category_id'])
-            ->where('slug !=', $slug) // Exclude the current product
+            ->where('slug !=', $slug)
             ->findAll();
         $reviewList = $this->reviewModel->where('product_id', $product['product_id'])->findAll();
+        $gallery = $this->product_image_model->where('product_id', $product['product_id'])
+            ->where('deleted_at', null)
+            ->orderBy('image_id', 'desc')
+            ->findAll();
 
-        return view('product/view', ['product' => $product, 'reviewList' => $reviewList]);
+        return view('product/view', ['product' => $product, 'reviewList' => $reviewList, 'galleries' => $gallery]);
     }
 
     public function getOneById($id = null)

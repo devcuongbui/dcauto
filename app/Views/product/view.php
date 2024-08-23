@@ -32,34 +32,25 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                 <div class="leftArea">
                     <div class="blockListImgsProduct">
                         <div class="owl-carousel owl-theme bigImgBlock">
+                            <?php foreach ($galleries as $image) : ?>
                             <div>
                                 <div class="imgPart" namemedia="media_image3">
-                                    <img alt="media_image3" loading="lazy"
-                                        src="/storage/s0/ei/s0eil2hu6gr7thc5j5cmwqnxya0q_Screenshot_2024-06-11_104607.png">
+                                    <img alt="<?= $image['file_name'] ?>" loading="lazy"
+                                        src="<?= $image['image_url'] ?>">
                                 </div>
                             </div>
-                            <div>
-                                <div class="imgPart" namemedia="media_image3">
-                                    <img alt="media_image3" loading="lazy"
-                                        src="/storage/e7/76/e776ti6fml6jhflawwqf5w6toq9v_Screenshot_2024-06-11_104524.png">
-                                </div>
-                            </div>
+                            <?php endforeach; ?>
                         </div>
                         <div class="owl-carousel owl-theme smallImgBlock">
+                            <?php foreach ($galleries as $image) : ?>
                             <div>
                                 <div class="imgPart firstImgPart">
-                                    <img alt="Camera Hành Trình UTOUR C2 MAX | SIÊU NÉT 4K | 8 TÍNH NÂNG ADAS AI"
+                                    <img alt="<?= $image['file_name'] ?>"
                                         loading="lazy"
-                                        src="/storage/s0/ei/s0eil2hu6gr7thc5j5cmwqnxya0q_Screenshot_2024-06-11_104607.png">
+                                        src="<?= $image['image_url'] ?>">
                                 </div>
                             </div>
-                            <div>
-                                <div class="imgPart firstImgPart">
-                                    <img alt="Camera Hành Trình UTOUR C2 MAX | SIÊU NÉT 4K | 8 TÍNH NÂNG ADAS AI"
-                                        loading="lazy"
-                                        src="/storage/e7/76/e776ti6fml6jhflawwqf5w6toq9v_Screenshot_2024-06-11_104524.png">
-                                </div>
-                            </div>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                 </div>

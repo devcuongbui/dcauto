@@ -86,11 +86,8 @@ Danh sách đơn hàng
     function confirmDelete(order_id) {
         if (confirm("Bạn muốn xóa đơn hàng này?")) {
             $.ajax({
-                type: "POST",
-                url: "/orders/delete",
-                data: {
-                    'order_id': order_id
-                },
+                type: "delete",
+                url: "/admin/orders/delete/" + order_id,
                 dataType: "json",
                 success: function (response) {
                     location.reload();

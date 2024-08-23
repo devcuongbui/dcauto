@@ -28,6 +28,7 @@ class AdminOrdersController extends BaseController
             $pg = 1;
         $nFrom = ($pg - 1) * $g_list_rows;
         $list = $this->model
+            ->where('deleted_at', null)
             ->orderBy('order_id', 'desc')
             ->limit($g_list_rows, $nFrom)
             ->get()
@@ -46,23 +47,23 @@ class AdminOrdersController extends BaseController
 
     public function detail($id)
     {
-        $news = $this->model->find($id);
-        if (!$news || $news['status'] != 1) {
+        $order = $this->model->find($id);
+        if (!$order || $order['status'] != 1) {
             return view('errors/404');
         }
-        return view('admin/orders/detail', ['news' => $news]);
+        return view('admin/orders/detail', ['news' => $order]);
     }
 
     public function update($id)
     {
         try {
-            $news = $this->model->find($id);
-            if (!$news || $news['status'] != 1) {
+            $order = $this->model->find($id);
+            if (!$order || $order['status'] != 1) {
                 return $this->response
                     ->setStatusCode(404)
                     ->setJSON([
                         'status' => 'error',
-                        'message' => 'News not found!'
+                        'message' => 'Order not found!'
                     ]);
             }
 
@@ -115,20 +116,18 @@ class AdminOrdersController extends BaseController
     public function delete($id)
     {
         try {
-            $news = $this->model->find($id);
-            if (!$news || $news['status'] != 1) {
+            $order = $this->model->getOrder($id);
+            if (!$order) {
                 return $this->response
                     ->setStatusCode(404)
                     ->setJSON([
                         'status' => 'error',
-                        'message' => 'News not found!'
+                        'message' => 'Order not found!'
                     ]);
             }
 
             $this->model->update($id, [
-                'status' => 0,
-                'deleted_at' => date('Y-m-d H:i:s'),
-                'deleted_by' => $this->user_id
+                'deleted_at' => date('Y-m-d H:i:s')
             ]);
             return $this->response
                 ->setStatusCode(200)

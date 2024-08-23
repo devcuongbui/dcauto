@@ -216,7 +216,7 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                                 <div class="productPriceBlock">
                                     <div class="wrapImg">
                                         <div class="imgPart">
-                                            <img alt="product" src="/uploads/product/<?= $img ?>">
+                                            <img alt="product" src="/uploads/products/<?= $img ?>">
                                             <div class="bgAmountProduct"></div>
                                             <p class="amountProduct"><?= $quantity ?></p>
                                         </div>
