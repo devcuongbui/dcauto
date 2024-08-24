@@ -12,6 +12,9 @@ $routes->set404Override(function () {
     echo view('errors/404');
 });
 
+$routes->group("account", static function ($routes) {
+    $routes->post('change_password', 'UserController::change_password', ['as' => 'account.change_password']);
+});
 
 $routes->group("admin", static function ($routes) {
     $routes->get('login', 'AuthController::login', ['as' => 'auth.login']);

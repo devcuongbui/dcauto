@@ -52,19 +52,17 @@ Thông tin tài khoản
                 <th class="text-end">Tên</th>
                 <td class="text-start">
                     <input type="text" class="form-control main_item" id="full_name" name="full_name"
-                    value="<?=$user['full_name']?>"
-                        placeholder="Nhập tên...">
+                        value="<?= $user['full_name'] ?>" placeholder="Nhập tên...">
                 </td>
-                <th class="text-end">Mật khẩu cũ</th>
+                <th class="text-end">Mật khẩu hiện tại</th>
                 <td class="text-start"><input type="text" class="form-control main_item" id="pwd" name="pwd"
-                        placeholder="Nhập mật khẩu cũ..." autocomplete="new-password">
+                        placeholder="Nhập mật khẩu hiện tại..." autocomplete="new-password">
                 </td>
             </tr>
             <tr>
                 <th class="text-end">Email</th>
                 <td class="text-start"><input type="text" class="form-control main_item" id="email" name="email"
-                        value="<?=$user['email']?>"
-                        placeholder="Nhập email...">
+                        value="<?= $user['email'] ?>" placeholder="Nhập email...">
                 </td>
                 <th class="text-end">Mật khẩu mới</th>
                 <td class="text-start"><input type="text" class="form-control main_item" id="pwd_n" name="pwd_n"
@@ -74,22 +72,23 @@ Thông tin tài khoản
             <tr>
                 <th class="text-end">Số điện thoại</th>
                 <td class="text-start"><input type="text" class="form-control main_item" id="phone" name="phone"
-                        value="<?=$user['phone']?>"
-                        placeholder="Nhập số điện thoại...">
+                        value="<?= $user['phone'] ?>" placeholder="Nhập số điện thoại...">
                 </td>
                 <th class="text-end">Nhập lại mật khẩu mới</th>
-                <td class="text-start"><input type="text" class="form-control main_item" id="pwd_n_r" name="pwd_n_r"
+                <td class="text-start">
+                    <input type="text" class="form-control main_item" id="pwd_n_r" name="pwd_n_r"
                         placeholder="Nhập lại mật khẩu mới...">
+                    <div class="invalid-feedback">Chưa khớp với mật khẩu mới</div>
                 </td>
             </tr>
             <tr>
                 <th class="text-end">Ảnh đại diện</th>
                 <td class="text-start"><input type="file" class="form-control main_item" id="fileInput"
                         accept="image/*">
-                    <img id="avatar" src="/uploads/users/<?=$user['avatar']?>" alt="Avatar">
+                    <img id="avatar" src="/uploads/users/<?= $user['avatar'] ?>" alt="Avatar">
                 </td>
                 <th class="text-end"></th>
-                <td class="text-start align-top"><button id="btnCreate" type="button" onclick="createNews();"
+                <td class="text-start align-top"><button id="btnCreate" type="button" onclick="changePass();"
                         class="btn btn-primary">Đổi mật
                         khẩu</button></td>
             </tr>
@@ -122,6 +121,13 @@ Thông tin tài khoản
 </section>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
 <script>
+    $("#pwd_n_r").keyup(function () {
+        if ($("#pwd_n").val() != $("#pwd_n_r").val()) {
+            $("#pwd_n_r").addClass("is-invalid");
+        } else {
+            $("#pwd_n_r").removeClass("is-invalid");
+        }
+    });
     var blob = null;
     $(document).ready(function () {
         var $image = $('#image');
@@ -155,7 +161,7 @@ Thông tin tài khoản
                     height: 300,
                 });
                 $('#avatar').attr('src', canvas.toDataURL('image/png'));
-                canvas.toBlob(function(blobData) {
+                canvas.toBlob(function (blobData) {
                     blob = blobData;
                 });
                 closeCrop();
@@ -188,6 +194,32 @@ Thông tin tài khoản
                 console.log(result);
                 alert(result?.message || "Cập nhật thành công");
                 location.reload();
+            }
+        });
+    }
+    function changePass() {
+        const password = $('#pwd').val();
+        const newPassword = $('#pwd_n').val();
+        const reNewPassword = $('#pwd_n_r').val();
+        if (newPassword != reNewPassword) {
+            alert("Mật khẩu xác nhận không đúng!");
+            return;
+        }
+        $.ajax({
+            url: '/account/change_password',
+            type: 'POST',
+            data: {
+                password,
+                newPassword,
+                reNewPassword
+            },
+            dataType: 'json',
+            success: function (result) {
+                alert(result?.message || "Thay đổi mật khẩu thành công");
+                location.reload();
+            },
+            error: function (data) {
+                alert(data.responseJSON?.message || "Có lỗi xảy ra vui lòng thử lại");
             }
         });
     }
