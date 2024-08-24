@@ -192,59 +192,62 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
     <section class="secMultiSecCate">
         <div class="container">
             <?php foreach ($productsByCategory as $categorySlug => $products): ?>
-                <section class="secCatePr">
-                    <div class="setLineUnderTitle">
-                        <a class="titleBlock_1" href="/product/<?php echo $categorySlug; ?>">
-                            <h2 class="titleText wk-editable-text"><?php echo ucwords(str_replace('-', ' ', $categorySlug)); ?></h2>
-                        </a>
-                    </div>
-                    <div class="mainOfSec">
-                        <div class="colImg">
-                            <div class="bannerPart">
-                                <img alt="<?php echo ucwords(str_replace('-', ' ', $categorySlug)); ?>" class="wk-editable-image"
-                                     loading="lazy"
-                                     src="path/to/your/banner/image/<?php echo $categorySlug; ?>.webp">
-                            </div>
+                <?php if (!empty($products)): ?>
+                    <section class="secCatePr">
+                        <div class="setLineUnderTitle">
+                            <a class="titleBlock_1" href="/product/<?php echo $categorySlug; ?>">
+                                <h2 class="titleText wk-editable-text"><?php echo ucwords(str_replace('-', ' ', $categorySlug)); ?></h2>
+                            </a>
                         </div>
-                        <div class="colListPr">
-                            <div class="owl-carousel owl-theme slideProducts">
-                                <?php foreach ($products as $product): ?>
-                                    <div class="slidePart">
-                                        <article class="artProduct">
-                                            <a class="imgPr figure2"
-                                               href="<?php echo base_url('product/view/' . $product['slug']); ?>">
-                                                <img alt="<?php echo $product['product_name']; ?>"
-                                                     loading="lazy"
-                                                     src="<?php echo base_url('storage/' . $product['product_image']); ?>">
-                                            </a>
-                                            <div class="textInforPr">
-                                                <a class="linkPr"
+                        <div class="mainOfSec">
+                            <div class="colImg">
+                                <div class="bannerPart">
+                                    <img alt="<?php echo ucwords(str_replace('-', ' ', $categorySlug)); ?>" class="wk-editable-image"
+                                         loading="lazy"
+                                         src="path/to/your/banner/image/<?php echo $categorySlug; ?>.webp">
+                                </div>
+                            </div>
+                            <div class="colListPr">
+                                <div class="owl-carousel owl-theme slideProducts">
+                                    <?php foreach ($products as $product): ?>
+                                        <div class="slidePart">
+                                            <article class="artProduct">
+                                                <a class="imgPr figure2"
                                                    href="<?php echo base_url('product/view/' . $product['slug']); ?>">
-                                                    <h3 class="namePr"><?php echo $product['product_name']; ?></h3>
+                                                    <img alt="<?php echo $product['product_name']; ?>"
+                                                         loading="lazy"
+                                                         src="<?php echo base_url('storage/' . $product['product_image']); ?>">
                                                 </a>
-                                                <div class="labelGift">
-                                                    <i class="bi bi-gift-fill giftIcon"></i>
-                                                    <span class="giftInfo">Phòng dán chuẩn Mỹ</span>
+                                                <div class="textInforPr">
+                                                    <a class="linkPr"
+                                                       href="<?php echo base_url('product/view/' . $product['slug']); ?>">
+                                                        <h3 class="namePr"><?php echo $product['product_name']; ?></h3>
+                                                    </a>
+                                                    <div class="labelGift">
+                                                        <i class="bi bi-gift-fill giftIcon"></i>
+                                                        <span class="giftInfo">Phòng dán chuẩn Mỹ</span>
+                                                    </div>
+                                                    <?php if (!empty($product['init_price'])): ?>
+                                                        <p class="originalPrice"><?php echo number_format($product['init_price'], 0, ',', '.'); ?>đ</p>
+                                                    <?php endif; ?>
+                                                    <p class="currentPrice"><?php echo !empty($product['sell_price']) ? number_format($product['sell_price'], 0, ',', '.') . 'đ' : 'Liên hệ'; ?></p>
                                                 </div>
-                                                <?php if (!empty($product['init_price'])): ?>
-                                                    <p class="originalPrice"><?php echo number_format($product['init_price'], 0, ',', '.'); ?>đ</p>
-                                                <?php endif; ?>
-                                                <p class="currentPrice"><?php echo !empty($product['sell_price']) ? number_format($product['sell_price'], 0, ',', '.') . 'đ' : 'Liên hệ'; ?></p>
-                                            </div>
-                                        </article>
-                                    </div>
-                                <?php endforeach; ?>
+                                            </article>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="btnViewAll">
-                        <a class="btnType_2" href="/product/<?php echo $categorySlug; ?>">
-                            <span class="textBtn wk-editable-text">Xem thêm sản phẩm</span>
-                            <i class="bi bi-chevron-right iconRight"></i>
-                        </a>
-                    </div>
-                </section>
+                        <div class="btnViewAll">
+                            <a class="btnType_2" href="/product/<?php echo $categorySlug; ?>">
+                                <span class="textBtn wk-editable-text">Xem thêm sản phẩm</span>
+                                <i class="bi bi-chevron-right iconRight"></i>
+                            </a>
+                        </div>
+                    </section>
+                <?php endif; ?>
             <?php endforeach; ?>
+
         </div>
     </section>
     <section class="secRegisterHome">

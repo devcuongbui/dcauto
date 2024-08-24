@@ -21,44 +21,44 @@ class ProductController extends BaseController
 
     public function index($category_slug = null)
     {
-        // Fetch categories for the layout
         $s_parent_code_no = $this->request->getGet('s_parent_code_no') ?: 0;
         $categories = $this->category->getCategoriesWithSubcategories($s_parent_code_no);
 
-        // Check if a category slug is provided
         if (!$category_slug) {
             return view('errors/404');
         }
 
-        // Find the category by slug
         $category = $this->category->where('slug', $category_slug)->first();
         if (!$category) {
             return view('errors/404');
         }
 
-        // Fetch products based on whether the category is a parent or child
-        if ($category['parent_code_no'] == 0) {
-            // If the category is a parent category, get products from this category and its child categories
-            $childCategories = $this->category->where('parent_code_no', $category['c_idx'])->findAll();
-            $childCategoryIds = array_column($childCategories, 'code_no');
-            $childCategoryIds[] = $category['code_no']; // Include the parent category itself
+        $productsByCategory = [];
 
-            $products = $this->productModel->whereIn('category_id', $childCategoryIds)->findAll();
+        if ($category['parent_code_no'] == 0) {
+            $childCategories = $this->category->where('parent_code_no', $category['c_idx'])->findAll();
+
+            $childCategories[] = $category;
+
+            foreach ($childCategories as $childCategory) {
+                $productsByCategory[$childCategory['slug']] = $this->productModel
+                    ->where('category_id', $childCategory['c_idx'])
+                    ->findAll();
+            }
         } else {
-            // If the category is a child category, get products from this category only
-            $products = $this->productModel->where('category_id', $category['c_idx'])->findAll();
+            $productsByCategory[$category['slug']] = $this->productModel
+                ->where('category_id', $category['c_idx'])
+                ->findAll();
         }
 
-        // Pass the categories and products to the view
         return view('product/index', [
-            'products' => $products,
+            'productsByCategory' => $productsByCategory,
             'category' => $category,
             'categories' => $categories,
             'total' => count($categories),
             's_parent_code_no' => $s_parent_code_no
         ]);
     }
-
 
     public function list()
     {

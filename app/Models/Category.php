@@ -48,6 +48,7 @@ class Category extends Model
         return $this->orderBy('onum', 'desc')
             ->orderBy('c_idx', 'desc')
             ->where('parent_code_no', 0)
+            ->where('onum !=', 0)
             ->limit($limit)
             ->findAll();
     }
