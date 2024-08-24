@@ -105,6 +105,10 @@ function custom_paginate($currentPage, $totalPages) {
      return $pagination;
 }
 
+function getBankTypeName($id) {
+    return BANK_TYPE_NAMES[$id] ?? "";
+}
+
 function getMenuStatus() {
     $router = service('router');
     $fullControllerName = $router->controllerName();

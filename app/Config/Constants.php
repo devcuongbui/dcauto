@@ -149,3 +149,8 @@ define('REVIEW_STATUS_NAMES', [
     'Y' => 'Đã được duyệt',
     'D' => 'Đã xóa',
 ]);
+
+define('BANK_TYPE_NAMES', [
+    'P' => 'Tài khoản cá nhân',
+    'C' => 'Tài khoản công ty',
+]);

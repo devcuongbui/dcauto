@@ -5,6 +5,7 @@ namespace App\Controllers;
 class Home extends BaseController
 {
     protected $category;
+    protected $productModel;
     public function __construct()
     {
         $this->category = model("Category");

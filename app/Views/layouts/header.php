@@ -396,7 +396,7 @@
     <div class="wrapWidth">
         <div class="row">
             <div class="cartPart smallPart">
-                <a class="cartBlock_1 aTag" href="cart/<?php echo route_to('home'); ?>" title="giỏ hàng">
+                <a class="cartBlock_1 aTag" href="/cart/list" title="giỏ hàng">
                     <div class="cartItem">
                         <i aria-hidden="true" class="fa fa-cart-plus"></i>
                         <i class="amountProduct order_items <?=$totalCountCart == 0 ? 'd-none' : '' ?>" data-count="<?=$totalCountCart?>"><?=$totalCountCart?></i>

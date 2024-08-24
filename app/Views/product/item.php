@@ -164,13 +164,13 @@
                 <div class="colPhone">
                     <a class="phoneBlock contactCallPopUp contactCallPopUpPhone" contacttext="Gọi điện"
                         data-target="#popupWhenClickContact" data-toggle="modal" data="phone"
-                        datahref="tel: 0818.918.981" idgoogleget="btn_phone_id" title="Liên hệ">
+                        datahref="tel: 0123.456.789" idgoogleget="btn_phone_id" title="Liên hệ">
                         <div class="iconPart">
                             <i class="bi bi-telephone-fill mb-0 phoneIcon colorWhite"></i>
                         </div>
                         <p class="textPhone mb-0 colorWhite">
                             Hotline:
-                            <b> 0818.918.981</b>
+                            <b> 0123.456.789</b>
                         </p>
                     </a>
                 </div>
@@ -463,14 +463,14 @@
         </div>
         <div class="smallBlock telBlock">
             <a class="imgPart contactCallPopUp contactCallPopUpPhone" contacttext="Gọi điện"
-                data-target="#popupWhenClickContact" data-toggle="modal" data="phone" datahref="tel: 0818.918.981"
+                data-target="#popupWhenClickContact" data-toggle="modal" data="phone" datahref="tel: 0123.456.789"
                 idgoogleget="btn_phone_id" title="Liên hệ">
                 <img alt="" class="phonePartImg" src="/tassets/images/phone_item_2.svg">
             </a>
             <p class="textPart">Phone</p>
             <div class="textPart_2">
                 Gọi ngay:
-                <b> 0818.918.981</b>
+                <b> 0123.456.789</b>
             </div>
         </div>
     </div>
@@ -514,7 +514,7 @@
                 <div class="phonePart centerPart">
                     <a class="contactCallPopUp contactCallPopUpPhone" contacttext="Gọi điện"
                         data-target="#popupWhenClickContact" data-toggle="modal" data="phone"
-                        datahref="tel: 0818.918.981" idgoogleget="btn_phone_id" title="Liên hệ">
+                        datahref="tel: 0123.456.789" idgoogleget="btn_phone_id" title="Liên hệ">
                         <img alt="phoneItem" class="phonePartImg" src="/tassets/images/phone_item.svg">
                     </a>
                 </div>
@@ -907,9 +907,9 @@
                 <div class="contactArea">
                     <a class="phoneLink contactCallPopUp contactCallPopUpPhone" contacttext="Gọi điện"
                         data-target="#popupWhenClickContact" data-toggle="modal" data="phone"
-                        datahref="tel: 0818.918.981" idgoogleget="btn_phone_id" title="Liên hệ">
+                        datahref="tel: 0123.456.789" idgoogleget="btn_phone_id" title="Liên hệ">
                         <i aria-hidden="true" class="fa fa-phone phoneIcon"></i>
-                        <p class="phoneText"> Hotline 24/7: 0818.918.981</p>
+                        <p class="phoneText"> Hotline 24/7: 0123.456.789</p>
                     </a>
                     <a class="mailLink contactCallPopUp" contacttext="Gửi email" data-target="#popupWhenClickContact"
                         data-toggle="modal" data="mail" datahref="mailto:autodc.vn@gmail.com" idgoogleget="btn_mail_id"
@@ -1169,7 +1169,7 @@
         <section class="secRegisterCate">
             <div class="container">
                 <p class="titleSec_1 colorWhite">Tư Vấn Combo Chăm Sóc Xe</p>
-                <p class="titleSec_2 colorWhite">Chuyên viên Oto DC sẽ gọi lại ngay ạ!</p>
+                <p class="titleSec_2 colorWhite">Chuyên viên DC Auto sẽ gọi lại ngay ạ!</p>
                 <div class="boxBackground">
                     <form class="form-row justify-content-center dang-ky-tu-van contact-form" target="/thankyou/">
                         <input type="hidden" name="authenticity_token" id="authenticity_token"
@@ -1363,7 +1363,7 @@
                                 <p>Lưu ý: Bảng giá trên chỉ mang tính chất tham khảo. Giá thành của màn hình cho Honda
                                     Civic còn phụ thuộc vào rất nhiều các yếu tố khác như số lượng sản phẩm, đơn vị
                                     chuyên cung cấp dịch vụ, thời điểm mua sản phẩm… Để nắm được chi tiết về mức giá màn
-                                    hình ô tô Honda Civic hãy liên hệ qua hotline: 0818.918.981.819.981 để được tư vấn
+                                    hình ô tô Honda Civic hãy liên hệ qua hotline: 0123.456.789.819.981 để được tư vấn
                                     miễn phí và báo giá chi tiết nhất. </p>
 
                                 <h2 id="3-cac-thuong-hieu-man-hinh-android-xe-honda-civic-tot-nhat-hien-nay">3. Các
@@ -1569,12 +1569,12 @@
 
                                 <blockquote>
                                     <p><strong>Thông tin liên hệ: </strong></p>
-                                    <p>Công ty TNHH TM DV Oto DC</p>
+                                    <p>Công ty TNHH TM DV DC Auto</p>
                                     <p>Trụ sở chính: 338 Nguyễn Văn Cừ, Hưng Bình, Thành phố Vinh, Nghệ An</p>
                                     <p>Showroom Hồ Chí Minh: 137 Lê Thị Hà, n n, Hóc Môn, HCM</p>
                                     <p>Showroom Hà Nội: 1017 Phúc Diễn, y Mỗ, Nam Từ Liêm, Hà Nội</p>
                                     <p>Showroom Đà Nẵng: 114 Nguyễn ĐìnH Tựu - Hoà Khê - Thanh Khê - Đà Nẵng</p>
-                                    <p>Điện thoại:<a href="tel:0818.918.981"> 0818.918.981</a></p>
+                                    <p>Điện thoại:<a href="tel:0123.456.789"> 0123.456.789</a></p>
                                     <p>Website: <a href="https://otodc.vn/" target="_blank">https://otodc.vn/</a></p>
                                     <p>Email: <a href="http://otodc.vn@gmail.com/"
                                             target="_blank">otodc.vn@gmail.com</a></p>
@@ -1625,13 +1625,13 @@
                     <div class="colPhone">
                         <a class="phoneBlock contactCallPopUp contactCallPopUpPhone" contacttext="Gọi điện"
                             data-target="#popupWhenClickContact" data-toggle="modal" data="phone"
-                            datahref="tel: 0818.918.981" idgoogleget="btn_phone_id" title="Liên hệ">
+                            datahref="tel: 0123.456.789" idgoogleget="btn_phone_id" title="Liên hệ">
                             <div class="iconPart">
                                 <i class="bi bi-telephone-fill mb-0 phoneIcon colorWhite"></i>
                             </div>
                             <p class="textPhone mb-0 colorWhite">
                                 Hotline:
-                                <b> 0818.918.981</b>
+                                <b> 0123.456.789</b>
                             </p>
                         </a>
                     </div>
@@ -1655,11 +1655,11 @@
                                 </div>
                                 <a class="textHasIcon contactCallPopUp contactCallPopUpPhone" contacttext="Gọi điện"
                                     data-target="#popupWhenClickContact" data-toggle="modal" data="phone"
-                                    datahref="tel: 0818.918.981" idgoogleget="btn_phone_id" title="Liên hệ">
+                                    datahref="tel: 0123.456.789" idgoogleget="btn_phone_id" title="Liên hệ">
                                     <i class="bi bi-telephone iconTag"></i>
                                     <p class="textInside wk-editable-text" id="home-section-footer-text7">
                                         Điện thoại:
-                                        <b> 0818.918.981</b>
+                                        <b> 0123.456.789</b>
                                     </p>
                                 </a>
                                 <a class="textHasIcon contactCallPopUp" contacttext="Gửi email"

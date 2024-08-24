@@ -25,7 +25,7 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                             <h1>Giỏ hàng của bạn còn trống</h1>
                         </div>
                         <div class="btnErrorPage">
-                            <a href="../index.html">
+                            <a href="/">
                                 <button class="btn btn-primary" type="button">MUA NGAY</button>
                             </a>
                         </div>

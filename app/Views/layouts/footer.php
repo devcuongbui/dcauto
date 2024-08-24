@@ -24,13 +24,13 @@
                 <div class="colPhone">
                     <a class="phoneBlock contactCallPopUp contactCallPopUpPhone" contacttext="Gọi điện"
                        data-target="#popupWhenClickContact" data-toggle="modal" data="phone.html"
-                       datahref="tel: 0818.918.981" idgoogleget="btn_phone_id" title="Liên hệ">
+                       datahref="tel: 0123.456.789" idgoogleget="btn_phone_id" title="Liên hệ">
                         <div class="iconPart">
                             <i class="bi bi-telephone-fill mb-0 phoneIcon colorWhite"></i>
                         </div>
                         <p class="textPhone mb-0 colorWhite">
                             Hotline:
-                            <b> 0818.918.981</b>
+                            <b> 0123.456.789</b>
                         </p>
                     </a>
                 </div>
@@ -54,11 +54,11 @@
                             </div>
                             <a class="textHasIcon contactCallPopUp contactCallPopUpPhone" contacttext="Gọi điện"
                                data-target="#popupWhenClickContact" data-toggle="modal" data="phone.html"
-                               datahref="tel: 0818.918.981" idgoogleget="btn_phone_id" title="Liên hệ">
+                               datahref="tel: 0123.456.789" idgoogleget="btn_phone_id" title="Liên hệ">
                                 <i class="bi bi-telephone iconTag"></i>
                                 <p class="textInside wk-editable-text" id="home-section-footer-text7">
                                     Điện thoại:
-                                    <b> 0818.918.981</b>
+                                    <b> 0123.456.789</b>
                                 </p>
                             </a>
                             <a class="textHasIcon contactCallPopUp" contacttext="Gửi email"

@@ -1,1 +1,1 @@
-<?php
+<script src="/assets/lib/bootstrap/bootstrap-4.6.bundle.min.js"></script>

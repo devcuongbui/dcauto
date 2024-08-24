@@ -43,6 +43,7 @@ class OrdersController extends BaseController
         $province_id = $post['province_id'] ?? "";
         $reciever_name = $post['reciever_name'] ?? "";
         $shipping_method = $post['shipping_method'] ?? "";
+        $bank_type = $post['bank_type'] ?? "";
 
         $cart = $this->session->get('cart');
 
@@ -93,6 +94,7 @@ class OrdersController extends BaseController
             'order_detail_address' => $order_detail_address,
             'pay_method_id' => getPayMethodId($payment_method),
             'shipping_form_id' => getShippingMethodId($shipping_method),
+            'bank_type' => $bank_type,
             'note' => null,
             'customer_note' => null,
             'reciever_name' => $reciever_name,

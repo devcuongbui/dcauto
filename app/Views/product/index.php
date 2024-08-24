@@ -177,7 +177,7 @@
         <section class="secRegisterCate">
             <div class="container">
                 <p class="titleSec_1 colorWhite">Tư Vấn Combo Chăm Sóc Xe</p>
-                <p class="titleSec_2 colorWhite">Chuyên viên Oto DC sẽ gọi lại ngay ạ!</p>
+                <p class="titleSec_2 colorWhite">Chuyên viên DC Auto sẽ gọi lại ngay ạ!</p>
                 <div class="boxBackground">
                     <form class="form-row justify-content-center dang-ky-tu-van contact-form" target="/thankyou/"
                           novalidate="novalidate">
@@ -557,7 +557,7 @@
                                 <blockquote>
                                     <p><strong>Thông tin liên hệ:&nbsp;</strong></p>
 
-                                    <p>Công ty TNHH TM DV Oto DC</p>
+                                    <p>Công ty TNHH TM DV DC Auto</p>
 
                                     <p>Trụ sở chính: &nbsp;338 Nguyễn Văn Cừ, Hưng Bình, Thành phố Vinh, Nghệ An</p>
 
@@ -567,7 +567,7 @@
 
                                     <p>Showroom Đà Nẵng: 114 Nguyễn ĐìnH Tựu - Hoà Khê - Thanh Khê - Đà Nẵng</p>
 
-                                    <p>Điện thoại:<a href="tel:0818.918.981">&nbsp;0818.918.981</a></p>
+                                    <p>Điện thoại:<a href="tel:0123.456.789">&nbsp;0123.456.789</a></p>
 
                                     <p>Website:&nbsp;<a href="https://otodc.vn/" target="_blank">https://otodc.vn/</a></p>
 
