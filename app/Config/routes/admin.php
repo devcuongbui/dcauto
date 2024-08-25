@@ -21,8 +21,6 @@ $routes->group("news", static function ($routes) {
 
 $routes->group("orders", static function ($routes) {
     $routes->get('list', 'Admin\AdminOrdersController::list', ['as' => 'admin.orders.list']);
-    $routes->get('detail/(:any)', 'Admin\AdminOrdersController::detail/$1', ['as' => 'admin.orders.detail']);
-    $routes->put('update/(:any)', 'Admin\AdminOrdersController::update/$1', ['as' => 'admin.orders.update']);
     $routes->delete('delete/(:any)', 'Admin\AdminOrdersController::delete/$1', ['as' => 'admin.orders.delete']);
 });
 
@@ -30,6 +28,12 @@ $routes->group("contact", static function ($routes) {
     $routes->get('list', 'Admin\AdminContactController::list', ['as' => 'admin.contact.list']);
     $routes->get('detail/(:any)', 'Admin\AdminContactController::detail/$1', ['as' => 'admin.contact.detail']);
     $routes->delete('delete/(:any)', 'Admin\AdminContactController::delete/$1', ['as' => 'admin.contact.delete']);
+});
+
+$routes->group("comment", static function ($routes) {
+    $routes->get('list', 'Admin\AdminReviewController::list', ['as' => 'admin.comment.list']);
+    $routes->post('update', 'Admin\AdminReviewController::update', ['as' => 'admin.comment.update']);
+    $routes->delete('delete/(:any)', 'Admin\AdminReviewController::delete/$1', ['as' => 'admin.comment.delete']);
 });
 
 $routes->group("products", static function ($routes) {

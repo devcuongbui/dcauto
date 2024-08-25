@@ -99,7 +99,7 @@ class CartController extends BaseController
         $cart = $this->session->get('cart') ?? ['items' => []];
         if (!$product_id || !$option_id || !$quantity) {
             return $this->response->setJSON([
-                'message' => 'Vui lòng chọn sản phẩm và số lượng',
+                'message' => 'Vui lòng chọn tùy chọn sản phẩm và số lượng',
             ])->setStatusCode(400);
         }
         $item = [
@@ -114,6 +114,8 @@ class CartController extends BaseController
         foreach ($cart['items'] as $key => $item) {
             if ($item['product_id'] == $product_id && $item['option_id'] == $option_id) {
                 $is_existed = true;
+                $cart['items'][$key]['selected'] = true;
+                $cart['items'][$key]['quantity'] = $quantity;
             } else {
                 $cart['items'][$key]['selected'] = false;
             }

@@ -74,10 +74,23 @@
                 <i class="bi bi-envelope"></i><span>Liên Hệ</span><i
                         class="bi bi-chevron-down ms-auto"></i>
             </a>
-            <ul id="contact-nav" class="nav-content collapse <?=$menu_status['main6']['menu_show']?>" data-bs-parent="#sidebar-nav">
+            <ul id="contact-nav" class="nav-content collapse <?=$menu_status['main6']['menu_show'] ?>" data-bs-parent="#sidebar-nav">
                 <li>
                     <a href="<?= route_to('admin.contact.list') ?>" class="<?= $menu_status['main6']['sub1_status'] ?>">
                         <i class="bi bi-circle"></i><span>Danh sách liên hệ</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link <?=$menu_status['main7']['collapsed'] ?? "" ?>" data-bs-target="#review-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-envelope"></i><span>Bình luận sản phẩm</span><i
+                        class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="review-nav" class="nav-content collapse <?=$menu_status['main7']['menu_show'] ?? "" ?>" data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="<?= route_to('admin.comment.list') ?>" class="<?= $menu_status['main7']['sub1_status'] ?? "" ?>">
+                        <i class="bi bi-circle"></i><span>Danh sách bình luận</span>
                     </a>
                 </li>
             </ul>

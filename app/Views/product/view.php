@@ -106,10 +106,11 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                             <div class="cartPart">
                                 <article class="artAddPrToCart">
                                     <a class="aTag1 add-to-cart" data-product-id="<?= $product['product_id'] ?>"
+                                        style="<?=$isAddedToCart ? 'display: none;' : ''?>"
                                         title="Thêm vào giỏ hàng">
                                         <div class="itemCart itemCart1"></div>
                                     </a>
-                                    <a class="aTag2" href="/cart/list" style="display: none;">
+                                    <a class="aTag2" href="/cart/list" style="<?=!$isAddedToCart ? 'display: none;' : ''?>">
                                         <div class="itemCart itemCart2"></div>
                                     </a>
                                 </article>

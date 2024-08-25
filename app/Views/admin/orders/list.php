@@ -39,9 +39,14 @@ Danh sách đơn hàng
             </tr>
         </thead>
         <tbody>
+            <?php if(count($list) == 0): ?>
+                <tr>
+                    <td colspan="8" class="text-center">Chưa có đơn hàng</td>
+                </tr>
+            <?php endif; ?>
             <?php foreach ($list as $key => $item): ?>
                 <tr>
-                    <th scope="row"><?= 1 ?></th>
+                    <th scope="row"><?= $num-- ?></th>
                     <td><?= $item['orders_code'] ?></td>
                     <td><?= $item['reciever_name'] ?></td>
                     <td><?= $item['order_email'] ?></td>
@@ -49,9 +54,8 @@ Danh sách đơn hàng
                     <td><?= $item['created_at'] ?></td>
                     <td><?= getOrderStatusName($item['status_id']) ?></td>
                     <td>
-                        <button data-order_id="<?= $item['order_id'] ?>"
-                            href="<?= route_to('admin.orders.detail', $item['order_id']) ?> " class="btn btn-primary"
-                            data-bs-toggle="modal" data-bs-target="#model_detail_<?= $item['order_id'] ?>">
+                        <button data-order_id="<?= $item['order_id'] ?>" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#model_detail_<?= $item['order_id'] ?>">
                             <i class="bi bi-eye"></i>
                         </button>
                         <button type="button" data-id="<?= $item['order_id'] ?>"
@@ -70,7 +74,6 @@ Danh sách đơn hàng
 <?php endforeach; ?>
 <script>
     function saveOrder(order_id) {
-        // alert(order_id);
         const frm = document.getElementById('form_' + order_id);
         $.ajax({
             type: "POST",
@@ -79,7 +82,10 @@ Danh sách đơn hàng
             dataType: "json",
             success: function (response) {
                 location.reload();
-                // $(`#closeModal_${order_id}`).click();
+            },
+            error: function (xhr, status, error) {
+                console.log(xhr.responseText);
+                alert("Đã xảy ra lỗi!");
             }
         });
     }
@@ -91,6 +97,10 @@ Danh sách đơn hàng
                 dataType: "json",
                 success: function (response) {
                     location.reload();
+                },
+                error: function (xhr, status, error) {
+                    console.log(xhr.responseText);
+                    alert("Đã xảy ra lỗi!");
                 }
             });
         }

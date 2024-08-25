@@ -51,6 +51,9 @@ function getReviewStatusName($code) {
 }
 
 function custom_paginate($currentPage, $totalPages) {
+    if ($totalPages <= 0) {
+        return '';
+    }
     $currentUrl = $_SERVER['REQUEST_URI'];
 
     $urlParts = parse_url($currentUrl);
@@ -154,6 +157,11 @@ function getMenuStatus() {
             $main_menu = 'main6';
             $sub_menu = 'main6_sub1';
             break;
+        case 'AdminReviewController::list':
+        case 'AdminReviewController::detail':
+            $main_menu = 'main7';
+            $sub_menu = 'main7_sub1';
+            break;
         default:
             $main_menu = '';
             $sub_menu = '';
@@ -190,6 +198,11 @@ function getMenuStatus() {
             'collapsed' => $main_menu === "main6" ? '' : 'collapsed',
             'menu_show' => $main_menu === "main6" ? 'show' : '',
             'sub1_status' => $sub_menu === "main6_sub1" ? 'active' : '',
+        ],
+        "main7" => [
+            'collapsed' => $main_menu === "main7" ? '' : 'collapsed',
+            'menu_show' => $main_menu === "main7" ? 'show' : '',
+            'sub1_status' => $sub_menu === "main7_sub1" ? 'active' : '',
         ],
     ];
     return $menu_status;
