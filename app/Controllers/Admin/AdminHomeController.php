@@ -9,13 +9,59 @@ class AdminHomeController extends BaseController
 {
     private $uploadPath = FCPATH ."uploads/users/";
     protected $userModel;
+    protected $orderModel;
     public function __construct()
     {
         $this->userModel = model('User');
+        $this->orderModel = model('OrdersModel');
     }
     public function index()
     {
-        return view('admin/dashboard');
+        $orders = $this->orderModel
+        ->select('order_id, order_date, total_payment, customer_id, status_id, status_code')
+        ->where('status_id', '4')
+        ->findAll();
+        $yesterdayData = $this->orderModel
+        ->select('order_id, order_date, total_payment, customer_id, status_id, status_code')
+        ->where('status_id', '4')
+        ->where('order_date', date('Y-m-d', strtotime('-1 days')))
+        ->findAll();
+        $todayData = $this->orderModel
+        ->select('order_id, order_date, total_payment, customer_id, status_id, status_code')
+        ->where('status_id', '4')
+        ->where('order_date', date('Y-m-d'))
+        ->findAll();
+        $lastMonthData = $this->orderModel
+        ->select('order_id, order_date, total_payment, customer_id, status_id, status_code')
+        ->where('status_id', '4')
+        ->where('order_date', date('Y-m', strtotime('-1 month')))
+        ->findAll();
+        $thisMonthData = $this->orderModel
+        ->select('order_id, order_date, total_payment, customer_id, status_id, status_code')
+        ->where('status_id', '4')
+        ->where('order_date', date('Y-m'))
+        ->findAll();
+        $yesterdayOrderCnt = count($yesterdayData);
+        $todayOrderCnt = count($todayData);
+        $increateOrderCnt = $todayOrderCnt - $yesterdayOrderCnt;
+        $increaseOrderPercent = $todayOrderCnt == 0 ? 0 : round($increateOrderCnt / $yesterdayOrderCnt * 100, 2);
+        $lastMonthOrderCnt = count($lastMonthData);
+        $thisMonthOrderCnt = count($thisMonthData);
+        $lastMonthOrderMoney = 0;
+        $thisMonthOrderMoney = 0;
+        foreach ($lastMonthData as $key => $value) {
+            $lastMonthOrderMoney += $value['total_payment'];
+        }
+        foreach ($thisMonthData as $key => $value) {
+            $thisMonthOrderMoney += $value['total_payment'];
+        }
+        $monthDataIncreasePercent = $lastMonthOrderCnt == 0 ? 0 : round($thisMonthOrderCnt / $lastMonthOrderCnt * 100, 2);
+        return view('admin/dashboard', [
+            'todayOrderCnt' => $todayOrderCnt,
+            'increaseOrderPercent' => $increaseOrderPercent,
+            'thisMonthOrderMoney' => $thisMonthOrderMoney,
+            'monthDataIncreasePercent' => $monthDataIncreasePercent
+        ]);
     }
     public function users_profile()
     {

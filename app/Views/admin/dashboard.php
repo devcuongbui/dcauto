@@ -45,10 +45,14 @@
                                         <i class="bi bi-cart"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>145</h6>
-                                        <span class="text-success small pt-1 fw-bold">12%</span> <span
-                                                class="text-muted small pt-2 ps-1">increase</span>
-
+                                        <h6><?=$todayOrderCnt?></h6>
+                                        <?php if($increaseOrderPercent >= 0): ?>
+                                        <span class="text-success small pt-1 fw-bold"><?=$increaseOrderPercent?>%</span>
+                                        <span class="text-muted small pt-2 ps-1">increase</span>
+                                        <?php else: ?>
+                                        <span class="text-danger small pt-1 fw-bold"><?=$increaseOrderPercent?>%</span>
+                                        <span class="text-muted small pt-2 ps-1">decrease</span>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>
@@ -81,10 +85,14 @@
                                         <i class="bi bi-currency-dollar"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>$3,264</h6>
-                                        <span class="text-success small pt-1 fw-bold">8%</span> <span
-                                                class="text-muted small pt-2 ps-1">increase</span>
-
+                                        <h6><?=number_format($thisMonthOrderMoney, 0, '.', ',')?>đ</h6>
+                                        <?php if($monthDataIncreasePercent >= 0): ?>
+                                        <span class="text-success small pt-1 fw-bold"><?=$monthDataIncreasePercent?>%</span>
+                                        <span class="text-muted small pt-2 ps-1">increase</span>
+                                        <?php else: ?>
+                                        <span class="text-danger small pt-1 fw-bold"><?=$monthDataIncreasePercent?>%</span>
+                                        <span class="text-muted small pt-2 ps-1">decrease</span>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>
