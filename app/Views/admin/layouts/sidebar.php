@@ -10,7 +10,7 @@
         </li>
         <li class="nav-item">
             <a class="nav-link <?=$menu_status['main2']['collapsed']?>" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-journal-text"></i><span>Sản phẩm</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-microsoft"></i><span>Sản phẩm</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="forms-nav" class="nav-content collapse <?=$menu_status['main2']['menu_show']?>" data-bs-parent="#sidebar-nav">
                 <li>
@@ -40,7 +40,7 @@
         </li>
         <li class="nav-item">
             <a class="nav-link <?=$menu_status['main4']['collapsed']?>" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-layout-text-window-reverse"></i><span>Tin tức</span><i
+                <i class="bi bi-newspaper"></i><span>Tin tức</span><i
                         class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="tables-nav" class="nav-content collapse <?=$menu_status['main4']['menu_show']?>" data-bs-parent="#sidebar-nav">
@@ -58,7 +58,7 @@
         </li>
         <li class="nav-item">
             <a class="nav-link <?=$menu_status['main5']['collapsed']?>" data-bs-target="#tables-orders-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-layout-text-window-reverse"></i><span>Đơn hàng</span><i
+                <i class="bi bi-truck-flatbed"></i><span>Đơn hàng</span><i
                         class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="tables-orders-nav" class="nav-content collapse <?=$menu_status['main5']['menu_show']?>" data-bs-parent="#sidebar-nav">
@@ -84,7 +84,7 @@
         </li>
         <li class="nav-item">
             <a class="nav-link <?=$menu_status['main7']['collapsed'] ?? "" ?>" data-bs-target="#review-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-envelope"></i><span>Bình luận sản phẩm</span><i
+                <i class="bi bi-chat-left-dots"></i><span>Bình luận sản phẩm</span><i
                         class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="review-nav" class="nav-content collapse <?=$menu_status['main7']['menu_show'] ?? "" ?>" data-bs-parent="#sidebar-nav">
