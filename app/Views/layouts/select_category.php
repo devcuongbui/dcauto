@@ -14,7 +14,7 @@
                                 <select class="form-control selectBrand" id="hang_xe">
                                     <option value="">Chọn hãng xe...</option>
                                     <?php foreach ($categories as $category): ?>
-                                        <option data="<?= $category['code_name']; ?>" href="/product/<?= strtolower($category['slug']); ?>/">
+                                        <option data="<?= $category['code_name']; ?>" href="/product/brand/<?= strtolower($category['slug']); ?>/">
                                             <?= $category['code_name']; ?>
                                         </option>
                                     <?php endforeach; ?>
@@ -32,7 +32,7 @@
                                     <select brand="<?= $category['code_name']; ?>" class="form-control selectType search_input" id="ten_xe" style="display: none;">
                                         <option value="">Chọn dòng xe</option>
                                         <?php foreach ($category['subcategories'] as $subcategory): ?>
-                                            <option data="<?= $category['code_name']; ?>" href="/product/<?= strtolower($subcategory['slug']); ?>/" value="<?= $subcategory['code_name']; ?>">
+                                            <option data="<?= $category['code_name']; ?>" href="/product/brand/<?= strtolower($subcategory['slug']); ?>/" value="<?= $subcategory['code_name']; ?>">
                                                 <?= $subcategory['code_name']; ?>
                                             </option>
                                         <?php endforeach; ?>
@@ -55,11 +55,11 @@
             <div class="flexLine">
                 <div class="colCate">
                     <div class="contentPart">
-                        <a class="imgPart" href="/product/man-hinh-android-o-to/<?php echo route_to('home'); ?>">
+                        <a class="imgPart" href="/product/brand/man-hinh-android-o-to/<?php echo route_to('home'); ?>">
                             <img alt="Màn Hình Android Ô Tô " loading="lazy"
                                  src="storage/ji/fn/jifn7eh4t01h2nayrkshu3x2ha9v_man-hinh-android-o-to-10.webp">
                         </a>
-                        <a class="linkCate" href="/product/man-hinh-android-o-to/<?php echo route_to('home'); ?>">Màn
+                        <a class="linkCate" href="/product/brand/man-hinh-android-o-to/<?php echo route_to('home'); ?>">Màn
                             Hình Android Ô Tô </a>
                     </div>
                 </div>

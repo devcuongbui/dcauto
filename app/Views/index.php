@@ -216,7 +216,7 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                                                    href="<?php echo base_url('product/view/' . $product['slug']); ?>">
                                                     <img alt="<?php echo $product['product_name']; ?>"
                                                          loading="lazy"
-                                                         src="<?php echo base_url('storage/' . $product['product_image']); ?>">
+                                                         src="<?php echo base_url('uploads/products/' . $product['product_image']); ?>">
                                                 </a>
                                                 <div class="textInforPr">
                                                     <a class="linkPr"
@@ -239,7 +239,7 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                             </div>
                         </div>
                         <div class="btnViewAll">
-                            <a class="btnType_2" href="/product/<?php echo $categorySlug; ?>">
+                            <a class="btnType_2" href="/product/type/<?php echo $categorySlug; ?>">
                                 <span class="textBtn wk-editable-text">Xem thêm sản phẩm</span>
                                 <i class="bi bi-chevron-right iconRight"></i>
                             </a>

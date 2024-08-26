@@ -584,8 +584,5 @@
 
     </main>
     <script>
-        function submitCart() {
-            location.href = "/product/1";
-        }
     </script>
 <?= $this->endSection() ?>

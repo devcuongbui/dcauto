@@ -14,21 +14,22 @@ class ProductController extends BaseController
         $this->session = session();
         $this->productModel = model("ProductModel");
         $this->category = model("Category");
+        $this->brands = model("CarBrands");
         $this->productOptionModel =  model("ProductOptionModel");
         $this->reviewModel = model("ReviewModel");
         $this->product_image_model = model("ProductImages");
     }
 
-    public function index($category_slug = null)
+    public function brand($category_slug = null)
     {
         $s_parent_code_no = $this->request->getGet('s_parent_code_no') ?: 0;
-        $categories = $this->category->getCategoriesWithSubcategories($s_parent_code_no);
+        $categories = $this->brands->getCategoriesWithSubcategories($s_parent_code_no);
 
         if (!$category_slug) {
             return view('errors/404');
         }
 
-        $category = $this->category->where('slug', $category_slug)->first();
+        $category = $this->brands->where('slug', $category_slug)->first();
         if (!$category) {
             return view('errors/404');
         }
@@ -36,7 +37,7 @@ class ProductController extends BaseController
         $productsByCategory = [];
 
         if ($category['parent_code_no'] == 0) {
-            $childCategories = $this->category->where('parent_code_no', $category['c_idx'])->findAll();
+            $childCategories = $this->brands->where('parent_code_no', $category['c_idx'])->findAll();
 
             $childCategories[] = $category;
 
@@ -51,13 +52,18 @@ class ProductController extends BaseController
                 ->findAll();
         }
 
-        return view('product/index', [
+        return view('product/brand', [
             'productsByCategory' => $productsByCategory,
             'category' => $category,
             'categories' => $categories,
             'total' => count($categories),
             's_parent_code_no' => $s_parent_code_no
         ]);
+    }
+
+    public function type($category_slug = null)
+    {
+        return view('product/type');
     }
 
     public function list()
