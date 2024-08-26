@@ -162,6 +162,11 @@ function getMenuStatus() {
             $main_menu = 'main7';
             $sub_menu = 'main7_sub1';
             break;
+        case 'CarBrandsController::list':
+        case 'CarBrandsController::write':
+            $main_menu = 'main8';
+            $sub_menu = 'main8_sub1';
+            break;
         default:
             $main_menu = '';
             $sub_menu = '';
@@ -203,6 +208,11 @@ function getMenuStatus() {
             'collapsed' => $main_menu === "main7" ? '' : 'collapsed',
             'menu_show' => $main_menu === "main7" ? 'show' : '',
             'sub1_status' => $sub_menu === "main7_sub1" ? 'active' : '',
+        ],
+        "main8" => [
+            'collapsed' => $main_menu === "main8" ? '' : 'collapsed',
+            'menu_show' => $main_menu === "main8" ? 'show' : '',
+            'sub1_status' => $sub_menu === "main8_sub1" ? 'active' : '',
         ],
     ];
     return $menu_status;

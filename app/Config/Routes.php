@@ -27,6 +27,12 @@ $routes->group("admin", static function ($routes) {
         $routes->post('save', 'CategoryController::save', ['as' => 'admin.category.save']);
         $routes->post('change_order', 'CategoryController::change_order', ['as' => 'admin.category.change_order']);
     });
+    $routes->group("brands", static function ($routes) {
+        $routes->get('list', 'CarBrandsController::list', ['as' => 'admin.brands.list']);
+        $routes->get('write', 'CarBrandsController::write', ['as' => 'admin.brands.write']);
+        $routes->post('save', 'CarBrandsController::save', ['as' => 'admin.brands.save']);
+        $routes->post('change_order', 'CarBrandsController::change_order', ['as' => 'admin.brands.change_order']);
+    });
 
 });
 
@@ -38,7 +44,8 @@ $routes->group("contact", static function ($routes) {
 
 $routes->group("product", static function ($routes) {
     $routes->get('view/(:segment)', 'ProductController::view/$1',['as' => 'product.view']);
-    $routes->get('(:segment)', 'ProductController::index/$1', ['as' => 'product.index']);
+    $routes->get('brand/(:segment)', 'ProductController::brand/$1', ['as' => 'product.brand']);
+    $routes->get('type/(:segment)', 'ProductController::type/$1', ['as' => 'product.type']);
     $routes->get('list/(:segment)', 'ProductController::list/$1', ['as' => 'product.list']);
 });
 
