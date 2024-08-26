@@ -93,13 +93,13 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
             <div class="container">
                 <div class="text-center">
                     <div class="titleBlock_1">
-                        <p class="titleText wk-editable-text" id="home-section2-text1">Oto DC - Trung tâm chăm sóc &amp;
+                        <p class="titleText wk-editable-text" id="home-section2-text1">DC Auto - Trung tâm chăm sóc &amp;
                             phụ kiện ô tô cao cấp</p>
                     </div>
                 </div>
                 <p class="textUnderTitle colorWhite">
-                    <b class="wk-editable-text" id="home-section2-text2">Oto DC</b>
-                    chuyên cung cấp các phụ kiện – đồ chơi xe ô tô cao cấp. Với kinh nghiệm hơn 9 năm hoạt động, Oto DC
+                    <b class="wk-editable-text" id="home-section2-text2">DC Auto</b>
+                    chuyên cung cấp các phụ kiện – đồ chơi xe ô tô cao cấp. Với kinh nghiệm hơn 9 năm hoạt động, DC Auto
                     thấu hiểu và mong muốn mang đến Quý Chủ Xe những dịch vụ tốt nhất
                 </p>
                 <div class="owl-carousel owl-theme slideGalleryHome">
@@ -135,7 +135,7 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                 <div class="text-center">
                     <div class="titleBlock_1">
                         <h2 class="titleText wk-editable-text" id="home-section2-text3">Khách Hàng - Báo Chí Nói Gì Về
-                            Oto DC</h2>
+                            DC Auto</h2>
                     </div>
                 </div>
                 <div class="owl-carousel owl-theme slideVideoHome">
@@ -145,7 +145,7 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                                  datasrcvideo="https://www.youtube.com/embed/tXpifDLkZEE?autoplay=1">
                                 <div class="wrapVideo">
                                     <img alt="" class="imgVideo" loading="lazy"
-                                         src="../i1.ytimg.com/vi/tXpifDLkZEE/maxresdefault.jpg">
+                                         src="https://i1.ytimg.com/vi/tXpifDLkZEE/maxresdefault.jpg">
                                 </div>
                                 <div class="wrapIconPlay">
                                     <i aria-hidden="true" class="fa fa-play"></i>
@@ -160,7 +160,7 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                                  datasrcvideo="https://www.youtube.com/embed/KcEfYJpnjs0?autoplay=1">
                                 <div class="wrapVideo">
                                     <img alt="" class="imgVideo" loading="lazy"
-                                         src="../i1.ytimg.com/vi/KcEfYJpnjs0/maxresdefault.jpg">
+                                         src="https://i1.ytimg.com/vi/KcEfYJpnjs0/maxresdefault.jpg">
                                 </div>
                                 <div class="wrapIconPlay">
                                     <i aria-hidden="true" class="fa fa-play"></i>
@@ -175,7 +175,7 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                                  datasrcvideo="https://www.youtube.com/embed/Q_QNybwUXGQ?autoplay=1">
                                 <div class="wrapVideo">
                                     <img alt="" class="imgVideo" loading="lazy"
-                                         src="../i1.ytimg.com/vi/Q_QNybwUXGQ/maxresdefault.jpg">
+                                         src="https://i1.ytimg.com/vi/Q_QNybwUXGQ/maxresdefault.jpg">
                                 </div>
                                 <div class="wrapIconPlay">
                                     <i aria-hidden="true" class="fa fa-play"></i>
@@ -266,7 +266,7 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                         DC sẽ gọi lại tư vấn miễn phí ạ!</p>
                     <p class="text_1">
                         Hotline:
-                        <b> 0818.918.981</b>
+                        <b> 0123.456.789</b>
                     </p>
                 </div>
                 <form class="formRegister dang-ky" name="frm" id="frm" method="post" enctype="multipart/form-data"
@@ -402,7 +402,7 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                              datasrcvideo="https://www.youtube.com/embed/Q_QNybwUXGQ?autoplay=1">
                             <div class="wrapVideo">
                                 <img alt="" class="imgVideo" loading="lazy"
-                                     src="../i1.ytimg.com/vi/Q_QNybwUXGQ/maxresdefault.jpg">
+                                     src="https://i1.ytimg.com/vi/Q_QNybwUXGQ/maxresdefault.jpg">
                             </div>
                             <div class="wrapIconPlay">
                                 <i aria-hidden="true" class="fa fa-play"></i>

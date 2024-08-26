@@ -10,6 +10,9 @@ class AuthController extends BaseController
 {
     public function login()
     {
+        if (session()->get('user')) {
+            return redirect()->to('/admin/dashboard');
+        }
         return view('auth/login');
     }
 
@@ -58,9 +61,9 @@ class AuthController extends BaseController
 
     }
 
-    public function logout()
+    public function logout_admin()
     {
         session()->destroy();
-        return redirect()->to('/');
+        return redirect()->to('/admin/login');
     }
 }

@@ -38,7 +38,7 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
 
                                 <p style="text-align:justify">Trụ sở chính: &nbsp;338 Nguyễn Văn Cừ, Hưng Bình, Thành phố Vinh, Nghệ An</p>
 
-                                <p style="text-align:justify">Điện thoại: 0818.918.981.819.981</p>
+                                <p style="text-align:justify">Điện thoại: 0123.456.789</p>
 
                                 <p style="text-align:justify">Email: <a href="mailto:autodc.vn@gmail.com">autodc.vn@gmail.com</a></p>
 
@@ -163,7 +163,7 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                                     <li style="text-align: justify; list-style: unset;">Showroom Hà Nội: 1017 Phúc Diễn, Tây Mỗ, Nam Từ Liêm, Hà Nội</li>
                                 </ul>
 
-                                <p style="text-align:justify">Điện thoại: 0818.918.981.819.981</p>
+                                <p style="text-align:justify">Điện thoại: 0123.456.789</p>
 
                                 <p style="text-align:justify">Email: <a href="mailto:autodc.vn@gmail.com">autodc.vn@gmail.com</a></p>
 

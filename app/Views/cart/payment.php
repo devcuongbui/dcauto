@@ -148,10 +148,10 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                             </div>
                             <div class="wrapChooseAcount">
                                 <p class="text4">Chọn tài khoản</p>
-                                <select class="form-control" style="margin-bottom: 17px;">
-                                    <option selected="selected">Chọn</option>
-                                    <option value="1">Tài khoản cá nhân</option>
-                                    <option value="2">Tài khoản công ty</option>
+                                <select class="form-control" style="margin-bottom: 17px;" name="bank_type" id="bank_type">
+                                    <option value="" selected="selected">Chọn</option>
+                                    <option value="P">Tài khoản cá nhân</option>
+                                    <option value="C">Tài khoản công ty</option>
                                 </select>
                                 <p class="text5">Thực hiện thanh toán vào ngay tài khoản ngân hàng của chúng tôi.</p>
                                 <p class="text5">• Quý khách vui lòng ghi rõ nội dung chuyển khoản (Tên đơn hàng + Số
@@ -188,7 +188,7 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                             <div class="wrapDepositInfo">
                                 <p class="text1">Quý Khách vui Lòng vui lòng chuyển cọc tạm ứng vào số TK doanh nghiệp:
                                 </p>
-                                <p class="text1">Công Ty TNHH Oto DC</p>
+                                <p class="text1">Công Ty TNHH DC Auto</p>
                                 <p class="text2">Địa chỉ: 1017 Phúc Diễn, Tây Mỗ, Nam Từ Liêm, Hà Nội</p>
                                 <p class="text2">Mã số thuế : 123456789</p>
                                 <p class="text2">Số tài khoản : 123456789 Tại Ngân hàng: Vietcombank – CN Hà Nội</p>
@@ -207,10 +207,11 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                             <?php foreach ($cart['items'] as $item):
                                 $product = $productModel->find($item['product_id']);
                                 $option = $productOptionModel->find($item['option_id']);
-                                $price = $product['sell_price'];
+                                $price = $option['po_sell_price'] ?? $product['sell_price'];
+                                $price = intval($price);
                                 $quantity = $item['quantity'];
                                 $total_price = $quantity * $price;
-                                $product_name = $product['product_name'];
+                                $product_name = $option['po_name'] ? $product['product_name'] . '-' . $option['po_name'] : $product['product_name'];
                                 $img = $product['product_image'];
                                 ?>
                                 <div class="productPriceBlock">
@@ -266,12 +267,6 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
 </main>
 <script>
     $("#submit-order").click(function () {
-//         reciever_name
-// order_email
-// order_phone
-// province
-// district
-// commune
         if ($("#reciever_name").val() == "") {
             alert("Vui lòng nhập tên người nhận hàng!");
             $("#reciever_name").focus();
@@ -306,6 +301,13 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
             alert("Vui lòng chọn phường/xã!");
             $("#commune").focus();
             return false;
+        }
+        if (new_order.payment_method.value == "transfer") {
+            if ($("#bank_type").val() == "") {
+                alert("Vui lòng chọn loại tài khoản ngân hàng!");
+                $("#bank_type").focus();
+                return false;
+            }
         }
         $.ajax({
             type: "POST",

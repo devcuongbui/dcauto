@@ -84,7 +84,7 @@ class ProductController extends BaseController
         if (!$slug) {
             return view('errors/404');
         }
-
+        $cart = $this->session->get('cart') ?? ['items' => []];
         $product = $this->productModel->where('slug', $slug)->first();
         if (!$product) {
             return view('errors/404');
@@ -100,8 +100,19 @@ class ProductController extends BaseController
             ->where('deleted_at', null)
             ->orderBy('image_id', 'desc')
             ->findAll();
+        $isAddedToCart = false;
+        foreach ($cart['items'] as $item) {
+            if ($item['product_id'] == $product['product_id']) {
+                $isAddedToCart = true;
+                break;
+            }
+        }
 
-        return view('product/view', ['product' => $product, 'reviewList' => $reviewList, 'galleries' => $gallery]);
+        return view('product/view', [
+            'product' => $product, 
+            'reviewList' => $reviewList, 
+            'galleries' => $gallery,
+            'isAddedToCart' => $isAddedToCart]);
     }
 
     public function getOneById($id = null)

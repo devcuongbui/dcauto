@@ -51,6 +51,9 @@ function getReviewStatusName($code) {
 }
 
 function custom_paginate($currentPage, $totalPages) {
+    if ($totalPages <= 0) {
+        return '';
+    }
     $currentUrl = $_SERVER['REQUEST_URI'];
 
     $urlParts = parse_url($currentUrl);
@@ -103,4 +106,104 @@ function custom_paginate($currentPage, $totalPages) {
      $pagination .= '</ul></nav>';
  
      return $pagination;
+}
+
+function getBankTypeName($id) {
+    return BANK_TYPE_NAMES[$id] ?? "";
+}
+
+function getMenuStatus() {
+    $router = service('router');
+    $fullControllerName = $router->controllerName();
+    $controller = basename(str_replace('\\', '/', $fullControllerName));
+    $method = $router->methodName();
+    $alias  = $controller . '::' . $method;
+
+    switch ($alias) {
+        case 'AdminHomeController::index':
+            $main_menu = 'main1';
+            $sub_menu = '';
+            break;
+        case 'AdminProductController::list':
+        case 'AdminProductController::detail':
+            $main_menu = 'main2';
+            $sub_menu = 'main2_sub1';
+            break;
+        case 'AdminProductController::create':
+            $main_menu = 'main2';
+            $sub_menu = 'main2_sub2';
+            break;
+        case 'CategoryController::list':
+        case 'CategoryController::write':
+            $main_menu = 'main3';
+            $sub_menu = 'main3_sub1';
+            break;
+        case 'AdminNewsController::list':
+        case 'AdminNewsController::detail':
+            $main_menu = 'main4';
+            $sub_menu = 'main4_sub1';
+            break;
+        case 'AdminNewsController::create':
+            $main_menu = 'main4';
+            $sub_menu = 'main4_sub2';
+            break;
+        case 'AdminOrdersController::list':
+        case 'AdminOrdersController::detail':
+            $main_menu = 'main5';
+            $sub_menu = 'main5_sub1';
+            break;
+        case 'AdminContactController::list':
+        case 'AdminContactController::detail':
+            $main_menu = 'main6';
+            $sub_menu = 'main6_sub1';
+            break;
+        case 'AdminReviewController::list':
+        case 'AdminReviewController::detail':
+            $main_menu = 'main7';
+            $sub_menu = 'main7_sub1';
+            break;
+        default:
+            $main_menu = '';
+            $sub_menu = '';
+            break;
+    }
+
+    $menu_status = [
+        "main1" => [
+            'collapsed' => $main_menu === "main1" ? '' : 'collapsed',
+        ],
+        "main2" => [
+            'collapsed' => $main_menu === "main2" ? '' : 'collapsed',
+            'menu_show' => $main_menu === "main2" ? 'show' : '',
+            'sub1_status' => $sub_menu === "main2_sub1" ? 'active' : '',
+            'sub2_status' => $sub_menu === "main2_sub2" ? 'active' : '',
+        ],
+        "main3" => [
+            'collapsed' => $main_menu === "main3" ? '' : 'collapsed',
+            'menu_show' => $main_menu === "main3" ? 'show' : '',
+            'sub1_status' => $sub_menu === "main3_sub1" ? 'active' : '',
+        ],
+        "main4" => [
+            'collapsed' => $main_menu === "main4" ? '' : 'collapsed',
+            'menu_show' => $main_menu === "main4" ? 'show' : '',
+            'sub1_status' => $sub_menu === "main4_sub1" ? 'active' : '',
+            'sub2_status' => $sub_menu === "main4_sub2" ? 'active' : '',
+        ],
+        "main5" => [
+            'collapsed' => $main_menu === "main5" ? '' : 'collapsed',
+            'menu_show' => $main_menu === "main5" ? 'show' : '',
+            'sub1_status' => $sub_menu === "main5_sub1" ? 'active' : '',
+        ],
+        "main6" => [
+            'collapsed' => $main_menu === "main6" ? '' : 'collapsed',
+            'menu_show' => $main_menu === "main6" ? 'show' : '',
+            'sub1_status' => $sub_menu === "main6_sub1" ? 'active' : '',
+        ],
+        "main7" => [
+            'collapsed' => $main_menu === "main7" ? '' : 'collapsed',
+            'menu_show' => $main_menu === "main7" ? 'show' : '',
+            'sub1_status' => $sub_menu === "main7_sub1" ? 'active' : '',
+        ],
+    ];
+    return $menu_status;
 }

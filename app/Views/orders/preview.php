@@ -26,7 +26,7 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
             <div class="textPart1">
                 <p class="text1">CẢM ƠN QUÝ KHÁCH HÀNG. ĐƠN ĐẶT HÀNG CỦA QUÝ KHÁCH ĐÃ ĐƯỢC NHẬN</p>
                 <p class="text2">Mọi thắc mắc cần hỗ trợ đơn hàng này quy khách vui lòng liên hệ bộ phận phụ trách đơn
-                    hàng 0918.819.981</p>
+                    hàng 0123.456.789</p>
             </div>
             <div class="orderInfoBlock1">
                 <div class="row rowFix">

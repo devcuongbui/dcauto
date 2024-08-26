@@ -20,7 +20,7 @@ class OrdersModel extends Model
         'order_detail_address', 'pay_method_id', 'shipping_form_id', 'note', 
         'customer_note', 'reciever_name', 'province_id', 'district_id', 
         'commune_id', 'country_id', 'invoice_required', 'company_name', 'tax_number',
-        'invoice_address', 'invoice_note'
+        'invoice_address', 'invoice_note', 'bank_type'
     ];
 
     protected $useTimestamps = false;

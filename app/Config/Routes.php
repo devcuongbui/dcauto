@@ -12,11 +12,15 @@ $routes->set404Override(function () {
     echo view('errors/404');
 });
 
+$routes->group("account", static function ($routes) {
+    $routes->post('change_password', 'UserController::change_password', ['as' => 'account.change_password']);
+});
 
 $routes->group("admin", static function ($routes) {
     $routes->get('login', 'AuthController::login', ['as' => 'auth.login']);
+    $routes->get('', 'AuthController::login', ['as' => 'auth.admin']);
     $routes->post('login', 'AuthController::handleLogin', ['as' => 'auth.handle.login']);
-    $routes->get('logout', 'AuthController::logout', ['as' => 'auth.logout']);
+    $routes->get('logout', 'AuthController::logout_admin', ['as' => 'auth.admin.logout']);
     $routes->group("category", static function ($routes) {
         $routes->get('list', 'CategoryController::list', ['as' => 'admin.category.list']);
         $routes->get('write', 'CategoryController::write', ['as' => 'admin.category.write']);

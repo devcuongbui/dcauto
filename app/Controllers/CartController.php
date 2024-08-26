@@ -44,37 +44,7 @@ class CartController extends BaseController
     }
     public function list()
     {
-        // $model1 = [
-        //     'items' => [
-        //         [
-        //             'id' => uniqid(),
-        //             'product_id' => '1',
-        //             'option_id' => '1',
-        //             'quantity' => 1,
-        //             'selected' => false
-        //         ],
-        //         [
-        //             'id' => uniqid(),
-        //             'product_id' => '2',
-        //             'option_id' => '3',
-        //             'quantity' => 2,
-        //             'selected' => true
-        //         ]
-        //     ],
-        // ];
-        // $this->session->set('cart', $model1);
         $cart = $this->session->get('cart') ?? ['items' => []];
-        // $totalPrice = 0;
-        // $totalCount = 0;
-        // foreach ($cart['items'] as $item) {
-        //     $product = $this->productModel->find($item['product_id']);
-        //     if ($item['selected']) {
-        //         $totalPrice += $item['quantity'] * $product['sell_price'];
-        //         $totalCount += $item['quantity'];
-        //     } else {
-        //         $isSelectAll = false;
-        //     }
-        // }
         return view('cart/list', $this->getCartInfo($cart));
     }
     public function add()
@@ -129,7 +99,7 @@ class CartController extends BaseController
         $cart = $this->session->get('cart') ?? ['items' => []];
         if (!$product_id || !$option_id || !$quantity) {
             return $this->response->setJSON([
-                'message' => 'Vui lòng chọn sản phẩm và số lượng',
+                'message' => 'Vui lòng chọn tùy chọn sản phẩm và số lượng',
             ])->setStatusCode(400);
         }
         $item = [
@@ -144,6 +114,8 @@ class CartController extends BaseController
         foreach ($cart['items'] as $key => $item) {
             if ($item['product_id'] == $product_id && $item['option_id'] == $option_id) {
                 $is_existed = true;
+                $cart['items'][$key]['selected'] = true;
+                $cart['items'][$key]['quantity'] = $quantity;
             } else {
                 $cart['items'][$key]['selected'] = false;
             }
@@ -233,7 +205,12 @@ class CartController extends BaseController
         $totalCount = 0;
         foreach ($cart_ok['items'] as $item) {
             $product = $this->productModel->find($item['product_id']);
-            $totalPrice += $item['quantity'] * $product['sell_price'];
+            $option = $this->productOptionModel->find($item['option_id']);
+            $price = $option['po_sell_price'] ?? $product['sell_price'];
+            $price = intval($price);
+            $quantity = $item['quantity'];
+            $sub_total_price = $quantity * $price;
+            $totalPrice += $sub_total_price;
             $totalCount += $item['quantity'];
         }
         $provinces = $this->provinceModel->findAll();

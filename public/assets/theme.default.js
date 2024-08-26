@@ -237,7 +237,10 @@ $(document).ready(function () {
         }
       ),
       e(),
-      $("#menuEndPage .smallPart .aTag").click(function () {
+      // $("#menuEndPage .smallPart .aTag").click(function () {
+      //   $("#blockCateMobi").slideToggle();
+      // }),
+      $("#menuEndPage .barsPart .aTag").click(function () {
         $("#blockCateMobi").slideToggle();
       }),
       $("#blockCateMobi .logoBarArea .hiddenBlockIcon").click(function () {

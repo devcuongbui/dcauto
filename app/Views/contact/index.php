@@ -59,16 +59,16 @@
 </div>
 <div class="smallPart">
 <p class="text1">Showroom:</p>
-<p class="text2 marBot_15">Oto DC – Hà Nội	: 1017 Phúc Diễn, Tây Mỗ, Nam Từ Liêm, Hà Nội</p>
-<p class="text2 marBot_15">Oto DC – Nghệ An: 338 Nguyễn Văn Cừ, Tp. Vinh</p>
+<p class="text2 marBot_15">DC Auto – Hà Nội	: 1017 Phúc Diễn, Tây Mỗ, Nam Từ Liêm, Hà Nội</p>
+<p class="text2 marBot_15">DC Auto – Nghệ An: 338 Nguyễn Văn Cừ, Tp. Vinh</p>
 <p class="text2 marBot_15">OTO DC – ĐÀ NẴNG:  114 NGUYỄN ĐÌNH TỰU - HOÀ KHÊ - THANH KHÊ - ĐÀ NẴNG</p>
-<p class="text2 marBot_15">Oto DC – TP Hồ Chí Minh	: 137 Lê Thị Hà, Tân Xuân, Hóc Môn, HCM</p>
+<p class="text2 marBot_15">DC Auto – TP Hồ Chí Minh	: 137 Lê Thị Hà, Tân Xuân, Hóc Môn, HCM</p>
 <i aria-hidden="true" class="fa fa-map-marker"></i>
 </div>
-<a class="wrapSmallPart contactCallPopUp contactCallPopUpPhone" contacttext="Gọi điện" data-target="" data-toggle="modal" data="phone.html" datahref="tel: 0818.918.981" idgoogleget="btn_phone_id" title="Liên hệ">
+<a class="wrapSmallPart contactCallPopUp contactCallPopUpPhone" contacttext="Gọi điện" data-target="" data-toggle="modal" data="phone.html" datahref="tel: 0123.456.789" idgoogleget="btn_phone_id" title="Liên hệ">
 <div class="smallPart">
 <p class="text1">HOTLINE</p>
-<p class="text2"> 0818.918.981</p>
+<p class="text2"> 0123.456.789</p>
 <i aria-hidden="true" class="fa fa-phone"></i>
 </div>
 </a>
