@@ -33,7 +33,7 @@ Thông tin tài khoản
     <h1>Thông tin tài khoản</h1>
     <nav>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="<?php echo route_to('home'); ?>">Trang quản trị</a></li>
+            <li class="breadcrumb-item"><a href="<?php echo route_to('home.admin'); ?>">Trang quản trị</a></li>
             <li class="breadcrumb-item active">Thông tin tài khoản</li>
         </ol>
     </nav>

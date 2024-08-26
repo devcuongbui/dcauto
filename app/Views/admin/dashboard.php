@@ -7,7 +7,7 @@
         <h1>Dashboard</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="<?php echo route_to('home'); ?>">Home</a></li>
+                <li class="breadcrumb-item"><a href="<?php echo route_to('home.admin'); ?>">Home</a></li>
                 <li class="breadcrumb-item active">Dashboard</li>
             </ol>
         </nav>

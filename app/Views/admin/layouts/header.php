@@ -1,7 +1,7 @@
 <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-        <a href="<?php echo route_to('home'); ?>" class="logo d-flex align-items-center">
+        <a href="<?php echo route_to('home'); ?>" class="logo d-flex align-items-center" target="_blank">
             <img src="assets/img/logo.png" alt="">
             <span class="d-none d-lg-block">Dcauto</span>
         </a>

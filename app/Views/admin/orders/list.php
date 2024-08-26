@@ -7,7 +7,7 @@ Danh sách đơn hàng
     <h1>Quản lý đơn hàng</h1>
     <nav>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="<?php echo route_to('home'); ?>">Trang quản trị</a></li>
+            <li class="breadcrumb-item"><a href="<?php echo route_to('home.admin'); ?>">Trang quản trị</a></li>
             <li class="breadcrumb-item active">Danh sách đơn hàng</li>
         </ol>
     </nav>
