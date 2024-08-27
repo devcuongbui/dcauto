@@ -107,3 +107,7 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
 $routes->group('admin', ['filter' => 'admin'], function ($routes) {
     require_once __DIR__ . '/routes/admin.php';
 });
+
+$routes->group('api', function ($routes) {
+    $routes->get('list_categories', 'Admin\AdminProductController::getAllCatgories', ['as' => 'admin.products.list.categories']);
+});
