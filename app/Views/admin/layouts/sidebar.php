@@ -39,17 +39,17 @@
             </ul>
         </li>
         <li class="nav-item">
-            <a class="nav-link <?=$menu_status['main8']['collapsed']?>" data-bs-target="#category-nav" data-bs-toggle="collapse" href="#">
+            <a class="nav-link <?=$menu_status['main8']['collapsed']?>" data-bs-target="#brand-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-car-front-fill"></i><span>Danh mục hãng xe</span><i
                         class="bi bi-chevron-down ms-auto"></i>
             </a>
-            <ul id="category-nav" class="nav-content collapse <?=$menu_status['main8']['menu_show']?>" data-bs-parent="#sidebar-nav">
+            <ul id="brand-nav" class="nav-content collapse <?=$menu_status['main8']['menu_show']?>" data-bs-parent="#sidebar-nav">
                 <li>
                     <a href="<?=route_to('admin.brands.list')?>" class="<?= $menu_status['main8']['sub1_status'] ?>">
                         <i class="bi bi-circle"></i><span>Danh sách hãng xe</span>
                     </a>
                 </li>
-            </ul>`
+            </ul>
         </li>
         <li class="nav-item">
             <a class="nav-link <?=$menu_status['main4']['collapsed']?>" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
