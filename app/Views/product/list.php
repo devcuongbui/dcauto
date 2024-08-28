@@ -29,7 +29,7 @@
                             <div class="colPart">
                                 <article class="artProduct">
                                     <a class="imgPr figure2" href="/product/view/<?= esc($product['slug']); ?>/">
-                                        <img alt="<?= esc($product['product_name']); ?>" loading="lazy" src="<?= esc($product['product_image']); ?>">
+                                        <img alt="<?= esc($product['product_name']); ?>" loading="lazy" src="/uploads/products/<?= esc($product['product_image']); ?>">
                                     </a>
                                     <div class="textInforPr">
                                         <a class="linkPr" href="/product/view/<?= esc($product['slug']); ?>/">

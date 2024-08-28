@@ -93,13 +93,13 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
             <div class="container">
                 <div class="text-center">
                     <div class="titleBlock_1">
-                        <p class="titleText wk-editable-text" id="home-section2-text1">Oto DC - Trung tâm chăm sóc &amp;
+                        <p class="titleText wk-editable-text" id="home-section2-text1">DC Auto - Trung tâm chăm sóc &amp;
                             phụ kiện ô tô cao cấp</p>
                     </div>
                 </div>
                 <p class="textUnderTitle colorWhite">
-                    <b class="wk-editable-text" id="home-section2-text2">Oto DC</b>
-                    chuyên cung cấp các phụ kiện – đồ chơi xe ô tô cao cấp. Với kinh nghiệm hơn 9 năm hoạt động, Oto DC
+                    <b class="wk-editable-text" id="home-section2-text2">DC Auto</b>
+                    chuyên cung cấp các phụ kiện – đồ chơi xe ô tô cao cấp. Với kinh nghiệm hơn 9 năm hoạt động, DC Auto
                     thấu hiểu và mong muốn mang đến Quý Chủ Xe những dịch vụ tốt nhất
                 </p>
                 <div class="owl-carousel owl-theme slideGalleryHome">
@@ -135,7 +135,7 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                 <div class="text-center">
                     <div class="titleBlock_1">
                         <h2 class="titleText wk-editable-text" id="home-section2-text3">Khách Hàng - Báo Chí Nói Gì Về
-                            Oto DC</h2>
+                            DC Auto</h2>
                     </div>
                 </div>
                 <div class="owl-carousel owl-theme slideVideoHome">
@@ -145,7 +145,7 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                                  datasrcvideo="https://www.youtube.com/embed/tXpifDLkZEE?autoplay=1">
                                 <div class="wrapVideo">
                                     <img alt="" class="imgVideo" loading="lazy"
-                                         src="../i1.ytimg.com/vi/tXpifDLkZEE/maxresdefault.jpg">
+                                         src="https://i1.ytimg.com/vi/tXpifDLkZEE/maxresdefault.jpg">
                                 </div>
                                 <div class="wrapIconPlay">
                                     <i aria-hidden="true" class="fa fa-play"></i>
@@ -160,7 +160,7 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                                  datasrcvideo="https://www.youtube.com/embed/KcEfYJpnjs0?autoplay=1">
                                 <div class="wrapVideo">
                                     <img alt="" class="imgVideo" loading="lazy"
-                                         src="../i1.ytimg.com/vi/KcEfYJpnjs0/maxresdefault.jpg">
+                                         src="https://i1.ytimg.com/vi/KcEfYJpnjs0/maxresdefault.jpg">
                                 </div>
                                 <div class="wrapIconPlay">
                                     <i aria-hidden="true" class="fa fa-play"></i>
@@ -175,7 +175,7 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                                  datasrcvideo="https://www.youtube.com/embed/Q_QNybwUXGQ?autoplay=1">
                                 <div class="wrapVideo">
                                     <img alt="" class="imgVideo" loading="lazy"
-                                         src="../i1.ytimg.com/vi/Q_QNybwUXGQ/maxresdefault.jpg">
+                                         src="https://i1.ytimg.com/vi/Q_QNybwUXGQ/maxresdefault.jpg">
                                 </div>
                                 <div class="wrapIconPlay">
                                     <i aria-hidden="true" class="fa fa-play"></i>
@@ -192,59 +192,62 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
     <section class="secMultiSecCate">
         <div class="container">
             <?php foreach ($productsByCategory as $categorySlug => $products): ?>
-                <section class="secCatePr">
-                    <div class="setLineUnderTitle">
-                        <a class="titleBlock_1" href="/product/<?php echo $categorySlug; ?>">
-                            <h2 class="titleText wk-editable-text"><?php echo ucwords(str_replace('-', ' ', $categorySlug)); ?></h2>
-                        </a>
-                    </div>
-                    <div class="mainOfSec">
-                        <div class="colImg">
-                            <div class="bannerPart">
-                                <img alt="<?php echo ucwords(str_replace('-', ' ', $categorySlug)); ?>" class="wk-editable-image"
-                                     loading="lazy"
-                                     src="path/to/your/banner/image/<?php echo $categorySlug; ?>.webp">
-                            </div>
+                <?php if (!empty($products)): ?>
+                    <section class="secCatePr">
+                        <div class="setLineUnderTitle">
+                            <a class="titleBlock_1" href="/product/<?php echo $categorySlug; ?>">
+                                <h2 class="titleText wk-editable-text"><?php echo ucwords(str_replace('-', ' ', $categorySlug)); ?></h2>
+                            </a>
                         </div>
-                        <div class="colListPr">
-                            <div class="owl-carousel owl-theme slideProducts">
-                                <?php foreach ($products as $product): ?>
-                                    <div class="slidePart">
-                                        <article class="artProduct">
-                                            <a class="imgPr figure2"
-                                               href="<?php echo base_url('product/view/' . $product['slug']); ?>">
-                                                <img alt="<?php echo $product['product_name']; ?>"
-                                                     loading="lazy"
-                                                     src="<?php echo base_url('storage/' . $product['product_image']); ?>">
-                                            </a>
-                                            <div class="textInforPr">
-                                                <a class="linkPr"
+                        <div class="mainOfSec">
+                            <div class="colImg">
+                                <div class="bannerPart">
+                                    <img alt="<?php echo ucwords(str_replace('-', ' ', $categorySlug)); ?>" class="wk-editable-image"
+                                         loading="lazy"
+                                         src="path/to/your/banner/image/<?php echo $categorySlug; ?>.webp">
+                                </div>
+                            </div>
+                            <div class="colListPr">
+                                <div class="owl-carousel owl-theme slideProducts">
+                                    <?php foreach ($products as $product): ?>
+                                        <div class="slidePart">
+                                            <article class="artProduct">
+                                                <a class="imgPr figure2"
                                                    href="<?php echo base_url('product/view/' . $product['slug']); ?>">
-                                                    <h3 class="namePr"><?php echo $product['product_name']; ?></h3>
+                                                    <img alt="<?php echo $product['product_name']; ?>"
+                                                         loading="lazy"
+                                                         src="<?php echo base_url('uploads/products/' . $product['product_image']); ?>">
                                                 </a>
-                                                <div class="labelGift">
-                                                    <i class="bi bi-gift-fill giftIcon"></i>
-                                                    <span class="giftInfo">Phòng dán chuẩn Mỹ</span>
+                                                <div class="textInforPr">
+                                                    <a class="linkPr"
+                                                       href="<?php echo base_url('product/view/' . $product['slug']); ?>">
+                                                        <h3 class="namePr"><?php echo $product['product_name']; ?></h3>
+                                                    </a>
+                                                    <div class="labelGift">
+                                                        <i class="bi bi-gift-fill giftIcon"></i>
+                                                        <span class="giftInfo">Phòng dán chuẩn Mỹ</span>
+                                                    </div>
+                                                    <?php if (!empty($product['init_price'])): ?>
+                                                        <p class="originalPrice"><?php echo number_format($product['init_price'], 0, ',', '.'); ?>đ</p>
+                                                    <?php endif; ?>
+                                                    <p class="currentPrice"><?php echo !empty($product['sell_price']) ? number_format($product['sell_price'], 0, ',', '.') . 'đ' : 'Liên hệ'; ?></p>
                                                 </div>
-                                                <?php if (!empty($product['init_price'])): ?>
-                                                    <p class="originalPrice"><?php echo number_format($product['init_price'], 0, ',', '.'); ?>đ</p>
-                                                <?php endif; ?>
-                                                <p class="currentPrice"><?php echo !empty($product['sell_price']) ? number_format($product['sell_price'], 0, ',', '.') . 'đ' : 'Liên hệ'; ?></p>
-                                            </div>
-                                        </article>
-                                    </div>
-                                <?php endforeach; ?>
+                                            </article>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="btnViewAll">
-                        <a class="btnType_2" href="/product/<?php echo $categorySlug; ?>">
-                            <span class="textBtn wk-editable-text">Xem thêm sản phẩm</span>
-                            <i class="bi bi-chevron-right iconRight"></i>
-                        </a>
-                    </div>
-                </section>
+                        <div class="btnViewAll">
+                            <a class="btnType_2" href="/product/type/<?php echo $categorySlug; ?>">
+                                <span class="textBtn wk-editable-text">Xem thêm sản phẩm</span>
+                                <i class="bi bi-chevron-right iconRight"></i>
+                            </a>
+                        </div>
+                    </section>
+                <?php endif; ?>
             <?php endforeach; ?>
+
         </div>
     </section>
     <section class="secRegisterHome">
@@ -263,7 +266,7 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                         DC sẽ gọi lại tư vấn miễn phí ạ!</p>
                     <p class="text_1">
                         Hotline:
-                        <b> 0818.918.981</b>
+                        <b> 0123.456.789</b>
                     </p>
                 </div>
                 <form class="formRegister dang-ky" name="frm" id="frm" method="post" enctype="multipart/form-data"
@@ -399,7 +402,7 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                              datasrcvideo="https://www.youtube.com/embed/Q_QNybwUXGQ?autoplay=1">
                             <div class="wrapVideo">
                                 <img alt="" class="imgVideo" loading="lazy"
-                                     src="../i1.ytimg.com/vi/Q_QNybwUXGQ/maxresdefault.jpg">
+                                     src="https://i1.ytimg.com/vi/Q_QNybwUXGQ/maxresdefault.jpg">
                             </div>
                             <div class="wrapIconPlay">
                                 <i aria-hidden="true" class="fa fa-play"></i>

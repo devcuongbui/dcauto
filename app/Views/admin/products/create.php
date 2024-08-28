@@ -7,7 +7,7 @@
         <h1>Quản lý sản phẩm</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="<?php echo route_to('home'); ?>">Trang quản trị</a></li>
+                <li class="breadcrumb-item"><a href="<?php echo route_to('home.admin'); ?>">Trang quản trị</a></li>
                 <li class="breadcrumb-item active">Thêm mới sản phẩm</li>
             </ol>
         </nav>
@@ -15,6 +15,10 @@
 
     <section class="section">
         <form id="form">
+            <div class="d-none">
+                <input type="hidden" name="list_categories" id="list_categories" value="" class="main_item">
+                <input type="hidden" name="list_brands" id="list_brands" value="" class="main_item">
+            </div>
             <div class="form-group">
                 <label for="product_name">Tên sản phẩm</label>
                 <input type="text" class="form-control main_item" name="product_name" id="product_name"
@@ -32,35 +36,156 @@
                            placeholder="Giá ưu đãi">
                 </div>
             </div>
-            <div class="form-group">
-                <label for="short_description">Mô tả ngắn</label>
-                <textarea class="form-control main_item" id="short_description" name="short_description"
-                          placeholder="Mô tả ngắn"></textarea>
-            </div>
+            <!--            <div class="form-group">-->
+            <!--                <label for="short_description">Mô tả ngắn</label>-->
+            <!--                <textarea class="form-control main_item" id="short_description" name="short_description"-->
+            <!--                          placeholder="Mô tả ngắn"></textarea>-->
+            <!--            </div>-->
             <div class="form-group">
                 <label for="description">Mô tả sản phẩm</label>
                 <textarea class="form-control tinymce-editor" id="description" placeholder="Mô tả sản phẩm"></textarea>
             </div>
 
             <div class="row">
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                     <label for="product_code">Mã sản phẩm</label>
                     <input type="text" class="form-control main_item" id="product_code" name="product_code"
                            placeholder="Mã sản phẩm">
                 </div>
 
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-6">
                     <label for="quantity">Số lượng</label>
                     <input type="number" name="quantity" class="form-control main_item" id="quantity">
                 </div>
-                <div class="form-group col-md-4">
-                    <label for="category_id">Danh mục sản phẩm</label>
-                    <select id="category_id" name="category_id" class="form-select main_item">
-                        <option selected>Lựa chọn...</option>
-                        <?php foreach ($categories as $category) : ?>
-                            <option value="<?= $category['c_idx'] ?>"><?= $category['code_name'] ?></option>
-                        <?php endforeach; ?>
-                    </select>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-10">
+                    <label for="category_name">Danh mục sản phẩm</label>
+                    <input type="text" class="form-control" id="category_name" readonly>
+                </div>
+
+                <div class="form-group col-md-2 d-flex justify-content-end">
+                    <button class="btn btn-outline-primary mt-4" type="button" id="add_category" data-bs-toggle="modal"
+                            data-bs-target="#modalAddCategory">
+                        Chọn danh mục
+                    </button>
+                </div>
+            </div>
+
+            <div class="modal fade" id="modalAddCategory" tabindex="-1" role="dialog"
+                 aria-labelledby="modalAddCategoryLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalAddCategoryLabel">Chọn danh mục</h5>
+                            <button type="button" class="close btn btn-secondary" data-bs-dismiss="modal"
+                                    aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="list_categories row">
+                                <?php foreach ($categories as $category): ?>
+                                    <div class="category_item col-md-3">
+                                        <input type="checkbox" class="input_category_item_"
+                                               id="item_category_<?= $category['c_idx'] ?>"
+                                               name="<?= $category['c_idx'] ?>" value="<?= $category['c_idx'] ?>">
+                                        <label for="item_category_<?= $category['c_idx'] ?>"><?= $category['code_name'] ?></label>
+                                        <?php if (!empty($category['children'])): ?>
+                                            <?php $list_childs = $category['children'];
+
+                                            foreach ($list_childs as $child): ?>
+                                                <div class="ms-3 category_children">
+                                                    <div class="child d-flex justify-content-start align-items-center">
+                                                        <span class="gw">--</span>
+                                                        <div class="form-el ms-2">
+                                                            <input type="checkbox" class="input_category_item_"
+                                                                   id="item_category_<?= $child['c_idx'] ?>"
+                                                                   name="item_category_<?= $child['c_idx'] ?>"
+                                                                   value="<?= $child['c_idx'] ?>">
+                                                            <label for="item_category_<?= $child['c_idx'] ?>"><?= $child['code_name'] ?></label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                                    onclick="saveCategory();">Lưu lại
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-10">
+                    <label for="brand_name">Hãng xe</label>
+                    <input type="text" class="form-control" id="brand_name" readonly>
+                </div>
+
+                <div class="form-group col-md-2 d-flex justify-content-end">
+                    <button class="btn btn-outline-primary mt-4" type="button" id="add_brand" data-bs-toggle="modal"
+                            data-bs-target="#modalAddBrand">
+                        Chọn hãng xe
+                    </button>
+                </div>
+            </div>
+
+            <div class="modal fade" id="modalAddBrand" tabindex="-1" role="dialog"
+                 aria-labelledby="modalAddBrandLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalAddBrandLabel">Chọn hãng xe</h5>
+                            <button type="button" class="close btn btn-secondary" data-bs-dismiss="modal"
+                                    aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="list_brands row">
+                                <?php foreach ($brands as $brand): ?>
+                                    <div class="brand_item col-md-3">
+                                        <input type="checkbox" class="input_brand_item_"
+                                               id="item_brand_<?= $brand['c_idx'] ?>"
+                                               name="item_brand_<?= $brand['c_idx'] ?>" value="<?= $brand['c_idx'] ?>">
+                                        <label for="item_brand_<?= $brand['c_idx'] ?>"><?= $brand['code_name'] ?></label>
+                                        <?php if (!empty($brand['children'])): ?>
+                                            <?php $list_childs = $brand['children'];
+
+                                            foreach ($list_childs as $child): ?>
+                                                <div class="ms-3 category_children">
+                                                    <div class="child d-flex justify-content-start align-items-center">
+                                                        <span class="gw">--</span>
+                                                        <div class="form-el ms-2">
+                                                            <input type="checkbox" class="input_brand_item_"
+                                                                   id="item_brand_<?= $child['c_idx'] ?>"
+                                                                   name="item_brand_<?= $child['c_idx'] ?>"
+                                                                   value="<?= $child['c_idx'] ?>">
+                                                            <label for="item_brand_<?= $child['c_idx'] ?>"><?= $child['code_name'] ?></label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                                    onclick="saveBrand();">Lưu lại
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -244,6 +369,48 @@
             $('#btnCancel').prop('disabled', true);
 
             $('#list_properties').addClass('d-none').find('div.list_properties_content_').empty();
+        }
+
+        function saveCategory() {
+            let list_category_ = $('.input_category_item_');
+            let categories = [];
+            let category_names = [];
+            list_category_.each(function () {
+                if ($(this).is(":checked")) {
+                    let value = $(this).val();
+                    categories.push(value);
+
+                    let name = $('label[for="item_category_' + value + '"]').text();
+
+                    category_names.push(name);
+                }
+            })
+
+            category_names = category_names.join(', ');
+            categories = categories.join(', ');
+            $('#category_name').val(category_names);
+            $('#list_categories').val(categories);
+        }
+
+        function saveBrand() {
+            let list_brand_ = $('.input_brand_item_');
+            let brands = [];
+            let brand_names = [];
+            list_brand_.each(function () {
+                if ($(this).is(":checked")) {
+                    let value = $(this).val();
+                    brands.push(value);
+
+                    let name = $('label[for="item_brand_' + value + '"]').text();
+
+                    brand_names.push(name);
+                }
+            })
+
+            brand_names = brand_names.join(', ');
+            brands = brands.join(', ');
+            $('#brand_name').val(brand_names);
+            $('#list_brands').val(brands);
         }
 
         async function createProduct() {

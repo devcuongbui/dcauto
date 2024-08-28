@@ -7,6 +7,6 @@
         <!-- You can delete the links only if you purchased the pro version. -->
         <!-- Licensing information: <?php echo route_to('home'); ?>license/ -->
         <!-- Purchase the pro version with working PHP/AJAX contact form: <?php echo route_to('home'); ?>nice-admin-bootstrap-admin-html-template/ -->
-        Designed by <a href="<?php echo route_to('home'); ?>">DevFullStack</a>
+        Designed by <a href="#!">DevFullStack</a>
     </div>
 </footer>

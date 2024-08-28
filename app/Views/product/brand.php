@@ -126,35 +126,45 @@
                         <p class="titleText"><?php echo $category['code_name'] ?></p>
                     </div>
                 </div>
-                <div class="row fixMar">
-                    <?php if (!empty($products)): ?>
-                        <?php foreach ($products as $product): ?>
-                            <div class="colPart">
-                                <article class="artProduct">
-                                    <a class="imgPr figure2" href="/product/view/<?= $product['slug']; ?>">
-                                        <img alt="<?= $product['product_name']; ?>" loading="lazy"
-                                             src="<?= $product['product_image']; ?>">
-                                    </a>
-                                    <div class="textInforPr">
-                                        <a class="linkPr" href="/product/view/<?= $product['slug']; ?>">
-                                            <p class="namePr"><?= $product['product_name']; ?></p>
-                                        </a>
-                                        <div class="labelGift">
-                                            <i class="bi bi-gift-fill giftIcon"></i>
-                                            <span class="giftInfo">Giá cực tốt</span>
-                                        </div>
-                                        <div class="currentPrice"><?= number_format($product['sell_price'], 0, ',', '.'); ?>đ</div>
-                                        <?php if ($product['init_price'] > $product['sell_price']): ?>
-                                            <p class="originalPrice"><?= number_format($product['init_price'], 0, ',', '.'); ?>đ</p>
-                                        <?php endif; ?>
+                <?php if (!empty($productsByCategory)): ?>
+                    <?php foreach ($productsByCategory as $categorySlug => $products): ?>
+                        <!-- Tạo một hàng mới cho mỗi danh mục -->
+                        <div class="row fixMar">
+                            <h3>Danh sách sản phẩm thuộc danh mục: <?= ucwords(str_replace('-', ' ', $categorySlug)); ?></h3>
+                            <?php if (!empty($products)): ?>
+                                <?php foreach ($products as $product): ?>
+                                    <div class="colPart">
+                                        <article class="artProduct">
+                                            <a class="imgPr figure2" href="/product/view/<?= $product['slug']; ?>">
+                                                <img alt="<?= $product['product_name']; ?>" loading="lazy"
+                                                     src="<?= $product['product_image']; ?>">
+                                            </a>
+                                            <div class="textInforPr">
+                                                <a class="linkPr" href="/product/view/<?= $product['slug']; ?>">
+                                                    <p class="namePr"><?= $product['product_name']; ?></p>
+                                                </a>
+                                                <div class="labelGift">
+                                                    <i class="bi bi-gift-fill giftIcon"></i>
+                                                    <span class="giftInfo">Giá cực tốt</span>
+                                                </div>
+                                                <div class="currentPrice"><?= number_format($product['sell_price'], 0, ',', '.'); ?>đ</div>
+                                                <?php if ($product['init_price'] > $product['sell_price']): ?>
+                                                    <p class="originalPrice"><?= number_format($product['init_price'], 0, ',', '.'); ?>đ</p>
+                                                <?php endif; ?>
+                                            </div>
+                                        </article>
                                     </div>
-                                </article>
-                            </div>
-                        <?php endforeach; ?>
-                    <?php else: ?>
-                        <p style="color: white">Không có sản phẩm nào!</p>
-                    <?php endif; ?>
-                </div>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <p style="color: white">Không có sản phẩm nào trong danh mục này!</p>
+                            <?php endif; ?>
+                        </div> <!-- Kết thúc của hàng cho mỗi danh mục -->
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p style="color: white">Không có sản phẩm nào!</p>
+                <?php endif; ?>
+
+
 
                 <div class="btnAskShowroom">
                     <a class="btnType_2" data-target="#popup_registration_1" data-toggle="modal">
@@ -167,7 +177,7 @@
         <section class="secRegisterCate">
             <div class="container">
                 <p class="titleSec_1 colorWhite">Tư Vấn Combo Chăm Sóc Xe</p>
-                <p class="titleSec_2 colorWhite">Chuyên viên Oto DC sẽ gọi lại ngay ạ!</p>
+                <p class="titleSec_2 colorWhite">Chuyên viên DC Auto sẽ gọi lại ngay ạ!</p>
                 <div class="boxBackground">
                     <form class="form-row justify-content-center dang-ky-tu-van contact-form" target="/thankyou/"
                           novalidate="novalidate">
@@ -547,7 +557,7 @@
                                 <blockquote>
                                     <p><strong>Thông tin liên hệ:&nbsp;</strong></p>
 
-                                    <p>Công ty TNHH TM DV Oto DC</p>
+                                    <p>Công ty TNHH TM DV DC Auto</p>
 
                                     <p>Trụ sở chính: &nbsp;338 Nguyễn Văn Cừ, Hưng Bình, Thành phố Vinh, Nghệ An</p>
 
@@ -557,7 +567,7 @@
 
                                     <p>Showroom Đà Nẵng: 114 Nguyễn ĐìnH Tựu - Hoà Khê - Thanh Khê - Đà Nẵng</p>
 
-                                    <p>Điện thoại:<a href="tel:0818.918.981">&nbsp;0818.918.981</a></p>
+                                    <p>Điện thoại:<a href="tel:0123.456.789">&nbsp;0123.456.789</a></p>
 
                                     <p>Website:&nbsp;<a href="https://otodc.vn/" target="_blank">https://otodc.vn/</a></p>
 
@@ -574,8 +584,5 @@
 
     </main>
     <script>
-        function submitCart() {
-            location.href = "/product/1";
-        }
     </script>
 <?= $this->endSection() ?>

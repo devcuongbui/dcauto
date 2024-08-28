@@ -23,33 +23,4 @@ class Category extends Model
         'slug'
     ];
 
-    public function getCategoriesWithSubcategories($parentCodeNo = 0)
-    {
-        $builder = $this->builder();
-        $builder->select('*');
-        $builder->orderBy("onum", "desc")->orderBy('c_idx', 'desc');
-        $allCategories = $builder->get()->getResultArray();
-
-        $categories = array_filter($allCategories, function($category) use ($parentCodeNo) {
-            return $category['parent_code_no'] == $parentCodeNo;
-        });
-
-        foreach($categories as &$category) {
-            $category['subcategories'] = array_filter($allCategories, function($subcategory) use ($category) {
-                return $subcategory['parent_code_no'] == $category['code_no'];
-            });
-        }
-
-        return $categories;
-    }
-
-    public function getTopCategories($limit = 5)
-    {
-        return $this->orderBy('onum', 'desc')
-            ->orderBy('c_idx', 'desc')
-            ->where('parent_code_no', 0)
-            ->limit($limit)
-            ->findAll();
-    }
-
 }

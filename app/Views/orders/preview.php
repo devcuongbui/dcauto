@@ -26,7 +26,7 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
             <div class="textPart1">
                 <p class="text1">CẢM ƠN QUÝ KHÁCH HÀNG. ĐƠN ĐẶT HÀNG CỦA QUÝ KHÁCH ĐÃ ĐƯỢC NHẬN</p>
                 <p class="text2">Mọi thắc mắc cần hỗ trợ đơn hàng này quy khách vui lòng liên hệ bộ phận phụ trách đơn
-                    hàng 0918.819.981</p>
+                    hàng 0123.456.789</p>
             </div>
             <div class="orderInfoBlock1">
                 <div class="row rowFix">
@@ -70,7 +70,9 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                         </tr>
                         <tr>
                             <td class="col1">Địa chỉ nhận hàng</td>
-                            <td class="col2"><?=$order['province']?>, <?=$order['district'] ?>, <?=$order['commune'] ?>, <?= $order['order_detail_address'] ?></td>
+                            <td class="col2">
+                                <?= $order['order_detail_address'] ?>, <?= $order['commune'] ?>, <?= $order['district'] ?>, <?= $order['province'] ?>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -88,33 +90,30 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                 <p class="title">THÔNG TIN CHI TIẾT ĐƠN HÀNG</p>
                 <table class="table1">
                     <tbody>
-                        <tr class="line1">
-                            <td class="colTable col1">Sản phẩm</td>
-                            <td class="colTable col2">Số lượng</td>
-                            <td class="colTable col4">Đơn giá</td>
-                        </tr>
-                        <tr>
-                            <td class="colTable col1">
-                                Màn Hình Android Zestech S500
-                            </td>
-                            <td class="colTable col2">1</td>
-                            <td class="colTable col4">7.800.000đ</td>
-                        </tr>
-                        <tr class="line1">
-                            <td class="colTable col1">Sản phẩm</td>
-                            <td class="colTable col2">Số lượng</td>
-                            <td class="colTable col4">Đơn giá</td>
-                        </tr>
-                        <tr>
-                            <td class="colTable col1">
-                                Màn Hình Android Zestech Kovar T1
-                            </td>
-                            <td class="colTable col2">1</td>
-                            <td class="colTable col4">5.500.000đ</td>
-                        </tr>
+                        <?php foreach ($order['order_detail'] as $item):
+                            $product = $productModel->find($item['product_id']);
+                            $option = $productOptionModel->find($item['option_id']);
+                            $price = $option['po_sell_price'] ?? $product['sell_price'];
+                            $price = intval($price);
+                            $quantity = $item['quantity'];
+                            $total_price = $quantity * $price;
+                            $product_name = $option['po_name'] ? $product['product_name'] . '-' . $option['po_name'] : $product['product_name'];
+                            $img = $product['product_image'];
+                            ?>
+                            <tr class="line1">
+                                <td class="colTable col1">Sản phẩm</td>
+                                <td class="colTable col2">Số lượng</td>
+                                <td class="colTable col4">Đơn giá</td>
+                            </tr>
+                            <tr>
+                                <td class="colTable col1"><?= $product_name ?></td>
+                                <td class="colTable col2"><?= $quantity ?></td>
+                                <td class="colTable col4"><?= number_format($total_price, 0, ",", ".") ?>đ</td>
+                            </tr>
+                        <?php endforeach ?>
                         <tr class="lineLast lineLast1">
                             <td class="colLeft" colspan="2">Tổng tiền tạm tính</td>
-                            <td class="colRight">13.300.000đ</td>
+                            <td class="colRight"><?= number_format($order['total_amount'], 0, ",", ".") ?>đ</td>
                         </tr>
                         <tr class="lineLast">
                             <td class="colLeft" colspan="2">Phí vận chuyển</td>
@@ -122,7 +121,7 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                         </tr>
                         <tr class="lineLast lineTotal">
                             <td class="colLeft" colspan="2">TỔNG CỘNG</td>
-                            <td class="colRight">13.300.000đ</td>
+                            <td class="colRight"><?= number_format($order['total_amount'], 0, ",", ".") ?>đ</td>
                         </tr>
                     </tbody>
                 </table>

@@ -12,17 +12,27 @@ $routes->set404Override(function () {
     echo view('errors/404');
 });
 
+$routes->group("account", static function ($routes) {
+    $routes->post('change_password', 'UserController::change_password', ['as' => 'account.change_password']);
+});
 
 $routes->group("admin", static function ($routes) {
     $routes->get('login', 'AuthController::login', ['as' => 'auth.login']);
+    $routes->get('', 'AuthController::login', ['as' => 'auth.admin']);
     $routes->post('login', 'AuthController::handleLogin', ['as' => 'auth.handle.login']);
-    $routes->get('logout', 'AuthController::logout', ['as' => 'auth.logout']);
+    $routes->get('logout', 'AuthController::logout_admin', ['as' => 'auth.admin.logout']);
     $routes->group("category", static function ($routes) {
         $routes->get('list', 'CategoryController::list', ['as' => 'admin.category.list']);
         $routes->get('write', 'CategoryController::write', ['as' => 'admin.category.write']);
         $routes->post('save', 'CategoryController::save', ['as' => 'admin.category.save']);
         $routes->post('change_order', 'CategoryController::change_order', ['as' => 'admin.category.change_order']);
         $routes->post('delete', 'CategoryController::delete', ['as' => 'admin.category.delete']);
+    });
+    $routes->group("brands", static function ($routes) {
+        $routes->get('list', 'CarBrandsController::list', ['as' => 'admin.brands.list']);
+        $routes->get('write', 'CarBrandsController::write', ['as' => 'admin.brands.write']);
+        $routes->post('save', 'CarBrandsController::save', ['as' => 'admin.brands.save']);
+        $routes->post('change_order', 'CarBrandsController::change_order', ['as' => 'admin.brands.change_order']);
     });
 
 });
@@ -35,7 +45,8 @@ $routes->group("contact", static function ($routes) {
 
 $routes->group("product", static function ($routes) {
     $routes->get('view/(:segment)', 'ProductController::view/$1',['as' => 'product.view']);
-    $routes->get('(:segment)', 'ProductController::index/$1', ['as' => 'product.index']);
+    $routes->get('brand/(:segment)', 'ProductController::brand/$1', ['as' => 'product.brand']);
+    $routes->get('type/(:segment)', 'ProductController::type/$1', ['as' => 'product.type']);
     $routes->get('list/(:segment)', 'ProductController::list/$1', ['as' => 'product.list']);
 });
 
@@ -72,7 +83,7 @@ $routes->group("orders", static function ($routes) {
     $routes->post('add', 'OrdersController::add', ['as' => 'orders.add']);
     $routes->post('update', 'OrdersController::update', ['as' => 'orders.update']);
     $routes->post('delete', 'OrdersController::delete', ['as' => 'orders.delete']);
-    $routes->get('(:segment)', 'OrdersController::preview/$1', ['as' => 'orders.preview']);
+    $routes->get('preview/(:segment)', 'OrdersController::preview/$1', ['as' => 'orders.preview']);
 });
 
 $routes->group("news", static function ($routes) {
@@ -96,4 +107,8 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
 
 $routes->group('admin', ['filter' => 'admin'], function ($routes) {
     require_once __DIR__ . '/routes/admin.php';
+});
+
+$routes->group('api', function ($routes) {
+    $routes->get('list_categories', 'Admin\AdminProductController::getAllCatgories', ['as' => 'admin.products.list.categories']);
 });

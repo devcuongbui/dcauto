@@ -32,34 +32,21 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                 <div class="leftArea">
                     <div class="blockListImgsProduct">
                         <div class="owl-carousel owl-theme bigImgBlock">
-                            <div>
-                                <div class="imgPart" namemedia="media_image3">
-                                    <img alt="media_image3" loading="lazy"
-                                        src="/storage/s0/ei/s0eil2hu6gr7thc5j5cmwqnxya0q_Screenshot_2024-06-11_104607.png">
+                            <?php $cnt = 1; foreach ($galleries as $image) : ?>
+                                <div class="imgPart <?= $cnt == 1 ? 'firstImgPart' : '' ?>" <?= $cnt != 1 ? 'namemedia="media_image' . $cnt - 2 . '"' : '' ?>>
+                                    <img alt="<?= $image['file_name'] ?>" loading="lazy"
+                                        src="<?= $image['image_url'] ?>">
                                 </div>
-                            </div>
-                            <div>
-                                <div class="imgPart" namemedia="media_image3">
-                                    <img alt="media_image3" loading="lazy"
-                                        src="/storage/e7/76/e776ti6fml6jhflawwqf5w6toq9v_Screenshot_2024-06-11_104524.png">
-                                </div>
-                            </div>
+                            <?php $cnt++; endforeach; ?>
                         </div>
                         <div class="owl-carousel owl-theme smallImgBlock">
-                            <div>
-                                <div class="imgPart firstImgPart">
-                                    <img alt="Camera Hành Trình UTOUR C2 MAX | SIÊU NÉT 4K | 8 TÍNH NÂNG ADAS AI"
+                            <?php $cnt = 1; foreach ($galleries as $image) : ?>
+                                <div class="imgPart <?= $cnt == 1 ? 'firstImgPart' : '' ?>" <?= $cnt != 1 ? 'namemedia="media_image' . $cnt - 2 . '"' : '' ?>>
+                                    <img alt="<?= $image['file_name'] ?>"
                                         loading="lazy"
-                                        src="/storage/s0/ei/s0eil2hu6gr7thc5j5cmwqnxya0q_Screenshot_2024-06-11_104607.png">
+                                        src="<?= $image['image_url'] ?>">
                                 </div>
-                            </div>
-                            <div>
-                                <div class="imgPart firstImgPart">
-                                    <img alt="Camera Hành Trình UTOUR C2 MAX | SIÊU NÉT 4K | 8 TÍNH NÂNG ADAS AI"
-                                        loading="lazy"
-                                        src="/storage/e7/76/e776ti6fml6jhflawwqf5w6toq9v_Screenshot_2024-06-11_104524.png">
-                                </div>
-                            </div>
+                            <?php $cnt++; endforeach; ?>
                         </div>
                     </div>
                 </div>
@@ -119,10 +106,11 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                             <div class="cartPart">
                                 <article class="artAddPrToCart">
                                     <a class="aTag1 add-to-cart" data-product-id="<?= $product['product_id'] ?>"
+                                        style="<?=$isAddedToCart ? 'display: none;' : ''?>"
                                         title="Thêm vào giỏ hàng">
                                         <div class="itemCart itemCart1"></div>
                                     </a>
-                                    <a class="aTag2" href="/cart/list" style="display: none;">
+                                    <a class="aTag2" href="/cart/list" style="<?=!$isAddedToCart ? 'display: none;' : ''?>">
                                         <div class="itemCart itemCart2"></div>
                                     </a>
                                 </article>
@@ -134,8 +122,8 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                             <div class="btnContact">
                                 <a class="btnType_1 fixBtn contactCallPopUp contactCallPopUpPhone"
                                     contacttext="Gọi điện" data-target="" data-toggle="modal" data="phone"
-                                    datahref="tel: 0818.918.981" idgoogleget="btn_phone_id" title="Liên hệ">
-                                    0818.918.981</a>
+                                    datahref="tel: 0123.456.789" idgoogleget="btn_phone_id" title="Liên hệ">
+                                    0123.456.789</a>
                             </div>
                         </div>
                     </form>
@@ -168,11 +156,11 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                             <p class="text_1">Gọi tư vấn ngay</p>
                         </div>
                         <a class="wrapText_2 contactCallPopUp contactCallPopUpPhone" contacttext="Gọi điện"
-                            data-target="" data-toggle="modal" data="phone" datahref="tel: 0818.918.981"
+                            data-target="" data-toggle="modal" data="phone" datahref="tel: 0123.456.789"
                             idgoogleget="btn_phone_id" title="Liên hệ">
                             <p class="text_2">
                                 Hotline
-                                <b> 0818.918.981</b>
+                                <b> 0123.456.789</b>
                             </p>
                         </a>
                     </article>
@@ -238,53 +226,60 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                                                                             <p class="rating-line">
                                                                                 <input checked=""
                                                                                     class="form-check-input" name="rate"
+                                                                                    id="rate-5"
                                                                                     type="radio" value="5">
-                                                                                <span class="fa fa-star checked"></span>
-                                                                                <span class="fa fa-star checked"></span>
-                                                                                <span class="fa fa-star checked"></span>
-                                                                                <span class="fa fa-star checked"></span>
-                                                                                <span class="fa fa-star checked"></span>
-                                                                                <span>Tuyệt vời</span>
+                                                                                <label for="rate-5" class="m-0">
+                                                                                    <span class="fa fa-star checked"></span>
+                                                                                    <span class="fa fa-star checked"></span>
+                                                                                    <span class="fa fa-star checked"></span>
+                                                                                    <span class="fa fa-star checked"></span>
+                                                                                    <span class="fa fa-star checked"></span>
+                                                                                    <span>Tuyệt vời</span>
+                                                                                </label>
                                                                             </p>
                                                                             <p class="rating-line">
-                                                                                <input class="form-check-input"
+                                                                                <input class="form-check-input" id="rate-4"
                                                                                     name="rate" type="radio" value="4">
+                                                                                    <label for="rate-4" class="m-0">
                                                                                 <span class="fa fa-star checked"></span>
                                                                                 <span class="fa fa-star checked"></span>
                                                                                 <span class="fa fa-star checked"></span>
                                                                                 <span class="fa fa-star checked"></span>
                                                                                 <span class="fa fa-star-o"></span>
-                                                                                <span>Rất tốt</span>
+                                                                                <span>Rất tốt</span></label>
                                                                             </p>
                                                                             <p class="rating-line">
-                                                                                <input class="form-check-input"
+                                                                                <input class="form-check-input" id="rate-3"
                                                                                     name="rate" type="radio" value="3">
+                                                                                    <label for="rate-3" class="m-0">
                                                                                 <span class="fa fa-star checked"></span>
                                                                                 <span class="fa fa-star checked"></span>
                                                                                 <span class="fa fa-star checked"></span>
                                                                                 <span class="fa fa-star-o"></span>
                                                                                 <span class="fa fa-star-o"></span>
-                                                                                <span>Tốt</span>
+                                                                                <span>Tốt</span></label>
                                                                             </p>
                                                                             <p class="rating-line">
-                                                                                <input class="form-check-input"
+                                                                                <input class="form-check-input" id="rate-2"
                                                                                     name="rate" type="radio" value="2">
+                                                                                    <label for="rate-2" class="m-0">
                                                                                 <span class="fa fa-star checked"></span>
                                                                                 <span class="fa fa-star checked"></span>
                                                                                 <span class="fa fa-star-o"></span>
                                                                                 <span class="fa fa-star-o"></span>
                                                                                 <span class="fa fa-star-o"></span>
-                                                                                <span>Bình thường</span>
+                                                                                <span>Bình thường</span></label>
                                                                             </p>
                                                                             <p class="rating-line">
-                                                                                <input class="form-check-input"
+                                                                                <input class="form-check-input" id="rate-1"
                                                                                     name="rate" type="radio" value="1">
+                                                                                    <label for="rate-1" class="m-0">
                                                                                 <span class="fa fa-star checked"></span>
                                                                                 <span class="fa fa-star-o"></span>
                                                                                 <span class="fa fa-star-o"></span>
                                                                                 <span class="fa fa-star-o"></span>
                                                                                 <span class="fa fa-star-o"></span>
-                                                                                <span>Chưa tốt</span>
+                                                                                <span>Chưa tốt</span></label>
                                                                             </p>
                                                                         </div>
                                                                     </div>
@@ -315,12 +310,29 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                                                             <p
                                                                 class="btn-link text-semibold media-heading box-inline rating text-decoration-none">
                                                                 <?=$review['user_name']?>
-                                                                <span class="badge badge-<?=getReviewStatusColor($review['post_status'])?> ?>">
+                                                                <?php if($review['post_status'] != 'Y'): ?>
+                                                                    <span class="badge badge-<?=getReviewStatusColor($review['post_status'])?>">
                                                                     <?=getReviewStatusName($review['post_status'])?>
                                                                 </span>
+                                                                <?php endif; ?>
                                                             </p>
+                                                            <?php if($review['post_status'] == 'Y'): ?>
+                                                            <p class="rating-line">
+                                                                <span class="fa fa-star<?=$review['star'] < 1 ? '-o' : ''?>"></span>
+                                                                <span class="fa fa-star<?=$review['star'] < 2 ? '-o' : ''?>"></span>
+                                                                <span class="fa fa-star<?=$review['star'] < 3 ? '-o' : ''?>"></span>
+                                                                <span class="fa fa-star<?=$review['star'] < 4 ? '-o' : ''?>"></span>
+                                                                <span class="fa fa-star<?=$review['star'] < 5 ? '-o' : ''?>"></span>
+                                                            </p>
+                                                            <?php endif; ?>
                                                         </div>
-                                                        <p><?=$review['review_des']?></p>
+                                                        <?php if($review['post_status'] == 'Y'): ?>
+                                                            <p><?=$review['review_des']?></p>
+                                                        <?php elseif($review['post_status'] == 'N'): ?>
+                                                            <p>Nội dung đang được kiểm duyệt</p>
+                                                        <?php elseif($review['post_status'] == 'D'): ?>
+                                                            <p>Nội dung đã bị xóa bởi quản trị viên</p>
+                                                        <?php endif; ?>
                                                         <hr>
                                                     </div>
                                                 </div>
@@ -432,10 +444,6 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
                 data: { option_id, product_id, quantity },
                 dataType: "json",
                 success: function (data) {
-                    // var e = $this.parent().find(".aTag2");
-                    // $this.css("display", "none"), e.fadeIn(600);
-                    // $(".amountProduct").text(data.totalCountCart);
-                    // $(".amountProduct").data("count", data.totalCountCart);
                     location.href = "/cart/payment";
                 },
                 error: function (data) {
@@ -469,7 +477,7 @@ DCAUTO - Chuyên Cung Cấp Phụ Kiện ÔTô, Nội Thất ÔTô Chính Hãng 
             data: form.serialize(),
             dataType: "json",
             success: function (data) {
-                alert(data.msg);
+                alert(data.msg?.replace("\\n", "\n") || "Đánh giá thành công!");
                 location.reload();
             },
             error: function (data) {

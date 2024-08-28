@@ -54,6 +54,48 @@ $order['commune'] = $communeModel->find($order['commune_id'])['commune_name'] ??
                             </tr>
                             <tr>
                                 <td>
+                                    <label for="" class="form-label d-block">Số điện thoại người nhận</label>
+                                    <input id="order_phone" value="<?= $order['order_phone'] ?>" type="text"
+                                        class="form-control form-control-sm" disabled>
+                                </td>
+                                <td>
+                                    <label for="" class="form-label d-block"></label>
+                                    
+                                </td>
+                            </tr>
+                            <?php if($order['invoice_required'] == "Y") : ?>
+                                <tr>
+                                    <td colspan="2">
+                                        <span class="fw-bold">Thông tin xuất hóa đơn</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="" class="form-label d-block">Tên công ty</label>
+                                        <input id="company_name" value="<?= $order['company_name'] ?>" type="text"
+                                            class="form-control form-control-sm" disabled>
+                                    </td>
+                                    <td>
+                                        <label for="" class="form-label d-block">Mã số thuế</label>
+                                        <input id="tax_number" value="<?= $order['tax_number'] ?>" type="text"
+                                            class="form-control form-control-sm" disabled>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="" class="form-label d-block">Địa chỉ công ty</label>
+                                        <input id="invoice_address" value="<?= $order['invoice_address'] ?>" type="text"
+                                            class="form-control form-control-sm" disabled>
+                                    </td>
+                                    <td>
+                                        <label for="" class="form-label d-block">Ghi chú</label>
+                                        <input id="invoice_note" value="<?= $order['invoice_note'] ?>" type="text"
+                                            class="form-control form-control-sm" disabled>
+                                    </td>
+                                </tr>
+                            <?php endif; ?>
+                            <tr>
+                                <td>
                                     <label for="" class="form-label d-block">Phương thức thanh toán</label>
                                     <span id="pay_method"><?= getPayMethodName($order['pay_method_id']) ?></span>
                                 </td>
@@ -66,8 +108,8 @@ $order['commune'] = $communeModel->find($order['commune_id'])['commune_name'] ??
                             <tr>
                                 <td colspan="2">
                                     <label for="" class="form-label d-block">Địa chỉ nhận hàng</label>
-                                    <div id="address"><?= $order['province'] ?>, <?= $order['district'] ?>,
-                                        <?= $order['commune'] ?>, <?= $order['order_detail_address'] ?>
+                                    <div id="address">
+                                        <?= $order['order_detail_address'] ?>, <?= $order['commune'] ?>, <?= $order['district'] ?>, <?= $order['province'] ?>
                                     </div>
                                 </td>
                             </tr>
@@ -96,7 +138,7 @@ $order['commune'] = $communeModel->find($order['commune_id'])['commune_name'] ??
                                                     ?>
                                                     <tr>
                                                         <td>
-                                                            <img src="/uploads/product/<?= $img ?>" alt="" width="100px" height="100px">
+                                                            <img src="/uploads/products/<?= $img ?>" alt="" width="100px" height="100px">
                                                         </td>
                                                         <td><?= $product_name ?></td>
                                                         <td><?= $quantity ?></td>

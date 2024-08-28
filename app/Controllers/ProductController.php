@@ -8,48 +8,52 @@ class ProductController extends BaseController
     protected $productModel;
     protected $productOptionModel;
     protected $reviewModel;
+    protected $product_image_model;
     public function __construct()
     {
         $this->session = session();
         $this->productModel = model("ProductModel");
         $this->category = model("Category");
+        $this->brands = model("CarBrands");
         $this->productOptionModel =  model("ProductOptionModel");
         $this->reviewModel = model("ReviewModel");
+        $this->product_image_model = model("ProductImages");
     }
 
-    public function index($category_slug = null)
+    public function brand($category_slug = null)
     {
-        // Fetch categories for the layout
         $s_parent_code_no = $this->request->getGet('s_parent_code_no') ?: 0;
-        $categories = $this->category->getCategoriesWithSubcategories($s_parent_code_no);
+        $categories = $this->brands->getCategoriesWithSubcategories($s_parent_code_no);
 
-        // Check if a category slug is provided
         if (!$category_slug) {
             return view('errors/404');
         }
 
-        // Find the category by slug
-        $category = $this->category->where('slug', $category_slug)->first();
+        $category = $this->brands->where('slug', $category_slug)->first();
         if (!$category) {
             return view('errors/404');
         }
 
-        // Fetch products based on whether the category is a parent or child
-        if ($category['parent_code_no'] == 0) {
-            // If the category is a parent category, get products from this category and its child categories
-            $childCategories = $this->category->where('parent_code_no', $category['c_idx'])->findAll();
-            $childCategoryIds = array_column($childCategories, 'code_no');
-            $childCategoryIds[] = $category['code_no']; // Include the parent category itself
+        $productsByCategory = [];
 
-            $products = $this->productModel->whereIn('category_id', $childCategoryIds)->findAll();
+        if ($category['parent_code_no'] == 0) {
+            $childCategories = $this->brands->where('parent_code_no', $category['c_idx'])->findAll();
+
+            $childCategories[] = $category;
+
+            foreach ($childCategories as $childCategory) {
+                $productsByCategory[$childCategory['slug']] = $this->productModel
+                    ->where('category_id', $childCategory['c_idx'])
+                    ->findAll();
+            }
         } else {
-            // If the category is a child category, get products from this category only
-            $products = $this->productModel->where('category_id', $category['c_idx'])->findAll();
+            $productsByCategory[$category['slug']] = $this->productModel
+                ->where('category_id', $category['c_idx'])
+                ->findAll();
         }
 
-        // Pass the categories and products to the view
-        return view('product/index', [
-            'products' => $products,
+        return view('product/brand', [
+            'productsByCategory' => $productsByCategory,
             'category' => $category,
             'categories' => $categories,
             'total' => count($categories),
@@ -57,6 +61,14 @@ class ProductController extends BaseController
         ]);
     }
 
+    public function type($category_slug = null)
+    {
+        $s_parent_code_no = $this->request->getGet('s_parent_code_no') ?: 0;
+        $categories = $this->brands->getCategoriesWithSubcategories($s_parent_code_no);
+        return view('product/type', [
+            'categories' => $categories,
+        ]);
+    }
 
     public function list()
     {
@@ -82,22 +94,35 @@ class ProductController extends BaseController
         if (!$slug) {
             return view('errors/404');
         }
-
-        // Find the product by slug
+        $cart = $this->session->get('cart') ?? ['items' => []];
         $product = $this->productModel->where('slug', $slug)->first();
         if (!$product) {
             return view('errors/404');
         }
 
-        // Fetch product options and related products
         $productOptions = $this->productOptionModel->where('product_id', $product['product_id'])->findAll();
         $product['options'] = $productOptions;
         $product['relatedProducts'] = $this->productModel->where('category_id', $product['category_id'])
-            ->where('slug !=', $slug) // Exclude the current product
+            ->where('slug !=', $slug)
             ->findAll();
         $reviewList = $this->reviewModel->where('product_id', $product['product_id'])->findAll();
+        $gallery = $this->product_image_model->where('product_id', $product['product_id'])
+            ->where('deleted_at', null)
+            ->orderBy('image_id', 'desc')
+            ->findAll();
+        $isAddedToCart = false;
+        foreach ($cart['items'] as $item) {
+            if ($item['product_id'] == $product['product_id']) {
+                $isAddedToCart = true;
+                break;
+            }
+        }
 
-        return view('product/view', ['product' => $product, 'reviewList' => $reviewList]);
+        return view('product/view', [
+            'product' => $product, 
+            'reviewList' => $reviewList, 
+            'galleries' => $gallery,
+            'isAddedToCart' => $isAddedToCart]);
     }
 
     public function getOneById($id = null)

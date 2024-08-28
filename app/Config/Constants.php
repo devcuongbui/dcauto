@@ -141,11 +141,16 @@ define('ORDER_STATUS_NAMES', [
 define('REVIEW_STATUS_COLORS', [
     'N' => 'info',
     'Y' => 'success',
-    'C' => 'warning',
+    'D' => 'warning',
 ]);
 
 define('REVIEW_STATUS_NAMES', [
     'N' => 'Đang chờ duyệt',
     'Y' => 'Đã được duyệt',
-    'C' => 'Đã xóa',
+    'D' => 'Đã xóa',
+]);
+
+define('BANK_TYPE_NAMES', [
+    'P' => 'Tài khoản cá nhân',
+    'C' => 'Tài khoản công ty',
 ]);

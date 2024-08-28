@@ -35,6 +35,6 @@ class ReviewController extends BaseController
             'star' => $rate
         ];
         $model->save($data);
-        return $this->response->setJSON(['msg' => 'Cảm ơn bạn đã gửi cảm nhận! \\n Hệ thống sẽ kiểm duyệt đánh giá của bạn và đăng lên sau 24h nếu phù hợp']);
+        return $this->response->setJSON(['msg' => 'Cảm ơn bạn đã gửi cảm nhận! \\nHệ thống sẽ kiểm duyệt đánh giá của bạn và đăng lên sau 24h nếu phù hợp']);
     }
 }

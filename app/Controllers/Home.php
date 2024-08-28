@@ -5,19 +5,18 @@ namespace App\Controllers;
 class Home extends BaseController
 {
     protected $category;
+    protected $productModel;
     public function __construct()
     {
-        $this->category = model("Category");
+        $this->category = model("CarBrands");
         $this->productModel = model("ProductModel");
     }
 
     public function index()
     {
         $s_parent_code_no = $this->request->getGet('s_parent_code_no') ?: 0;
-
-
-        $categories = $this->category->getCategoriesWithSubcategories($s_parent_code_no);
-        $top_categories = $this->category->getTopCategories(5);
+        $categories = $this->category->getCategoriesWithSubcategories(0);
+        $top_categories = $this->category->getTopCategories();
         $topCategoryIds = array_column($top_categories, 'c_idx');
         $products = $this->productModel->getProductsByCategories($topCategoryIds);
 
