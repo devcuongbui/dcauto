@@ -63,7 +63,11 @@ class ProductController extends BaseController
 
     public function type($category_slug = null)
     {
-        return view('product/type');
+        $s_parent_code_no = $this->request->getGet('s_parent_code_no') ?: 0;
+        $categories = $this->brands->getCategoriesWithSubcategories($s_parent_code_no);
+        return view('product/type', [
+            'categories' => $categories,
+        ]);
     }
 
     public function list()
