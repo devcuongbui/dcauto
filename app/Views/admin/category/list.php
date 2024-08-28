@@ -109,5 +109,28 @@
             }
         });
     }
+
+    function code_delete() {
+        $.ajax({
+            url: "/admin/category/delete",
+            type: "POST",
+            data: $("#frm").serialize(),
+            error : function(request, status, error) {
+                //통신 에러 발생시 처리
+                alert("code : " + request.status + "\r\nmessage : " + request.reponseText);
+            }
+            , success : function(response, status, request) {
+                if (response.result == true)
+                {
+                    alert(response.message);
+                    location.reload();
+                    return;
+                } else {
+                    alert(response.message);
+                    return;
+                }
+            }
+        });
+    }
 </script>
 <?= $this->endSection() ?>
