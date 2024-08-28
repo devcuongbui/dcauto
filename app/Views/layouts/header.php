@@ -81,7 +81,7 @@
                         foreach ($categories as $category) {
                     ?>
                         <div class="menuItem_1 menuItem_1Special dropDown">
-                            <a class="linkLevel_1" href="product/<?=$category["slug"]?>"><?=$category["code_name"]?></a>
+                            <a class="linkLevel_1" href="/product/type/<?=$category["slug"]?>"><?=$category["code_name"]?></a>
                             <div class="blockCateLevel_2Type2">
                                     <?php
                                         $category_child_1 = get_category($category["code_no"]);
@@ -89,7 +89,7 @@
                                     ?>
                                         <div class="colPart">
 
-                                            <a class="linkTag linkLevel_2" href="product/<?=$child_1["slug"]?>">
+                                            <a class="linkTag linkLevel_2" href="/product/type/<?=$child_1["slug"]?>">
                                                 <?=$child_1["code_name"]?>
                                             </a>
 
@@ -97,7 +97,7 @@
                                                 $category_child_2 = get_category($child_1["code_no"]);
                                                 foreach ($category_child_2 as $child_2) {
                                             ?>
-                                                <a class="linkTag linkLevel_3" href="product/<?=$child_2["slug"]?>">
+                                                <a class="linkTag linkLevel_3" href="/product/type/<?=$child_2["slug"]?>">
                                                     <?=$child_2["code_name"]?>
                                                 </a>
                                             <?php
